@@ -1,0 +1,13 @@
+@import "main";
+
+.new-moving-form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.child62 {
+  padding-right: 5%;
+  justify-self: end;
+}
