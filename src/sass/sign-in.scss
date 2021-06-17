@@ -1,0 +1,94 @@
+@import "main.scss"; 
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: $darkBlue;
+    text-align: center;
+    padding: 1rem;
+
+    p {
+        font-family: $mainFont; 
+        color: $white;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+}
+
+
+main {
+
+    .heading {
+        height: 33vh;
+        background-color: $lightBlue;
+        border-bottom: 2px solid $darkBlue;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: flex-end;
+    
+        h1 {
+            font-family: $mainFont;
+            color: $darkBlue;
+            font-size: 2.5rem;
+        }
+    }
+
+    form {
+        padding: 1rem 1.5rem;
+
+        label {
+            font-family: $mainFont;
+            font-size: 0.9rem;
+
+            span {
+                color: $darkBlue;
+                font-size: 0.9rem;
+                margin-left: 0.1em;
+            }
+        }
+
+        input {
+            width: 100%;
+            height: 8.5vh;
+            border: 2px solid $darkBlue;
+            border-radius: 1rem;
+            padding: 1rem;
+            font-size: 1.2rem;
+            outline: none;
+        }
+
+        button, a {
+            width: 100%;
+            height: 8.5vh;
+            background-color: $darkBlue;
+            border: 2px solid $darkBlue;
+            border-radius: 1rem;
+            color: $white;
+            padding: 1rem;
+            outline: none;
+            margin-top: 1rem;
+            font-size: 1.2rem; 
+            font-family: $mainFont;
+            
+        }
+
+        button {
+            margin-top: 3rem;
+        }
+
+        a {
+            display: inline-block;
+            background-color: $lightBlue;
+            border: 1px solid $darkBlue;
+            text-decoration: none;
+            color: $darkBlue;
+            text-align: center;   
+            margin-top: 2rem;   
+        }
+    }
+}
