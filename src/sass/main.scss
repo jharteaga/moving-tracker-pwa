@@ -1,3 +1,13 @@
-h1 {
-	color: aqua;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+input {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  height: 40px;
 }
