@@ -1,24 +1,13 @@
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
-// import 'firebase/auth';
+const firebaseConfig = {
+    apiKey: 'AIzaSyCwac9_2O7Xnsroyi_FAmSQQTjdk7Y2vrI',
+    authDomain: 'moving-tracker-pwa.firebaseapp.com',
+    projectId: 'moving-tracker-pwa',
+    storageBucket: 'moving-tracker-pwa.appspot.com',
+    messagingSenderId: '680571252158',
+    appId: '1:680571252158:web:0f2938caa0d5d1ff5e1def',
+};
 
-// // Your web app's Firebase configuration
-// var firebaseConfig = {
-// 	apiKey: process.env.API_KEY,
-// 	authDomain: process.env.AUTH_DOMAIN,
-// 	projectId: process.env.PROJECT_ID,
-// 	storageBucket: process.env.STORAGE_BUCKET,
-// 	messagingSenderId: process.env.MESSAGING_SENDER_ID,
-// 	appId: process.env.APP_ID
-// };
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-// // Make auth and firestore references
-// const auth = firebase.auth();
-// const db = firebase.firestore();
-
-// // Update firestore settings
-// db.settings({ timestampsInSnapshots: true, merge: true });
-
-// export { db, auth };
+const auth = firebase.auth();
+const db = firebase.firestore();
