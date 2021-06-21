@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.sign-up {
+.welcome-page {
 
     header {
         background-color: $darkBackground;
@@ -23,7 +23,7 @@
 
     main {
 
-        .sing-up-main-heading {
+        .welcome-page-main-heading {
             height: 30vh;
             background-color: $lightBackground;
             border-bottom: 2px solid $darkBackground;
@@ -33,64 +33,39 @@
     
             h1 {
                 font-family: $mainFont;
-                color: $darkBackground;
+                color: $gray;
                 font-size: 2.2rem;
                 font-weight: bold;
             }
         }
 
-        
-        form {
-            padding: 0.2rem 1.5rem;
+        .welcome-page-main-message {
+            padding: 0.6rem 1.5rem;
 
-            label {
+            p {
                 font-family: $mainFont;
-                font-size: 0.9rem;
-
-                span {
-                    color: $darkBackground;
-                    font-size: 0.6rem;
-                    margin-left: 0.1rem;
-                }
+                margin: 1rem 0;
             }
 
-            .sign-up-errorMsg {
+            a {
                 display: inline-block;
-                font-size: 0.9rem;
-                color: $causion;
-                margin-left: 0.5rem;
-                margin-bottom: 0;
-            }
-
-            input {
+                text-decoration: none;
+                text-align: center;
                 width: 100%;
                 height: 8.5vh;
                 line-height: 8.5vh;
-                border: 2px solid $darkBackground;
-                border-radius: 1rem;
-                padding: 0 1rem;
-                font-size: 1.2rem;
-            }
-
-            button.btn {
-                width: 100%;
-                height: 8.7vh;
                 background-color: $darkBackground;
                 border: 2px solid $darkBackground;
                 border-radius: 1rem;
-                color: $white;
+                color: white;
                 outline: none;
-                margin-top: 1rem;
+                margin-top: 2.5rem;
+                font-family: $mainFont;
                 font-size: 1.3rem; 
             }
 
-            #pwcredential {
-                font-size: 0.8rem;
-                padding: 0 0.3rem;
-                border-radius: 50%;
-                color: $white;
-                background-color: $darkBackground;
-            }
         }
-    }
+        
+    }   
+
 }

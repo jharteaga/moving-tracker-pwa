@@ -5,87 +5,87 @@
 }
 
 .sign-in {
+
     header {
-        background-color: $darkBlue;
+        background-color: $darkBackground;
         text-align: center;
-        padding: 1rem;
+        padding: 0.7rem;
 
         p {
-            font-family: $mainFont;
+            font-family: $mainFont; 
             color: $white;
             font-size: 1rem;
             text-transform: uppercase;
+            margin-bottom: 0;
         }
     }
 
+
     main {
-        .sing-in-main-heading {
+
+        .sign-in-main-heading {
             height: 30vh;
-            background-color: $lightBlue;
-            border-bottom: 2px solid $darkBlue;
-            padding: 1rem 1.5rem;
+            background-color: $lightBackground;
+            border-bottom: 2px solid $darkBackground;
+            padding: 0.3rem 1.5rem;
             display: flex;
             align-items: flex-end;
-
+        
             h1 {
                 font-family: $mainFont;
-                color: $darkBlue;
-                font-size: 2.5rem;
+                color: $gray;
+                font-size: 2.2rem;
+                font-weight: bold;
             }
         }
 
         form {
-            padding: 1rem 1.5rem;
+            padding: 0.6rem 1.5rem;
 
             label {
                 font-family: $mainFont;
                 font-size: 0.9rem;
 
                 span {
-                    color: $darkBlue;
-                    font-size: 0.9rem;
-                    margin-left: 0.1em;
+                    color: $gray;
+                    font-size: 0.6rem;
+                    margin-left: 0.1rem;
                 }
+            }
+
+            .sign-in-errorMsg {
+                display: inline-block;
+                font-size: 0.9rem;
+                color: $causion;
+                margin-left: 0.5rem;
+                margin-bottom: 0;
             }
 
             input {
                 width: 100%;
                 height: 8.5vh;
-                border: 2px solid $darkBlue;
+                line-height: 8.5vh;
+                border: 2px solid $darkBackground;
                 border-radius: 1rem;
-                padding: 1rem;
+                padding: 0 1rem;
                 font-size: 1.2rem;
-                outline: none;
-                margin-bottom: 1vh;
             }
 
-            button,
-            a {
+
+            .btn {
                 width: 100%;
-                height: 8.5vh;
-                background-color: $darkBlue;
-                border: 2px solid $darkBlue;
-                border-radius: 1rem;
-                color: $white;
-                padding: 1rem;
-                outline: none;
-                margin-top: 1rem;
+                padding: 0.9rem;
+                font-family: $mainFont;  
+                background-color: $darkBackground;
+                margin-top: 3.1rem;
                 font-size: 1.2rem;
-                font-family: $mainFont;
+                border-radius: 1rem;
             }
 
-            button {
-                margin-top: 3rem;
-            }
-
-            a {
-                display: inline-block;
-                background-color: $lightBlue;
-                border: 1px solid $darkBlue;
-                text-decoration: none;
-                color: $darkBlue;
-                text-align: center;
+            a.btn {
                 margin-top: 2rem;
+                background-color: $lightBackground;
+                border: 2px solid $darkBackground;
             }
         }
     }
