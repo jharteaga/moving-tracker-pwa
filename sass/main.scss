@@ -1,10 +1,16 @@
+//sass --watch sass/main.scss styles/styles.css
+
 // Meg
-$lightBlue: rgb(178, 226, 235);
-$darkBlue: rgb(26, 129, 189);
+$lightBackground: rgb(238, 238, 238);
+$darkBackground: gray;
 $white: white;
+$gray: gray; 
+$causion: rgb(243, 98, 98);
 $mainFont: sans-serif;
 @import 'sign-in.scss';
 @import 'sign-up.scss';
+@import 'welcome.scss';
+@import 'onboarding.scss';
 
 h1 {
     color: aqua;

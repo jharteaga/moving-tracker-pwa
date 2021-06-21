@@ -5,76 +5,72 @@
 }
 
 .sign-in header {
-  background-color: #1a81bd;
+  background-color: gray;
   text-align: center;
-  padding: 1rem;
+  padding: 0.7rem;
 }
 .sign-in header p {
   font-family: sans-serif;
   color: white;
   font-size: 1rem;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
-.sign-in main .sing-in-main-heading {
+.sign-in main .sign-in-main-heading {
   height: 30vh;
-  background-color: #b2e2eb;
-  border-bottom: 2px solid #1a81bd;
-  padding: 1rem 1.5rem;
+  background-color: #eeeeee;
+  border-bottom: 2px solid gray;
+  padding: 0.3rem 1.5rem;
   display: flex;
   align-items: flex-end;
 }
-.sign-in main .sing-in-main-heading h1 {
+.sign-in main .sign-in-main-heading h1 {
   font-family: sans-serif;
-  color: #1a81bd;
-  font-size: 2.5rem;
+  color: gray;
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 .sign-in main form {
-  padding: 1rem 1.5rem;
+  padding: 0.6rem 1.5rem;
 }
 .sign-in main form label {
   font-family: sans-serif;
   font-size: 0.9rem;
 }
 .sign-in main form label span {
-  color: #1a81bd;
+  color: gray;
+  font-size: 0.6rem;
+  margin-left: 0.1rem;
+}
+.sign-in main form .sign-in-errorMsg {
+  display: inline-block;
   font-size: 0.9rem;
-  margin-left: 0.1em;
+  color: #f36262;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 .sign-in main form input {
   width: 100%;
   height: 8.5vh;
-  border: 2px solid #1a81bd;
+  line-height: 8.5vh;
+  border: 2px solid gray;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0 1rem;
   font-size: 1.2rem;
-  outline: none;
-  margin-bottom: 1vh;
 }
-.sign-in main form button,
-.sign-in main form a {
+.sign-in main form .btn {
   width: 100%;
-  height: 8.5vh;
-  background-color: #1a81bd;
-  border: 2px solid #1a81bd;
-  border-radius: 1rem;
-  color: white;
-  padding: 1rem;
-  outline: none;
-  margin-top: 1rem;
-  font-size: 1.2rem;
+  padding: 0.9rem;
   font-family: sans-serif;
+  background-color: gray;
+  margin-top: 3.1rem;
+  font-size: 1.2rem;
+  border-radius: 1rem;
 }
-.sign-in main form button {
-  margin-top: 3rem;
-}
-.sign-in main form a {
-  display: inline-block;
-  background-color: #b2e2eb;
-  border: 1px solid #1a81bd;
-  text-decoration: none;
-  color: #1a81bd;
-  text-align: center;
+.sign-in main form a.btn {
   margin-top: 2rem;
+  background-color: #eeeeee;
+  border: 2px solid gray;
 }
 
 * {
@@ -84,60 +80,196 @@
 }
 
 .sign-up header {
-  background-color: #1a81bd;
+  background-color: gray;
   text-align: center;
-  padding: 1rem;
+  padding: 0.7rem;
 }
 .sign-up header p {
   font-family: sans-serif;
   color: white;
   font-size: 1rem;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
 .sign-up main .sing-up-main-heading {
   height: 30vh;
-  background-color: #b2e2eb;
-  border-bottom: 2px solid #1a81bd;
-  padding: 1rem 1.5rem;
+  background-color: #eeeeee;
+  border-bottom: 2px solid gray;
+  padding: 0.3rem 1.5rem;
   display: flex;
   align-items: flex-end;
 }
 .sign-up main .sing-up-main-heading h1 {
   font-family: sans-serif;
-  color: #1a81bd;
-  font-size: 2.5rem;
+  color: gray;
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 .sign-up main form {
-  padding: 0.5rem 1.5rem;
+  padding: 0.2rem 1.5rem;
 }
 .sign-up main form label {
   font-family: sans-serif;
   font-size: 0.9rem;
 }
 .sign-up main form label span {
-  color: #1a81bd;
-  font-size: 1.2rem;
+  color: gray;
+  font-size: 0.6rem;
+  margin-left: 0.1rem;
+}
+.sign-up main form .sign-up-errorMsg {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: #f36262;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
 }
 .sign-up main form input {
   width: 100%;
   height: 8.5vh;
-  border: 2px solid #1a81bd;
+  line-height: 8.5vh;
+  border: 2px solid gray;
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0 1rem;
   font-size: 1.2rem;
-  outline: none;
 }
-.sign-up main form button {
+.sign-up main form button.btn {
   width: 100%;
-  height: 8.5vh;
-  background-color: #1a81bd;
-  border: 2px solid #1a81bd;
+  height: 8.7vh;
+  background-color: gray;
+  border: 2px solid gray;
   border-radius: 1rem;
   color: white;
-  padding: 1rem;
   outline: none;
   margin-top: 1rem;
   font-size: 1.3rem;
+}
+.sign-up main form #pwcredential {
+  font-size: 0.8rem;
+  padding: 0 0.3rem;
+  border-radius: 50%;
+  color: white;
+  background-color: gray;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.welcome-page header {
+  background-color: gray;
+  text-align: center;
+  padding: 0.7rem;
+}
+.welcome-page header p {
+  font-family: sans-serif;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.welcome-page main .welcome-page-main-heading {
+  height: 30vh;
+  background-color: #eeeeee;
+  border-bottom: 2px solid gray;
+  padding: 0.3rem 1.5rem;
+  display: flex;
+  align-items: flex-end;
+}
+.welcome-page main .welcome-page-main-heading h1 {
+  font-family: sans-serif;
+  color: gray;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+.welcome-page main .welcome-page-main-message {
+  padding: 0.6rem 1.5rem;
+}
+.welcome-page main .welcome-page-main-message p {
+  font-family: sans-serif;
+  margin: 1rem 0;
+}
+.welcome-page main .welcome-page-main-message a {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  height: 8.5vh;
+  line-height: 8.5vh;
+  background-color: gray;
+  border: 2px solid gray;
+  border-radius: 1rem;
+  color: white;
+  outline: none;
+  margin-top: 2.5rem;
+  font-family: sans-serif;
+  font-size: 1.3rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.onboarding header {
+  background-color: gray;
+  text-align: center;
+  padding: 0.7rem;
+}
+.onboarding header p {
+  font-family: sans-serif;
+  color: white;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.onboarding main {
+  padding: 1.2rem 1.5rem;
+}
+.onboarding main .carousel .carousel-indicators {
+  position: absolute;
+  top: 65%;
+}
+.onboarding main .carousel .carousel-indicators button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 1rem;
+}
+.onboarding main .carousel .carousel-item {
+  height: 87vh;
+}
+.onboarding main .carousel .carousel-item img {
+  width: 100%;
+  height: 58%;
+  border-radius: 2rem;
+}
+.onboarding main .carousel .carousel-item .description {
+  height: 42%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+}
+.onboarding main .carousel .carousel-item .description h2 {
+  font-size: 1rem;
+  font-weight: bold;
+}
+.onboarding main .carousel .carousel-item .description p {
+  font-size: 1rem;
+}
+.onboarding main .carousel .carousel-item .description .btn {
+  width: 60%;
+  padding: 0.8rem;
+  font-family: sans-serif;
+  background-color: gray;
+  font-size: 1rem;
+  border-radius: 1rem;
 }
 
 h1 {
