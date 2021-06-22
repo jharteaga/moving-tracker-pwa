@@ -1,0 +1,132 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.moving-details {
+	header {
+		text-align: center;
+		background-color: $darkBackground;
+		width: 100%;
+		color: $white;
+		padding: 0.7rem;
+
+		p {
+			font-family: $mainFont;
+			margin-bottom: 0;
+			text-transform: uppercase;
+			font-size: 1rem;
+		}
+	}
+
+	main {
+		padding: 0 0.5em;
+		height: 100vh;
+
+		.heading {
+			margin-top: 1.5rem;
+
+			h1 {
+				color: $gray;
+				font-weight: bold;
+			}
+		}
+
+		form {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.search {
+				position: relative;
+				flex-grow: 1;
+
+				span {
+					position: absolute;
+					left: 0.7em;
+					top: 2rem;
+					font-size: 1.4rem;
+				}
+
+				&-input {
+					margin-top: 1em;
+					padding: 0.6rem 0 0.5rem 3rem;
+					max-width: 100%;
+					width: 100%;
+					border-radius: 8px;
+					font-size: 1.2rem;
+				}
+			}
+
+			.filter {
+				flex-grow: 0.2;
+				margin-top: 1em;
+				margin-left: 1em;
+
+				& .fa-filter {
+					font-size: 2rem;
+					cursor: pointer;
+				}
+
+				&:hover {
+					color: rgb(78, 78, 78);
+				}
+			}
+		}
+	}
+
+	.moving-options {
+		border: 2px solid $gray;
+		border-radius: 8px;
+		position: fixed;
+		bottom: 9rem;
+		right: 3.5rem;
+		width: 225px;
+		transform: translateX(130%);
+		transition: all 0.4s;
+
+		ul {
+			list-style-type: none;
+			padding: 1.5rem 0.5rem 2rem;
+			cursor: pointer;
+
+			li {
+				text-align: center;
+				padding: 1rem 0;
+				width: 100%;
+				color: $gray;
+
+				&:hover {
+					background-color: $lightBackground;
+				}
+			}
+		}
+
+		&.active {
+			transform: translateX(0%);
+		}
+	}
+
+	button.add-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 3.4rem;
+		height: 5rem;
+		width: 5rem;
+		border-radius: 50%;
+		border: none;
+		background-color: $gray;
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+		position: fixed;
+		bottom: 2em;
+		right: 0.3em;
+
+		&:hover {
+			background-color: rgb(78, 78, 78);
+		}
+	}
+}

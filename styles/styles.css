@@ -272,8 +272,117 @@
   border-radius: 1rem;
 }
 
-h1 {
-  color: aqua;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.moving-details header {
+  text-align: center;
+  background-color: gray;
+  width: 100%;
+  color: white;
+  padding: 0.7rem;
+}
+.moving-details header p {
+  font-family: sans-serif;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.moving-details main {
+  padding: 0 0.5em;
+  height: 100vh;
+}
+.moving-details main .heading {
+  margin-top: 1.5rem;
+}
+.moving-details main .heading h1 {
+  color: gray;
+  font-weight: bold;
+}
+.moving-details main form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.moving-details main form .search {
+  position: relative;
+  flex-grow: 1;
+}
+.moving-details main form .search span {
+  position: absolute;
+  left: 0.7em;
+  top: 2rem;
+  font-size: 1.4rem;
+}
+.moving-details main form .search-input {
+  margin-top: 1em;
+  padding: 0.6rem 0 0.5rem 3rem;
+  max-width: 100%;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+.moving-details main form .filter {
+  flex-grow: 0.2;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+.moving-details main form .filter .fa-filter {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.moving-details main form .filter:hover {
+  color: #4e4e4e;
+}
+.moving-details .moving-options {
+  border: 2px solid gray;
+  border-radius: 8px;
+  position: fixed;
+  bottom: 9rem;
+  right: 3.5rem;
+  width: 225px;
+  transform: translateX(130%);
+  transition: all 0.4s;
+}
+.moving-details .moving-options ul {
+  list-style-type: none;
+  padding: 1.5rem 0.5rem 2rem;
+  cursor: pointer;
+}
+.moving-details .moving-options ul li {
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  color: gray;
+}
+.moving-details .moving-options ul li:hover {
+  background-color: #eeeeee;
+}
+.moving-details .moving-options.active {
+  transform: translateX(0%);
+}
+.moving-details button.add-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.4rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  border: none;
+  background-color: gray;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  position: fixed;
+  bottom: 2em;
+  right: 0.3em;
+}
+.moving-details button.add-btn:hover {
+  background-color: #4e4e4e;
 }
 
 /*# sourceMappingURL=styles.css.map */

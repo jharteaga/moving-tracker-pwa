@@ -4,14 +4,11 @@
 $lightBackground: rgb(238, 238, 238);
 $darkBackground: gray;
 $white: white;
-$gray: gray; 
+$gray: gray;
 $causion: rgb(243, 98, 98);
 $mainFont: sans-serif;
 @import 'sign-in.scss';
 @import 'sign-up.scss';
 @import 'welcome.scss';
 @import 'onboarding.scss';
-
-h1 {
-    color: aqua;
-}
+@import 'moving-details.scss';
