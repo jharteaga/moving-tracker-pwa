@@ -1,9 +1,11 @@
 function firebaseSignup(email, password) {
     function firebaseSignup(email, password) {
         return {
-            uid: 'userid 32434',
-            userName: 'Pepito',
-            email: email,
+            user: {
+                uid: 'userid 32434',
+                userName: 'Pepito',
+                email: email,
+            },
         };
     }
     return new Promise(function (resolve) {
@@ -16,9 +18,11 @@ function firebaseSignup(email, password) {
 function firebaseLogin(email, password) {
     function firebaseLogin(email, password) {
         return {
-            uid: 'userid 32434',
-            userName: 'Pepito',
-            email: email,
+            user: {
+                uid: 'userid 32434',
+                userName: 'Pepito',
+                email: email,
+            },
         };
     }
     return new Promise(function (resolve) {
@@ -50,52 +54,64 @@ class User {
         this.userError = '';
     }
 
-    // set userId(newUserId) {
-    //     this._userId = newUserId;
-    // }
-
-    // get userId() {
-    //     return this._userId;
-    // }
-
     async userSignUp(email, password, passwordConfirm) {
-        if (password === passwordConfirm) {
-            const signup = await firebaseSignup(email, password);
-            if (signup.uid) {
-                console.log('User Signed up');
-                this.userId = signup.uid;
-                this.userName = signup.userName;
-                this.email = signup.email;
+        try {
+            if (password === passwordConfirm) {
+                const signup = await auth.createUserWithEmailAndPassword(
+                    email,
+                    password
+                );
+                if (signup.user.uid) {
+                    console.log('User Signed up');
+                    // console.log(signup.user.uid);
+                    // console.log(signup.user.email);
+                    this.userId = signup.user.uid;
+                    // this.userName = signup.userName;
+                    this.email = signup.user.email;
+                }
+            } else {
+                this.userError =
+                    'Confirmation password does not match password field';
             }
-        } else {
-            this.userError =
-                'Confirmation password does not match password field';
+        } catch (err) {
+            this.userError = err.message;
+            console.log(err.message);
         }
     }
 
     async userLogin(email, password) {
-        const login = await firebaseLogin(email, password);
-        if (login.uid) {
-            console.log('User Logged in');
-            this.userId = login.uid;
-            this.userName = login.userName;
-            this.email = login.email;
-        } else {
-            this.userError = 'Login Error';
+        try {
+            const login = await auth.signInWithEmailAndPassword(
+                email,
+                password
+            );
+            if (login.user.uid) {
+                console.log('User Logged in');
+                this.userId = login.user.uid;
+                // this.userName = login.userName;
+                this.email = login.user.email;
+            } else {
+                this.userError = 'Login Error';
+            }
+        } catch (err) {
+            console.log(err.message);
         }
     }
 
     async userLogout() {
-        const logout = await firebaseLogout();
-        if (logout === 'user-logged-out') {
-            console.log('User Logged Out');
-            this.userId = '';
-            this.userName = '';
-            this.email = '';
-        } else {
-            this.userError = 'Logout Error';
-        }
+        const logout = await auth.signOut();
+        console.log('User Logged Out');
+        console.log(logout);
+        this.userId = '';
+        this.userName = '';
+        this.email = '';
     }
+
+    addUserDb() {}
+
+    getUserDb() {}
+
+    updateUserDb() {}
 
     addLocation(newLocation) {
         this.locations.push(newLocation);
@@ -130,46 +146,51 @@ class User {
 
 const user = new User();
 
-user.userSignUp('pepito@gmail.com', '1232131', '1232131').then(() => {
-    console.log(
-        '\n',
-        user.userId + '\n',
-        user.userName + '\n',
-        user.email + '\n',
-        user.userError ? user.userError : ''
-    );
-});
+// user.userSignUp('pepito@gmail.com', '1232131', '1232131')
+//     .then(() => {
+//         console.log(
+//             '\n',
+//             user.userId + '\n',
+//             // user.userName + '\n',
+//             user.email + '\n'
+//             // user.userError ? user.userError : ''
+//         );
+//         // console.log('Success ' + res);
+//     })
+//     .catch((err) => {
+//         console.log(err.message);
+//     });
 
-user.userLogout().then(() => {
-    console.log(
-        '\n',
-        user.userId + '\n',
-        user.userName + '\n',
-        user.email + '\n',
-        user.userError ? user.userError : ''
-    );
-});
+// user.userLogout().then(() => {
+//     console.log(
+//         '\n',
+//         user.userId + '\n',
+//         user.userName + '\n',
+//         user.email + '\n',
+//         user.userError ? user.userError : ''
+//     );
+// });
 
 user.userLogin('pepito@gmail.com', '1232131').then(() => {
     console.log(
         '\n',
         user.userId + '\n',
-        user.userName + '\n',
-        user.email + '\n',
-        user.userError ? user.userError : ''
+        // user.userName + '\n',
+        user.email + '\n'
+        // user.userError ? user.userError : ''
     );
 });
 
-user.addLocation({ id: 11, location: 'living room' });
+// user.addLocation({ id: 11, location: 'living room' });
 
-user.addLocation({ id: 15, location: 'Dinning room' });
+// user.addLocation({ id: 15, location: 'Dinning room' });
 
-console.log(user.locations);
+// console.log(user.locations);
 
-user.deleteLocation(15);
+// user.deleteLocation(15);
 
-console.log(user.locations);
+// console.log(user.locations);
 
-user.editLocation(11, { id: 11, location: 'Kitchen' });
+// user.editLocation(11, { id: 11, location: 'Kitchen' });
 
-console.log(user.locations);
+// console.log(user.locations);
