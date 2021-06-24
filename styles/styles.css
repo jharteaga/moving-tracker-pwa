@@ -364,7 +364,7 @@
 .moving-details .moving-options.active {
   transform: translateX(0%);
 }
-.moving-details button.add-btn {
+.moving-details button.options-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -381,8 +381,19 @@
   bottom: 2em;
   right: 0.3em;
 }
-.moving-details button.add-btn:hover {
+.moving-details button.options-btn:hover {
   background-color: #4e4e4e;
+}
+.moving-details .label-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.moving-details .label-container span:is(.fa-plus, .fa-trash) {
+  font-size: 1.4rem;
+  margin: 0 1.2rem;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=styles.css.map */
