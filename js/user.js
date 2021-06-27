@@ -1,48 +1,3 @@
-function firebaseSignup(email, password) {
-    function firebaseSignup(email, password) {
-        return {
-            user: {
-                uid: 'userid 32434',
-                userName: 'Pepito',
-                email: email,
-            },
-        };
-    }
-    return new Promise(function (resolve) {
-        setTimeout(function () {
-            resolve(firebaseSignup(email, password));
-        }, 3000);
-    });
-}
-
-function firebaseLogin(email, password) {
-    function firebaseLogin(email, password) {
-        return {
-            user: {
-                uid: 'userid 32434',
-                userName: 'Pepito',
-                email: email,
-            },
-        };
-    }
-    return new Promise(function (resolve) {
-        setTimeout(function () {
-            resolve(firebaseLogin(email, password));
-        }, 3000);
-    });
-}
-
-function firebaseLogout() {
-    function firebaseLogout() {
-        return 'user-logged-out';
-    }
-    return new Promise(function (resolve) {
-        setTimeout(function () {
-            resolve(firebaseLogout());
-        }, 3000);
-    });
-}
-
 class User {
     constructor() {
         this.userId = '';
@@ -54,7 +9,7 @@ class User {
         this.userError = '';
     }
 
-    async userSignUp(email, password, passwordConfirm) {
+    async userSignUp(email, userName, password, passwordConfirm) {
         try {
             if (password === passwordConfirm) {
                 const signup = await auth.createUserWithEmailAndPassword(
@@ -63,19 +18,15 @@ class User {
                 );
                 if (signup.user.uid) {
                     console.log('User Signed up');
-                    // console.log(signup.user.uid);
-                    // console.log(signup.user.email);
-                    this.userId = signup.user.uid;
-                    // this.userName = signup.userName;
-                    this.email = signup.user.email;
+                    await this.addUserDb(email, userName, signup.user.uid);
                 }
             } else {
                 this.userError =
                     'Confirmation password does not match password field';
             }
-        } catch (err) {
-            this.userError = err.message;
-            console.log(err.message);
+        } catch (error) {
+            this.userError = error.message;
+            console.log(error.message);
         }
     }
 
@@ -87,31 +38,92 @@ class User {
             );
             if (login.user.uid) {
                 console.log('User Logged in');
-                this.userId = login.user.uid;
-                // this.userName = login.userName;
-                this.email = login.user.email;
+                await this.getUserDb(login.user.uid);
             } else {
                 this.userError = 'Login Error';
             }
-        } catch (err) {
-            console.log(err.message);
+        } catch (error) {
+            this.userError = error.message;
+            console.log(error.message);
         }
     }
 
     async userLogout() {
-        const logout = await auth.signOut();
-        console.log('User Logged Out');
-        console.log(logout);
-        this.userId = '';
-        this.userName = '';
-        this.email = '';
+        try {
+            await auth.signOut();
+            console.log('User Logged Out');
+            this.userId = '';
+            this.userName = '';
+            this.email = '';
+        } catch (error) {
+            this.userError = error.message;
+            console.log(error.message);
+        }
     }
 
-    addUserDb() {}
+    async addUserDb(email, userName, userId) {
+        try {
+            const data = {
+                userName: userName,
+                email: email,
+                locations: [],
+                sizes: [],
+                movings: [],
+            };
 
-    getUserDb() {}
+            await db.collection('users').doc(userId).set(data);
 
-    updateUserDb() {}
+            await this.getUserDb(userId);
+        } catch (error) {
+            this.userError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+        }
+    }
+
+    async getUserDb(userId) {
+        try {
+            const getDoc = await db.collection('users').doc(userId).get();
+
+            const doc = getDoc.data();
+
+            if (getDoc.id) {
+                this.userId = getDoc.id;
+                this.userName = doc.userName;
+                this.email = doc.email;
+                this.locations = doc.locations;
+                this.sizes = doc.sizes;
+                this.movings = doc.movings;
+            } else {
+                console.log('Firestore error adding user to database');
+                this.userError = 'Firestore error adding user to database';
+            }
+        } catch (error) {
+            this.userError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+        }
+    }
+
+    async updateUserDb(newUserName) {
+        try {
+            console.log('uid: ', this.userId);
+            const data = {
+                userName: newUserName,
+            };
+
+            await db
+                .collection('users')
+                .doc(this.userId)
+                .set(data, { merge: true });
+
+            await this.getUserDb(this.userId);
+        } catch (error) {
+            this.userError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+        }
+    }
 
     addLocation(newLocation) {
         this.locations.push(newLocation);
@@ -142,18 +154,21 @@ class User {
     }
 }
 
-// test
+// test (these are the test for User methods)
 
 const user = new User();
 
-// user.userSignUp('pepito@gmail.com', '1232131', '1232131')
+// user.userSignUp('pepito@gmail.com', 'Pepito', '1232131', '1232131')
 //     .then(() => {
 //         console.log(
 //             '\n',
 //             user.userId + '\n',
-//             // user.userName + '\n',
-//             user.email + '\n'
-//             // user.userError ? user.userError : ''
+//             user.userName + '\n',
+//             user.email + '\n',
+//             user.locations + '\n',
+//             user.sizes + '\n',
+//             user.movings + '\n',
+//             user.userError ? user.userError : ' '
 //         );
 //         // console.log('Success ' + res);
 //     })
@@ -166,20 +181,35 @@ const user = new User();
 //         '\n',
 //         user.userId + '\n',
 //         user.userName + '\n',
-//         user.email + '\n',
-//         user.userError ? user.userError : ''
+//         user.email + '\n'
+//         // user.userError ? user.userError : ''
 //     );
 // });
 
-user.userLogin('pepito@gmail.com', '1232131').then(() => {
-    console.log(
-        '\n',
-        user.userId + '\n',
-        // user.userName + '\n',
-        user.email + '\n'
-        // user.userError ? user.userError : ''
-    );
-});
+// user.userLogin('pepito@gmail.com', '1232131').then(() => {
+//     console.log(
+//         '\n',
+//         user.userId + '\n',
+//         user.userName + '\n',
+//         user.email + '\n',
+//         user.locations + '\n',
+//         user.sizes + '\n',
+//         user.movings + '\n',
+//         user.userError ? user.userError : ' '
+//     );
+//     user.updateUserDb('pepito updated2').then(() => {
+//         console.log(
+//             '\n',
+//             user.userId + '\n',
+//             user.userName + '\n',
+//             user.email + '\n',
+//             user.locations + '\n',
+//             user.sizes + '\n',
+//             user.movings + '\n',
+//             user.userError ? user.userError : ' '
+//         );
+//     });
+// });
 
 // user.addLocation({ id: 11, location: 'living room' });
 
