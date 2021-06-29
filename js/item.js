@@ -1,89 +1,84 @@
 
 class Item {
-    constructor(idItem, name, description, cathegory, quantity, value){
-        this.idItem = idItem,
-        this.name= name,
-        this.description = description,
-        this.cathegory = cathegory,
-        this.quantity = quantity,
-        this.value = value 
+    constructor(){
+        this.idItem = "",
+        this.name= "",
+        this.description = "",
+        this.cathegory = "",
+        this.quantity = "",
+        this.value = "" 
     }
 
-    add() {
-        let box = db.collection("boxes").doc(idBox);
-
-        db.collection(`/movings/${this.idMoving}/boxes/${this.idBox}/items`).doc(this.idItem).set({
-            name: this.name,
-            description: this.description,
-            cathegory: this.cathegory,
-            quantity: this.quantity,
-            value: this.value
+    add(idMoving, idBox, name, description="", cathegory="", quantity="",value="") {
+        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).add({
+            idBox: idBox,
+            name: name,
+            description: description,
+            cathegory: cathegory,
+            quantity: quantity,
+            value: value
         })
         .then(() => {
-            return "Document successfully written!";
+            return "Item successfully saved!";
         })
         .catch((error) => {
-            return "Error writing document: ", error;
+            return "Error saving item: ", error;
         });
     }
 
-    delete(idItem=this.idItem){
-        db.collection(`/movings/${this.idMoving}/boxes/${this.idBox}/items`).doc(idItem).delete().then(() => {
-            // console.log("Document successfully deleted!");
-            return "Document successfully deleted!";
+    delete(idMoving,idBox,IdItem){
+        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem).delete().then(() => {
+            return "Item successfully deleted!";
         }).catch((error) => {
-            // console.error("Error removing document: ", error);
-            return "Error removing document: ", error;
+            return "Error removing item: ", error;
         });
     }
 
-     update (idBox,idItem){
-        let item = db.collection(`/movings/${this.idMoving}/boxes/${this.idBox}/items`).doc(idItem);
+     update (idMoving, idBox, IdItem, name, description="", cathegory="", quantity="",value=""){
+        let item = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem);
 
-        // Set the "capital" field of the city 'DC'
-        return box.update({
-            idItem: this.idItem,
-            name: this.name,
-            description: this.description,
-            cathegory: this.cathegory,
-            quantity: this.quantity,
-            value: this.value
+        return item.update({
+            idBox: idBox,
+            name: name,
+            description: description,
+            cathegory: cathegory,
+            quantity: quantity,
+            value: value
         })
         .then(() => {
-            // console.log("Document successfully updated!");
-            return "Document successfully updated!"
+            return "Item successfully updated!"
         })
         .catch((error) => {
-            // The document probably doesn't exist.
-            // console.error("Error updating document: ", error);
-            return "Error updating document: ", error;
+            return "Error updating item: ", error;
         });
     }
 
-    getItem(){
-        let boxDocument = db.collection(`/movings/${this.idMoving}/boxes/${idBox}/items/${idItem}`).doc(this.idBox);
-        let box = [];
-        boxDocument.get().then((doc) => {
+    getItem(idMoving, idBox,idItem){
+        let itemDocument = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(idItem);
+        let item = [];
+        itemDocument.get().then((doc) => {
             if (doc.exists) {
-                box.push (
+                const id = `${doc. id}`
+                item.push (
                     {
-                        name: doc.data().name,
+                        id:id,
+                        idBox: doc.data().idBox,
+                        name:doc.data(). name,
                         description: doc.data().description,
-                        label: doc.data().label,
-                        boxSize: doc.data().boxSize,
-                        weight: doc.data().weight,
-                        fragile: doc.data().fragile,
-                        status: doc.data().status
+                        cathegory: doc.data().cathegory,
+                        quantity: doc.data().quantity,
+                        value: doc.data().value
                     }
                 );
-                return box;
-                // console.log("Document data:", doc.data());
+                console.log(item);
+                return item;
             } else {
-                // doc.data() will be undefined in this case
-                return "No such document!";
+                return "No item found!";
             }
         }).catch((error) => {
-            return `Error getting document: ${error}`;
+            return `Error getting item: ${error}`;
         });
     }
 }
+
+

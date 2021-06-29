@@ -26,18 +26,18 @@ class Box{
             status: status
         })
         .then((doc_ref ) => {
-            return "Document successfully written!";
+            return "Box successfully saved!";
         })
         .catch((error) => {
-            return "Error writing document: ", error;
+            return "Error saving box", error;
         });
     }
  
     delete(idMoving,idBox){
         db.collection(`/movings/${idMoving}/boxes`).doc(idBox).delete().then(() => {
-            return "Document successfully deleted!";
+            return "Box successfully deleted!";
         }).catch((error) => {
-            return "Error removing document: ", error;
+            return "Error removing box: ", error;
         });
     }
 
@@ -54,10 +54,10 @@ class Box{
             status: status
         })
         .then(() => {
-            return "Document successfully updated!"
+            return "Box successfully updated!"
         })
         .catch((error) => {
-            return "Error updating document: ", error;
+            return "Error updating box: ", error;
         });
     }
 
@@ -86,10 +86,10 @@ class Box{
                 
             } else {
                 // console.log("No such document!")
-                return "Document not found!";
+                return "Box not found!";
             }
         }).catch((error) => {
-            return `Error getting document: ${error}`;
+            return `Error getting box: ${error}`;
         });
     }
 
