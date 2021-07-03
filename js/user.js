@@ -98,6 +98,7 @@ class User {
                 console.log('Firestore error adding user to database');
                 this.userError = 'Firestore error adding user to database';
             }
+            // console.log(this.movings);
         } catch (error) {
             this.userError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -105,9 +106,45 @@ class User {
         }
     }
 
+    async addMovingToUser(newMoving) {
+        try {
+            await db
+                .collection('users')
+                .doc(this.userId)
+                .update({
+                    movings:
+                        firebase.firestore.FieldValue.arrayUnion(newMoving),
+                });
+
+            await this.getUserDb(this.userId);
+        } catch (error) {
+            this.userError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+        }
+    }
+
+    async deleteMovingFromUser(movingId) {
+        try {
+            await db
+                .collection('users')
+                .doc(this.userId)
+                .update({
+                    movings:
+                        firebase.firestore.FieldValue.arrayRemove(movingId),
+                });
+            await this.getUserDb(this.userId);
+            console.log('deleted from array');
+        } catch (error) {
+            this.userError = error.message;
+            console.log(`Error code: ${error}`);
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+        }
+    }
+
     async updateUserDb(newUserName) {
         try {
-            console.log('uid: ', this.userId);
             const data = {
                 userName: newUserName,
             };
@@ -194,7 +231,7 @@ const user = new User();
 //         user.email + '\n',
 //         user.locations + '\n',
 //         user.sizes + '\n',
-//         user.movings + '\n',
+//         user.movings[0].movingTitle + '\n',
 //         user.userError ? user.userError : ' '
 //     );
 //     user.updateUserDb('pepito updated2').then(() => {
