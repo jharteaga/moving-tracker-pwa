@@ -50,7 +50,9 @@
 				<li data-bs-toggle="modal" data-bs-target="#boxLabelsModal">
 					Box labels
 				</li>
-				<li>Define box Sizes</li>
+				<li data-bs-toggle="modal" data-bs-target="#boxSizesModal">
+					Define box Sizes
+				</li>
 				<li>Create a new box</li>
 				<li>Add a collaborator</li>
 				<li>Download inventory</li>
@@ -82,6 +84,98 @@
 						></button>
 					</div>
 					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Box Sizes Modal -->
+		<div
+			class="modal fade"
+			id="boxSizesModal"
+			tabindex="-1"
+			aria-labelledby="boxSizesModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="boxSizesModalLabel">
+							Box Sizes
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<p>This application is using metric system (cm)</p>
+						<p class="size-title">Small</p>
+						<div class="size-container">
+							<div class="small dimension-container">
+								<p>Length</p>
+								<input
+									type="number"
+									class="size"
+									pattern="[0-9]{1,}"
+								/>
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="small dimension-container">
+								<p>Width</p>
+								<input type="number" class="size" />
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="small dimension-container">
+								<p>Heigth</p>
+								<input type="number" class="size" />
+							</div>
+						</div>
+						<p class="size-title">Medium</p>
+						<div class="size-container">
+							<div class="medium dimension-container">
+								<p>Length</p>
+								<input type="number" class="size" />
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="medium dimension-container">
+								<p>Width</p>
+								<input type="number" class="size" />
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="medium dimension-container">
+								<p>Heigth</p>
+								<input type="number" class="size" />
+							</div>
+						</div>
+						<p class="size-title">Large</p>
+						<div class="size-container">
+							<div class="large dimension-container">
+								<p>Length</p>
+								<input type="number" class="size" />
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="large dimension-container">
+								<p>Width</p>
+								<input type="number" class="size" />
+							</div>
+							<span class="fas fa-times"></span>
+							<div class="large dimension-container">
+								<p>Heigth</p>
+								<input type="number" class="size" />
+							</div>
+						</div>
+					</div>
 					<div class="modal-footer">
 						<button
 							type="button"

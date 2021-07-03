@@ -9,7 +9,6 @@
   text-align: center;
   padding: 0.7rem;
 }
-
 .sign-in header p {
   font-family: sans-serif;
   color: white;
@@ -17,7 +16,6 @@
   text-transform: uppercase;
   margin-bottom: 0;
 }
-
 .sign-in main .sign-in-main-heading {
   height: 30vh;
   background-color: #eeeeee;
@@ -26,29 +24,24 @@
   display: flex;
   align-items: flex-end;
 }
-
 .sign-in main .sign-in-main-heading h1 {
   font-family: sans-serif;
   color: gray;
   font-size: 2.2rem;
   font-weight: bold;
 }
-
 .sign-in main form {
   padding: 0.6rem 1.5rem;
 }
-
 .sign-in main form label {
   font-family: sans-serif;
   font-size: 0.9rem;
 }
-
 .sign-in main form label span {
   color: gray;
   font-size: 0.6rem;
   margin-left: 0.1rem;
 }
-
 .sign-in main form .sign-in-errorMsg {
   display: inline-block;
   font-size: 0.9rem;
@@ -56,7 +49,6 @@
   margin-left: 0.5rem;
   margin-bottom: 0;
 }
-
 .sign-in main form input {
   width: 100%;
   height: 8.5vh;
@@ -66,7 +58,6 @@
   padding: 0 1rem;
   font-size: 1.2rem;
 }
-
 .sign-in main form .btn {
   width: 100%;
   padding: 0.9rem;
@@ -76,7 +67,6 @@
   font-size: 1.2rem;
   border-radius: 1rem;
 }
-
 .sign-in main form a.btn {
   margin-top: 2rem;
   background-color: #eeeeee;
@@ -94,7 +84,6 @@
   text-align: center;
   padding: 0.7rem;
 }
-
 .sign-up header p {
   font-family: sans-serif;
   color: white;
@@ -102,7 +91,6 @@
   text-transform: uppercase;
   margin-bottom: 0;
 }
-
 .sign-up main .sing-up-main-heading {
   height: 30vh;
   background-color: #eeeeee;
@@ -111,29 +99,24 @@
   display: flex;
   align-items: flex-end;
 }
-
 .sign-up main .sing-up-main-heading h1 {
   font-family: sans-serif;
   color: gray;
   font-size: 2.2rem;
   font-weight: bold;
 }
-
 .sign-up main form {
   padding: 0.2rem 1.5rem;
 }
-
 .sign-up main form label {
   font-family: sans-serif;
   font-size: 0.9rem;
 }
-
 .sign-up main form label span {
   color: gray;
   font-size: 0.6rem;
   margin-left: 0.1rem;
 }
-
 .sign-up main form .sign-up-errorMsg {
   display: inline-block;
   font-size: 0.9rem;
@@ -141,7 +124,6 @@
   margin-left: 0.5rem;
   margin-bottom: 0;
 }
-
 .sign-up main form input {
   width: 100%;
   height: 8.5vh;
@@ -151,7 +133,6 @@
   padding: 0 1rem;
   font-size: 1.2rem;
 }
-
 .sign-up main form button.btn {
   width: 100%;
   height: 8.7vh;
@@ -163,7 +144,6 @@
   margin-top: 1rem;
   font-size: 1.3rem;
 }
-
 .sign-up main form #pwcredential {
   font-size: 0.8rem;
   padding: 0 0.3rem;
@@ -183,7 +163,6 @@
   text-align: center;
   padding: 0.7rem;
 }
-
 .welcome-page header p {
   font-family: sans-serif;
   color: white;
@@ -191,7 +170,6 @@
   text-transform: uppercase;
   margin-bottom: 0;
 }
-
 .welcome-page main .welcome-page-main-heading {
   height: 30vh;
   background-color: #eeeeee;
@@ -200,23 +178,19 @@
   display: flex;
   align-items: flex-end;
 }
-
 .welcome-page main .welcome-page-main-heading h1 {
   font-family: sans-serif;
   color: gray;
   font-size: 2.2rem;
   font-weight: bold;
 }
-
 .welcome-page main .welcome-page-main-message {
   padding: 0.6rem 1.5rem;
 }
-
 .welcome-page main .welcome-page-main-message p {
   font-family: sans-serif;
   margin: 1rem 0;
 }
-
 .welcome-page main .welcome-page-main-message a {
   display: inline-block;
   text-decoration: none;
@@ -245,7 +219,6 @@
   text-align: center;
   padding: 0.7rem;
 }
-
 .onboarding header p {
   font-family: sans-serif;
   color: white;
@@ -253,16 +226,13 @@
   text-transform: uppercase;
   margin-bottom: 0;
 }
-
 .onboarding main {
   padding: 1.2rem 1.5rem;
 }
-
 .onboarding main .carousel .carousel-indicators {
   position: absolute;
   top: 65%;
 }
-
 .onboarding main .carousel .carousel-indicators button {
   width: 15px;
   height: 15px;
@@ -270,17 +240,14 @@
   background-color: gray;
   margin: 0 1rem;
 }
-
 .onboarding main .carousel .carousel-item {
   height: 87vh;
 }
-
 .onboarding main .carousel .carousel-item img {
   width: 100%;
   height: 58%;
   border-radius: 2rem;
 }
-
 .onboarding main .carousel .carousel-item .description {
   height: 42%;
   display: flex;
@@ -289,16 +256,13 @@
   align-items: center;
   text-align: center;
 }
-
 .onboarding main .carousel .carousel-item .description h2 {
   font-size: 1rem;
   font-weight: bold;
 }
-
 .onboarding main .carousel .carousel-item .description p {
   font-size: 1rem;
 }
-
 .onboarding main .carousel .carousel-item .description .btn {
   width: 60%;
   padding: 0.8rem;
@@ -321,46 +285,38 @@
   color: white;
   padding: 0.7rem;
 }
-
 .moving-details header p {
   font-family: sans-serif;
   margin-bottom: 0;
   text-transform: uppercase;
   font-size: 1rem;
 }
-
 .moving-details main {
   padding: 0 0.5em;
   height: 100vh;
 }
-
 .moving-details main .heading {
   margin-top: 1.5rem;
 }
-
 .moving-details main .heading h1 {
   color: gray;
   font-weight: bold;
 }
-
 .moving-details main form {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .moving-details main form .search {
   position: relative;
   flex-grow: 1;
 }
-
 .moving-details main form .search span {
   position: absolute;
   left: 0.7em;
   top: 2rem;
   font-size: 1.4rem;
 }
-
 .moving-details main form .search-input {
   margin-top: 1em;
   padding: 0.6rem 0 0.5rem 3rem;
@@ -369,22 +325,18 @@
   border-radius: 8px;
   font-size: 1.2rem;
 }
-
 .moving-details main form .filter {
   flex-grow: 0.2;
   margin-top: 1em;
   margin-left: 1em;
 }
-
 .moving-details main form .filter .fa-filter {
   font-size: 2rem;
   cursor: pointer;
 }
-
 .moving-details main form .filter:hover {
   color: #4e4e4e;
 }
-
 .moving-details .moving-options {
   border: 2px solid gray;
   border-radius: 8px;
@@ -395,28 +347,23 @@
   transform: translateX(130%);
   transition: all 0.4s;
 }
-
 .moving-details .moving-options ul {
   list-style-type: none;
   padding: 1.5rem 0.5rem 2rem;
   cursor: pointer;
 }
-
 .moving-details .moving-options ul li {
   text-align: center;
   padding: 1rem 0;
   width: 100%;
   color: gray;
 }
-
 .moving-details .moving-options ul li:hover {
   background-color: #eeeeee;
 }
-
 .moving-details .moving-options.active {
   transform: translateX(0%);
 }
-
 .moving-details button.options-btn {
   display: flex;
   justify-content: center;
@@ -434,20 +381,47 @@
   bottom: 2em;
   right: 0.3em;
 }
-
 .moving-details button.options-btn:hover {
   background-color: #4e4e4e;
 }
-.moving-details .label-container {
+
+.label-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-bottom: 1rem;
 }
-.moving-details .label-container span:is(.fa-plus, .fa-trash) {
+.label-container span:is(.fa-plus, .fa-trash) {
   font-size: 1.4rem;
   margin: 0 1.2rem;
   cursor: pointer;
+}
+
+.size-title {
+  margin: 1rem 0 0;
+  font-weight: bold;
+}
+
+.size-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.size-container .dimension-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.size-container .dimension-container p {
+  margin: 0;
+}
+.size-container input.size {
+  width: 100%;
+}
+.size-container .fa-times {
+  font-size: 1.4rem;
+  margin: 0 0.5rem;
 }
 
 .existing-header {
@@ -462,11 +436,11 @@
   font-size: 0.9em;
 }
 
-.existing-header2, .modal-window-active h1, .editModal-window-active h1, .editModal-hidden h1, .modal-hidden h1 {
+.modal-hidden h1, .editModal-hidden h1, .editModal-window-active h1, .modal-window-active h1, .existing-header2 {
   border-bottom: gray solid 2px;
 }
 
-.existing-search-cntn, .modal-window-active .newMovesInp, .modal-window-active button, .editModal-window-active .editMovesInp, .editModal-window-active button, .editModal-hidden .editMovesInp, .editModal-hidden button, .modal-hidden .newMovesInp, .modal-hidden button, .modal-delete-mask .modal-delete, .modal-delete-mask .modal-delete button, .modal-delete-mask-hidden .modal-delete, .modal-delete-mask-hidden .modal-delete button {
+.modal-delete-mask-hidden .modal-delete button, .modal-delete-mask-hidden .modal-delete, .modal-delete-mask .modal-delete button, .modal-delete-mask .modal-delete, .modal-hidden button, .modal-hidden .newMovesInp, .editModal-hidden button, .editModal-hidden .editMovesInp, .editModal-window-active button, .editModal-window-active .editMovesInp, .modal-window-active button, .modal-window-active .newMovesInp, .existing-search-cntn {
   border: gray solid 2px;
 }
 
@@ -503,21 +477,17 @@ h2 {
   display: flex;
   align-items: center;
 }
-
 .existing-search-cntn i {
   color: gray;
   font-size: 1.7rem;
 }
-
 .existing-search-cntn button, .existing-search-cntn input {
   border: none;
 }
-
 .existing-search-cntn button {
   width: 20%;
   background-color: white;
 }
-
 .existing-search-cntn input {
   outline: none;
   height: 100%;
@@ -530,17 +500,14 @@ h2 {
   width: 100%;
   color: gray;
 }
-
 .existing-footer .plus-cntn {
   text-align: right;
   width: 95%;
   margin-bottom: 1.5rem;
 }
-
 .existing-footer .plus-cntn i {
   font-size: 3.5rem;
 }
-
 .existing-footer .footer-cntn {
   display: flex;
   width: 100%;
@@ -548,11 +515,9 @@ h2 {
   align-items: center;
   text-align: center;
 }
-
 .existing-footer .footer-cntn div {
   width: 100%;
 }
-
 .existing-footer p {
   font-size: 0.4em;
 }
@@ -569,7 +534,6 @@ h2 {
   transition: all 0.8s ease-in-out;
   border-radius: 10px;
 }
-
 .modal-window-active div {
   display: flex;
   flex-direction: column;
@@ -577,30 +541,25 @@ h2 {
   height: 90%;
   color: black;
 }
-
 .modal-window-active li {
   list-style: none;
 }
-
 .modal-window-active h1 {
   color: gray;
   line-height: 4rem;
   text-align: center;
 }
-
 .modal-window-active ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .modal-window-active h2 {
   font-size: 1em;
   font-weight: lighter;
   margin-left: 2rem;
   color: black;
 }
-
 .modal-window-active .newMovesInp {
   background-color: white;
   outline: none;
@@ -611,7 +570,6 @@ h2 {
   height: 2.5rem;
   margin-top: 0.3rem;
 }
-
 .modal-window-active button {
   width: 50%;
   padding: 0.8rem;
@@ -634,7 +592,6 @@ h2 {
   transition: all 0.8s ease-in-out;
   border-radius: 10px;
 }
-
 .editModal-window-active div {
   display: flex;
   flex-direction: column;
@@ -642,30 +599,25 @@ h2 {
   height: 90%;
   color: black;
 }
-
 .editModal-window-active li {
   list-style: none;
 }
-
 .editModal-window-active h1 {
   color: gray;
   line-height: 4rem;
   text-align: center;
 }
-
 .editModal-window-active ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .editModal-window-active h2 {
   font-size: 1em;
   font-weight: lighter;
   margin-left: 2rem;
   color: black;
 }
-
 .editModal-window-active .editMovesInp {
   background-color: white;
   outline: none;
@@ -676,7 +628,6 @@ h2 {
   height: 2.5rem;
   margin-top: 0.3rem;
 }
-
 .editModal-window-active button {
   width: 50%;
   padding: 0.8rem;
@@ -738,7 +689,6 @@ h2 {
   z-index: 12000;
   transition: all 0.8s ease-in-out;
 }
-
 .editModal-hidden div {
   display: flex;
   flex-direction: column;
@@ -746,29 +696,24 @@ h2 {
   height: 90%;
   color: black;
 }
-
 .editModal-hidden li {
   list-style: none;
 }
-
 .editModal-hidden h1 {
   color: gray;
   line-height: 4rem;
   text-align: center;
 }
-
 .editModal-hidden ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .editModal-hidden h2 {
   font-size: 1em;
   font-weight: lighter;
   margin-left: 2rem;
 }
-
 .editModal-hidden .editMovesInp {
   background-color: rgba(185, 185, 185, 0.5);
   outline: none;
@@ -779,7 +724,6 @@ h2 {
   height: 2.5rem;
   margin-top: 0.3rem;
 }
-
 .editModal-hidden button {
   visibility: hidden;
   width: 50%;
@@ -803,7 +747,6 @@ h2 {
   z-index: 12000;
   transition: all 0.8s ease-in-out;
 }
-
 .modal-hidden div {
   display: flex;
   flex-direction: column;
@@ -811,29 +754,24 @@ h2 {
   height: 90%;
   color: black;
 }
-
 .modal-hidden li {
   list-style: none;
 }
-
 .modal-hidden h1 {
   color: gray;
   line-height: 4rem;
   text-align: center;
 }
-
 .modal-hidden ul {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .modal-hidden h2 {
   font-size: 1em;
   font-weight: lighter;
   margin-left: 2rem;
 }
-
 .modal-hidden .newMovesInp {
   background-color: rgba(185, 185, 185, 0.5);
   outline: none;
@@ -844,7 +782,6 @@ h2 {
   height: 2.5rem;
   margin-top: 0.3rem;
 }
-
 .modal-hidden button {
   visibility: hidden;
   width: 50%;
@@ -867,22 +804,18 @@ h2 {
   height: 7rem;
   margin-top: 2rem;
 }
-
 .ex-cntn .iconCntn {
   display: flex;
   justify-content: space-around;
   font-size: 1.8rem;
   color: #535353;
 }
-
 .ex-cntn h2, .ex-cntn p {
   text-align: center;
 }
-
 .ex-cntn h2 {
   color: #535353;
 }
-
 .ex-cntn p {
   color: grey;
 }
@@ -896,7 +829,6 @@ h2 {
   z-index: 2;
   transition: all 1s ease-in-out;
 }
-
 .modal-delete-mask .modal-delete {
   width: 90%;
   position: fixed;
@@ -911,12 +843,10 @@ h2 {
   align-items: center;
   transition: all 1s ease-in-out;
 }
-
 .modal-delete-mask .modal-delete .cross2 {
   font-size: 5rem;
   color: #535353;
 }
-
 .modal-delete-mask .modal-delete h2 {
   color: #535353;
   font-size: 1.1em;
@@ -924,25 +854,21 @@ h2 {
   text-align: center;
   padding: 0.5em;
 }
-
 .modal-delete-mask .modal-delete p {
   font-size: 0.9em;
   color: gray;
 }
-
 .modal-delete-mask .modal-delete .delete-btnCntn {
   margin-top: 1em;
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
-
 .modal-delete-mask .modal-delete button {
   border-radius: 10px;
   width: 46%;
   height: 2.5rem;
 }
-
 .modal-delete-mask .modal-delete .delete {
   background-color: gray;
 }
@@ -956,7 +882,6 @@ h2 {
   z-index: 2;
   transition: all 1s ease-in-out;
 }
-
 .modal-delete-mask-hidden .modal-delete {
   width: 90%;
   position: fixed;
@@ -971,12 +896,10 @@ h2 {
   align-items: center;
   transition: all 1s ease-in-out;
 }
-
 .modal-delete-mask-hidden .modal-delete .cross2 {
   font-size: 5rem;
   color: #535353;
 }
-
 .modal-delete-mask-hidden .modal-delete h2 {
   color: black;
   font-size: 1.1em;
@@ -984,20 +907,19 @@ h2 {
   text-align: center;
   padding: 0.5em;
 }
-
 .modal-delete-mask-hidden .modal-delete p {
   font-size: 0.9em;
 }
-
 .modal-delete-mask-hidden .modal-delete .delete-btnCntn {
   margin-top: 1em;
   width: 100%;
   display: flex;
   justify-content: space-around;
 }
-
 .modal-delete-mask-hidden .modal-delete button {
   border-radius: 10px;
   width: 46%;
   height: 2.5rem;
 }
+
+/*# sourceMappingURL=styles.css.map */

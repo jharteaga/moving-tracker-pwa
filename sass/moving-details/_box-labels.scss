@@ -1,0 +1,12 @@
+.label-container {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 1rem;
+
+	span:is(.fa-plus, .fa-trash) {
+		font-size: 1.4rem;
+		margin: 0 1.2rem;
+		cursor: pointer;
+	}
+}
