@@ -416,7 +416,7 @@
 .size-container .dimension-container p {
   margin: 0;
 }
-.size-container input.size {
+.size-container .dimension-container input.size {
   width: 100%;
 }
 .size-container .fa-times {
