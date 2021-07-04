@@ -54,7 +54,9 @@
 					Define box Sizes
 				</li>
 				<li>Create a new box</li>
-				<li>Add a collaborator</li>
+				<li data-bs-toggle="modal" data-bs-target="#collaboratorModal">
+					Add collaborator
+				</li>
 				<li>Download inventory</li>
 			</ul>
 		</aside>
@@ -176,6 +178,41 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Collaborator -->
+		<div
+			class="modal fade"
+			id="collaboratorModal"
+			tabindex="-1"
+			aria-labelledby="collaboratorModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="collaboratorModalLabel">
+							Collaborators
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body"></div>
 					<div class="modal-footer">
 						<button
 							type="button"
