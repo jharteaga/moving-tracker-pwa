@@ -1,0 +1,30 @@
+.size-title {
+	margin: 1rem 0 0;
+	font-weight: bold;
+}
+
+.size-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+
+	.dimension-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+
+		p {
+			margin: 0;
+		}
+
+		input.size {
+			width: 100%;
+		}
+	}
+
+	.fa-times {
+		font-size: 1.4rem;
+		margin: 0 0.5rem;
+	}
+}
