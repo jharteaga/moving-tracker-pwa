@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Item</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <script src="../js/add-item.js" defer></script>
+</head>
+<body class="add-item">
+    <header>
+        <p>Add item</p>
+    </header>
+
+    <main>
+        <form action="#">
+            <label for="itemNameInput">Name<span>&#10035;</span></label>
+            <p class="add-item-errorMsg" id="itemNameErrorMsg"></p><br>
+            <input type="text" id="itemNameInput" name="itemNameInput"><br>
+
+            <label for="itemDescriptionInput">Description</label>
+            <input type="text" id="itemDescriptionInput" name="itemDescriptionInput"><br>
+
+            <label for="itemCategoryInput">Category<span>&#10035;</span></label>
+            <p class="add-item-errorMsg" id="itemCategoryErrorMsg"></p><br>
+            <input type="text" id="itemCategoryInput" name="itemCategoryInput"><br>
+
+            <label for="itemQuantiryInput">Quantity<span>&#10035;</span></label>
+            <p class="add-item-errorMsg" id="itemQuantityErrorMsg"></p><br>
+            <input type="text" id="itemQuantiryInput" name="itemQuantiryInput"><br>
+
+            <label for="itemValueInput">Value</label><br>
+            <span class="ccy">$</span>
+            <input type="number" id="itemValueInput" name="itemValueInput" placeholder="0.00"><br>
+           
+            <div class="photo">
+                <p>Photo</p>
+                <label for="itemImageInput"></label><br>
+                <!-- <img id="placeholder" src="../img/general/placeholder.png"> -->
+                <div id="preview"></div>
+                <input type="file" accept="image/*" capture="environment" id="itemImageInput" name="itemImageInput">
+            </div>
+
+
+            <button type="button" class="btn btn-primary" id="addItemBtn" disabled>Save</button><br>
+        </form> 
+        
+        
+    </main>
+    
+    <footer>
+        <div class="existingMoving">
+            <img src="../img/footer/existing_moving_icon.png" alt="icon of existing moving">
+            <p>Existing Moves</p>
+        </div>
+        <div class="profile">
+            <img src="..//img/footer/profile_icon.png" alt="icon of profile">
+            <p>Profile</p>
+        </div>
+    </footer>
+
+</body>
+</html>
