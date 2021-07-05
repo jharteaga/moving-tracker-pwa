@@ -91,3 +91,12 @@ addItemBtn.addEventListener('click', ()=>{
 
     window.location.href = "../pages/box-content.html";
 })
+
+
+/* ADDED BY ALEJANDRA*/
+const itemImageInput = document.getElementById("itemImageInput");
+const preview = document.getElementById("preview");
+
+itemImageInput.addEventListener("change", function () {
+  getImgData(preview,itemImageInput);
+});
