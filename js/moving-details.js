@@ -139,7 +139,7 @@ const buildCollaborators = (collaboratorsList) => {
 	modalBodyCollaborator.innerHTML = '';
 
 	if (collaboratorsList.length) {
-		collaboratorsList.forEach((collaborator) => {
+		collaboratorsList.forEach((collaborator, index) => {
 			const collaboratorContainer = document.createElement('div');
 			collaboratorContainer.className = 'collaborator-container';
 
@@ -153,7 +153,7 @@ const buildCollaborators = (collaboratorsList) => {
 			inputCollaborator.className = 'form-control';
 
 			const spanTrash = document.createElement('span');
-			spanTrash.setAttribute('id', `removeBoxLabel${collaborator.id}`);
+			spanTrash.setAttribute('id', `removeCollaborator${index}`);
 			spanTrash.className = 'fas fa-trash';
 
 			collaboratorContainer.appendChild(inputCollaborator);
@@ -162,7 +162,7 @@ const buildCollaborators = (collaboratorsList) => {
 			modalBodyCollaborator.appendChild(collaboratorContainer);
 
 			spanTrash.addEventListener('click', function () {
-				collaborators.splice(collaborator.id - 1, 1);
+				collaborators.splice(index, 1);
 				buildCollaborators(collaborators);
 			});
 		});
