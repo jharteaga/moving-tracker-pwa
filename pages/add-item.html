@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/styles.css">
     <script src="../js/add-item.js" defer></script>
+    <!-- Added by Alejandra -->
+    <script src="../js/picPreview.js" defer></script>
 </head>
 <body class="add-item">
     <header>
@@ -40,8 +42,11 @@
                 <label for="itemImageInput"></label><br>
                 <!-- <img id="placeholder" src="../img/general/placeholder.png"> -->
                 <div id="preview"></div>
-                <input type="file" accept="image/*" capture="environment" id="itemImageInput" name="itemImageInput">
+                <input type="file" accept="image/x-png,image/jpeg,image/gif" onChange="picSelect(this)" capture="environment" id="itemImageInput" name="itemImageInput">
             </div>
+
+
+          
 
 
             <button type="button" class="btn btn-primary" id="addItemBtn" disabled>Save</button><br>
