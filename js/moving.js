@@ -1,11 +1,11 @@
 class Moving {
     constructor(
+        userId,
         movingTitle = '',
         description = '',
         from = '',
         to = '',
-        date = '',
-        userId = ''
+        date = ''
     ) {
         this.userId = userId;
         this.movingId = '';
@@ -17,6 +17,7 @@ class Moving {
         this.boxes = [];
         this.collaborators = [];
         this.movingError = '';
+        this.createdAt = '';
     }
 
     async addMovingToDb(userInstance) {
@@ -30,7 +31,16 @@ class Moving {
                 creatorId: this.userId,
                 boxes: [],
                 collaborators: [],
+                createdAt: firebase.firestore.Timestamp.now(),
             };
+            console.log(
+                '---->',
+                !userInstance.movings.find(
+                    (e) => e.movingTitle == this.movingTitle
+                ),
+                this.movingTitle,
+                userInstance.movings
+            );
 
             if (
                 !userInstance.movings.find(
@@ -41,12 +51,8 @@ class Moving {
 
                 await this.getMoving(this.userId, this.movingTitle);
 
-                const movingUser = {
-                    movingId: this.movingId,
-                    movingTitle: this.movingTitle,
-                };
-                await userInstance.addMovingToUser(movingUser);
-                await userInstance.getUserDb(userInstance.userId);
+                await userInstance.updateUserMovings(await this.getMovings());
+                // await userInstance.getUserDb(userInstance.userId);
                 this.movingError = '';
             } else {
                 console.log(
@@ -63,22 +69,23 @@ class Moving {
 
     async deleteMoving(userInstance, movingId) {
         try {
-            await db.collection('movings').doc(movingId).delete();
-            await userInstance.deleteMovingFromUser({
-                movingId: movingId,
-                movingTitle: this.movingTitle,
-            });
-            this.userId = userInstance.userId;
-            this.movingId = '';
-            this.movingTitle = '';
-            this.description = '';
-            this.from = '';
-            this.to = '';
-            this.date = '';
-            this.boxes = [];
-            this.collaborators = [];
-            this.movingError = '';
-            await userInstance.getUserDb(userInstance.userId);
+            if (userInstance.movings.find((e) => e.movingId === movingId)) {
+                await db.collection('movings').doc(movingId).delete();
+                await userInstance.updateUserMovings(await this.getMovings());
+                this.userId = userInstance.userId;
+                this.movingId = '';
+                this.movingTitle = '';
+                this.description = '';
+                this.from = '';
+                this.to = '';
+                this.date = '';
+                this.boxes = [];
+                this.collaborators = [];
+                this.movingError = '';
+            } else {
+                console.log(`This moving does not exist.`);
+                this.movingError = `This moving does not exist.`;
+            }
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -107,18 +114,7 @@ class Moving {
                 .collection('movings')
                 .doc(this.movingId)
                 .update(data, { merge: true });
-            await userInstance.deleteMovingFromUser({
-                movingId: this.movingId,
-                movingTitle: this.movingTitle,
-            });
-            await this.getMoving(this.userId, newMovingTitle);
-
-            const movingUser = {
-                movingId: this.movingId,
-                movingTitle: this.movingTitle,
-            };
-
-            await userInstance.addMovingToUser(movingUser);
+            await userInstance.updateUserMovings(await this.getMovings());
 
             this.movingError = '';
         } catch (error) {
@@ -159,6 +155,30 @@ class Moving {
             console.log(error);
         }
     }
+
+    async getMovings() {
+        try {
+            const getDoc = await db
+                .collection('movings')
+                .where('creatorId', '==', this.userId)
+                .get();
+            const doc = [];
+
+            getDoc.forEach((move) => {
+                doc.push({
+                    movingId: move.id,
+                    movingTitle: move.data().movingTitle,
+                });
+            });
+
+            return doc;
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
 }
 
 user.userLogin('pepito@gmail.com', '1232131').then(() => {
@@ -174,7 +194,8 @@ user.userLogin('pepito@gmail.com', '1232131').then(() => {
     );
 
     const moving = new Moving(
-        'My first moving',
+        null,
+        'fouwewrth moving',
         'Third moving description',
         'Mexico',
         'Toronto',
@@ -182,8 +203,8 @@ user.userLogin('pepito@gmail.com', '1232131').then(() => {
         user.userId
     );
     moving.addMovingToDb(user);
-    // const movingDelete = new Moving();
+    // const movingDelete = new Moving(user.userId);
 
-    // movingDelete.deleteMoving(user, 'qpjU0rQPtlNZpxpF4DOU');
+    // movingDelete.deleteMoving(user, 'b2SpzMKMCDjQmBlkkz8u');
     console.log(user.movings);
 });

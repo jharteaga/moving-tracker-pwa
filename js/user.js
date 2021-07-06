@@ -106,15 +106,12 @@ class User {
         }
     }
 
-    async addMovingToUser(newMoving) {
+    async updateUserMovings(userMovings) {
         try {
-            await db
-                .collection('users')
-                .doc(this.userId)
-                .update({
-                    movings:
-                        firebase.firestore.FieldValue.arrayUnion(newMoving),
-                });
+            console.log(userMovings);
+            await db.collection('users').doc(this.userId).update({
+                movings: userMovings,
+            });
 
             await this.getUserDb(this.userId);
         } catch (error) {
