@@ -1,0 +1,601 @@
+// @import "main.scss";
+
+$font-size-big:1.2rem;
+$light-grey : rgba(185, 185, 185,0.5);
+$dark-grey : rgb(83, 83, 83);
+$black : black;
+
+
+//inheritance
+%main-header {
+    background-color: $gray;
+    color: $white;
+    height: 3rem;
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    text-align: center;
+    font-family: $mainFont;
+    font-size: 0.9em;
+}
+
+ %bottom-line {
+    border-bottom: $gray solid 2px;
+}
+%border {
+    border:  $gray solid 2px;
+}
+
+//css
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+}
+h2 {
+    color: aliceblue
+}
+
+.existing-header {
+    @extend %main-header;
+}
+
+.existing-header2 {
+    margin-top: 4rem;
+    text-align: center;
+    font-size:$font-size-big;
+    padding-bottom: 1rem;
+    @extend %bottom-line;
+    color: $gray;
+}
+
+.existing-main {
+   
+
+    h1 {
+        color: $gray;
+    }
+}
+
+.existing-search-cntn {
+    @extend %border;
+    margin: 1rem 20px 20px 20px;
+    border-radius: 7px;
+    height: 3rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    i {
+        color: $gray;
+        font-size: 1.7rem;
+
+    }
+    button, input {
+        border: none;
+        // height: 100%;
+    }
+
+    button {
+        width: 20%;
+        background-color: $white;
+    }
+    input {
+        outline: none;
+        height: 100%;
+        width: 100%;
+      
+    }
+}
+
+
+.existing-footer {
+    position: fixed;
+    bottom: 0.5em;
+    width: 100%;
+    color: $gray;
+
+    .plus-cntn {
+       text-align: right;
+       width: 95%;
+       margin-bottom: 1.5rem;
+
+       i {
+           font-size: 3.5rem;
+       }
+    }
+    .footer-cntn {
+        display: flex;
+        width: 100%;
+        // justify-content: space-around;
+        font-size: 2rem;
+        align-items: center;
+        text-align: center;
+
+        div {
+            width: 100%;
+        }
+    }
+
+    p {
+        font-size: 0.4em;
+    }
+}
+
+
+// modal  css
+
+.modal-window-active {
+    position: fixed;
+    z-index: 12000;
+    background-color: $white;
+    width: 90%;
+    height: 95vh;
+    top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: all 0.8s ease-in-out;
+    border-radius: 10px;
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 90%;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    h1 {
+        color: $gray;
+       @extend %bottom-line;
+        line-height: 4rem;
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+
+   h2 {
+       font-size: 1em;
+       font-weight: lighter;
+       margin-left: 2rem;
+       color: black;
+   }
+
+    .newMovesInp {
+        background-color: $white;
+        @extend %border;
+        outline: none;
+        transition: all 1s ease-in-out;
+        border-radius: 7px;
+        width: 80%;
+        align-self: center;
+        height: 2.5rem;
+        margin-top: 0.3rem;
+    }
+    
+   button {
+       width: 50%;
+       padding: 0.8rem;
+       border-radius: 10px;
+       @extend %border;
+       background-color: $gray;
+       margin-left: auto;
+       margin-right: auto;
+       color: $white;
+   }
+}
+
+.editModal-window-active {
+    position: fixed;
+    z-index: 12000;
+    background-color: $white;
+    width: 90%;
+    height: 95vh;
+    top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    transition: all 0.8s ease-in-out;
+    border-radius: 10px;
+    
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 90%;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    h1 {
+        color: $gray;
+       @extend %bottom-line;
+        line-height: 4rem;
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+
+   h2 {
+       font-size: 1em;
+       font-weight: lighter;
+       margin-left: 2rem;
+       color: black;
+   }
+
+    .editMovesInp {
+        background-color: $white;
+        @extend %border;
+        outline: none;
+        transition: all 1s ease-in-out;
+        border-radius: 7px;
+        width: 80%;
+        align-self: center;
+        height: 2.5rem;
+        margin-top: 0.3rem;
+    }
+    
+   button {
+       width: 50%;
+       padding: 0.8rem;
+       border-radius: 10px;
+       @extend %border;
+       background-color: $gray;
+       margin-left: auto;
+       margin-right: auto;
+       color: $white;
+   }
+}
+
+.maskForModal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(70, 70, 70,0.8);
+    z-index: 2;
+    transition: all 1s ease-in-out;
+}
+
+.maskForModal-hidden {
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: 2;
+    transition: all 1s ease-in-out;
+
+    position: fixed;
+}
+
+.editMaskForModal-hidden {
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: 2;
+    transition: all 1s ease-in-out;
+    position: fixed;
+}
+
+.editMaskForModal {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(70, 70, 70,0.8);
+    z-index: 2;
+    transition: all 1s ease-in-out;
+}
+
+.editModal-hidden {
+    visibility: hidden;
+    // top: 0;
+    width: 90%;
+    height: 10vh;
+    top: -20rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    position: fixed;
+    z-index: 12000;
+    transition: all 0.8s ease-in-out;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 90%;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    h1 {
+        color: $gray;
+       @extend %bottom-line;
+        line-height: 4rem;
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+
+   h2 {
+       font-size: 1em;
+       font-weight: lighter;
+       margin-left: 2rem;
+   }
+
+    .editMovesInp {
+        background-color: $light-grey;
+        @extend %border;
+        outline: none;
+        transition: all 1s ease-in-out;
+        border-radius: 7px;
+        width: 80%;
+        align-self: center;
+        height: 2.5rem;
+        margin-top: 0.3rem;
+    }
+    
+   button {
+       visibility: hidden;
+       width: 50%;
+       padding: 0.8rem;
+       border-radius: 10px;
+       @extend %border;
+       background-color: $gray;
+       margin-left: auto;
+       margin-right: auto;
+       transition: all 0.3s ease-in-out;
+       color: $white;
+   }
+}
+
+.modal-hidden {
+    visibility: hidden;
+    // top: 0;
+    width: 90%;
+    height: 10vh;
+    top: -20rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    position: fixed;
+    z-index: 12000;
+    transition: all 0.8s ease-in-out;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 90%;
+        color: black;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    h1 {
+        color: $gray;
+       @extend %bottom-line;
+        line-height: 4rem;
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+
+
+   h2 {
+       font-size: 1em;
+       font-weight: lighter;
+       margin-left: 2rem;
+   }
+
+    .newMovesInp {
+        background-color: $light-grey;
+        @extend %border;
+        outline: none;
+        transition: all 1s ease-in-out;
+        border-radius: 7px;
+        width: 80%;
+        align-self: center;
+        height: 2.5rem;
+        margin-top: 0.3rem;
+    }
+    
+   button {
+       visibility: hidden;
+       width: 50%;
+       padding: 0.8rem;
+       border-radius: 10px;
+       @extend %border;
+       background-color: $gray;
+       margin-left: auto;
+       margin-right: auto;
+       transition: all 0.3s ease-in-out;
+       color: $white;
+   }
+}
+
+.ex-cntn{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $light-grey;
+    padding: 1rem;
+    border-radius: 10px;
+    height: 7rem;
+    margin-top: 2rem;
+
+    .iconCntn{
+        display: flex;
+        justify-content: space-around;
+        font-size: 1.8rem;
+        color: $dark-grey;
+    }
+
+    h2, p {
+        text-align: center;
+    }
+
+    h2 {
+        color: $dark-grey;
+    }
+
+    p {
+        color:grey;
+    }
+}
+
+.modal-delete-mask {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    background-color: rgba(167, 167, 167, 0.8);
+    z-index: 2;
+    transition: all 1s ease-in-out;
+
+    .modal-delete{
+        @extend %border;
+        width: 90%;
+        position: fixed;
+        top: 15rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: $white;
+        height: 15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s ease-in-out;
+
+        .cross2 {
+            font-size: 5rem;
+            color: $dark-grey;
+
+        }
+
+        h2 {
+            color: $dark-grey;
+            font-size: 1.1em;
+            font-weight: lighter;
+            text-align: center;
+            padding: 0.5em;
+        }
+
+        p {
+            font-size: 0.9em;
+            color: $gray;
+        }
+
+        .delete-btnCntn{
+            margin-top: 1em;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            @extend %border;
+            border-radius: 10px;
+            width: 46%;
+            height: 2.5rem;
+        }
+
+        .delete {
+            background-color: $gray;
+        }
+    }
+}
+
+.modal-delete-mask-hidden {
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    // background-color: rgba(167, 167, 167, 0.8);
+    z-index: 2;
+    transition: all 1s ease-in-out;
+
+    .modal-delete{
+        @extend %border;
+        width: 90%;
+        position: fixed;
+        top: -20rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: $white;
+        height: 15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 1s ease-in-out;
+
+        .cross2 {
+            font-size: 5rem;
+            color: $dark-grey;
+
+        }
+
+        h2 {
+            color: $black;
+            font-size: 1.1em;
+            font-weight: lighter;
+            text-align: center;
+            padding: 0.5em;
+        }
+
+        p {
+            font-size: 0.9em;
+            // margin-top: 0.5em;
+        }
+
+        .delete-btnCntn{
+            margin-top: 1em;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            @extend %border;
+            border-radius: 10px;
+            width: 46%;
+            height: 2.5rem;
+        }
+    }
+}

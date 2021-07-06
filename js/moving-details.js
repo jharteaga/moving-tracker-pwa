@@ -59,7 +59,7 @@ const buildBoxLabels = (labelsList) => {
 	modalBodyBoxLabel.innerHTML = '';
 
 	if (labelsList.length) {
-		labelsList.forEach((label) => {
+		labelsList.forEach((label, index) => {
 			const labelContainer = document.createElement('div');
 			labelContainer.className = 'label-container';
 
@@ -70,7 +70,7 @@ const buildBoxLabels = (labelsList) => {
 			inputLabel.className = 'form-control';
 
 			const spanTrash = document.createElement('span');
-			spanTrash.setAttribute('id', `removeBoxLabel${label.id}`);
+			spanTrash.setAttribute('id', `removeBoxLabel${index}`);
 			spanTrash.className = 'fas fa-trash';
 
 			labelContainer.appendChild(inputLabel);
@@ -79,8 +79,7 @@ const buildBoxLabels = (labelsList) => {
 			modalBodyBoxLabel.appendChild(labelContainer);
 
 			spanTrash.addEventListener('click', function () {
-				console.log('hello');
-				boxLabels.splice(label.id - 1, 1);
+				boxLabels.splice(index, 1);
 				buildBoxLabels(boxLabels);
 			});
 		});
@@ -89,3 +88,86 @@ const buildBoxLabels = (labelsList) => {
 };
 
 buildBoxLabels(boxLabels);
+
+/**
+ * Collaborator Modal
+ */
+
+/**
+ * Box Labels Modal
+ */
+const modalBodyCollaborator = document.querySelector(
+	'#collaboratorModal .modal-body'
+);
+const collaborators = [{ id: 1, name: 'Jose Arteaga' }];
+
+const addInputCollaborator = () => {
+	const collaboratorContainer = document.createElement('div');
+	collaboratorContainer.className = 'collaborator-container';
+
+	const inputCollaborator = document.createElement('input');
+	inputCollaborator.setAttribute('type', 'text');
+	inputCollaborator.setAttribute('placeholder', 'Enter a collaborator');
+	inputCollaborator.className = 'form-control';
+
+	const spanPlus = document.createElement('span');
+	spanPlus.setAttribute('id', 'addCollaborator');
+	spanPlus.className = 'fas fa-plus';
+
+	collaboratorContainer.appendChild(inputCollaborator);
+	collaboratorContainer.appendChild(spanPlus);
+
+	modalBodyCollaborator.appendChild(collaboratorContainer);
+
+	spanPlus.addEventListener('click', function () {
+		const newCollaboratorInput = document.querySelector(
+			'.collaborator-container:last-child > input'
+		);
+
+		if (newCollaboratorInput.value) {
+			collaborators.push({
+				id: collaborators.length + 1,
+				name: newCollaboratorInput.value
+			});
+
+			buildCollaborators(collaborators);
+		}
+	});
+};
+
+const buildCollaborators = (collaboratorsList) => {
+	modalBodyCollaborator.innerHTML = '';
+
+	if (collaboratorsList.length) {
+		collaboratorsList.forEach((collaborator, index) => {
+			const collaboratorContainer = document.createElement('div');
+			collaboratorContainer.className = 'collaborator-container';
+
+			const inputCollaborator = document.createElement('input');
+			inputCollaborator.setAttribute('type', 'text');
+			inputCollaborator.setAttribute(
+				'placeholder',
+				'Enter a collaborator'
+			);
+			inputCollaborator.setAttribute('value', collaborator.name);
+			inputCollaborator.className = 'form-control';
+
+			const spanTrash = document.createElement('span');
+			spanTrash.setAttribute('id', `removeCollaborator${index}`);
+			spanTrash.className = 'fas fa-trash';
+
+			collaboratorContainer.appendChild(inputCollaborator);
+			collaboratorContainer.appendChild(spanTrash);
+
+			modalBodyCollaborator.appendChild(collaboratorContainer);
+
+			spanTrash.addEventListener('click', function () {
+				collaborators.splice(index, 1);
+				buildCollaborators(collaborators);
+			});
+		});
+	}
+	addInputCollaborator();
+};
+
+buildCollaborators(collaborators);
