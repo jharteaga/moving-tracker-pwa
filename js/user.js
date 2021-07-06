@@ -19,14 +19,34 @@ class User {
                 if (signup.user.uid) {
                     console.log('User Signed up');
                     await this.addUserDb(email, userName, signup.user.uid);
+
+                    //Move to Welcome page
+                    window.location.href = "welcome.html";
                 }
             } else {
                 this.userError =
                     'Confirmation password does not match password field';
+                
+                //Added to display error - Meg
+                confirmPwErrorMsg.innerHTML = this.userError;
             }
         } catch (error) {
             this.userError = error.message;
             console.log(error.message);
+
+            //Added to display error - Meg
+            //Email
+            if(this.userError == "The email address is badly formatted."){
+                emailErrorMsg.innerHTML = "Please enter a valid email address";
+
+            } else if (this.userError == "The email address is already in use by another account."){
+                emailErrorMsg.innerHTML = this.userError;
+            }
+
+            //PW
+            if(this.userError == "Password should be at least 6 characters"){
+                pwErrorMsg.innerHTML = this.userError;
+            } 
         }
     }
 
@@ -39,12 +59,26 @@ class User {
             if (login.user.uid) {
                 console.log('User Logged in');
                 await this.getUserDb(login.user.uid);
+
+                //Move to onbording page
+                window.location.href = "onboarding.html";
             } else {
                 this.userError = 'Login Error';
             }
         } catch (error) {
             this.userError = error.message;
             console.log(error.message);
+
+            //Added to display error - Meg
+            //Email
+            if(this.userError == "The email address is badly formatted."){
+                userEmailErrorMsg.innerHTML = "Please enter a valid email address";
+            } 
+
+            //PW
+            if(this.userError == "The password is invalid or the user does not have a password."){
+                pwErrorMsg.innerHTML = "Password is invalid";
+            } 
         }
     }
 
