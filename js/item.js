@@ -1,7 +1,9 @@
 
 class Item {
     constructor(){
-        this.idItem = "",
+        this.idItem= "";
+        this.idMoving="";
+        this.idBox="";
         this.name= "",
         this.description = "",
         this.cathegory = "",

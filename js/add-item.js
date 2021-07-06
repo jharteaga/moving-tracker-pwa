@@ -1,52 +1,15 @@
-// console.log("connected");
+
 
 const addItemBtn = document.getElementById("addItemBtn");
-
-
-//item info
-let items = [
-    {
-        itemId: 1,
-        itemName: "Books",
-        itemDescription: "",
-        itemCategory: "work",
-        itemQuantity: 5,
-        itemValue: 50,
-        itemImage: "../img/items/books.png",
-    },
-    {
-        itemId: 2,
-        itemName: "Toy",
-        itemDescription: "Figures",
-        itemCategory: "hobby",
-        itemQuantity: 1,
-        itemValue: 100,
-        itemImage: "../img/items/toy.png",
-    }
-]
-
-
-class Item {
-    constructor (itemId, itemName, itemDescription, itemCategory, itemQuantity, itemValue, itemImage) {
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.itemDescription = itemDescription;
-        this.itemCategory = itemCategory;
-        this.itemQuantity = itemQuantity;
-        this.itemValue = itemValue;
-        this.itemImage = itemImage;
-    }
-}
-
 
 window.addEventListener('change', ()=> { 
 
     const itemNameInput = document.getElementById("itemNameInput").value;
     const itemCategoryInput = document.getElementById("itemCategoryInput").value;
-    const itemQuantiryInput = document.getElementById("itemQuantiryInput").value;
+    const itemQuantityInput = document.getElementById("itemQuantityInput").value;
 
 
-    if(itemNameInput !== "" && itemCategoryInput !== "" && itemQuantiryInput !== "") {
+    if(itemNameInput !== "" && itemCategoryInput !== "" && itemQuantityInput !== "") {
         addItemBtn.disabled = false;
     }
 
@@ -62,7 +25,7 @@ window.addEventListener('change', ()=> {
         itemCategoryErrorMsg.innerHTML = ""; 
     }
 
-    if(itemQuantiryInput === ""){
+    if(itemQuantityInput === ""){
         itemQuantityErrorMsg.innerHTML = "Please enter Quantity"; 
     } else {
         itemQuantityErrorMsg.innerHTML = ""; 
@@ -73,27 +36,71 @@ window.addEventListener('change', ()=> {
 
 addItemBtn.addEventListener('click', ()=>{
 
-    const itemNameInput = document.getElementById("itemNameInput").value;
-    const itemDescriptionInput = document.getElementById("itemDescriptionInput").value;
-    const itemCategoryInput = document.getElementById("itemCategoryInput").value;
-    const itemQuantiryInput = document.getElementById("itemQuantiryInput").value;
-    const itemValueInput = document.getElementById("itemValueInput").value;
-    const itemImageInput = document.getElementById("itemImageInput").value;
+    const itemNameInput = document.getElementById("itemNameInput");
+    const itemDescriptionInput = document.getElementById("itemDescriptionInput");
+    const itemCategoryInput = document.getElementById("itemCategoryInput");
+    const itemQuantityInput = document.getElementById("itemQuantityInput");
+    const itemValueInput = document.getElementById("itemValueInput");
+    const itemImageInput = document.getElementById("itemImageInput");
 
-    const lastId = items[items.length -1].itemId;
-    const itemId = lastId + 1;
+    
 
-    const itemToPush = new Item (itemId, itemNameInput, itemDescriptionInput, itemCategoryInput, itemQuantiryInput, itemValueInput, itemImageInput);
-    console.log(itemToPush);
+    // const lastId = items[items.length -1].itemId;
+    // const itemId = lastId + 1;
 
-    items.push(itemToPush);
-    console.log(items);
+    // const itemToPush = new Item (itemId, itemNameInput, itemDescriptionInput, itemCategoryInput, itemQuantiryInput, itemValueInput, itemImageInput);
+    // console.log(itemToPush);
 
-    window.location.href = "../pages/box-content.html";
+    // items.push(itemToPush);
+    // console.log(items);
+   
+    
+    //ADDED BY ALEJANDRA
+        //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
+        const idMoving= "wWKmQIZ54ukSiX8HKWMQ";
+        const idBox = "WSR3Avb3Ajv0Z8kiCV48";  
+        const idItem = "H41kTArGunI7csJfp5wu";
+
+        // if idItem is passed, it will update, otherwise, it will add a new item
+    addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
+    // ******************************************
+
+    // window.location.href = "../pages/box-content.html";
 })
 
+ //ADDED BY ALEJANDRA
+ /* function to send item data to firebase */
+const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value)=>{
+      
+    let item = new Item();
+  
+    if (idItem=="")
+        {
+            let msg = item.add(idMoving,idBox,name,description, category, qty, value);
+        }
+    else
+        {
+            let msg = item.update(idMoving,idBox,idItem,name,description, category, qty, value);
+        }
+    // msg needs to be displayed to user
+
+    //clean inputs
+    cleanInputs();
+}
 
 /* ADDED BY ALEJANDRA*/
+/* clean all inputs */
+const cleanInputs = () =>{
+    itemNameInput.value="";
+    itemDescriptionInput.value="";
+    itemCategoryInput.value="";
+    itemQuantityInput.value="";
+    itemValueInput.value="";
+    preview.innerHTML = "";
+}
+
+/* ADDED BY ALEJANDRA*/
+/* event to display a preview of the picture*/ 
 const itemImageInput = document.getElementById("itemImageInput");
 const preview = document.getElementById("preview");
 
