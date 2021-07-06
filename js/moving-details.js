@@ -59,7 +59,7 @@ const buildBoxLabels = (labelsList) => {
 	modalBodyBoxLabel.innerHTML = '';
 
 	if (labelsList.length) {
-		labelsList.forEach((label) => {
+		labelsList.forEach((label, index) => {
 			const labelContainer = document.createElement('div');
 			labelContainer.className = 'label-container';
 
@@ -70,7 +70,7 @@ const buildBoxLabels = (labelsList) => {
 			inputLabel.className = 'form-control';
 
 			const spanTrash = document.createElement('span');
-			spanTrash.setAttribute('id', `removeBoxLabel${label.id}`);
+			spanTrash.setAttribute('id', `removeBoxLabel${index}`);
 			spanTrash.className = 'fas fa-trash';
 
 			labelContainer.appendChild(inputLabel);
@@ -79,7 +79,7 @@ const buildBoxLabels = (labelsList) => {
 			modalBodyBoxLabel.appendChild(labelContainer);
 
 			spanTrash.addEventListener('click', function () {
-				boxLabels.splice(label.id - 1, 1);
+				boxLabels.splice(index, 1);
 				buildBoxLabels(boxLabels);
 			});
 		});
