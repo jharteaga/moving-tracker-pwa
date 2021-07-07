@@ -71,6 +71,10 @@
                 font-size: 1.2rem;
             }
 
+            input#pwInput {
+                width: 85%;
+                border: none;
+            }
 
             .btn {
                 width: 100%;
@@ -86,6 +90,24 @@
                 margin-top: 2rem;
                 background-color: $lightBackground;
                 border: 2px solid $darkBackground;
+            }
+
+            .sign-in-pw {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 2px solid $darkBackground;
+                border-radius: 1rem;
+
+                .fa-eye-slash{
+                    margin-right: 1em;
+                    display: block;
+                }
+
+                .fa-eye{
+                    margin-right: 1em;
+                    display: none;
+                }
             }
         }
     }

@@ -42,3 +42,37 @@ signUpBtn.addEventListener('click', () => {
 const userToPush = new User();
 
 
+
+//Password show/hide
+const pwHidden = document.querySelector(".sign-up-pw .fa-eye-slash");
+const pwShown = document.querySelector(".sign-up-pw .fa-eye");
+const pwInput = document.getElementById("pwInput");
+
+pwHidden.addEventListener('click', ()=>{
+    pwHidden.style.display = "none";
+    pwShown.style.display = "block";
+    pwInput.type = "text";
+})
+
+pwShown.addEventListener('click', ()=>{
+    pwShown.style.display = "none";
+    pwHidden.style.display = "block";
+    pwInput.type = "password";
+})
+
+//Confirm Password show/hide
+const pwConfHidden = document.querySelector(".sign-up-confirm-pw .fa-eye-slash");
+const pwConfShown = document.querySelector(".sign-up-confirm-pw .fa-eye");
+const confirmPwInput = document.getElementById("confirmPwInput");
+
+pwConfHidden.addEventListener('click', ()=>{
+    pwConfHidden.style.display = "none";
+    pwConfShown.style.display = "block";
+    confirmPwInput.type = "text";
+})
+
+pwConfShown.addEventListener('click', ()=>{
+    pwConfShown.style.display = "none";
+    pwConfHidden.style.display = "block";
+    confirmPwInput.type = "password";
+})

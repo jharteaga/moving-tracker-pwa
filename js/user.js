@@ -20,8 +20,8 @@ class User {
                     console.log('User Signed up');
                     await this.addUserDb(email, userName, signup.user.uid);
 
-                    //Move to Welcome page
-                    window.location.href = "welcome.html";
+                    //Move to Onboaring page
+                    window.location.href = "onboarding.html";
                 }
             } else {
                 this.userError =
@@ -60,8 +60,8 @@ class User {
                 console.log('User Logged in');
                 await this.getUserDb(login.user.uid);
 
-                //Move to onbording page
-                window.location.href = "onboarding.html";
+                //Move to existing Moving page
+                window.location.href = "existingMvs.html";
             } else {
                 this.userError = 'Login Error';
             }
