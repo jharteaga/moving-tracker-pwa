@@ -53,8 +53,12 @@
 				<li data-bs-toggle="modal" data-bs-target="#boxSizesModal">
 					Define box Sizes
 				</li>
-				<li>Create a new box</li>
-				<li>Add a collaborator</li>
+				<li data-bs-toggle="modal" data-bs-target="#newBoxModal">
+					New box
+				</li>
+				<li data-bs-toggle="modal" data-bs-target="#collaboratorModal">
+					Add collaborator
+				</li>
 				<li>Download inventory</li>
 			</ul>
 		</aside>
@@ -176,6 +180,104 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- New Box Modal -->
+		<div
+			class="modal fade"
+			id="newBoxModal"
+			tabindex="-1"
+			aria-labelledby="newBoxModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="newBoxModalLabel">
+							Add a Box
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body">
+						<div class="input-wrapper">
+							<label for="boxName">Name: </label>
+							<input type="text" id="boxName" />
+						</div>
+						<div class="input-wrapper">
+							<label for="boxDescription">Description: </label>
+							<input type="text" id="boxDescription" />
+						</div>
+						<div class="select-wrapper">
+							<label for="boxLabel">Box Label: </label>
+							<select id="boxLabel">
+								<option>Select a label</option>
+								<option>Bedroom</option>
+							</select>
+						</div>
+
+						<div class="size-wrapper">
+							<label>Size: </label>
+							<div class="size-buttons">
+								<button class="btn btn-secondary">Small</button
+								><button class="btn btn-secondary">
+									Medium</button
+								><button class="btn btn-secondary">
+									Large
+								</button>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-bs-dismiss="modal"
+						>
+							Save
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Collaborator -->
+		<div
+			class="modal fade"
+			id="collaboratorModal"
+			tabindex="-1"
+			aria-labelledby="collaboratorModalLabel"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="collaboratorModalLabel">
+							Collaborators
+						</h5>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+							aria-label="Close"
+						></button>
+					</div>
+					<div class="modal-body"></div>
 					<div class="modal-footer">
 						<button
 							type="button"

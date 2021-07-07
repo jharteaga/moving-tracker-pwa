@@ -72,6 +72,12 @@
                 font-size: 1.2rem;
             }
 
+            input#pwInput,
+            input#confirmPwInput {
+                width: 85%;
+                border: none;
+            }
+
             button.btn {
                 width: 100%;
                 height: 8.7vh;
@@ -90,6 +96,42 @@
                 border-radius: 50%;
                 color: $white;
                 background-color: $darkBackground;
+            }
+
+            // .sign-up-pw, .sign-up-confirm-pw {
+            //     position: relative;
+            //     .fas {
+            //         position: absolute;
+            //         right: 5%;
+            //         bottom: 25%;
+            //     }
+
+            //     .fa-eye-slash{
+            //         display: block;
+            //     }
+
+            //     .fa-eye{
+            //         display: none;
+            //     }
+                
+            // }
+
+            .sign-up-pw, .sign-up-confirm-pw {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border: 2px solid $darkBackground;
+                border-radius: 1rem;
+
+                .fa-eye-slash{
+                    margin-right: 1em;
+                    display: block;
+                }
+
+                .fa-eye{
+                    margin-right: 1em;
+                    display: none;
+                }
             }
         }
     }

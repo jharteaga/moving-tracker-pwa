@@ -1,34 +1,4 @@
 const signUpBtn = document.getElementById("signUpBtn");
-const pwcredential = document.getElementById("pwcredential");
-
-//User List
-let users = [
-    {
-        userId: 1,
-        userEmail: "mtakashima00@mylangara.ca",
-        userName: "Meg",
-        password: "Abcdefg1"
-    },
-    {
-        userId: 2,
-        userEmail: "ehernandezvega00@mylangara.ca",
-        userName: "Alejandra",
-        password: "Qwertyu1"
-    }
-]; 
-
-class User {
-    constructor (userId, userEmail,userName, password) {
-        this.userId = userId;
-        this.Email = userEmail;
-        this.userName = userName;
-        this.password = password;
-    }
-}
-
-pwcredential.addEventListener('click', () => {
-    alert("Minimum 6 letters");
-})
 
 signUpBtn.addEventListener('click', () => {
     console.log("signUpBtn Listening");
@@ -48,56 +18,61 @@ signUpBtn.addEventListener('click', () => {
     pwErrorMsg.innerHTML = "";
     confirmPwErrorMsg.innerHTML = "";
 
-
-    // Input Varidation
-
-
-
-    let userExist = 0;
-    for(i=0; i < users.length; i++){
-        if(userNameInput === users[i].userName){
-            userExist = 1;
-        }    
+    //Blank check
+    if(emailInput === ""){
+        emailErrorMsg.innerHTML = "Please enter email address";
+    } 
+    if(userNameInput === ""){
+        userNameErrorMsg.innerHTML = "Please enter user name";
+    } 
+    if(pwInput === ""){
+        pwErrorMsg.innerHTML = "Please enter password";
+    } 
+    if(confirmPwInput === ""){
+        confirmPwErrorMsg.innerHTML = "Please confirm password";
     }
 
-    // console.log(userExist);
-
-    if(emailInput === "" || emailInput.match(/@/) === null){
-        emailErrorMsg.innerHTML = "Please enter Email Address"; 
-
-    } else if(userNameInput === ""){
-        userNameErrorMsg.innerHTML = "Please enter User Name"; 
-
-    } else if (userExist === 1){
-        userNameErrorMsg.innerHTML = `${userNameInput} is taken`; 
-
-    } else if(pwInput === ""){
-        pwErrorMsg.innerHTML = "Please enter Password"; 
-
-    } else if (pwInput.length < 6){
-        pwErrorMsg.innerHTML = "Shuold be at least 6 letters"; 
-
-    } else if(confirmPwInput === ""){
-        confirmPwErrorMsg.innerHTML = "Please confirm password"; 
-
-    } else if (confirmPwInput !== pwInput){
-        confirmPwErrorMsg.innerHTML = "Password doesn't match"; 
-
-    } else {
-        
-        const lastId = users[users.length -1].userId;
-        const userId = lastId + 1;
-
-        const userToPush = new User (userId, emailInput, userNameInput, pwInput);
-        // console.log(userToPush);
-
-        users.push(userToPush);
-        console.log(users);
-
-        window.location.href = "../pages/welcome.html";
+    //Call userSignUp (code in user.js)
+    if(emailInput !== "" && userNameInput !== "" && pwInput !== "" && confirmPwInput !== "") {
+        userToPush.userSignUp(emailInput, userNameInput, pwInput, confirmPwInput);
     }
 })
 
+//Creat instance (code in user.js)
+const userToPush = new User();
 
 
 
+//Password show/hide
+const pwHidden = document.querySelector(".sign-up-pw .fa-eye-slash");
+const pwShown = document.querySelector(".sign-up-pw .fa-eye");
+const pwInput = document.getElementById("pwInput");
+
+pwHidden.addEventListener('click', ()=>{
+    pwHidden.style.display = "none";
+    pwShown.style.display = "block";
+    pwInput.type = "text";
+})
+
+pwShown.addEventListener('click', ()=>{
+    pwShown.style.display = "none";
+    pwHidden.style.display = "block";
+    pwInput.type = "password";
+})
+
+//Confirm Password show/hide
+const pwConfHidden = document.querySelector(".sign-up-confirm-pw .fa-eye-slash");
+const pwConfShown = document.querySelector(".sign-up-confirm-pw .fa-eye");
+const confirmPwInput = document.getElementById("confirmPwInput");
+
+pwConfHidden.addEventListener('click', ()=>{
+    pwConfHidden.style.display = "none";
+    pwConfShown.style.display = "block";
+    confirmPwInput.type = "text";
+})
+
+pwConfShown.addEventListener('click', ()=>{
+    pwConfShown.style.display = "none";
+    pwConfHidden.style.display = "block";
+    confirmPwInput.type = "password";
+})
