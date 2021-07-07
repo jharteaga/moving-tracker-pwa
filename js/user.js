@@ -61,6 +61,27 @@ class User {
         }
     }
 
+    isLoggedIn() {
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                if (window.location.pathname === '/') {
+                    console.log('User Logged in');
+                    console.log(window.location.pathname === '/');
+                    // window.location.href = 'pages/existingMvs.html';
+                } else {
+                    await this.getUserDb(user.uid);
+                    console.log(this);
+                }
+            } else {
+                if (window.location.pathname === '/') {
+                    return;
+                } else if (window.location.pathname !== '/pages/sign-in.html') {
+                    window.location.href = 'pages/sign-in.html';
+                }
+            }
+        });
+    }
+
     async addUserDb(email, userName, userId) {
         try {
             const data = {
@@ -228,23 +249,25 @@ const user = new User();
 //         user.email + '\n',
 //         user.locations + '\n',
 //         user.sizes + '\n',
-//         user.movings[0].movingTitle + '\n',
 //         user.userError ? user.userError : ' '
 //     );
-//     user.updateUserDb('pepito updated2').then(() => {
-//         console.log(
-//             '\n',
-//             user.userId + '\n',
-//             user.userName + '\n',
-//             user.email + '\n',
-//             user.locations + '\n',
-//             user.sizes + '\n',
-//             user.movings + '\n',
-//             user.userError ? user.userError : ' '
-//         );
-//     });
+//     console.log(user.movings);
+//     // user.updateUserDb('pepito updated2').then(() => {
+//     //     console.log(
+//     //         '\n',
+//     //         user.userId + '\n',
+//     //         user.userName + '\n',
+//     //         user.email + '\n',
+//     //         user.locations + '\n',
+//     //         user.sizes + '\n',
+//     //         user.movings + '\n',
+//     //         user.userError ? user.userError : ' '
+//     //     );
+//     // });
 // });
 
+user.isLoggedIn();
+// user.userLogout();
 // user.addLocation({ id: 11, location: 'living room' });
 
 // user.addLocation({ id: 15, location: 'Dinning room' });

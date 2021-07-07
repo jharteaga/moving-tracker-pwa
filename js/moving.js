@@ -181,30 +181,30 @@ class Moving {
     }
 }
 
-user.userLogin('pepito@gmail.com', '1232131').then(() => {
-    console.log(
-        '\n',
-        user.userId + '\n',
-        user.userName + '\n',
-        user.email + '\n',
-        user.locations + '\n',
-        user.sizes + '\n',
-        user.movings[0]?.movingTitle + '\n',
-        user.userError ? user.userError : ' '
-    );
+// user.userLogin('pepito@gmail.com', '1232131').then(() => {
+//     console.log(
+//         '\n',
+//         user.userId + '\n',
+//         user.userName + '\n',
+//         user.email + '\n',
+//         user.locations + '\n',
+//         user.sizes + '\n',
+//         user.movings[0]?.movingTitle + '\n',
+//         user.userError ? user.userError : ' '
+//     );
 
-    const moving = new Moving(
-        null,
-        'fouwewrth moving',
-        'Third moving description',
-        'Mexico',
-        'Toronto',
-        '03-04-2021',
-        user.userId
-    );
-    moving.addMovingToDb(user);
-    // const movingDelete = new Moving(user.userId);
+//     const moving = new Moving(
+//         null,
+//         'fouwewrth moving',
+//         'Third moving description',
+//         'Mexico',
+//         'Toronto',
+//         '03-04-2021',
+//         user.userId
+//     );
+//     moving.addMovingToDb(user);
+//     // const movingDelete = new Moving(user.userId);
 
-    // movingDelete.deleteMoving(user, 'b2SpzMKMCDjQmBlkkz8u');
-    console.log(user.movings);
-});
+//     // movingDelete.deleteMoving(user, 'b2SpzMKMCDjQmBlkkz8u');
+//     console.log(user.movings);
+// });
