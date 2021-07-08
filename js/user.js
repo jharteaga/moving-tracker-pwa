@@ -6,9 +6,19 @@ class User {
         this.locations = [];
         this.sizes = [];
         this.movings = [];
+        this.createdAt = '';
         this.userError = '';
     }
 
+    /**
+     * user Sign Up Method
+     *
+     * Signs up the user and creates the user in the database
+     * @param {String} email            user email address
+     * @param {String} userName         user name
+     * @param {String} password         password
+     * @param {String} passwordConfirm  password confirmation
+     */
     async userSignUp(email, userName, password, passwordConfirm) {
         try {
             if (password === passwordConfirm) {
@@ -18,15 +28,15 @@ class User {
                 );
                 if (signup.user.uid) {
                     console.log('User Signed up');
-                    await this.addUserDb(email, userName, signup.user.uid);
+                    await this._addUserDb(email, userName, signup.user.uid);
 
                     //Move to Onboaring page
-                    window.location.href = "onboarding.html";
+                    window.location.href = 'onboarding.html';
                 }
             } else {
                 this.userError =
                     'Confirmation password does not match password field';
-                
+
                 //Added to display error - Meg
                 confirmPwErrorMsg.innerHTML = this.userError;
             }
@@ -36,20 +46,29 @@ class User {
 
             //Added to display error - Meg
             //Email
-            if(this.userError == "The email address is badly formatted."){
-                emailErrorMsg.innerHTML = "Please enter a valid email address";
-
-            } else if (this.userError == "The email address is already in use by another account."){
+            if (this.userError == 'The email address is badly formatted.') {
+                emailErrorMsg.innerHTML = 'Please enter a valid email address';
+            } else if (
+                this.userError ==
+                'The email address is already in use by another account.'
+            ) {
                 emailErrorMsg.innerHTML = this.userError;
             }
 
             //PW
-            if(this.userError == "Password should be at least 6 characters"){
+            if (this.userError == 'Password should be at least 6 characters') {
                 pwErrorMsg.innerHTML = this.userError;
-            } 
+            }
         }
     }
 
+    /**
+     * user Login Method
+     *
+     * login method, fills the object with the user information
+     * @param {String} email    user email
+     * @param {String} password user password
+     */
     async userLogin(email, password) {
         try {
             const login = await auth.signInWithEmailAndPassword(
@@ -58,10 +77,10 @@ class User {
             );
             if (login.user.uid) {
                 console.log('User Logged in');
-                await this.getUserDb(login.user.uid);
+                await this._getUserDb(login.user.uid);
 
                 //Move to existing Moving page
-                window.location.href = "existingMvs.html";
+                window.location.href = 'existingMvs.html';
             } else {
                 this.userError = 'Login Error';
             }
@@ -71,17 +90,26 @@ class User {
 
             //Added to display error - Meg
             //Email
-            if(this.userError == "The email address is badly formatted."){
-                userEmailErrorMsg.innerHTML = "Please enter a valid email address";
-            } 
+            if (this.userError == 'The email address is badly formatted.') {
+                userEmailErrorMsg.innerHTML =
+                    'Please enter a valid email address';
+            }
 
             //PW
-            if(this.userError == "The password is invalid or the user does not have a password."){
-                pwErrorMsg.innerHTML = "Password is invalid";
-            } 
+            if (
+                this.userError ==
+                'The password is invalid or the user does not have a password.'
+            ) {
+                pwErrorMsg.innerHTML = 'Password is invalid';
+            }
         }
     }
 
+    /**
+     * User Logout Method
+     *
+     * Logs Out the current user
+     */
     async userLogout() {
         try {
             await auth.signOut();
@@ -95,15 +123,26 @@ class User {
         }
     }
 
+    /**
+     * Verify Login Status
+     *
+     * Verifies if the current user is logged in, if it is logged in redirects
+     * the user to movings page, otherwise redirects to login page.
+     */
     isLoggedIn() {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
-                if (window.location.pathname === '/') {
+                if (
+                    window.location.pathname === '/' ||
+                    window.location.pathname === '/index.html'
+                ) {
                     console.log('User Logged in');
-                    console.log(window.location.pathname === '/');
+                    console.log(window.location.pathname);
                     // window.location.href = 'pages/existingMvs.html';
+                    console.log(user.uid);
+                    await this._getUserDb(user.uid);
                 } else {
-                    await this.getUserDb(user.uid);
+                    await this._getUserDb(user.uid);
                     console.log(this);
                 }
             } else {
@@ -116,7 +155,13 @@ class User {
         });
     }
 
-    async addUserDb(email, userName, userId) {
+    /**
+     * Private method user by userSignUp to create the user in the database
+     * @param {String} email    User email address
+     * @param {String} userName User name
+     * @param {String} userId   User Id
+     */
+    async _addUserDb(email, userName, userId) {
         try {
             const data = {
                 userName: userName,
@@ -124,11 +169,12 @@ class User {
                 locations: [],
                 sizes: [],
                 movings: [],
+                createdAt: firebase.firestore.Timestamp.now(),
             };
 
             await db.collection('users').doc(userId).set(data);
 
-            await this.getUserDb(userId);
+            await this._getUserDb(userId);
         } catch (error) {
             this.userError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -136,8 +182,13 @@ class User {
         }
     }
 
-    async getUserDb(userId) {
+    /**
+     *Gets the current user from database and populates the user instance
+     * @param {String} userId
+     */
+    async _getUserDb(userId) {
         try {
+            console.log(userId, 'get');
             const getDoc = await db.collection('users').doc(userId).get();
 
             const doc = getDoc.data();
@@ -149,11 +200,11 @@ class User {
                 this.locations = doc.locations;
                 this.sizes = doc.sizes;
                 this.movings = doc.movings;
+                this.createdAt = doc.createdAt;
             } else {
                 console.log('Firestore error adding user to database');
                 this.userError = 'Firestore error adding user to database';
             }
-            // console.log(this.movings);
         } catch (error) {
             this.userError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -161,6 +212,10 @@ class User {
         }
     }
 
+    /**
+     * Updates user's movings
+     * @param {Array} userMovings array of updated movings for the current user
+     */
     async updateUserMovings(userMovings) {
         try {
             console.log(userMovings);
@@ -168,7 +223,7 @@ class User {
                 movings: userMovings,
             });
 
-            await this.getUserDb(this.userId);
+            await this._getUserDb(this.userId);
         } catch (error) {
             this.userError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -176,25 +231,10 @@ class User {
         }
     }
 
-    async deleteMovingFromUser(movingId) {
-        try {
-            await db
-                .collection('users')
-                .doc(this.userId)
-                .update({
-                    movings:
-                        firebase.firestore.FieldValue.arrayRemove(movingId),
-                });
-            await this.getUserDb(this.userId);
-            console.log('deleted from array');
-        } catch (error) {
-            this.userError = error.message;
-            console.log(`Error code: ${error}`);
-            console.log(`Error code: ${error.code}`);
-            console.log(`Error message: ${error.message}`);
-        }
-    }
-
+    /**
+     * updated user name in the database
+     * @param {String} newUserName New user name
+     */
     async updateUserDb(newUserName) {
         try {
             const data = {
@@ -206,7 +246,7 @@ class User {
                 .doc(this.userId)
                 .set(data, { merge: true });
 
-            await this.getUserDb(this.userId);
+            await this._getUserDb(this.userId);
         } catch (error) {
             this.userError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -300,7 +340,6 @@ const user = new User();
 //     // });
 // });
 
-user.isLoggedIn();
 // user.userLogout();
 // user.addLocation({ id: 11, location: 'living room' });
 

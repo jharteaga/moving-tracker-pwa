@@ -1,4 +1,15 @@
+/** Class representing a Moving */
 class Moving {
+    /**
+     * Creates a moving instance, to pull user's movings only need to pass
+     * userId to the constructor
+     * @param {String} userId        user id from firebase
+     * @param {String=} movingTitle  moving title
+     * @param {String=} description  moving description
+     * @param {String=} from         where the moving is coming from
+     * @param {String=} to           where the moving is going to
+     * @param {Date=} date           when is the moving taking place
+     */
     constructor(
         userId,
         movingTitle = '',
@@ -15,7 +26,7 @@ class Moving {
         this.to = to;
         this.date = date;
         this.boxes = [];
-        this.collaborators = [];
+        this.collaborators = {};
         this.movingError = '';
         this.createdAt = '';
     }
@@ -30,17 +41,9 @@ class Moving {
                 date: this.date,
                 creatorId: this.userId,
                 boxes: [],
-                collaborators: [],
+                collaborators: {},
                 createdAt: firebase.firestore.Timestamp.now(),
             };
-            console.log(
-                '---->',
-                !userInstance.movings.find(
-                    (e) => e.movingTitle == this.movingTitle
-                ),
-                this.movingTitle,
-                userInstance.movings
-            );
 
             if (
                 !userInstance.movings.find(
@@ -67,6 +70,11 @@ class Moving {
         }
     }
 
+    /**
+     *
+     * @param {Object} userInstance
+     * @param {String} movingId
+     */
     async deleteMoving(userInstance, movingId) {
         try {
             if (userInstance.movings.find((e) => e.movingId === movingId)) {
@@ -80,7 +88,8 @@ class Moving {
                 this.to = '';
                 this.date = '';
                 this.boxes = [];
-                this.collaborators = [];
+                this.collaborators = {};
+                this.createdAt = '';
                 this.movingError = '';
             } else {
                 console.log(`This moving does not exist.`);
@@ -93,6 +102,7 @@ class Moving {
         }
     }
 
+    // Needs testing update Moving
     async updateMoving(
         userInstance,
         newMovingTitle,
@@ -147,6 +157,7 @@ class Moving {
             this.date = doc[0].data().date;
             this.boxes = doc[0].data().boxes;
             this.collaborators = doc[0].data().collaborators;
+            this.createdAt = doc[0].data().createdAt;
             this.movingError = '';
         } catch (error) {
             this.movingError = error.message;
@@ -192,10 +203,10 @@ class Moving {
 //         user.movings[0]?.movingTitle + '\n',
 //         user.userError ? user.userError : ' '
 //     );
-
+// user.isLoggedIn().then(() => {
 //     const moving = new Moving(
 //         null,
-//         'fouwewrth moving',
+//         'twone moving',
 //         'Third moving description',
 //         'Mexico',
 //         'Toronto',
@@ -203,6 +214,25 @@ class Moving {
 //         user.userId
 //     );
 //     moving.addMovingToDb(user);
+//     console.log(user);
+// });
+
+// (async function promises() {
+//     console.log(user.userId.length === 0);
+//     if (user.userId.length === 0) {
+//         await user.isLoggedIn();
+//     }
+// })();
+
+window.addEventListener('DOMContentLoaded', () => {
+    user.isLoggedIn();
+    // console.log('1');
+});
+// window.addEventListener('load', () => {
+//     console.log(user);
+// });
+
+// console.log(user);
 //     // const movingDelete = new Moving(user.userId);
 
 //     // movingDelete.deleteMoving(user, 'b2SpzMKMCDjQmBlkkz8u');
