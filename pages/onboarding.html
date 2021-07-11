@@ -1,79 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Onboarding</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/styles.css">
-</head>
-<body class="onboarding">
-    <header>
-        <p>Onboarding</p>
-    </header>
 
-    <main>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Onboarding</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link rel="stylesheet" href="../styles/styles.css">
+    </head>
 
-        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-
-            <div class="carousel-indicators">
-
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3"></button>
-
-            </div>
-
-            <div class="carousel-inner">
-
-                <div class="carousel-item active">
-                    <img src="../img/onboarding/onboarding1.png" alt="onboarding 1">
-                    <div class="description">
-                        <h2>Create a move with destination</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, expedita!</p>
-                        <a href="#" class="btn btn-primary">SKIP</a>
-                        <!-- link # to Existing Moving Page -->
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="../img/onboarding/onboarding2.png" alt="onboarding 2">
-                    <div class="description">
-                        <h2>Add a box</h2>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto, amet?</p>
-                        <a href="#" class="btn btn-primary">SKIP</a>
-                        <!-- link # to Existing Moving Page -->
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="../img/onboarding/onboarding3.png" alt="onboarding 3">
-                    <div class="description">
-                        <h2>Add items to the box</h2>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, reprehenderit.</p>
-                        <a href="#" class="btn btn-primary">SKIP</a>
-                        <!-- link # to Existing Moving Page -->
-                    </div>
-                </div>
-
-                <div class="carousel-item">
-                    <img src="../img/onboarding/onboarding4.png" alt="onboarding 4">
-                    <div class="description">
-                        <h2>Download the label for the box</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi, qui?</p>
-                        <a href="#" class="btn btn-primary">SKIP</a>
-                        <!-- link # to Existing Moving Page -->
-                    </div>
-                </div>
-
-            </div>
-
+    <body class="onboarding">
+        <div class="background-container">
         </div>
-        
-    </main>
+        <aside class="aside">
+            <img src="../img/moving-tracker-logo.svg" alt="Moving Tracker Logo">
+            <p>&copy; 2021 Moving Tracker. All rights reserved.</p>
+        </aside>
+        <main class="carousel-wrapper">
+            <div id="myCarousel" class="carousel slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                        disabled></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" disabled></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" disabled></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" disabled></button>
+                </div>
+                <div class="actions">
+                    <a class="skip">Skip</a>
+                    <a class="next">Next</a>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../img/onboarding/onboarding1.jpg" alt="onboarding 1">
+                        <div class="description">
+                            <h2>Step 1</h2>
+                            <p>Create a move with destination</p>
+                            <!-- link # to Existing Moving Page -->
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/onboarding/onboarding2.jpg" alt="onboarding 2">
+                        <div class="description">
+                            <h2>Step 2</h2>
+                            <p>Add a box</p>
+                            <!-- link # to Existing Moving Page -->
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/onboarding/onboarding3.jpg" alt="onboarding 3">
+                        <div class="description">
+                            <h2>Step 3</h2>
+                            <p>Add items to the box</p>
+                            <!-- link # to Existing Moving Page -->
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../img/onboarding/onboarding4.jpeg" alt="onboarding 4">
+                        <div class="description">
+                            <h2>Step 4</h2>
+                            <p>Close the boxes and download the labels for the boxes</p>
+                            <!-- link # to Existing Moving Page -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+        <script src="../js/onboarding.js"></script>
+    </body>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-</body>
 </html>
