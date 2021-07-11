@@ -93,6 +93,13 @@ class User {
             if (this.userError == 'The email address is badly formatted.') {
                 userEmailErrorMsg.innerHTML =
                     'Please enter a valid email address';
+                signInEmailField.classList.add("error");
+
+                //Added for accent color - Meg Jul 10
+            } else if (this.userError == 'There is no user record corresponding to this identifier. The user may have been deleted.') {
+                userEmailErrorMsg.innerHTML =
+                    'This E-mail does not have account';
+                signInEmailField.classList.add("error");
             }
 
             //PW
@@ -101,6 +108,8 @@ class User {
                 'The password is invalid or the user does not have a password.'
             ) {
                 pwErrorMsg.innerHTML = 'Password is invalid';
+                //Added for accent color - Meg Jul 10
+                signInPwField.classList.add("error");
             }
         }
     }

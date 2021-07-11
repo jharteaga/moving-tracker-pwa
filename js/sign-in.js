@@ -1,23 +1,30 @@
-const signInBtn = document.getElementById("signInBtn");
+const loginBtn = document.getElementById("loginBtn");
 
 
-signInBtn.addEventListener('click', () => {
-    console.log("signInBtn Listening");
+loginBtn.addEventListener('click', () => {
+    console.log("loginBtn Listening");
 
     const userEmailInput = document.getElementById("userEmailInput").value;
     const pwInput = document.getElementById("pwInput").value;
     const userEmailErrorMsg = document.getElementById("userEmailErrorMsg");
     const pwErrorMsg = document.getElementById("pwErrorMsg");
+    const signInEmailField = document.getElementById("signInEmailField");
+    const signInPwField = document.getElementById("signInPwField");
 
+    //Reset
     userEmailErrorMsg.innerHTML = "";
     pwErrorMsg.innerHTML = "";
+    signInEmailField.classList.remove("error");
+    signInPwField.classList.remove("error");
 
     //Blank Check
     if(userEmailInput === ""){
         userEmailErrorMsg.innerHTML = "Please enter User Email Address"; 
+        signInEmailField.classList.add("error");
     } 
     if(pwInput === ""){
         pwErrorMsg.innerHTML = "Please enter Password"; 
+        signInPwField.classList.add("error");
     } 
 
     //Call login function
@@ -37,12 +44,12 @@ const pwInput = document.getElementById("pwInput");
 
 pwHidden.addEventListener('click', ()=>{
     pwHidden.style.display = "none";
-    pwShown.style.display = "block";
+    pwShown.style.display = "inline-flex";
     pwInput.type = "text";
 })
 
 pwShown.addEventListener('click', ()=>{
     pwShown.style.display = "none";
-    pwHidden.style.display = "block";
+    pwHidden.style.display = "inline-flex";
     pwInput.type = "password";
 })
