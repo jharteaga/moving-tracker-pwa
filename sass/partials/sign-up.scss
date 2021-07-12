@@ -1,137 +1,227 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .sign-up {
 
-    header {
-        background-color: $darkBackground;
-        text-align: center;
-        padding: 0.7rem;
-
-        p {
-            font-family: $mainFont; 
-            color: $white;
-            font-size: 1rem;
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $mainFont;
     }
 
+    .fas {
+        font-family: "Font Awesome 5 Free";;
+    }
+
+    .sign-up-desktop-left {
+        display: none;
+    }
 
     main {
+        overflow-y: hidden;
 
-        .sing-up-main-heading {
-            height: 30vh;
-            background-color: $lightBackground;
-            border-bottom: 2px solid $darkBackground;
-            padding: 0.3rem 1.5rem;
-            display: flex;
-            align-items: flex-end;
-    
+        .background {
+            @include backgroundContainer();
+            width: 100%;
+        }
+
+        .wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0 0.8rem;
+
             h1 {
-                font-family: $mainFont;
-                color: $darkBackground;
-                font-size: 2.2rem;
-                font-weight: bold;
+                margin: 8.5vh 0 2.5rem 0;
+                font-size: 44px;
+                color: $field-text-color;
+            } 
+
+            form {
+
+                .field {
+                
+                    margin-top: 0.7rem;
+
+                    .field__label span {
+                        font-size: 12px;
+                        vertical-align: top;
+                    }
+
+                    .sign-up-errorMsg {
+                        display: inline-block;
+                        font-size: 16px;
+                        color: $field-alert-color;
+                        margin-left: 0.5rem;
+                        font-style: italic;
+                    }
+
+                    .field__container {
+                        width: 100%;
+                        margin-top: 0.6rem;
+                    
+                        input {
+                            width: 100%;
+                            font-size: 18px;
+                            padding: 0.8rem;
+                        }
+
+                        span {
+                            margin-right: -35px;
+                        }
+                        
+                        span.fa-eye-slash{
+                            display: inline-flex;
+                        }
+            
+                        span.fa-eye{
+                            display: none;
+                        }
+                    }  
+                }
+
+                //for error, add ".error" to .field class
+                .field.error {
+                    .field__label span {
+                        color: $field-alert-color;
+                    }
+
+                    .field__container {
+
+                        input {
+                            border: 1px solid $field-alert-color;
+                        }
+
+                        span {
+                            background-color: $field-alert-color;
+                        }
+                    }
+                }
+
+                .terms-and-conditions {
+                    margin-top: 0.5rem;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: flex-start;
+
+                    input {
+                        display:none;
+                    }
+
+                    label:before {
+                        margin: 0.2rem 0.3rem 0 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        content: "";
+                        width: 1.2rem;
+                        height: 1.2rem;
+                        border: 1px solid $field-text-color;
+                    }
+
+                    input[type=checkbox]:checked + label:before {
+                        content: "\2713";
+                        font: 18px;
+                        color: white;
+                        background-color: $checkbox-bg-color;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: $field-text-color;
+
+                        span {
+                            color : $field-required-color;
+                            font-size: 12px;
+                            vertical-align: top;
+                        }
+                    }
+
+                    p {
+                        margin-left: 1.7rem;
+                        font-style: italic;
+                        font-size: 16px;
+                    }
+                }
+
+                .terms-and-conditions.error {
+                    label:before {
+                        border-color: $field-alert-color;
+                    }
+
+                    a span {
+                        
+                        color: $field-alert-color;
+                    }
+
+                    p {
+                        color: $field-alert-color;
+                    }
+                }
+
+                button#signUpBtn {
+                    @include squareButton(primary, 400px);
+                    margin-top: 4rem;
+                    font-size: 21px;
+                    padding: 1.2rem;
+                }
+            }
+        }
+        
+    }
+}
+
+
+@media screen and (min-width: 900px) {
+
+    .sign-up {
+        max-width: initial;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .sign-up-desktop-left {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            align-items: end;
+            background-color: $desktop-left-bg-color;
+            color: $white;
+
+            h1 {
+                margin: 0 auto 0.7rem 11vw;
+                font-size: 3vw;
+            }
+
+            .sign-up-logo {
+                margin: 0 auto 3.5rem 11vw;
+
+                img {
+                    width: 20vw;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    font-size: 1.1vw;
+                    font-style: italic;
+                }
             }
         }
 
-        
-        form {
-            padding: 0.2rem 1.5rem;
-
-            label {
-                font-family: $mainFont;
-                font-size: 0.9rem;
-
-                span {
-                    color: $darkBackground;
-                    font-size: 0.6rem;
-                    margin-left: 0.1rem;
-                }
-            }
-
-            .sign-up-errorMsg {
-                display: inline-block;
-                font-size: 0.9rem;
-                color: $causion;
-                margin-left: 0.5rem;
-                margin-bottom: 0;
-            }
-
-            input {
-                width: 100%;
-                height: 8.5vh;
-                line-height: 8.5vh;
-                border: 2px solid $darkBackground;
-                border-radius: 1rem;
-                padding: 0 1rem;
-                font-size: 1.2rem;
-            }
-
-            input#pwInput,
-            input#confirmPwInput {
-                width: 85%;
-                border: none;
-            }
-
-            button.btn {
-                width: 100%;
-                height: 8.7vh;
-                background-color: $darkBackground;
-                border: 2px solid $darkBackground;
-                border-radius: 1rem;
-                color: $white;
-                outline: none;
-                margin-top: 1rem;
-                font-size: 1.3rem; 
-            }
-
-            #pwcredential {
-                font-size: 0.8rem;
-                padding: 0 0.3rem;
-                border-radius: 50%;
-                color: $white;
-                background-color: $darkBackground;
-            }
-
-            // .sign-up-pw, .sign-up-confirm-pw {
-            //     position: relative;
-            //     .fas {
-            //         position: absolute;
-            //         right: 5%;
-            //         bottom: 25%;
-            //     }
-
-            //     .fa-eye-slash{
-            //         display: block;
-            //     }
-
-            //     .fa-eye{
-            //         display: none;
-            //     }
-                
-            // }
-
-            .sign-up-pw, .sign-up-confirm-pw {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                border: 2px solid $darkBackground;
-                border-radius: 1rem;
-
-                .fa-eye-slash{
-                    margin-right: 1em;
-                    display: block;
-                }
-
-                .fa-eye{
-                    margin-right: 1em;
-                    display: none;
-                }
+        main {
+            //Need to check how to adjust
+            width: 100%;
+            height: 100%;
+            // height: 100vh;
+            // overflow-y: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+    
+    
+            .wrapper {
+                //Need to check how to adjust
+                width: 48%;
+                min-width: 300px;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 0;
             }
         }
     }
