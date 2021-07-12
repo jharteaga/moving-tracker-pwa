@@ -1,0 +1,103 @@
+.background-container {
+	@include backgroundContainer();
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.card {
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	background-color: #f7f7f7;
+	max-width: 400px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px 0 rgba($color: #044468, $alpha: 0.15);
+	color: #044468;
+
+	&__left img {
+		border-radius: 16px;
+	}
+
+	&__right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: 7px;
+		width: 100%;
+
+		h2 {
+			margin: 0;
+		}
+
+		p {
+			margin: 0;
+			margin-bottom: 7px;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: space-between;
+		button {
+			@include iconButton(
+				$bgColor: #044468,
+				$borderRadius: 30%,
+				$fontSize: 1rem,
+				$width: 30px,
+				$height: 30px
+			);
+		}
+	}
+}
+
+.field {
+	margin-top: 3rem;
+
+	&__label {
+		color: #044468;
+		font-weight: bold;
+		font-size: 1.1rem;
+
+		span {
+			color: #52c1ff;
+		}
+	}
+
+	&__container {
+		display: flex;
+		align-items: center;
+		margin-top: 0.5rem;
+
+		input {
+			width: 50%;
+			padding: 0.7rem;
+			border-radius: 16px;
+			border: 0;
+			color: #044468;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+				inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+		}
+
+		span {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			right: 35px;
+
+			@include iconButton(
+				$bgColor: #044468,
+				$borderRadius: 30%,
+				$fontSize: 0.9rem,
+				$width: 26px,
+				$height: 26px
+			);
+		}
+	}
+}
