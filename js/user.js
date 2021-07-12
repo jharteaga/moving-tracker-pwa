@@ -31,7 +31,7 @@ class User {
                     await this._addUserDb(email, userName, signup.user.uid);
 
                     //Move to Onboaring page
-                    window.location.href = 'onboarding.html';
+                    window.location.href = 'pages/onboarding.html';
                 }
             } else {
                 this.userError =
@@ -80,7 +80,9 @@ class User {
                 await this._getUserDb(login.user.uid);
 
                 //Move to existing Moving page
-                window.location.href = 'existingMvs.html';
+                if (window.location.pathname !== '/pages/existingMvs.html') {
+                    window.location.pathname = 'pages/existingMvs.html';
+                }
             } else {
                 this.userError = 'Login Error';
             }
@@ -129,7 +131,7 @@ class User {
      * Verifies if the current user is logged in, if it is logged in redirects
      * the user to movings page, otherwise redirects to login page.
      */
-    isLoggedIn() {
+    isLoggedIn(cb) {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 if (
@@ -138,11 +140,12 @@ class User {
                 ) {
                     console.log('User Logged in');
                     console.log(window.location.pathname);
-                    // window.location.href = 'pages/existingMvs.html';
-                    console.log(user.uid);
-                    await this._getUserDb(user.uid);
+                    window.location.href = 'pages/existingMvs.html';
                 } else {
                     await this._getUserDb(user.uid);
+                    if (cb) {
+                        cb();
+                    }
                     console.log(this);
                 }
             } else {
@@ -188,7 +191,6 @@ class User {
      */
     async _getUserDb(userId) {
         try {
-            console.log(userId, 'get');
             const getDoc = await db.collection('users').doc(userId).get();
 
             const doc = getDoc.data();
@@ -217,8 +219,8 @@ class User {
      * @param {Array} userMovings array of updated movings for the current user
      */
     async updateUserMovings(userMovings) {
+        console.log(userMovings);
         try {
-            console.log(userMovings);
             await db.collection('users').doc(this.userId).update({
                 movings: userMovings,
             });
@@ -253,104 +255,4 @@ class User {
             console.log(`Error message: ${error.message}`);
         }
     }
-
-    addLocation(newLocation) {
-        this.locations.push(newLocation);
-    }
-
-    deleteLocation(locationId) {
-        const index = this.locations.map((item) => item.id).indexOf(locationId);
-        this.locations.splice(index, 1);
-    }
-
-    editLocation(locationId, newEdition) {
-        const index = this.locations.map((item) => item.id).indexOf(locationId);
-        this.locations[index] = newEdition;
-    }
-
-    addSize(newSize) {
-        this.sizes.push(newSize);
-    }
-
-    deleteSize(sizeId) {
-        const index = this.sizes.map((item) => item.id).indexOf(sizeId);
-        this.sizes.splice(index, 1);
-    }
-
-    editSize(sizeId, newEdition) {
-        const index = this.sizes.map((item) => item.id).indexOf(sizeId);
-        this.sizes[index] = newEdition;
-    }
 }
-
-// test (these are the test for User methods)
-
-const user = new User();
-
-// user.userSignUp('pepito@gmail.com', 'Pepito', '1232131', '1232131')
-//     .then(() => {
-//         console.log(
-//             '\n',
-//             user.userId + '\n',
-//             user.userName + '\n',
-//             user.email + '\n',
-//             user.locations + '\n',
-//             user.sizes + '\n',
-//             user.movings + '\n',
-//             user.userError ? user.userError : ' '
-//         );
-//         // console.log('Success ' + res);
-//     })
-//     .catch((err) => {
-//         console.log(err.message);
-//     });
-
-// user.userLogout().then(() => {
-//     console.log(
-//         '\n',
-//         user.userId + '\n',
-//         user.userName + '\n',
-//         user.email + '\n'
-//         // user.userError ? user.userError : ''
-//     );
-// });
-
-// user.userLogin('pepito@gmail.com', '1232131').then(() => {
-//     console.log(
-//         '\n',
-//         user.userId + '\n',
-//         user.userName + '\n',
-//         user.email + '\n',
-//         user.locations + '\n',
-//         user.sizes + '\n',
-//         user.userError ? user.userError : ' '
-//     );
-//     console.log(user.movings);
-//     // user.updateUserDb('pepito updated2').then(() => {
-//     //     console.log(
-//     //         '\n',
-//     //         user.userId + '\n',
-//     //         user.userName + '\n',
-//     //         user.email + '\n',
-//     //         user.locations + '\n',
-//     //         user.sizes + '\n',
-//     //         user.movings + '\n',
-//     //         user.userError ? user.userError : ' '
-//     //     );
-//     // });
-// });
-
-// user.userLogout();
-// user.addLocation({ id: 11, location: 'living room' });
-
-// user.addLocation({ id: 15, location: 'Dinning room' });
-
-// console.log(user.locations);
-
-// user.deleteLocation(15);
-
-// console.log(user.locations);
-
-// user.editLocation(11, { id: 11, location: 'Kitchen' });
-
-// console.log(user.locations);

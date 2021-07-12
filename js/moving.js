@@ -20,17 +20,40 @@ class Moving {
     ) {
         this.userId = userId;
         this.movingId = '';
+        this.createdAt = '';
         this.movingTitle = movingTitle;
         this.movingDescription = description;
         this.from = from;
         this.to = to;
         this.date = date;
         this.boxes = [];
-        this.collaborators = {};
+        this.collaborators = [];
+        this.labels = ['Kitchen', 'Master Bedroom', 'Dinning Room', 'Bathroom'];
+        this.sizes = {
+            small: {
+                length: 20,
+                width: 30,
+                height: 20,
+            },
+            medium: {
+                length: 30,
+                width: 40,
+                large: 30,
+            },
+            large: {
+                length: 40,
+                width: 50,
+                large: 40,
+            },
+        };
         this.movingError = '';
-        this.createdAt = '';
     }
 
+    /**
+     * Creates a new moving to firebase
+     *
+     * @param {Object} userInstance
+     */
     async addMovingToDb(userInstance) {
         try {
             const data = {
@@ -39,10 +62,12 @@ class Moving {
                 from: this.from,
                 to: this.to,
                 date: this.date,
-                creatorId: this.userId,
+                creatorId: userInstance.userId,
                 boxes: [],
                 collaborators: {},
                 createdAt: firebase.firestore.Timestamp.now(),
+                labels: this.labels,
+                sizes: this.sizes,
             };
 
             if (
@@ -52,10 +77,14 @@ class Moving {
             ) {
                 await db.collection('movings').doc().set(data);
 
-                await this.getMoving(this.userId, this.movingTitle);
+                // gets moving created
+                await this.getMovingByTitle(
+                    userInstance.userId,
+                    this.movingTitle
+                );
 
+                // updates movings on user instance
                 await userInstance.updateUserMovings(await this.getMovings());
-                // await userInstance.getUserDb(userInstance.userId);
                 this.movingError = '';
             } else {
                 console.log(
@@ -103,6 +132,17 @@ class Moving {
     }
 
     // Needs testing update Moving
+
+    /**
+     * Updates moving in firebase
+     *
+     * @param {Object} userInstance     instance of User Class
+     * @param {String} newMovingTitle   New moving title
+     * @param {String} newDescription   New description
+     * @param {String} newFrom          New from
+     * @param {String} newTo            New to
+     * @param {Date} newDate          New date
+     */
     async updateMoving(
         userInstance,
         newMovingTitle,
@@ -134,7 +174,13 @@ class Moving {
         }
     }
 
-    async getMoving(userId, movingTitle) {
+    /**
+     * Gets a moving by title
+     *
+     * @param {String} userId -         User Id
+     * @param {String} movingTitle -    Moving Title
+     */
+    async getMovingByTitle(userId, movingTitle) {
         try {
             const getDoc = await db
                 .collection('movings')
@@ -167,6 +213,63 @@ class Moving {
         }
     }
 
+    /**
+     * Gets a moving by Id
+     *
+     * @param {String} movingId
+     * @returns {Object} User Instance
+     */
+    async getMovingById(movingId) {
+        try {
+            this.movingSnaphsot = await db
+                .collection('movings')
+                .doc(movingId)
+                .onSnapshot((snapshot) => {
+                    const doc = snapshot.data();
+
+                    if (doc) {
+                        this.userId = doc.creatorId;
+                        this.movingId = snapshot.id;
+                        this.movingTitle = doc.movingTitle;
+                        this.description = doc.description;
+                        this.from = doc.from;
+                        this.to = doc.to;
+                        this.date = doc.date;
+                        this.boxes = doc.boxes;
+                        this.collaborators = doc.collaborators;
+                        this.createdAt = doc.createdAt;
+                        this.movingError = '';
+                    }
+                });
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    getMovingsList() {
+        console.log(this.userId, 'userid');
+        if (this.userId) {
+            db.collection('movings')
+                .where('creatorId', '==', this.userId)
+                .onSnapshot(
+                    (snapshot) => {
+                        snapshot.forEach((doc) => {
+                            console.log(doc.data(), 'asdfas');
+                        });
+                    },
+                    (error) => {
+                        this.movingError = error.message;
+                        console.log(`Error code: ${error.code}`);
+                        console.log(`Error message: ${error.message}`);
+                        console.log(error);
+                    }
+                );
+        }
+    }
+
     async getMovings() {
         try {
             const getDoc = await db
@@ -179,6 +282,8 @@ class Moving {
                 doc.push({
                     movingId: move.id,
                     movingTitle: move.data().movingTitle,
+                    to: move.data().to,
+                    date: move.data().date,
                 });
             });
 
@@ -190,51 +295,52 @@ class Moving {
             console.log(error);
         }
     }
+
+    async addCollaborator(collaboratorEmail) {
+        try {
+            await db
+                .collection('movings')
+                .doc(this.movingId)
+                .update({
+                    collaborators:
+                        firebase.firestore.FieldValue.arrayUnion(
+                            collaboratorEmail
+                        ),
+                });
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    async deleteCollaborator(collaboratorEmail) {
+        try {
+            await db
+                .collection('movings')
+                .doc(this.movingId)
+                .update({
+                    collaborators:
+                        firebase.firestore.FieldValue.arrayRemove(
+                            collaboratorEmail
+                        ),
+                });
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    addLabel(newLabel) {}
+
+    deleteLabel(labelToDelete) {}
+
+    addSize(newSize) {}
+
+    deleteSize(sizeId) {}
+
+    updateSize(sizeId, newEdition) {}
 }
-
-// user.userLogin('pepito@gmail.com', '1232131').then(() => {
-//     console.log(
-//         '\n',
-//         user.userId + '\n',
-//         user.userName + '\n',
-//         user.email + '\n',
-//         user.locations + '\n',
-//         user.sizes + '\n',
-//         user.movings[0]?.movingTitle + '\n',
-//         user.userError ? user.userError : ' '
-//     );
-// user.isLoggedIn().then(() => {
-//     const moving = new Moving(
-//         null,
-//         'twone moving',
-//         'Third moving description',
-//         'Mexico',
-//         'Toronto',
-//         '03-04-2021',
-//         user.userId
-//     );
-//     moving.addMovingToDb(user);
-//     console.log(user);
-// });
-
-// (async function promises() {
-//     console.log(user.userId.length === 0);
-//     if (user.userId.length === 0) {
-//         await user.isLoggedIn();
-//     }
-// })();
-
-window.addEventListener('DOMContentLoaded', () => {
-    user.isLoggedIn();
-    // console.log('1');
-});
-// window.addEventListener('load', () => {
-//     console.log(user);
-// });
-
-// console.log(user);
-//     // const movingDelete = new Moving(user.userId);
-
-//     // movingDelete.deleteMoving(user, 'b2SpzMKMCDjQmBlkkz8u');
-//     console.log(user.movings);
-// });
