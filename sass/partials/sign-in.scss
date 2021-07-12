@@ -7,7 +7,7 @@
         font-family: $mainFont;
     }
 
-    .fas {
+    .fas, .fak {
         font-family: "Font Awesome 5 Free";;
     }
 
@@ -16,6 +16,7 @@
     }
 
     main {
+        overflow-y: hidden;
 
         .background {
             @include backgroundContainer();
@@ -124,7 +125,7 @@
     }
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 900px) {
 
     .sign-in {
         max-width: initial;
@@ -140,21 +141,58 @@
 
             h1 {
                 margin: 0 auto 0.7rem 11vw;
+                font-size: 3vw;
             }
 
             .sign-in-logo {
                 margin: 0 auto 3.5rem 11vw;
 
                 img {
-                    width: 235px;
+                    width: 20vw;
                     margin-bottom: 1rem;
                 }
 
                 p {
-                    font-size: 14px;
+                    font-size: 1.1vw;
                     font-style: italic;
                 }
                 
+            }
+        }
+
+        main {
+            //Need to check how to adjust
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 4rem;
+    
+            .wrapper {
+                //Need to check how to adjust
+                width: 48%;
+                min-width: 300px;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 0;
+
+                h1 {
+                    margin: 0 0 3rem 0;
+                }
+
+                form {
+                    .field  {
+                        .field__container {
+                            margin-bottom: 3rem;
+                        }
+                
+                    }
+
+                    a#signUpBtn {
+                        margin-top: 2rem;
+                    }
+                }
             }
         }
     }
