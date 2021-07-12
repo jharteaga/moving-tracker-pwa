@@ -1,84 +1,131 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-
 .onboarding {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-    header {
-        background-color: $darkBackground;
-        text-align: center;
-        padding: 0.7rem;
+	.aside {
+		display: none;
+	}
 
-        p {
-            font-family: $mainFont; 
-            color: $white;
-            font-size: 1rem;
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
-    }
+	main.carousel-wrapper {
+		box-shadow: 0 5px 5px 0 rgba($color: #000000, $alpha: 0.1);
+		max-width: 600px;
+		width: 90%;
+		margin: 0 auto;
+		background-color: white;
+		border-radius: 20px;
+		padding: 1.2rem 1rem 2.5rem;
 
-    main {
-        padding: 1.2rem 1.5rem;
-        
-        .carousel {
-            
-            .carousel-indicators {
-                position: absolute;
-                top: 65%;
+		.carousel {
+			.carousel-indicators {
+				position: absolute;
+				bottom: -30px;
 
-                button {
-                    width: 15px;
-                    height: 15px;
-                    border-radius: 50%;
-                    background-color: $darkBackground;
-                    margin: 0 1rem;
-                }
-            }
+				button {
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					background-color: $carousel-indicator-color;
+					margin: 0 0.5rem;
+				}
+			}
 
-            .carousel-item {
-                height: 87vh;
-    
+			.carousel-inner {
+				height: 600px;
+				max-height: 100%;
+			}
 
-                img {
-                    width: 100%; 
-                    height: 58%;
-                    border-radius: 2rem;
-                }
+			.carousel-item {
+				height: 80vh;
 
-                .description {
-                    height: 42%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: flex-end;
-                    align-items: center;
-                    text-align: center;
-                    
-                    h2 {
-                        font-size: 1rem;
-                        font-weight: bold;
-                    }
+				img {
+					width: 100%;
+					max-height: 465px;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 2rem;
+				}
 
-                    p {
-                        font-size: 1rem;
-                    }
+				.description {
+					margin-top: 2rem;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-end;
+					align-items: flex-start;
+					text-align: center;
+					padding: 0 0.3rem;
 
-                    .btn {
-                        width: 60%;
-                        padding: 0.8rem;
-                        font-family: $mainFont;  
-                        background-color: $darkBackground;
-                        font-size: 1rem;
-                        border-radius: 1rem;
-                    }
-                }
-            }
-        }
+					h2 {
+						font-weight: bold;
+						color: $heading-color;
+						margin: 0;
+					}
 
-    }
+					p {
+						color: $text-color;
+						text-align: left;
+					}
+				}
+			}
+		}
 
+		.actions {
+			width: 95%;
+			margin: auto;
+			display: flex;
+			justify-content: space-between;
+			position: absolute;
+			right: 0;
+			left: 0;
+			bottom: -18px;
+
+			a {
+				text-decoration: none;
+				cursor: pointer;
+
+				&.skip {
+					color: $grey;
+				}
+
+				&.next {
+					color: $accent-color;
+				}
+
+				&.next.disabled {
+					visibility: hidden;
+					font-size: 0;
+
+					&::before {
+						content: 'Start';
+						visibility: visible;
+						font-size: 1rem;
+					}
+				}
+			}
+		}
+	}
+
+	@include mediumDevice {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+
+		.aside {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: flex-end;
+			background-color: $heading-color;
+			height: 100vh;
+			padding-bottom: 2rem;
+
+			img {
+				color: white;
+				width: 300px;
+			}
+
+			p {
+				color: white;
+			}
+		}
+	}
 }
