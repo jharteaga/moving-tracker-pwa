@@ -2,40 +2,40 @@
 
 const addItemBtn = document.getElementById("addItemBtn");
 
-window.addEventListener('change', ()=> { 
+// window.addEventListener('change', ()=> { 
 
-    const itemNameInput = document.getElementById("itemNameInput").value;
-    const itemCategoryInput = document.getElementById("itemCategoryInput").value;
-    const itemQuantityInput = document.getElementById("itemQuantityInput").value;
+//     const itemNameInput = document.getElementById("itemNameInput").value;
+//     const itemCategoryInput = document.getElementById("itemCategoryInput").value;
+//     const itemQuantityInput = document.getElementById("itemQuantityInput").value;
 
 
-    if(itemNameInput !== "" && itemCategoryInput !== "" && itemQuantityInput !== "") {
-        addItemBtn.disabled = false;
-    }
+//     if(itemNameInput !== "" && itemCategoryInput !== "" && itemQuantityInput !== "") {
+//         addItemBtn.disabled = false;
+//     }
 
-    if(itemNameInput === ""){
-        itemNameErrorMsg.innerHTML = "Please enter Item Name"; 
-    } else {
-        itemNameErrorMsg.innerHTML = "";
-    }
+//     if(itemNameInput === ""){
+//         itemNameErrorMsg.innerHTML = "Please enter Item Name"; 
+//     } else {
+//         itemNameErrorMsg.innerHTML = "";
+//     }
 
-    if(itemCategoryInput === ""){
-        itemCategoryErrorMsg.innerHTML = "Please enter Category"; 
-    } else {
-        itemCategoryErrorMsg.innerHTML = ""; 
-    }
+//     if(itemCategoryInput === ""){
+//         itemCategoryErrorMsg.innerHTML = "Please enter Category"; 
+//     } else {
+//         itemCategoryErrorMsg.innerHTML = ""; 
+//     }
 
-    if(itemQuantityInput === ""){
-        itemQuantityErrorMsg.innerHTML = "Please enter Quantity"; 
-    } else {
-        itemQuantityErrorMsg.innerHTML = ""; 
-    }
+//     if(itemQuantityInput === ""){
+//         itemQuantityErrorMsg.innerHTML = "Please enter Quantity"; 
+//     } else {
+//         itemQuantityErrorMsg.innerHTML = ""; 
+//     }
 
-});
+// });
 
 
 addItemBtn.addEventListener('click', ()=>{
-
+    // console.log("Add")
     const itemNameInput = document.getElementById("itemNameInput");
     const itemDescriptionInput = document.getElementById("itemDescriptionInput");
     const itemCategoryInput = document.getElementById("itemCategoryInput");
@@ -57,9 +57,9 @@ addItemBtn.addEventListener('click', ()=>{
     
     //ADDED BY ALEJANDRA
         //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
-        const idMoving= "wWKmQIZ54ukSiX8HKWMQ";
-        const idBox = "WSR3Avb3Ajv0Z8kiCV48";  
-        const idItem = "H41kTArGunI7csJfp5wu";
+        const idMoving="7lI4hu7cuqmurPqSFa72";
+        const idBox = "xtV5zrXtZcuN33KHxF2l";  
+        const idItem = "";
 
         // if idItem is passed, it will update, otherwise, it will add a new item
     addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
@@ -72,6 +72,7 @@ addItemBtn.addEventListener('click', ()=>{
  /* function to send item data to firebase */
 const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value)=>{
       
+ 
     let item = new Item();
   
     if (idItem=="")
@@ -86,6 +87,11 @@ const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value
 
     //clean inputs
     cleanInputs();
+
+    let modal = new bootstrap.Modal(document.getElementById('itemModal'),{keyboard:false});
+    console.log(modal)
+        modal.hide();
+
 }
 
 /* ADDED BY ALEJANDRA*/
@@ -96,7 +102,7 @@ const cleanInputs = () =>{
     itemCategoryInput.value="";
     itemQuantityInput.value="";
     itemValueInput.value="";
-    preview.innerHTML = "";
+    // preview.innerHTML = "";
 }
 
 /* ADDED BY ALEJANDRA*/
