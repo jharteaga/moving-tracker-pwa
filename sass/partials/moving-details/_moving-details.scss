@@ -9,8 +9,9 @@
 	.content-wrapper .boxes-wrapper {
 		margin-top: 2rem;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		row-gap: 2rem;
+		width: 100%;
 
 		.box {
 			display: grid;
@@ -113,7 +114,7 @@
 
 				button {
 					@include iconButton(
-						$bgColor: #044468,
+						$bgColor: $text-color,
 						$borderRadius: 30%,
 						$fontSize: 1rem,
 						$width: 30px,
@@ -249,7 +250,8 @@
 		right: 2rem;
 		transform-origin: 100% 100%;
 		transform: scale(0, 0);
-		transition: transform 0.3s linear;
+		transition: transform 0.2s linear;
+		background-color: white;
 
 		ul {
 			list-style-type: none;
