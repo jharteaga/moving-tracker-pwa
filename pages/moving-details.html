@@ -1,126 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
+
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Moving Details</title>
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-			crossorigin="anonymous"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 			integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-		/>
+			crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="../styles/styles.css" />
 		<script src="../js/moving-details.js" defer></script>
 	</head>
+
 	<body class="moving-details">
-		<header>
-			<p>Moving Details</p>
-		</header>
-
-		<main>
-			<div class="heading">
-				<h1>Title of the moving</h1>
+		<div class="background-container">
+		</div>
+		<aside class="aside">
+			<div class="top-container">
+				<div class="profile-photo"></div>
 			</div>
-
-			<form>
-				<div class="search">
-					<span class="fas fa-search"></span>
-					<input
-						type="search"
-						aria-label="search a moving"
-						class="search-input"
-					/>
-				</div>
-				<div class="filter">
-					<span class="fas fa-filter"></span>
-				</div>
-			</form>
-		</main>
-		<aside class="moving-options">
-			<ul>
-				<li data-bs-toggle="modal" data-bs-target="#boxLabelsModal">
-					Box labels
-				</li>
-				<li data-bs-toggle="modal" data-bs-target="#boxSizesModal">
-					Define box Sizes
-				</li>
-				<li data-bs-toggle="modal" data-bs-target="#newBoxModal">
-					New box
-				</li>
-				<li data-bs-toggle="modal" data-bs-target="#collaboratorModal">
-					Add collaborator
-				</li>
-				<li>Download inventory</li>
-			</ul>
+			<div class="middle-container">
+				<h1>Studio 1501</h1>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#">Movings</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Boxes</li>
+					</ol>
+				</nav>
+			</div>
+			<div class="bottom-container">
+				<img src="../img/moving-tracker-logo.svg" alt="Moving Tracker Logo">
+				<p>&copy; 2021 Moving Tracker. All rights reserved.</p>
+			</div>
 		</aside>
-		<button class="options-btn">
-			<span class="fas fa-plus"></span>
-		</button>
-
+		<div class="content-wrapper">
+			<div class="top-container">
+				<header>
+					<img src="../img/moving-tracker-icon.svg" alt="Moving tracker logo">
+					<div class="profile-photo"></div>
+				</header>
+				<main>
+					<div class="heading">
+						<h1>Studio 1501</h1>
+					</div>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Movings</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Boxes</li>
+						</ol>
+					</nav>
+					<form>
+						<div class="field">
+							<div class="field__container">
+								<input type="search" id="search" placeholder="Find your box...">
+								<span class="fas fa-search icon"></span>
+							</div>
+						</div>
+						<div class="filter">
+							<span class="far fa-filter"></span>
+						</div>
+					</form>
+				</main>
+			</div>
+			<div class="filter-desktop">
+				<span class="far fa-filter"></span>
+			</div>
+			<aside class="moving-options">
+				<ul>
+					<li data-bs-toggle="modal" data-bs-target="#boxLabelsModal"> Box labels </li>
+					<li data-bs-toggle="modal" data-bs-target="#boxSizesModal"> Define box Sizes </li>
+					<li data-bs-toggle="modal" data-bs-target="#newBoxModal"> New box </li>
+					<li data-bs-toggle="modal" data-bs-target="#collaboratorModal"> Add collaborator </li>
+				</ul>
+			</aside>
+			<div class="boxes-wrapper">
+				<div class="box">
+					<div class="box__image">
+						<span class="fak fa-open-box"></span>
+						<p><span>Size: </span>Small</p>
+					</div>
+					<div class="box__info">
+						<p><span>Weight: </span>100kg</p>
+						<p><span>Value: </span>$1500</p>
+					</div>
+					<div class="box__metadata">
+						<p>Dishes 1</p>
+						<p>Kitchen</p>
+						<p>Fragile</p>
+					</div>
+					<div class="box__actions">
+						<button class="icon"><span class="fas fa-pencil-alt"></span></button>
+						<button class="icon"><span class="fas fa-trash"></span></button>
+					</div>
+					<div class="box__progress">
+						<p>Add box</p>
+						<p>Add items</p>
+						<p>Close box</p>
+						<p>Download label</p>
+					</div>
+				</div>
+			</div>
+			<button class="options-btn round"><span class="fas fa-plus"></span></button>
+		</div>
 		<!-- Box Labels Modal -->
-		<div
-			class="modal fade"
-			id="boxLabelsModal"
-			tabindex="-1"
-			aria-labelledby="boxLabelsModalLabel"
-			aria-hidden="true"
-		>
+		<div class="modal fade" id="boxLabelsModal" tabindex="-1" aria-labelledby="boxLabelsModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="boxLabelsModalLabel">
-							Box Labels
-						</h5>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"
-						></button>
+						<h5 class="modal-title" id="boxLabelsModalLabel"> Box Labels </h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-bs-dismiss="modal"
-						>
-							Save
-						</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- Box Sizes Modal -->
-		<div
-			class="modal fade"
-			id="boxSizesModal"
-			tabindex="-1"
-			aria-labelledby="boxSizesModalLabel"
-			aria-hidden="true"
-		>
+		<div class="modal fade" id="boxSizesModal" tabindex="-1" aria-labelledby="boxSizesModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="boxSizesModalLabel">
-							Box Sizes
-						</h5>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"
-						></button>
+						<h5 class="modal-title" id="boxSizesModalLabel"> Box Sizes </h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<p>This application is using metric system (cm)</p>
@@ -128,11 +134,7 @@
 						<div class="size-container">
 							<div class="small dimension-container">
 								<p>Length</p>
-								<input
-									type="number"
-									class="size"
-									pattern="[0-9]{1,}"
-								/>
+								<input type="number" class="size" pattern="[0-9]{1,}" />
 							</div>
 							<span class="fas fa-times"></span>
 							<div class="small dimension-container">
@@ -181,38 +183,18 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-bs-dismiss="modal"
-						>
-							Save
-						</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- New Box Modal -->
-		<div
-			class="modal fade"
-			id="newBoxModal"
-			tabindex="-1"
-			aria-labelledby="newBoxModalLabel"
-			aria-hidden="true"
-		>
+		<div class="modal fade" id="newBoxModal" tabindex="-1" aria-labelledby="newBoxModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="newBoxModalLabel">
-							Add a Box
-						</h5>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"
-						></button>
+						<h5 class="modal-title" id="newBoxModalLabel"> Add a Box </h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<div class="input-wrapper">
@@ -230,71 +212,40 @@
 								<option>Bedroom</option>
 							</select>
 						</div>
-
 						<div class="size-wrapper">
 							<label>Size: </label>
 							<div class="size-buttons">
-								<button class="btn btn-secondary">Small</button
-								><button class="btn btn-secondary">
-									Medium</button
-								><button class="btn btn-secondary">
-									Large
-								</button>
+								<button class="btn btn-secondary">Small</button><button class="btn btn-secondary">
+									Medium</button><button class="btn btn-secondary"> Large </button>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-bs-dismiss="modal"
-						>
-							Save
-						</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<!-- Collaborator -->
-		<div
-			class="modal fade"
-			id="collaboratorModal"
-			tabindex="-1"
-			aria-labelledby="collaboratorModalLabel"
-			aria-hidden="true"
-		>
+		<div class="modal fade" id="collaboratorModal" tabindex="-1" aria-labelledby="collaboratorModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="collaboratorModalLabel">
-							Collaborators
-						</h5>
-						<button
-							type="button"
-							class="btn-close"
-							data-bs-dismiss="modal"
-							aria-label="Close"
-						></button>
+						<h5 class="modal-title" id="collaboratorModalLabel"> Collaborators </h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer">
-						<button
-							type="button"
-							class="btn btn-secondary"
-							data-bs-dismiss="modal"
-						>
-							Save
-						</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		<script src="https://kit.fontawesome.com/7ba77cc2f3.js" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"
-		></script>
+			crossorigin="anonymous"></script>
 	</body>
+
 </html>
