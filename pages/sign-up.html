@@ -5,22 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
+
+    <!-- Stylings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/styles.css">
 
-    <script
-    src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"
-    defer
-    ></script>
-    <script
-        src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"
-        defer
-    ></script>
-    <script
-        src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
-        defer
-    ></script>
+    <!-- JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
     <script src="../js/firebase.js" defer></script>
     <script src="../js/main.js" defer></script>
     <script src="../js/index.js" defer></script>
@@ -28,48 +27,79 @@
     <script src="../js/sign-up.js" defer></script>
 </head>
 <body class="sign-up">
-    <header>
-        <p>Sign up</p>
-    </header>
 
-    <main>
-        <div class="sing-up-main-heading">
-            <h1>Sign up</h1>
+    <div class="sign-up-desktop-left">
+        
+        <h1>Discover our<br> moving system</h1>
+
+        <div class="sign-up-logo">
+            <img src="../img/logo-large-temp.png">
+            <p>&copy; 2021 Moving tracker. All Rights Reserved.</p>
         </div>
 
-        <form action="#">
-            <label for="userNameInput">E-mail<span>&#10035;</span></label>
-            <p class="sign-up-errorMsg" id="emailErrorMsg"></p><br>
-            <input type="email" id="emailInput" name="emailInput" placeholder="javalimos@mylangara.ca"><br>
+    </div>
 
-            <label for="userNameInput">User Name<span>&#10035;</span></label>
-            <p class="sign-up-errorMsg" id="userNameErrorMsg"></p><br>
-            <input type="text" id="userNameInput" name="userNameInput" placeholder="Javalimos"><br>
+    <main>
+        <div class="background"></div>
+        
+        <div class="wrapper">
+
+            <h1>Sign up</h1>
+
+            <form action="#">
+
+                <div class="field" id="signUpEmailField">
+                    <label for="userEmailInput" class="field__label">E-mail<span>&#10038;</span></label>
+                    <p class="sign-up-errorMsg" id="userEmailErrorMsg"></p>
+                    <div class="field__container">
+                        <input type="text" id="userEmailInput" name="userEmailInput">
+                        <span class="fas fa-envelope"></span>
+                    </div>
+                </div>
+
+                <div class="field" id="signUpUserNameField">
+                    <label for="userNameInput" class="field__label">User Name<span>&#10038;</span></label>
+                    <p class="sign-up-errorMsg" id="userNameErrorMsg"></p>
+                    <div class="field__container">
+                        <input type="text" id="userNameInput" name="userNameInput">
+                        <span class="fas fa-user icon"></span>
+                    </div>
+                </div>
+
+                <div class="field" id="signUpPwField">
+                    <label for="pwInput" class="field__label">Password<span>&#10038;</span></label>
+                    <p class="sign-up-errorMsg" id="pwErrorMsg"></p>
+                    <div class="sign-up-pw field__container">
+                        <input type="password" id="pwInput" name="pwInput">
+                        <span class="fas fa-eye-slash"></span>
+                        <span class="fas fa-eye"></span>
+                    </div>
+                </div>
+
+                <div class="field" id="signUpConfirmPwField">
+                    <label for="confirmPwInput" class="field__label">Confirm Password<span>&#10038;</span></label>
+                    <p class="sign-up-errorMsg" id="confirmPwErrorMsg"></p>
+                    <div class="sign-up-confirm-pw field__container">
+                        <input type="password" id="confirmPwInput" name="confirmPwInput">
+                        <span class="fas fa-eye-slash"></span>
+                        <span class="fas fa-eye"></span>
+                    </div>
+                </div>
+
+                <div class="terms-and-conditions" id="termsAndConditionsField">
+                    <input type="checkbox" id="termsAndConditionsInput" name="termsAndConditionsInput">
+                    <label for="termsAndConditionsInput"></label>
+                    <a href="#">Agree with terms & conditions<span>&#10038;</span></a>
+                    <p class="sign-up-errorMsg" id="termsAndConditionsErrorMsg"></p>
+                </div>
+
+
+                <button type="button" id="signUpBtn">Create account</button>
 
             
-            <label for="pwInput">Password<span>&#10035;</span></label>
-            <!-- <span id="pwcredential">i</span> -->
-            <p class="sign-up-errorMsg" id="pwErrorMsg"></p><br>
-            <div class="sign-up-pw">
-                <input type="password" id="pwInput" name="pwInput" placeholder="Mov1ng">
-                <i class="fas fa-eye-slash"></i>
-                <i class="fas fa-eye"></i>
-            </div>
-
-           
-            <label for="confirmPwInput">Confirm Password<span>&#10035;</span></label>
-            <p class="sign-up-errorMsg" id="confirmPwErrorMsg"></p><br>
-            <div class="sign-up-confirm-pw">
-                <input type="password" id="confirmPwInput" name="confirmPwInput">
-                <i class="fas fa-eye-slash"></i>
-                <i class="fas fa-eye"></i>
-            </div>
-
-            <button type="button" class="btn btn-primary" id="signUpBtn">Create account</button>
-           
-        </form> 
-
+            </form> 
+        </div>
+        
     </main>
-    
 </body>
 </html>

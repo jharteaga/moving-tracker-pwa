@@ -1,101 +1,174 @@
 .background-container {
-	@include backgroundContainer();
+  @include backgroundContainer();
+}
+
+//added by Alex
+
+.background-container-modal {
+  @include backgroundContainerModal();
+}
+
+// backgrounds for some parts of modals
+.modal-bgc {
+  background-color: #fff;
+  // z-index: -1;
+}
+.modal-closebtn-bgc {
+  background-color: transparent;
+  color: $primary-color;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: $font-h2;
+  border: none;
+  padding: 1%;
+}
+.delete-modal-closebtn {
+  background-color: $modal-delete-btn;
+  color: $primary-color;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: $font-h2;
+  border: 1px solid $primary-color;
+  padding: 1%;
+  border-radius: 15px;
+  width: 80%;
+  height: 3rem;
+}
+
+.nav-breadcrum {
+  margin-left: 1rem;
+  &__inactive {
+    a {
+      color: $breadcrumb-nav-color;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+  }
+  &__inactiveWhite {
+    a {
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+    }
+  }
+  .active_desktop {
+    color: white;
+    font-weight: bold;
+  }
+  li {
+    font-size: 1rem;
+    color: $breadcrumb-nav-active-color;
+  }
 }
 
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+.logo {
+  @include logo();
+}
+.profile-picture {
+  @include profile-picture();
+}
+// ************************************************
+
 .card {
-	display: grid;
-	grid-template-columns: 0.5fr 1fr;
-	background-color: #f7f7f7;
-	max-width: 400px;
-	width: 100%;
-	margin: 0 auto;
-	padding: 0.5rem 1.2rem 0.5rem 0.5rem;
-	border-radius: 10px;
-	box-shadow: 0 10px 10px 0 rgba($color: #044468, $alpha: 0.15);
-	color: #044468;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  background-color: #f7f7f7;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px 0 rgba($color: $primary-color, $alpha: 0.15);
+  color: $primary-color;
 
-	&__left img {
-		border-radius: 16px;
-	}
+  &__left img {
+    border-radius: 16px;
+  }
 
-	&__right {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		padding-left: 7px;
-		width: 100%;
+  &__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 7px;
+    width: 100%;
 
-		h2 {
-			margin: 0;
-		}
+    h2 {
+      margin: 0;
+    }
 
-		p {
-			margin: 0;
-			margin-bottom: 7px;
-		}
-	}
+    p {
+      margin: 0;
+      margin-bottom: 7px;
+    }
+  }
 
-	&__actions {
-		display: flex;
-		justify-content: space-between;
-		button {
-			@include iconButton(
-				$bgColor: #044468,
-				$borderRadius: 30%,
-				$fontSize: 1rem,
-				$width: 30px,
-				$height: 30px
-			);
-		}
-	}
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    button {
+      @include iconButton(
+        $bgColor: $primary-color,
+        $borderRadius: 30%,
+        $fontSize: 1rem,
+        $width: 30px,
+        $height: 30px
+      );
+    }
+  }
 }
 
 .field {
-	&__label {
-		color: #044468;
-		font-weight: bold;
-		font-size: 1.1rem;
+  &__label {
+    color: $primary-color;
+    font-weight: bold;
+    font-size: 1.1rem;
 
-		span {
-			color: #52c1ff;
-		}
-	}
+    span {
+      color: $field-required-color;
+    }
+  }
 
-	&__container {
-		display: flex;
-		align-items: center;
-		margin-top: 0.5rem;
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
 
-		input {
-			width: 50%;
-			padding: 0.7rem;
-			border-radius: 16px;
-			border: 0;
-			color: #044468;
-			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
-				inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-		}
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: 16px;
+      border: 0;
+      color: $primary-color;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+        inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+    }
 
-		span {
-			display: inline-flex;
-			justify-content: center;
-			align-items: center;
-			position: relative;
-			right: 35px;
+    span {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      right: 35px;
 
-			@include iconButton(
-				$bgColor: #044468,
-				$borderRadius: 30%,
-				$fontSize: 0.9rem,
-				$width: 26px,
-				$height: 26px
-			);
-		}
-	}
+      @include iconButton(
+        $bgColor: $primary-color,
+        $borderRadius: 30%,
+        $fontSize: 0.9rem,
+        $width: 26px,
+        $height: 26px
+      );
+    }
+  }
+}
+
+.canvas {
+  box-shadow: 0 0 15px #000;
+  background-color: #aaa4;
+  margin: 1em;
 }
