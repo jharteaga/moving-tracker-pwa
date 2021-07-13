@@ -63,14 +63,11 @@ class Box{
 
     getBox(idMoving,idBox){
         let boxDocument = db.collection(`/movings/${idMoving}/boxes`).doc(idBox);
-        let box = [];
         
-        boxDocument.get().then((doc) => {
-            if (doc.exists) {
-                // console.log(`${doc. id} => ${doc. data()}`)              
-                const id = `${doc. id}`
-                box.push (
-                    {
+        let box= boxDocument.get().then((doc) => {
+            if (doc.exists) {            
+                const id = `${doc. id}`;
+                 return {
                         id: id,
                         name: doc.data().name,
                         description: doc.data().description,
@@ -79,18 +76,17 @@ class Box{
                         weight: doc.data().weight,
                         fragile: doc.data().fragile,
                         status: doc.data().status
-                    }
-                );
-                // console.log(box);
-                return box;
-                
+                    };                
             } else {
-                // console.log("No such document!")
+                console.log("Box not found!")
                 return "Box not found!";
             }
         }).catch((error) => {
-            return `Error getting box: ${error}`;
+            return  `Error getting box: ${error}`;
         });
+
+        return box;
+
     }
 
     getItems(idMoving,idBox){
@@ -99,20 +95,21 @@ class Box{
 
         let itemsDocs= [];
 
-        items.get().then((querySnapshot) => {
+        return items.get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                     let id = `${doc. id}`
-                    itemsDocs.push({
-                    id:id,    
-                    name:doc.data().name,
-                    description: doc.data().description,
-                    cathegory: doc.data().cathegory,
-                    quantity: doc.data().quantity,
-                    value: doc.data().value 
-                    })
+                    itemsDocs.push( {
+                            id:id,    
+                            name:doc.data().name,
+                            description: doc.data().description,
+                            cathegory: doc.data().cathegory,
+                            quantity: doc.data().quantity,
+                            value: doc.data().value 
+                    });                    
             });
+            return itemsDocs;
         });
-        return itemsDocs;
+        // return itemsDocs;
     }
     
 }
