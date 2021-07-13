@@ -1,125 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
-    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
-    <script src="../js/main.js" defer></script>
-    <script src="../js/existingMvs.js" defer></script>
-    <title>Document</title>
-</head>
-<body>
-    <header class="existing-header">
-        <p>EXISTING MOVES</p>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="../styles/styles.css" />
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
+            defer
+        ></script>
 
-    <div class="existing-header2">
-    <h1>Existing Moves</h1>
-    </div>
-    
-    <main class="existing-main">
-        <div class="existing-search-cntn">
-            <button type="submit"><i class="fas fa-search"></i></button>
-            <input type="search" name="search">
+        <script src="../js/firebase.js" defer></script>
+        <script src="../js/main.js" defer></script>
+        <script src="../js/index.js" defer></script>
+        <script src="../js/user.js" defer></script>
+        <script src="../js/moving.js" defer></script>
+        <script src="../js/existingMvs.js" defer></script>
+        <script src="../js/classTests.js" defer></script>
+    </head>
+    <body>
+        <header class="existing-header">
+            <p>EXISTING MOVES</p>
+        </header>
+
+        <div class="existing-header2">
+            <h1>Existing Moves</h1>
         </div>
 
-       
-        
-        <!-- modal window -->
-        <div class="maskForModal-hidden">
-            <div class="modal-hidden">
-                <h1 >New moves</h1>
+        <main class="existing-main">
+            <div class="existing-search-cntn">
+                <button type="submit"><i class="fas fa-search"></i></button>
+                <input type="search" name="search" />
+            </div>
+
+            <!-- modal window -->
+            <div class="maskForModal-hidden">
+                <div class="modal-hidden">
+                    <h1>New moves</h1>
+                    <div>
+                        <ul class="li">
+                            <h2>Title</h2>
+                            <input type="text" class="newMovesInp title" />
+                        </ul>
+                        <ul class="li">
+                            <h2>Description</h2>
+                            <input type="text" class="newMovesInp desc" />
+                        </ul>
+                        <ul class="li">
+                            <h2>From</h2>
+                            <input type="text" class="newMovesInp from" />
+                        </ul>
+                        <ul class="li">
+                            <h2>To</h2>
+                            <input type="text" class="newMovesInp to" />
+                        </ul>
+                        <ul class="li">
+                            <h2>Date</h2>
+                            <input type="date" class="newMovesInp date" />
+                        </ul>
+                        <button class="saveBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="editMaskForModal-hidden">
+                <div class="editModal-hidden">
+                    <h1>Edit moves</h1>
+                    <div>
+                        <ul class="li">
+                            <h2>Title</h2>
+                            <input type="text" class="editMovesInp title" />
+                        </ul>
+                        <ul class="li">
+                            <h2>Description</h2>
+                            <input type="text" class="editMovesInp desc" />
+                        </ul>
+                        <ul class="li">
+                            <h2>From</h2>
+                            <input type="text" class="editMovesInp from" />
+                        </ul>
+                        <ul class="li">
+                            <h2>To</h2>
+                            <input type="text" class="editMovesInp to" />
+                        </ul>
+                        <ul class="li">
+                            <h2>Date</h2>
+                            <input type="date" class="editMovesInp date" />
+                        </ul>
+                        <button class="editSaveBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-delete-mask-hidden" id="toToggle">
+                <div class="modal-delete">
+                    <i class="fas fa-times-circle cross2"></i>
+                    <h2>Are you sure you delete this?</h2>
+                    <p>You can't retrieve this</p>
+                    <div class="delete-btnCntn">
+                        <button class="cancel">Cancel</button>
+                        <button class="delete">Delate</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="existing-footer">
+            <div class="plus-cntn">
+                <i class="fas fa-plus-circle plus-icon"></i>
+            </div>
+            <div class="footer-cntn">
                 <div>
-                <ul class="li">
-                    <h2>Title</h2>
-                    <input type="text" class="newMovesInp title">
-                </ul>
-                <ul class="li">
-                    <h2>Description</h2>
-                    <input type="text" class="newMovesInp desc">
-                </ul>
-                <ul class="li">
-                    <h2>From</h2>
-                    <input type="text" class="newMovesInp from">
-                </ul>
-                <ul class="li">
-                    <h2>To</h2>
-                    <input type="text" class="newMovesInp to">
-                </ul>
-                <ul class="li">
-                    <h2>Date</h2>
-                    <input type="date" class="newMovesInp date">
-                </ul>
-                <button class="saveBtn">Save</button>
+                    <i class="fas fa-truck-moving"></i>
+                    <p>Existing Moves</p>
                 </div>
-            </div>
-        </div>
-
-        <div class="editMaskForModal-hidden">
-            <div class="editModal-hidden">
-                <h1 >Edit moves</h1>
                 <div>
-                <ul class="li">
-                    <h2>Title</h2>
-                    <input type="text" class="editMovesInp title">
-                </ul>
-                <ul class="li">
-                    <h2>Description</h2>
-                    <input type="text" class="editMovesInp desc">
-                </ul>
-                <ul class="li">
-                    <h2>From</h2>
-                    <input type="text" class="editMovesInp from">
-                </ul>
-                <ul class="li">
-                    <h2>To</h2>
-                    <input type="text" class="editMovesInp to">
-                </ul>
-                <ul class="li">
-                    <h2>Date</h2>
-                    <input type="date" class="editMovesInp date">
-                </ul>
-                <button class="editSaveBtn">Save</button>
+                    <i class="far fa-user"></i>
+                    <p>Profile</p>
                 </div>
             </div>
-        </div>
-        
-        <div class="modal-delete-mask-hidden" id="toToggle">
-            <div class="modal-delete">
-                <i class="fas fa-times-circle cross2"></i>
-                <h2>Are you sure you delete this?</h2>
-                <p>You can't retrieve this</p>
-                <div class="delete-btnCntn">
-                    <button class="cancel">Cancel</button>
-                    <button class="delete">Delate</button>
-                </div>
-            </div>
-        </div>
-    </main>
-    
-    <footer class="existing-footer">
-        <div class="plus-cntn">
-            <i class="fas fa-plus-circle plus-icon"></i>
-        </div>
-        <div class="footer-cntn">
-            <div>
-                <i class="fas fa-truck-moving"></i>
-                <p>Existing Moves</p>
-            </div>
-            <div>
-                <i class="far fa-user"></i>
-                <p>Profile</p>
-           </div>
-        </div>
-    </footer>
-
-  
-</body>
+        </footer>
+    </body>
 </html>
-
-
 
 <!-- <div>
     <i class="fas fa-pencil-alt"></i>
