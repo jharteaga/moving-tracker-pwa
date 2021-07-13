@@ -18,44 +18,47 @@ Table of Contents
 11. Usser Profile
 */
 
+//fonts
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
 /* 0. Variables ============================== */
-@import 'partials/variables/variables';
+@import "partials/variables/variables";
 
 /* 0.5. Mixins ============================== */
-@import 'partials/mixins';
+@import "partials/mixins";
 
 /* 0.8. Elements ============================== */
-@import 'partials/elements';
+@import "partials/elements";
 
 /* 1. Header ================================== */
-@import 'partials/header';
+@import "partials/header";
 
 /* 2. Sign-in ============================= */
-@import 'partials/sign-in';
+@import "partials/sign-in";
 
 /* 3. Sign-up ============================= */
-@import 'partials/sign-up';
+@import "partials/sign-up";
 
 /* 4. Welcome ======================== */
-@import 'partials/welcome';
+@import "partials/welcome";
 
 /* 5. Onboarding ================================== */
-@import 'partials/onboarding';
+@import "partials/onboarding";
 
 /* 6. Existing Movings ================================== */
-@import 'partials/existingMvs';
+@import "partials/existingMvs";
 
 /* 7. Moving Details =============================== */
-@import 'partials/moving-details/moving-details';
+@import "partials/moving-details/moving-details";
 
 /* 8. PDF =========================== */
-@import 'partials/pdf';
+@import "partials/pdf";
 
 /* 9. Box Content =============================== */
-@import 'partials/box-content';
+@import "partials/box-content";
 
 /* 10. Add Item ================================= */
-@import 'partials/add-item';
+@import "partials/add-item";
 
 /* 10. Add Item ================================= */
-@import 'partials/userProfile';
+@import "partials/userProfile";

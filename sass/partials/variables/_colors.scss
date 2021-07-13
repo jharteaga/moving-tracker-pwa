@@ -17,9 +17,12 @@ $screen-bg-color: linear-gradient(to bottom, #03a4ff, #fff);
 $heading-color: #044468;
 $text-color: #00314d;
 $desktop-left-bg-color: #044468;
+$primary-color: #044468;
 $accent-color: #f99d14;
 $grey: #5f5e5e;
 $green: #299c00;
+$MovingTitle-desktop-color: white;
+$paragraphCopyright-color: white;
 $carousel-indicator-color: #044468;
 
 /*
@@ -39,10 +42,11 @@ $checkbox-bg-color: #044468;
 */
 $button-drop-shadow: 0 5px 5px 0 rgba(3, 164, 255, 0.15);
 $button-secondary-border-color: linear-gradient(
-	#044468,
-	#044468,
-	rgba(4, 68, 104, 0.5156)
+  #044468,
+  #044468,
+  rgba(4, 68, 104, 0.5156)
 );
+$modal-delete-btn: white;
 
 /*
 * Icons colors
@@ -68,3 +72,4 @@ $avatar-icon-color: #5f5e5e;
 */
 $card-box-shadow: 0 10px 10px 0 rgba(4, 68, 104, 0.15);
 $card-bg-color: #f7f7f7;
+$card-text-color: #044468;
