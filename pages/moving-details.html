@@ -19,36 +19,55 @@
 		<div class="background-container">
 		</div>
 		<aside class="aside">
-			<img src="../img/moving-tracker-logo.svg" alt="Moving Tracker Logo">
-			<p>&copy; 2021 Moving Tracker. All rights reserved.</p>
-		</aside>
-		<div class="content-wrapper">
-			<header>
-				<img src="../img/moving-tracker-icon.svg" alt="Moving tracker logo">
+			<div class="top-container">
 				<div class="profile-photo"></div>
-			</header>
-			<main>
-				<div class="heading">
-					<h1>Studio 1501</h1>
-				</div>
+			</div>
+			<div class="middle-container">
+				<h1>Studio 1501</h1>
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="#">Movings</a></li>
 						<li class="breadcrumb-item active" aria-current="page">Boxes</li>
 					</ol>
 				</nav>
-				<form>
-					<div class="field">
-						<div class="field__container">
-							<input type="search" id="search" placeholder="Find your box...">
-							<span class="fas fa-search icon"></span>
+			</div>
+			<div class="bottom-container">
+				<img src="../img/moving-tracker-logo.svg" alt="Moving Tracker Logo">
+				<p>&copy; 2021 Moving Tracker. All rights reserved.</p>
+			</div>
+		</aside>
+		<div class="content-wrapper">
+			<div class="top-container">
+				<header>
+					<img src="../img/moving-tracker-icon.svg" alt="Moving tracker logo">
+					<div class="profile-photo"></div>
+				</header>
+				<main>
+					<div class="heading">
+						<h1>Studio 1501</h1>
+					</div>
+					<nav aria-label="breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="#">Movings</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Boxes</li>
+						</ol>
+					</nav>
+					<form>
+						<div class="field">
+							<div class="field__container">
+								<input type="search" id="search" placeholder="Find your box...">
+								<span class="fas fa-search icon"></span>
+							</div>
 						</div>
-					</div>
-					<div class="filter">
-						<span class="far fa-filter"></span>
-					</div>
-				</form>
-			</main>
+						<div class="filter">
+							<span class="far fa-filter"></span>
+						</div>
+					</form>
+				</main>
+			</div>
+			<div class="filter-desktop">
+				<span class="far fa-filter"></span>
+			</div>
 			<aside class="moving-options">
 				<ul>
 					<li data-bs-toggle="modal" data-bs-target="#boxLabelsModal"> Box labels </li>
@@ -57,6 +76,33 @@
 					<li data-bs-toggle="modal" data-bs-target="#collaboratorModal"> Add collaborator </li>
 				</ul>
 			</aside>
+			<div class="boxes-wrapper">
+				<div class="box">
+					<div class="box__image">
+						<span class="fak fa-open-box"></span>
+						<p><span>Size: </span>Small</p>
+					</div>
+					<div class="box__info">
+						<p><span>Weight: </span>100kg</p>
+						<p><span>Value: </span>$1500</p>
+					</div>
+					<div class="box__metadata">
+						<p>Dishes 1</p>
+						<p>Kitchen</p>
+						<p>Fragile</p>
+					</div>
+					<div class="box__actions">
+						<button class="icon"><span class="fas fa-pencil-alt"></span></button>
+						<button class="icon"><span class="fas fa-trash"></span></button>
+					</div>
+					<div class="box__progress">
+						<p>Add box</p>
+						<p>Add items</p>
+						<p>Close box</p>
+						<p>Download label</p>
+					</div>
+				</div>
+			</div>
 			<button class="options-btn round"><span class="fas fa-plus"></span></button>
 		</div>
 		<!-- Box Labels Modal -->
