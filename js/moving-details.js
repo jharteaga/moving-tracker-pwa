@@ -106,12 +106,11 @@ const collaborators = [{ id: 1, name: 'Jose Arteaga' }];
  */
 const addInputCollaborator = () => {
 	const collaboratorContainer = document.createElement('div');
-	collaboratorContainer.className = 'collaborator-container';
+	collaboratorContainer.className = 'collaborator-input-container';
 
 	const inputCollaborator = document.createElement('input');
 	inputCollaborator.setAttribute('type', 'text');
 	inputCollaborator.setAttribute('placeholder', 'Enter a collaborator');
-	inputCollaborator.className = 'form-control';
 
 	const spanPlus = document.createElement('span');
 	spanPlus.setAttribute('id', 'addCollaborator');
@@ -124,7 +123,7 @@ const addInputCollaborator = () => {
 
 	spanPlus.addEventListener('click', function () {
 		const newCollaboratorInput = document.querySelector(
-			'.collaborator-container:last-child > input'
+			'.collaborator-input-container:last-child > input'
 		);
 
 		if (newCollaboratorInput.value) {
@@ -151,20 +150,15 @@ const buildCollaborators = (collaboratorsList) => {
 			const collaboratorContainer = document.createElement('div');
 			collaboratorContainer.className = 'collaborator-container';
 
-			const inputCollaborator = document.createElement('input');
-			inputCollaborator.setAttribute('type', 'text');
-			inputCollaborator.setAttribute(
-				'placeholder',
-				'Enter a collaborator'
-			);
-			inputCollaborator.setAttribute('value', collaborator.name);
-			inputCollaborator.className = 'form-control';
+			const textElement = document.createElement('p');
+			textElement.classList.add('label-item');
+			textElement.innerText = collaborator.name;
 
 			const spanTrash = document.createElement('span');
 			spanTrash.setAttribute('id', `removeCollaborator${index}`);
 			spanTrash.className = 'fas fa-trash';
 
-			collaboratorContainer.appendChild(inputCollaborator);
+			collaboratorContainer.appendChild(textElement);
 			collaboratorContainer.appendChild(spanTrash);
 
 			modalBodyCollaborator.appendChild(collaboratorContainer);
