@@ -1,26 +1,25 @@
 /**
- * Movings Options Menu
+ * Movings Options Menu (Toggle plus menu button)
  */
 const menuBtn = document.querySelector('.moving-details .options-btn');
 const movingOptions = document.querySelector('.moving-details .moving-options');
-const page = document.querySelector('main');
 
 menuBtn.addEventListener('click', () => {
 	movingOptions.classList.toggle('active');
-});
-
-page.addEventListener('click', () => {
-	if (movingOptions.classList.contains('active')) {
-		movingOptions.classList.remove('active');
-	}
 });
 
 /**
  * Box Labels Modal
  */
 const modalBodyBoxLabel = document.querySelector('#boxLabelsModal .modal-body');
+
+//Dummy Array to loop through every box labels for the moving
 const boxLabels = [{ id: 1, name: 'Bathroom' }];
 
+/**
+ * Build the last input inside the box label modal
+ * to add a new label for a specific moving
+ */
 const addInputLabel = () => {
 	const labelContainer = document.createElement('div');
 	labelContainer.className = 'label-container';
@@ -28,7 +27,6 @@ const addInputLabel = () => {
 	const inputLabel = document.createElement('input');
 	inputLabel.setAttribute('type', 'text');
 	inputLabel.setAttribute('placeholder', 'Enter a label');
-	inputLabel.className = 'form-control';
 
 	const spanPlus = document.createElement('span');
 	spanPlus.setAttribute('id', 'addBoxLabel');
@@ -55,6 +53,11 @@ const addInputLabel = () => {
 	});
 };
 
+/**
+ * Build the UI for the modal according to the list of
+ * Box Labels coming from Firebase por a specific moving
+ * @param {Array[BoxLabel]} labelsList
+ */
 const buildBoxLabels = (labelsList) => {
 	modalBodyBoxLabel.innerHTML = '';
 
@@ -63,17 +66,15 @@ const buildBoxLabels = (labelsList) => {
 			const labelContainer = document.createElement('div');
 			labelContainer.className = 'label-container';
 
-			const inputLabel = document.createElement('input');
-			inputLabel.setAttribute('type', 'text');
-			inputLabel.setAttribute('placeholder', 'Enter a label');
-			inputLabel.setAttribute('value', label.name);
-			inputLabel.className = 'form-control';
+			const textElement = document.createElement('p');
+			textElement.classList.add('label-item');
+			textElement.innerText = label.name;
 
 			const spanTrash = document.createElement('span');
 			spanTrash.setAttribute('id', `removeBoxLabel${index}`);
 			spanTrash.className = 'fas fa-trash';
 
-			labelContainer.appendChild(inputLabel);
+			labelContainer.appendChild(textElement);
 			labelContainer.appendChild(spanTrash);
 
 			modalBodyBoxLabel.appendChild(labelContainer);
@@ -92,23 +93,24 @@ buildBoxLabels(boxLabels);
 /**
  * Collaborator Modal
  */
-
-/**
- * Box Labels Modal
- */
 const modalBodyCollaborator = document.querySelector(
 	'#collaboratorModal .modal-body'
 );
+
+//Dummy Array to loop through every collaborator for the moving
 const collaborators = [{ id: 1, name: 'Jose Arteaga' }];
 
+/**
+ * Build the last input inside the collaborator modal
+ * to add a new collaborator for a specific moving
+ */
 const addInputCollaborator = () => {
 	const collaboratorContainer = document.createElement('div');
-	collaboratorContainer.className = 'collaborator-container';
+	collaboratorContainer.className = 'collaborator-input-container';
 
 	const inputCollaborator = document.createElement('input');
 	inputCollaborator.setAttribute('type', 'text');
 	inputCollaborator.setAttribute('placeholder', 'Enter a collaborator');
-	inputCollaborator.className = 'form-control';
 
 	const spanPlus = document.createElement('span');
 	spanPlus.setAttribute('id', 'addCollaborator');
@@ -121,7 +123,7 @@ const addInputCollaborator = () => {
 
 	spanPlus.addEventListener('click', function () {
 		const newCollaboratorInput = document.querySelector(
-			'.collaborator-container:last-child > input'
+			'.collaborator-input-container:last-child > input'
 		);
 
 		if (newCollaboratorInput.value) {
@@ -135,6 +137,11 @@ const addInputCollaborator = () => {
 	});
 };
 
+/**
+ * Build the UI for the modal according to the list of
+ * collaborators coming from Firebase for a specific moving
+ * @param {Array[Collaborator]} collaboratorsList
+ */
 const buildCollaborators = (collaboratorsList) => {
 	modalBodyCollaborator.innerHTML = '';
 
@@ -143,20 +150,15 @@ const buildCollaborators = (collaboratorsList) => {
 			const collaboratorContainer = document.createElement('div');
 			collaboratorContainer.className = 'collaborator-container';
 
-			const inputCollaborator = document.createElement('input');
-			inputCollaborator.setAttribute('type', 'text');
-			inputCollaborator.setAttribute(
-				'placeholder',
-				'Enter a collaborator'
-			);
-			inputCollaborator.setAttribute('value', collaborator.name);
-			inputCollaborator.className = 'form-control';
+			const textElement = document.createElement('p');
+			textElement.classList.add('label-item');
+			textElement.innerText = collaborator.name;
 
 			const spanTrash = document.createElement('span');
 			spanTrash.setAttribute('id', `removeCollaborator${index}`);
 			spanTrash.className = 'fas fa-trash';
 
-			collaboratorContainer.appendChild(inputCollaborator);
+			collaboratorContainer.appendChild(textElement);
 			collaboratorContainer.appendChild(spanTrash);
 
 			modalBodyCollaborator.appendChild(collaboratorContainer);
