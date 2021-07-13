@@ -91,6 +91,13 @@ const user = new User();
 //         user.movings[0]?.movingTitle + '\n',
 //         user.userError ? user.userError : ' '
 //     );
+
+//     const moving = new Moving(user.userId);
+//     // moving.getMovingById('GqYTzfGv2MzOcKZwhesI').then(() => {
+//     //     // moving.addCollaborator('collab@collab.com').then(() => {
+//     //     // });
+//     //     console.log(moving);
+//     // });
 //     // const movingDelete = new Moving(user.userId);
 
 //     // movingDelete.getMovingById('2jioD6vSzyYMfVTc8Ksy').then((movingDelete) => {
@@ -144,10 +151,20 @@ const user = new User();
 //         // console.log(list);
 //         return moving;
 //     });
-user.isLoggedIn();
-const moving = new Moving(user.userId);
-// moving.getMovingById('qN8tsK8NIHNORqLuOhPF');
-// console.log(moving);
+
+let movingArr = [];
+
+user.isLoggedIn(async () => {
+    const moving = new Moving(user.userId);
+    await moving.getMovingById('GqYTzfGv2MzOcKZwhesI');
+    console.log(moving.movingId);
+
+    moving.getLabels((snapshot) => {
+        movingArr.push(snapshot.data());
+        console.log(movingArr);
+    });
+});
+
 // window.addEventListener('DOMContentLoaded', () => {
 //     // console.log('1');
 // });

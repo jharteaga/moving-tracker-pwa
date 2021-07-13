@@ -11,7 +11,7 @@ class Moving {
      * @param {Date=} date           when is the moving taking place
      */
     constructor(
-        userId,
+        userId = '',
         movingTitle = '',
         description = '',
         from = '',
@@ -45,6 +45,7 @@ class Moving {
                 width: 50,
                 large: 40,
             },
+            custom: {},
         };
         this.movingError = '';
     }
@@ -221,26 +222,22 @@ class Moving {
      */
     async getMovingById(movingId) {
         try {
-            this.movingSnaphsot = await db
-                .collection('movings')
-                .doc(movingId)
-                .onSnapshot((snapshot) => {
-                    const doc = snapshot.data();
+            const docDB = await db.collection('movings').doc(movingId).get();
+            const doc = docDB.data();
 
-                    if (doc) {
-                        this.userId = doc.creatorId;
-                        this.movingId = snapshot.id;
-                        this.movingTitle = doc.movingTitle;
-                        this.description = doc.description;
-                        this.from = doc.from;
-                        this.to = doc.to;
-                        this.date = doc.date;
-                        this.boxes = doc.boxes;
-                        this.collaborators = doc.collaborators;
-                        this.createdAt = doc.createdAt;
-                        this.movingError = '';
-                    }
-                });
+            if (doc) {
+                this.userId = doc.creatorId;
+                this.movingId = docDB.id;
+                this.movingTitle = doc.movingTitle;
+                this.description = doc.description;
+                this.from = doc.from;
+                this.to = doc.to;
+                this.date = doc.date;
+                this.boxes = doc.boxes;
+                this.collaborators = doc.collaborators;
+                this.createdAt = doc.createdAt;
+                this.movingError = '';
+            }
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -249,24 +246,18 @@ class Moving {
         }
     }
 
-    getMovingsList() {
-        console.log(this.userId, 'userid');
-        if (this.userId) {
-            db.collection('movings')
-                .where('creatorId', '==', this.userId)
-                .onSnapshot(
-                    (snapshot) => {
-                        snapshot.forEach((doc) => {
-                            console.log(doc.data(), 'asdfas');
-                        });
-                    },
-                    (error) => {
-                        this.movingError = error.message;
-                        console.log(`Error code: ${error.code}`);
-                        console.log(`Error message: ${error.message}`);
-                        console.log(error);
-                    }
-                );
+    getMovingsList(callBack) {
+        try {
+            if (this.userId) {
+                db.collection('movings')
+                    .where('creatorId', '==', this.userId)
+                    .onSnapshot(callBack);
+            }
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
         }
     }
 
@@ -276,6 +267,7 @@ class Moving {
                 .collection('movings')
                 .where('creatorId', '==', this.userId)
                 .get();
+
             const doc = [];
 
             getDoc.forEach((move) => {
@@ -288,6 +280,21 @@ class Moving {
             });
 
             return doc;
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    /**
+     *
+     * @param {Function} callBack
+     */
+    getCollaborators(callBack) {
+        try {
+            db.collection('movings').doc(this.movingId).onSnapshot(callBack);
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -334,13 +341,65 @@ class Moving {
         }
     }
 
-    addLabel(newLabel) {}
+    /**
+     *
+     * @param {Function} callBack
+     */
+    getLabels(callBack) {
+        try {
+            db.collection('movings').doc(this.movingId).onSnapshot(callBack);
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
 
-    deleteLabel(labelToDelete) {}
+    async addLabel(newLabel) {
+        try {
+            await db
+                .collection('movings')
+                .doc(this.movingId)
+                .update({
+                    labels: firebase.firestore.FieldValue.arrayUnion(newLabel),
+                });
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
 
-    addSize(newSize) {}
+    async deleteLabel(labelToDelete) {
+        try {
+            await db
+                .collection('movings')
+                .doc(this.movingId)
+                .update({
+                    labels: firebase.firestore.FieldValue.arrayRemove(
+                        labelToDelete
+                    ),
+                });
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
 
-    deleteSize(sizeId) {}
-
-    updateSize(sizeId, newEdition) {}
+    async updateSize(size, newMeasures) {
+        try {
+            const data = {};
+            data[size] = { newMeasures };
+            await db.collection('movings').doc(this.movingId).update(data);
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
 }
