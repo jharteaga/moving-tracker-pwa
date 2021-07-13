@@ -57,6 +57,8 @@ const printItems = (items)=>{
         let btnEdit = document.createElement("button");
         btnEdit.setAttribute("id","btnEditItem");
         btnEdit.setAttribute("class","button");
+        btnEdit.setAttribute("data-bs-toggle","modal");
+        btnEdit.setAttribute("data-bs-target","#itemModal");
         let iEdit = document.createElement("i");
         iEdit.setAttribute("class","fas fa-pencil-alt");
         btnEdit.appendChild(iEdit);
@@ -64,6 +66,8 @@ const printItems = (items)=>{
         let btnTrash = document.createElement("button");
         btnTrash.setAttribute("id","btnDeleteItem");
         btnTrash.setAttribute("class","button");
+        btnTrash.setAttribute("data-bs-toggle","modal");
+        btnTrash.setAttribute("data-bs-target","#deleteItemModal");
         let iTrash = document.createElement("i");
         iTrash.setAttribute("class","fas fa-trash");
         btnTrash.appendChild(iTrash);

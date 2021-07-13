@@ -22,6 +22,18 @@
   border: none;
   padding: 1%;
 }
+.delete-modal-closebtn {
+  background-color: $modal-delete-btn;
+  color: $primary-color;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: $font-h2;
+  border: 1px solid $primary-color;
+  padding: 1%;
+  border-radius: 15px;
+  width: 80%;
+  height: 3rem;
+}
 
 .nav-breadcrum {
   margin-left: 1rem;
@@ -29,10 +41,12 @@
     a {
       color: $breadcrumb-nav-color;
       font-size: 1rem;
+      text-decoration: none;
     }
   }
   &__inactiveWhite {
     a {
+      text-decoration: none;
       color: white;
       font-size: 1rem;
     }

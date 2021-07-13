@@ -40,10 +40,10 @@
         <header>
             <div class="movingLogo">
                 <div class="smallLogo">
-                    <a href="#"><img src="../img/logo.png" class="logo"></a>
+                    <a href="#"><img src="../img/moving-tracker-icon.svg" class="logo"></a>
                 </div>
                 <div class="bigLogo">
-                    <a href="#"><img src="../img/logoFull.png" class="logo"></a>
+                   <img src="../img/moving-tracker-logo.svg" class="logo">
                     <p>&#169;2021 Moving tracker. All Rights Reserved. </p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 </nav>
             </div>
             <div class="movingProfilePicture">
-                <a href="#"><img src="" class="profile-picture"></a>
+                <a href="#"><img src="" class="profile-picture" alt=""></a>
             </div>
         </header>
         <main>
@@ -107,7 +107,7 @@
             aria-labelledby="itemModal"
             aria-hidden="true"
             >
-            <div class="modal-dialog ">
+            <div id="modal-dialog" class="modal-dialog ">
                 <div class="modal-bgc">
                 <div class="modal-content  background-container-modal ">
                     <div class="modal-header">
@@ -123,42 +123,39 @@
                     </div>
                     <div class="modal-body">
                         <div class="field__container form">
-                        <!-- <form action="#"> -->
-                            <label for="itemNameInput" class="field__label">Name*</label>
-                            <!-- <p class="add-item-errorMsg" id="itemNameErrorMsg" ></p><br> -->
-                            <input type="text" id="itemNameInput" name="itemNameInput" ><br>
-                
-                            <label for="itemDescriptionInput" class="field__label">Description</label>
-                            <input type="text" id="itemDescriptionInput" name="itemDescriptionInput"><br>
-                
-                            <label for="itemCategoryInput" class="field__label">Category*</label>
-                            <!-- <p class="add-item-errorMsg" id="itemCategoryErrorMsg"></p><br> -->
-                            <input type="text" id="itemCategoryInput" name="itemCategoryInput"><br>
-                
-                            <label for="itemQuantityInput" class="field__label">Quantity*</label>
-                            <!-- <p class="add-item-errorMsg" id="itemQuantityErrorMsg"></p><br> -->
-                            <input type="text" id="itemQuantityInput" name="itemQuantityInput"><br>
-                
-                            <label for="itemValueInput" class="field__label">Value</label><br>
-                            <div id="idValue">
-                                <input type="number" id="itemValueInput" name="itemValueInput" placeholder="0.00"><br>
+                            <div class="div1">
+                                    <label for="itemNameInput" class="field__label">Name</label>
+                                <input type="text" id="itemNameInput" name="itemNameInput" ><br>
+                    
+                                <label for="itemDescriptionInput" class="field__label">Description</label>
+                                <input type="text" id="itemDescriptionInput" name="itemDescriptionInput"><br>
+                    
+                                <label for="itemCategoryInput" class="field__label">Category*</label>
+                                <input type="text" id="itemCategoryInput" name="itemCategoryInput"><br>
                             </div>
-                            <br>
-                            <!-- <label for="itemImageInput" class="field__label">Photo</label>
-                            <button id="start">Picture</button>
-                            <video id="video" width="320" height="240" autoplay></video>
-                            <canvas id="canvas" class="canvas" width="320" height="240"></canvas> -->
-                            <label for="itemImageInput" class="field__label">Photo</label>
-                            <div class="photo"> 
-                                
-                                <!-- <img id="placeholder" src="../img/general/placeholder.png"> -->
-                                <div id="preview"></div>
-                                <input type="file" class="picInput" accept="image/x-png,image/jpeg,image/gif" onChange="picSelect(this)" capture="environment" id="itemImageInput" name="itemImageInput">
-                                
+                            <div class="div2">
+                                <label for="itemQuantityInput" class="field__label">Quantity*</label>
+                                <input type="text" id="itemQuantityInput" name="itemQuantityInput"><br>
+                    
+                                <label for="itemValueInput" class="field__label">Value</label><br>
+                                <div id="idValue">
+                                    <input type="number" id="itemValueInput" name="itemValueInput" placeholder="0.00"><br>
+                                </div>
                             </div>
-                
-                            
-                        <!-- </form> -->
+                            <div class="div3">
+                                <!-- <label for="itemImageInput" class="field__label">Photo</label>
+                                <button id="start">Picture</button>
+                                <video id="video" width="320" height="240" autoplay></video>
+                                <canvas id="canvas" class="canvas" width="320" height="240"></canvas> -->
+                                <label for="itemImageInput" class="field__label">Photo</label>
+                                <div class="photo"> 
+                                    
+                                    <!-- <img id="placeholder" src="../img/general/placeholder.png"> -->
+                                    <div id="preview"></div>
+                                    <input type="file" class="picInput" accept="image/x-png,image/jpeg,image/gif" onChange="picSelect(this)" capture="environment" id="itemImageInput" name="itemImageInput">
+                                    
+                                </div>    
+                            </div>            
                         </div>
                     </div>
                     <div class="modal-footer modal-bgc">
@@ -169,6 +166,44 @@
             </div>
         </div>
 
+        <div
+        class="modal fade"
+        id="deleteItemModal"
+        tabindex="-1"
+        aria-labelledby="deleteItemModal"
+        aria-hidden="true"
+        >
+        <div id="modal-dialog" class="modal-dialog ">
+            <div class="modal-bgc">
+            <div class="modal-content">      
+                <div class="modal-header">
+                    <h5 class="modal-title" id="boxLabelsModalLabel">
+                        
+                    </h5>
+                    <button
+                        type="button"
+                        class="modal-closebtn-bgc"
+                        data-bs-dismiss="modal"
+                        aria-label="Close" 
+                    >X</button>
+                </div>          
+                <div class="modal-body">
+                    
+                    <div class="divModalButtons">
+                        <label class="field__label">Do you want to delete the selected item?</label>
+                        <div id="divDelete">
+                            <button id="btnDelete" class="delete-modal-closebtn"
+                            data-bs-dismiss="modal">Delete</button>
+                        </div>  
+                        <div id="divCancel">
+                            <button id="btnCancel" class="actionBtn" >Cancel</button>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+            </div>
+        </div>
+    </div>
 
         </main>
 </div>
