@@ -354,47 +354,69 @@
 			</div>
 		</div>
 		<!-- Edit box -->
-		<div class="modal fade" id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
+
+		<div class="modal fade " id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel" role="dialog"
+			aria-hidden="true">
+			<div id="idEditBoxModalDialog" class="modal-dialog " >
+				<!-- <div class="modal-content " style="width:700px;"> -->
+				<div class="modal-content ">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="collaboratorModalLabel"> Edit Box </h5>
 						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
-						<div class="editBoxContent" class="field__container form">
-							<div id="editBoxContent_left">
+						<div class="editBoxContent">
+							<div class="editBoxContent__left">
 								<label for="BoxNameInput" class="field__label">Name<span>*</span></label>
-								<input type="text" id="idboxNameInput" name="BoxNameInput"><br>
+                <input type="text" id="idEditBoxNameInput" name="BoxNameInput" >
+
 								<label for="BoxDescriptionInput" class="field__label">Description</label>
-								<input type="text" id="idBoxDescriptionInput" name="BoxDescriptionInput" class=""><br>
+                <input type="text" id="idEditBoxDescriptionInput" name="BoxDescriptionInput" class="">
+                
 								<label for="BoxLabelList" class="field__label">Box label<span>*</span></label>
-								<select id="idBoxLabelList">
+								<select id="idEditBoxLabelList">
 									<option value="0" selected>Select</option>
-									<option value="1">Volvo</option>
+									<option value="1">Kitchen</option>
 									<option value="2">Bedroom 1</option>
 									<option value="3">Bedroom 2</option>
 									<option value="4">Bathroom 1</option>
 								</select>
-							</div>
-							<div id="editBoxContent_right">
+
 								<label for="BoxDimensionsInput" class="field__label">Dimensions<span>*</span></label>
-								<div class="boxDimensionsButtons">
-									<button>Small</button>
-									<button>Medium</button>
-									<button>Large</button>
-									<button>Custom</button>
+								<div class="editBoxContent__boxDimensionsButtons">
+									
+									<div><button id="idEditBoxbtnDimensione_Small">Small</button></div>
+									<div><button id="idEditBoxbtnDimensione_Medium">Medium</button></div>
+									<div><button id="idEditBoxbtnDimensione_Large">Large</button></div>
+									<div><button id="idEditBoxbtnDimensione_Custom">Custom</button></div>
 								</div>
+							</div>
+							<div class="editBoxContent__right">
 								<label for="BoxWeightInput" class="field__label">Weight</label>
-								<div class="editBoxWeight">
+								<div class="editBoxContent__editBoxWeight">
 									<input type="text" id="BoxWeightInput" name="BoxWeightInput" class="">
 									<label for="BoxDimensionsInput" class="field__label">Kg</label>
+								</div>
+
+								<div class="form-check form-switch editBoxContent__editBoxSwitch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+									<label class="field__label" for="flexSwitchCheckDefault">Label as fragile</label>
+								  </div>
+
+								<div class="form-check form-switch editBoxContent__editBoxSwitch">
+									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+									<div>
+										<label class="field__label" for="flexSwitchCheckDefault">Close the box</label>
+										<label class="" for="flexSwitchCheckDefault"> To enable the PDF</label>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="modal-footer border-0">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
+						<div class="editBoxContent__footerButtons">
+							<button id="idbtnEditBoxSave" type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -445,14 +467,13 @@
 								</div>
 							</div>
 							<div class="pdfBoxContent__bottom">
-								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span
-										class="fak fa-fragile"></span>FRAGILE</label>
+								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span class="fak fa-fragile-1"></span>FRAGILE</label>
 							</div>
 						</div>
 					</div>
 					<div id="pdfBox-modalFooter" class="modal-footer border-0">
 						<button id="idbtnDownload" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-							<i class="fak fa-download"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download</button>
+							<i class="fak fa-download-1"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download</button>
 					</div>
 				</div>
 			</div>
