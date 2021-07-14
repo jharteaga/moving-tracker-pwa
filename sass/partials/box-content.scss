@@ -20,34 +20,6 @@
       }
     }
 
-    .divModalButtons {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      .actionBtn {
-        width: 80%;
-      }
-      label {
-        grid-column: 1/3;
-        grid-row: 1/2;
-        text-align: center;
-      }
-      #divDelete {
-        grid-column: 1/2;
-        grid-row: 2/3;
-      }
-      #divCancel {
-        grid-column: 2/3;
-        grid-row: 2/3;
-      }
-      #divDelete,
-      #divCancel {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
     main {
       h2 {
         @include h2();
@@ -94,10 +66,10 @@
           padding-bottom: 0.7rem;
         }
       }
-      .actionBtn {
-        @include squareButton("primary", 100%);
-        height: 3rem;
-      }
+      // .actionBtn {
+      //   @include squareButton("primary", 100%);
+      //   height: 3rem;
+      // }
       #idValue {
         display: flex;
       }
@@ -351,6 +323,51 @@
             grid-row: 2/3;
           }
         }
+      }
+    }
+  }
+}
+
+// modals
+.box-content .modal-dialog {
+  max-width: 400px;
+  width: 100%;
+
+  .modal-content {
+    border-radius: 30px;
+    background: linear-gradient(
+      180deg,
+      rgba(138, 204, 243, 1) 0%,
+      rgba(255, 255, 255, 1) 40%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .modal-header #boxLabelsModalLabel {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .modal-header button {
+      border: 0;
+      background-color: transparent;
+
+      span {
+        font-weight: bold;
+        color: $text-color;
+        font-size: 2rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .modal-footer {
+      padding-bottom: 1rem;
+      button.btn.btn-secondary {
+        @include squareButton("primary", $width: 95%);
+        margin: 0 auto;
       }
     }
   }
