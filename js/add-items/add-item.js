@@ -42,18 +42,7 @@ addItemBtn.addEventListener('click', ()=>{
     const itemQuantityInput = document.getElementById("itemQuantityInput");
     const itemValueInput = document.getElementById("itemValueInput");
     const itemImageInput = document.getElementById("itemImageInput");
-
-    
-
-    // const lastId = items[items.length -1].itemId;
-    // const itemId = lastId + 1;
-
-    // const itemToPush = new Item (itemId, itemNameInput, itemDescriptionInput, itemCategoryInput, itemQuantiryInput, itemValueInput, itemImageInput);
-    // console.log(itemToPush);
-
-    // items.push(itemToPush);
-    // console.log(items);
-   
+ 
     
     //ADDED BY ALEJANDRA
         //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
@@ -65,7 +54,13 @@ addItemBtn.addEventListener('click', ()=>{
     addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
     // ******************************************
 
-    // window.location.href = "../pages/box-content.html";
+    /********************************/
+    //Items need to be reprinted
+    /********************************/
+    let boxContent = new Box();
+    boxContent.getItems(idMoving,idBox).then(items => {
+        printItems(items);
+    });
 })
 
  //ADDED BY ALEJANDRA

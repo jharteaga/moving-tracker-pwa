@@ -231,13 +231,13 @@ const removeClassFromButtons = () => {
 // **************************************************************
 
 /*detecting change in breakpoint to change edit box modal size*/
-const mediaQuery = window.matchMedia('(min-width: 900px)');
-const idEditBoxModalDialog = document.getElementById('idEditBoxModalDialog');
-mediaQuery.addEventListener('change', (e) => {
-	if (e.matches) {
-		idEditBoxModalDialog.classList.add('modal_large');
-	} else {
-		idEditBoxModalDialog.classList.remove('modal_large');
+
+let resizeModal = new ResizeModal(900,idEditBoxModalDialog)
+
+resizeModal.onLoad();
+resizeModal.onScreenSizeChange();
+
+/************************************************************** */
 
 /**
  * Box Sizes Modal
