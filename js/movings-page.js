@@ -44,6 +44,7 @@ function renderMovings() {
         movingWrapper.appendChild(movingDateDiv);
         movingWrapper.appendChild(movingActions);
         movingsOutput.appendChild(movingWrapper);
+        addEventListersEdit();
     });
 }
 
