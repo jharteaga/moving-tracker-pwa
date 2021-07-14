@@ -7,9 +7,6 @@ class ResizeModal  {
     }
 
     onLoad(){
-        // const modal = document.getElementById(`${this.modalName}`);
-        console.log(this.modalName)
-        console.log(screen.width>=this.breakPoint)
         if (screen.width>=this.breakPoint){
             this.modalName.classList.add('modal_large');
         }
