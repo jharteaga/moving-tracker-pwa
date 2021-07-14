@@ -152,16 +152,20 @@ const user = new User();
 //         return moving;
 //     });
 
-let movingArr = [];
+// let movingArr = [];
 
 user.isLoggedIn(async () => {
     const moving = new Moving(user.userId);
-    await moving.getMovingById('GqYTzfGv2MzOcKZwhesI');
-    console.log(moving.movingId);
+    // await moving.getMovingById('GqYTzfGv2MzOcKZwhesI');
+    // console.log(moving.movingId);
 
-    moving.getLabels((snapshot) => {
-        movingArr.push(snapshot.data());
-        console.log(movingArr);
+    moving.getMovingsList((snapshot) => {
+        movingsArr.length = 0;
+        snapshot.forEach((doc) => {
+            movingsArr.push(doc);
+        });
+        console.log(movingsArr);
+        renderMovings();
     });
 });
 
