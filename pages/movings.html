@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Movings</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="../styles/styles.css" />
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"
+            defer
+        ></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
+            defer
+        ></script>
+
+        <script src="../js/firebase.js" defer></script>
+        <script src="../js/main.js" defer></script>
+        <script src="../js/user.js" defer></script>
+        <script src="../js/moving.js" defer></script>
+        <script src="../js/moving-page.js" defer></script>
+        <script src="../js/classTests.js" defer></script>
+    </head>
+    <body class="moving-details">
+        <div class="background-container"></div>
+        <aside class="aside">
+            <div class="top-container">
+                <div class="profile-photo"></div>
+            </div>
+            <div class="middle-container">
+                <h1>Movings</h1>
+            </div>
+            <div class="bottom-container">
+                <img
+                    src="../img/moving-tracker-logo.svg"
+                    alt="Moving Tracker Logo"
+                />
+                <p>&copy; 2021 Moving Tracker. All rights reserved.</p>
+            </div>
+        </aside>
+
+        <div class="content-wrapper">
+            <div class="top-container">
+                <header>
+                    <img
+                        src="../img/moving-tracker-icon.svg"
+                        alt="Moving tracker logo"
+                    />
+                    <div class="profile-photo"></div>
+                </header>
+                <main>
+                    <div class="heading">
+                        <h1>Movings</h1>
+                    </div>
+                    <form>
+                        <div class="field">
+                            <div class="field__container">
+                                <input
+                                    type="search"
+                                    id="search"
+                                    placeholder="Find your box..."
+                                />
+                                <span class="fas fa-search icon"></span>
+                            </div>
+                        </div>
+                    </form>
+                </main>
+            </div>
+            <aside class="moving-options">
+                <ul>
+                    <li data-bs-toggle="modal" data-bs-target="#addMovingModal">
+                        Add Moving
+                    </li>
+                </ul>
+            </aside>
+            <div class="movings-wrapper">
+                <!-- <div class="moving-wrapper">
+                    <div class="moving__title">
+                        <h3>Moving to</h3>
+                        <h4>Studio 1501</h4>
+                    </div>
+                    <div class="moving__address">
+                        <p>1199 Marinaside Crescent, Vancouver, BC. V6H 2Y2</p>
+                    </div>
+                    <div class="box__date">
+                        <p>September 2nd, 2021</p>
+                    </div>
+                    <div class="box__actions">
+                        <button class="icon">
+                            <span class="fas fa-pencil-alt"></span>
+                        </button>
+                        <button class="icon">
+                            <span class="fas fa-trash"></span>
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+
+            <button class="options-btn round">
+                <span class="fas fa-plus"></span>
+            </button>
+        </div>
+
+        <!-- New Moving Modal -->
+        <div
+            class="modal fade"
+            id="addMovingModal"
+            tabindex="-1"
+            aria-labelledby="addMovingModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="addMovingModalLabel">
+                            New Moving
+                        </h5>
+                        <button
+                            type="button"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="submit" id="createMovingForm">
+                            <div class="input-wrapper">
+                                <label for="movingTitle">Title</label>
+                                <input
+                                    type="text"
+                                    name="movingTitle"
+                                    id="movingTitle"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="movingDescription"
+                                    >Description</label
+                                >
+                                <input
+                                    type="text"
+                                    name="movingDescription"
+                                    id="movingDescription"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="movingFrom">From</label>
+                                <input
+                                    type="text"
+                                    name="movingFrom"
+                                    id="movingFrom"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="movingTo">To</label>
+                                <input
+                                    type="text"
+                                    name="movingTo"
+                                    id="movingTo"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="movingDate">Date</label>
+                                <input
+                                    type="date"
+                                    name="movingDate"
+                                    id="movingDate"
+                                />
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button
+                                    type="submit"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                    id="saveMovingBtn"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Edit Moving Modal -->
+        <div
+            class="modal fade"
+            id="editMovingModal"
+            tabindex="-1"
+            aria-labelledby="editMovingModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="editMovingModalLabel">
+                            Edit Moving
+                        </h5>
+                        <button
+                            type="button"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        >
+                            <span class="fas fa-times"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="submit" id="editMovingForm">
+                            <div class="input-wrapper">
+                                <label for="editMovingTitle">Title</label>
+                                <input
+                                    type="text"
+                                    name="editMovingTitle"
+                                    id="editMovingTitle"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="editMovingDescription"
+                                    >Description</label
+                                >
+                                <input
+                                    type="text"
+                                    name="editMovingDescription"
+                                    id="editMovingDescription"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="editMovingFrom">From</label>
+                                <input
+                                    type="text"
+                                    name="editMovingFrom"
+                                    id="editMovingFrom"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="editMovingTo">To</label>
+                                <input
+                                    type="text"
+                                    name="editMovingTo"
+                                    id="editMovingTo"
+                                />
+                            </div>
+                            <div class="input-wrapper">
+                                <label for="editMovingDate">Date</label>
+                                <input
+                                    type="date"
+                                    name="editMovingDate"
+                                    id="editMovingDate"
+                                />
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button
+                                    type="submit"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                    id="saveEditMovingBtn"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://kit.fontawesome.com/7ba77cc2f3.js"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
