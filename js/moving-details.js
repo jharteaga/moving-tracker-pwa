@@ -175,6 +175,77 @@ const buildCollaborators = (collaboratorsList) => {
 buildCollaborators(collaborators);
 
 /**
+ * Box Sizes Modal
+ */
+const saveBoxSizesBtn = document.getElementById('saveBoxSizesBtn');
+
+const resetBoxSizes = (fields) => {
+	fields.forEach((field) => {
+		field.classList.remove('error');
+	});
+};
+
+saveBoxSizesBtn.addEventListener('click', () => {
+	const smallInputs = document.querySelectorAll('.small-box-size');
+	const mediumInputs = document.querySelectorAll('.medium-box-size');
+	const largeInputs = document.querySelectorAll('.large-box-size');
+	const customInputs = document.querySelectorAll('.custom-box-size');
+	const boxSizeTitles = document.querySelectorAll('.boxSizeTitle');
+
+	const smallFields = document.querySelectorAll('.small-field');
+	const mediumFields = document.querySelectorAll('.medium-field');
+	const largeFields = document.querySelectorAll('.large-field');
+	const customFields = document.querySelectorAll('.custom-field');
+
+	// Reset
+	resetBoxSizes(boxSizeTitles);
+	resetBoxSizes(smallFields);
+	resetBoxSizes(mediumFields);
+	resetBoxSizes(largeFields);
+	resetBoxSizes(customFields);
+
+	//Validate Required fields
+	let requiredValidation = true;
+
+	smallInputs.forEach((input, index) => {
+		if (input.value === '') {
+			smallFields[index].classList.add('error');
+			boxSizeTitles[0].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	mediumInputs.forEach((input, index) => {
+		if (input.value === '') {
+			mediumFields[index].classList.add('error');
+			boxSizeTitles[1].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	largeInputs.forEach((input, index) => {
+		if (input.value === '') {
+			largeFields[index].classList.add('error');
+			boxSizeTitles[2].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	customInputs.forEach((input, index) => {
+		if (input.value === '') {
+			customFields[index].classList.add('error');
+			boxSizeTitles[3].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	if (requiredValidation) {
+		console.log('Call function to save box sizes in firebase');
+		$('#boxSizesModal').modal('hide');
+	}
+});
+
+/**
  * New Box Modal
  */
 const boxSizesBtns = document.querySelectorAll('.size-buttons button');
