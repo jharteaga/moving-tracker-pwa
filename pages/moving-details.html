@@ -12,7 +12,6 @@
 			integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="../styles/styles.css" />
-		<script src="../js/moving-details.js" defer></script>
 	</head>
 
 	<body class="moving-details">
@@ -71,7 +70,7 @@
 			<aside class="moving-options">
 				<ul>
 					<li data-bs-toggle="modal" data-bs-target="#boxLabelsModal"> Box labels </li>
-					<li data-bs-toggle="modal" data-bs-target="#boxSizesModal"> Define box Sizes </li>
+					<li data-bs-toggle="modal" data-bs-target="#boxSizesModal"> Define box sizes </li>
 					<li data-bs-toggle="modal" data-bs-target="#newBoxModal"> New box </li>
 					<li data-bs-toggle="modal" data-bs-target="#collaboratorModal"> Add collaborator </li>
 				</ul>
@@ -92,9 +91,12 @@
 						<p>Fragile</p>
 					</div>
 					<div class="box__actions">
-						<button class="icon" data-bs-toggle="modal" data-bs-target="#pdfBoxModal"><span class="fas fa-file-pdf"></span></button>
-						<button class="icon" data-bs-toggle="modal" data-bs-target="#editBoxModal"><span class="fas fa-pencil-alt"></span></button>
-						<button class="icon"><span class="fas fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal"></span></button>
+						<button class="icon" data-bs-toggle="modal" data-bs-target="#pdfBoxModal"><span
+								class="fas fa-file-pdf"></span></button>
+						<button class="icon" data-bs-toggle="modal" data-bs-target="#editBoxModal"><span
+								class="fas fa-pencil-alt"></span></button>
+						<button class="icon"><span class="fas fa-trash" data-bs-toggle="modal"
+								data-bs-target="#deleteModal"></span></button>
 					</div>
 					<div class="box__progress">
 						<p>Add box</p>
@@ -125,66 +127,161 @@
 		<div class="modal fade" id="boxSizesModal" tabindex="-1" aria-labelledby="boxSizesModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header border-0">
 						<h5 class="modal-title" id="boxSizesModalLabel"> Box Sizes </h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
-						<p>This application is using metric system (cm)</p>
-						<p class="size-title">Small</p>
-						<div class="size-container">
-							<div class="small dimension-container">
-								<p>Length</p>
-								<input type="number" class="size" pattern="[0-9]{1,}" />
+						<p>Define box sizes</p>
+						<p>This app is using Metric System (cm.)</p>
+						<div class="accordion" id="boxSizesAccordion">
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingOne">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+										aria-expanded="true" aria-controls="collapseOne">
+										<span class="boxSizeTitle">Small</span>
+									</button>
+								</h2>
+								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+									data-bs-parent="#boxSizesAccordion">
+									<div class="accordion-body">
+										<div class="box-size">
+											<div class="box-size__image">
+												<span class="fak fa-close-box"></span>
+											</div>
+											<div class="box-size__measures">
+												<div class="box-size__field small-field">
+													<label>Length<span>&#10038;</span></label>
+													<input type="text" name="smallLengthInput" id="smallLengthInput" class="small-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field small-field">
+													<label>Width<span>&#10038;</span></label>
+													<input type="text" name="smallWidthInput" id="smallWidthInput" class="small-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field small-field">
+													<label>Height<span>&#10038;</span></label>
+													<input type="text" name="smallHeightInput" id="smallHeightInput" class="small-box-size">
+													<small>cm.</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<span class="fas fa-times"></span>
-							<div class="small dimension-container">
-								<p>Width</p>
-								<input type="number" class="size" />
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingTwo">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+										<span class="boxSizeTitle">Medium</span>
+									</button>
+								</h2>
+								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+									data-bs-parent="#boxSizesAccordion">
+									<div class="accordion-body">
+										<div class="box-size">
+											<div class="box-size__image">
+												<span class="fak fa-close-box"></span>
+											</div>
+											<div class="box-size__measures">
+												<div class="box-size__field medium-field">
+													<label>Length<span>&#10038;</span></label>
+													<input type="text" name="mediumLengthInput" id="mediumLengthInput" class="medium-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field medium-field">
+													<label>Width<span>&#10038;</span></label>
+													<input type="text" name="mediumWidthInput" id="mediumWidthInput" class="medium-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field medium-field">
+													<label>Height<span>&#10038;</span></label>
+													<input type="text" name="mediumHeightInput" id="mediumHeightInput" class="medium-box-size">
+													<small>cm.</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-							<span class="fas fa-times"></span>
-							<div class="small dimension-container">
-								<p>Heigth</p>
-								<input type="number" class="size" />
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingThree">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										<span class="boxSizeTitle">Large</span>
+									</button>
+								</h2>
+								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+									data-bs-parent="#boxSizesAccordion">
+									<div class="accordion-body">
+										<div class="box-size">
+											<div class="box-size__image">
+												<span class="fak fa-close-box"></span>
+											</div>
+											<div class="box-size__measures">
+												<div class="box-size__field large-field">
+													<label>Length<span>&#10038;</span></label>
+													<input type="text" name="largeLengthInput" id="largeLengthInput" class="large-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field large-field">
+													<label>Width<span>&#10038;</span></label>
+													<input type="text" name="largeWidthInput" id="largeWidthInput" class="large-box-size">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field large-field">
+													<label>Height<span>&#10038;</span></label>
+													<input type="text" name="largeHeightInput" id="largeHeightInput" class="large-box-size">
+													<small>cm.</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</div>
-						<p class="size-title">Medium</p>
-						<div class="size-container">
-							<div class="medium dimension-container">
-								<p>Length</p>
-								<input type="number" class="size" />
-							</div>
-							<span class="fas fa-times"></span>
-							<div class="medium dimension-container">
-								<p>Width</p>
-								<input type="number" class="size" />
-							</div>
-							<span class="fas fa-times"></span>
-							<div class="medium dimension-container">
-								<p>Heigth</p>
-								<input type="number" class="size" />
-							</div>
-						</div>
-						<p class="size-title">Large</p>
-						<div class="size-container">
-							<div class="large dimension-container">
-								<p>Length</p>
-								<input type="number" class="size" />
-							</div>
-							<span class="fas fa-times"></span>
-							<div class="large dimension-container">
-								<p>Width</p>
-								<input type="number" class="size" />
-							</div>
-							<span class="fas fa-times"></span>
-							<div class="large dimension-container">
-								<p>Heigth</p>
-								<input type="number" class="size" />
+							<div class="accordion-item">
+								<h2 class="accordion-header" id="headingFourth">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseFourth" aria-expanded="false" aria-controls="collapseThree">
+										<span class="boxSizeTitle">Custom</span>
+									</button>
+								</h2>
+								<div id="collapseFourth" class="accordion-collapse collapse" aria-labelledby="headingFourth"
+									data-bs-parent="#boxSizesAccordion">
+									<div class="accordion-body">
+										<div class="box-size">
+											<div class="box-size__image">
+												<span class="fak fa-close-box"></span>
+											</div>
+											<div class="box-size__measures">
+												<div class="box-size__field custom-field">
+													<label>Length<span>&#10038;</span></label>
+													<input type="text" name="customLengthInput" id="customLengthInput" class="custom-box-size"
+														value="0">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field custom-field">
+													<label>Width<span>&#10038;</span></label>
+													<input type="text" name="customWidthInput" id="customWidthInput" class="custom-box-size"
+														value="0">
+													<small>cm.</small>
+												</div>
+												<div class="box-size__field custom-field">
+													<label>Height<span>&#10038;</span></label>
+													<input type="text" name="customHeightInput" id="customHeightInput" class="custom-box-size"
+														value="0">
+													<small>cm.</small>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
+					<div class="modal-footer border-0">
+						<button type="button" class="btn btn-secondary" id="saveBoxSizesBtn"> Save </button>
 					</div>
 				</div>
 			</div>
@@ -256,10 +353,8 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Edit box -->
-		<div class="modal fade" id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header border-0">
@@ -270,11 +365,9 @@
 						<div class="editBoxContent" class="field__container form">
 							<div id="editBoxContent_left">
 								<label for="BoxNameInput" class="field__label">Name<span>*</span></label>
-                                <input type="text" id="idboxNameInput" name="BoxNameInput" ><br>
-
+								<input type="text" id="idboxNameInput" name="BoxNameInput"><br>
 								<label for="BoxDescriptionInput" class="field__label">Description</label>
-                                <input type="text" id="idBoxDescriptionInput" name="BoxDescriptionInput" class=""><br>
-
+								<input type="text" id="idBoxDescriptionInput" name="BoxDescriptionInput" class=""><br>
 								<label for="BoxLabelList" class="field__label">Box label<span>*</span></label>
 								<select id="idBoxLabelList">
 									<option value="0" selected>Select</option>
@@ -292,7 +385,6 @@
 									<button>Large</button>
 									<button>Custom</button>
 								</div>
-
 								<label for="BoxWeightInput" class="field__label">Weight</label>
 								<div class="editBoxWeight">
 									<input type="text" id="BoxWeightInput" name="BoxWeightInput" class="">
@@ -307,10 +399,8 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- PDF box -->
-		<div class="modal fade" id="pdfBoxModal" tabindex="-1" aria-labelledby="pdfModalLabel"
-			aria-hidden="true">
+		<div class="modal fade" id="pdfBoxModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header border-0">
@@ -318,15 +408,14 @@
 						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
-						<div class="pdfBoxContent__container" >
+						<div class="pdfBoxContent__container">
 							<div class="pdfBoxContent__top">
 								<div class="pdfBoxContent__boxName">
 									<label for="BoxDescriptionInput" class="pdfBoxContent__labelTitle">Dishes 1</label>
-
 									<label id="idlblSize" class="pdfBoxContent__labelSize">Small</label>
 								</div>
 							</div>
-							<div class="pdfBoxContent__left">								
+							<div class="pdfBoxContent__left">
 								<div class="pdfBoxContent__boxDescriptionBorderThicker">
 									<label class="pdfBoxContent__label">Description:</label>
 									<label id="idlblDescription" class="pdfBoxContent__labelDesc">Plates, bowls and side plates</label>
@@ -346,18 +435,18 @@
 								<div class="pdfBoxContent__boxDescription">
 									<label class="pdfBoxContent__label">Weight:</label>
 									<label id="idlblWeight" class="pdfBoxContent__labelDesc">15Kg</label>
-								</div>								
+								</div>
 							</div>
-
 							<div class="pdfBoxContent__right">
 								<div class="pdfBoxContent__boxDescriptionBorderThickerAddress">
 									<label class="pdfBoxContent__label"><span class="fak fa-moving"></span>&nbsp;&nbsp;Move to:</label>
-									<label id="idlblAddressMove" class="pdfBoxContent__labelDesc">1199 Marinaside Cescent, Vancouver V6Z 2Y2</label>
-								</div>	
+									<label id="idlblAddressMove" class="pdfBoxContent__labelDesc">1199 Marinaside Cescent, Vancouver V6Z
+										2Y2</label>
+								</div>
 							</div>
-
 							<div class="pdfBoxContent__bottom">
-								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span class="fak fa-fragile"></span>FRAGILE</label>
+								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span
+										class="fak fa-fragile"></span>FRAGILE</label>
 							</div>
 						</div>
 					</div>
@@ -368,7 +457,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- delete -->
 		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deletelabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -376,29 +464,28 @@
 					<div class="modal-header">
 						<!-- <h5 class="modal-title" id="newBoxModalLabel"> Add a Box </h5> -->
 						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
-						
 					</div>
 					<div class="modal-body">
 						<div class="divModalButtons">
 							<label class="field__label">Do you want to delete the selected box?</label>
 							<div id="divDelete">
-								<button id="btnDelete" class="delete-modal-closebtn"
-								>Delete</button>
-							</div>  
+								<button id="btnDelete" class="delete-modal-closebtn">Delete</button>
+							</div>
 							<div id="divCancel">
-								<button id="btnCancel" class="actionBtn" data-bs-dismiss="modal" >Cancel</button>
+								<button id="btnCancel" class="actionBtn" data-bs-dismiss="modal">Cancel</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<script src="https://kit.fontawesome.com/7ba77cc2f3.js" crossorigin="anonymous"></script>
-		
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
+		<script src="../js/moving-details.js"></script>
 	</body>
 
 </html>
