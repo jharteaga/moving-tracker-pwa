@@ -173,3 +173,67 @@ const buildCollaborators = (collaboratorsList) => {
 };
 
 buildCollaborators(collaborators);
+
+/**
+ * New Box Modal
+ */
+const boxSizesBtns = document.querySelectorAll('.size-buttons button');
+
+boxSizesBtns.forEach((boxSizeBtn) => {
+	boxSizeBtn.addEventListener('click', () => {
+		const lastActive = document.querySelector(
+			'.size-buttons button.active'
+		);
+		if (lastActive) lastActive.classList.remove('active');
+		boxSizeBtn.classList.add('active');
+	});
+});
+
+const saveNewBoxBtn = document.getElementById('saveNewBoxBtn');
+
+//Save new box into moving
+saveNewBoxBtn.addEventListener('click', () => {
+	let requiredValidation = true;
+
+	const newBoxNameInput = document.getElementById('newBoxNameInput').value;
+	const newBoxLabelSelect =
+		document.getElementById('newBoxLabelSelect').value;
+	const sizeActive = document.querySelector('.size-buttons button.active');
+
+	const newBoxNameErrorMsg = document.getElementById('newBoxNameErrorMsg');
+	const newBoxLabelErrorMsg = document.getElementById('newBoxLabelErrorMsg');
+	const newBoxSizeErrorMsg = document.getElementById('newBoxSizeErrorMsg');
+
+	const newBoxNameField = document.getElementById('newBoxNameField');
+	const newBoxLabelField = document.getElementById('newBoxLabelField');
+	const newBoxSizeField = document.getElementById('newBoxSizeField');
+
+	//Reset
+	newBoxNameErrorMsg.innerText = '';
+	newBoxNameField.classList.remove('error');
+	newBoxLabelErrorMsg.innerText = '';
+	newBoxLabelField.classList.remove('error');
+	newBoxSizeErrorMsg.innerText = '';
+	newBoxSizeField.classList.remove('error');
+
+	//Required fields
+	if (newBoxNameInput === '') {
+		newBoxNameErrorMsg.innerHTML = 'Please enter new box name';
+		newBoxNameField.classList.add('error');
+		requiredValidation = false;
+	}
+	if (newBoxLabelSelect === '') {
+		newBoxLabelErrorMsg.innerHTML = 'Please select a box label';
+		newBoxLabelField.classList.add('error');
+		requiredValidation = false;
+	}
+	if (!sizeActive) {
+		newBoxSizeErrorMsg.innerHTML = 'Please select a box label';
+		newBoxSizeField.classList.add('error');
+		requiredValidation = false;
+	}
+
+	if (requiredValidation) {
+		console.log('call function to save new box');
+	}
+});
