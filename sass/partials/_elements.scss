@@ -284,6 +284,97 @@
   }
 }
 
+.editBoxContent {
+  &__left,
+  &__right {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto, 1fr);
+  }
+
+  &__left input,
+  & select,
+  &__editBoxWeight input {
+    border-radius: 10px;
+    height: 35px;
+    width: 100%;
+    margin-bottom: 0.7rem;
+  }
+
+  &__left button {
+    width: 100%;
+    border-radius: 10px;
+    height: 35px;
+    background-color: white;
+    color: $primary-color;
+  }
+
+  &__left_button_selected {
+    background-color: $primary-color !important;
+    color: white !important;
+  }
+
+  &__boxDimensionsButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 0.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  &__editBoxWeight {
+    display: grid;
+    grid-template-columns: 6fr 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin-bottom: 0.7rem;
+  }
+  &__footerButtons {
+    width: 100%;
+  }
+  &__editBoxSwitch {
+    input {
+      background-color: white;
+      border: 1px solid $accent-color;
+      height: 25px !important;
+      width: 40px !important;
+    }
+    label {
+      padding-left: 0.5rem !important;
+    }
+    div {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      &:nth-child(2) {
+        color: $primary-color;
+        font-size: 0.75rem;
+      }
+    }
+  }
+  @include mediumDevice() {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 0.5rem;
+    align-items: start;
+
+    &__footerButtons {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        width: 50% !important;
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+.modal_large {
+  max-width: 80% !important;
+}
+
 .field {
   &__label {
     color: $primary-color;
