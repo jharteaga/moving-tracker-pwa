@@ -95,9 +95,9 @@ signUpBtn.addEventListener('click', () => {
             }
 
             //Nil error => Move to Welcome page
-            if (!userToPush.userError){
-                window.location.href = 'welcome.html';
-            }
+            // if (!userToPush.userError){
+            //     window.location.href = 'welcome.html';
+            // }
 
         }
     }

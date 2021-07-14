@@ -35,7 +35,15 @@ class User {
                     await this._addUserDb(email, userName, signup.user.uid);
 
                     //Move to Onboaring page
-                    window.location.href = 'pages/onboarding.html';
+                    // window.location.href = 'pages/onboarding.html';
+
+                    //Move to Welcome page
+                    if (window.location.pathname === '/index.html' || window.location.pathname === '/'){
+                        window.location.href = 'pages/welcome.html';
+                    } else {
+                        window.location.href = 'welcome.html';
+                    };
+
                 }
             } else {
                 this.userError =
