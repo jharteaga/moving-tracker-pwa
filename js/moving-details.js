@@ -174,46 +174,68 @@ const buildCollaborators = (collaboratorsList) => {
 
 buildCollaborators(collaborators);
 
-
 /*Dimension buttons change color when selected*/
-const idEditBoxbtnDimensione_Small = document.getElementById('idEditBoxbtnDimensione_Small');
-const idEditBoxbtnDimensione_Medium = document.getElementById('idEditBoxbtnDimensione_Medium');
-const idEditBoxbtnDimensione_Large = document.getElementById('idEditBoxbtnDimensione_Large');
-const idEditBoxbtnDimensione_Custom = document.getElementById('idEditBoxbtnDimensione_Custom');
+const idEditBoxbtnDimensione_Small = document.getElementById(
+	'idEditBoxbtnDimensione_Small'
+);
+const idEditBoxbtnDimensione_Medium = document.getElementById(
+	'idEditBoxbtnDimensione_Medium'
+);
+const idEditBoxbtnDimensione_Large = document.getElementById(
+	'idEditBoxbtnDimensione_Large'
+);
+const idEditBoxbtnDimensione_Custom = document.getElementById(
+	'idEditBoxbtnDimensione_Custom'
+);
 
-idEditBoxbtnDimensione_Small.addEventListener('click',()=>{
+idEditBoxbtnDimensione_Small.addEventListener('click', () => {
 	removeClassFromButtons();
-	idEditBoxbtnDimensione_Small.classList.toggle('editBoxContent__left_button_selected');
-})
-idEditBoxbtnDimensione_Medium.addEventListener('click',()=>{
+	idEditBoxbtnDimensione_Small.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Medium.addEventListener('click', () => {
 	removeClassFromButtons();
-	idEditBoxbtnDimensione_Medium.classList.toggle('editBoxContent__left_button_selected');
-})
-idEditBoxbtnDimensione_Large.addEventListener('click',()=>{
+	idEditBoxbtnDimensione_Medium.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Large.addEventListener('click', () => {
 	removeClassFromButtons();
-	idEditBoxbtnDimensione_Large.classList.toggle('editBoxContent__left_button_selected');
-})
-idEditBoxbtnDimensione_Custom.addEventListener('click',()=>{
+	idEditBoxbtnDimensione_Large.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Custom.addEventListener('click', () => {
 	removeClassFromButtons();
-	idEditBoxbtnDimensione_Custom.classList.toggle('editBoxContent__left_button_selected');
-})
+	idEditBoxbtnDimensione_Custom.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
 
-const removeClassFromButtons = ()=>{
-	idEditBoxbtnDimensione_Small.classList.remove('editBoxContent__left_button_selected');
-	idEditBoxbtnDimensione_Medium.classList.remove('editBoxContent__left_button_selected');
-	idEditBoxbtnDimensione_Large.classList.remove('editBoxContent__left_button_selected');
-	idEditBoxbtnDimensione_Custom.classList.remove('editBoxContent__left_button_selected');
-}
+const removeClassFromButtons = () => {
+	idEditBoxbtnDimensione_Small.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Medium.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Large.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Custom.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+};
 // **************************************************************
 
 /*detecting change in breakpoint to change edit box modal size*/
-const mediaQuery = window.matchMedia('(min-width: 900px)')
+const mediaQuery = window.matchMedia('(min-width: 900px)');
 const idEditBoxModalDialog = document.getElementById('idEditBoxModalDialog');
 mediaQuery.addEventListener('change', (e) => {
-    if (e.matches) {
-        idEditBoxModalDialog.classList.add('modal_large');
-    }
-    else {
-        idEditBoxModalDialog.classList.remove('modal_large');
-    }
-})
+	if (e.matches) {
+		idEditBoxModalDialog.classList.add('modal_large');
+	} else {
+		idEditBoxModalDialog.classList.remove('modal_large');
+	}
+});

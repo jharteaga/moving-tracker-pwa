@@ -1,432 +1,432 @@
 .background-container {
-  @include backgroundContainer();
+	@include backgroundContainer();
 }
 
 //added by Alex
 
 .background-container-modal {
-  @include backgroundContainerModal();
+	@include backgroundContainerModal();
 }
 
 // backgrounds for some parts of modals
 .modal-bgc {
-  background-color: #fff;
-  // z-index: -1;
+	background-color: #fff;
+	// z-index: -1;
 }
 .modal-closebtn-bgc {
-  background-color: transparent;
-  color: $primary-color;
-  font-size: 1.5rem;
-  font-weight: bold;
-  font-family: $font-h2;
-  border: none;
-  padding: 1%;
+	background-color: transparent;
+	color: $primary-color;
+	font-size: 1.5rem;
+	font-weight: bold;
+	font-family: $font-h2;
+	border: none;
+	padding: 1%;
 }
 .delete-modal-closebtn {
-  // background-color: $modal-delete-btn;
-  // color: $primary-color;
-  // font-size: 1rem;
-  // font-weight: bold;
-  // font-family: $font-h2;
-  // border: 1px solid $primary-color;
-  // padding: 1%;
-  // border-radius: 15px;
-  // width: 80%;
-  // height: 3rem;
+	// background-color: $modal-delete-btn;
+	// color: $primary-color;
+	// font-size: 1rem;
+	// font-weight: bold;
+	// font-family: $font-h2;
+	// border: 1px solid $primary-color;
+	// padding: 1%;
+	// border-radius: 15px;
+	// width: 80%;
+	// height: 3rem;
 
-  @include squareButton("secondary", 100%);
-  height: 3rem;
+	@include squareButton('secondary', 100%);
+	height: 3rem;
 }
 
 .nav-breadcrum {
-  margin-left: 1rem;
-  &__inactive {
-    a {
-      color: $breadcrumb-nav-color;
-      font-size: 1rem;
-      text-decoration: none;
-    }
-  }
-  &__inactiveWhite {
-    a {
-      text-decoration: none;
-      color: white;
-      font-size: 1rem;
-    }
-  }
-  .active_desktop {
-    color: white;
-    font-weight: bold;
-  }
-  li {
-    font-size: 1rem;
-    color: $breadcrumb-nav-active-color;
-  }
+	margin-left: 1rem;
+	&__inactive {
+		a {
+			color: $breadcrumb-nav-color;
+			font-size: 1rem;
+			text-decoration: none;
+		}
+	}
+	&__inactiveWhite {
+		a {
+			text-decoration: none;
+			color: white;
+			font-size: 1rem;
+		}
+	}
+	.active_desktop {
+		color: white;
+		font-weight: bold;
+	}
+	li {
+		font-size: 1rem;
+		color: $breadcrumb-nav-active-color;
+	}
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 .logo {
-  @include logo();
+	@include logo();
 }
 .profile-picture {
-  @include profile-picture();
+	@include profile-picture();
 }
 
 //class for delete modal
 .actionBtn {
-  @include squareButton("primary", 100%);
-  height: 3rem;
+	@include squareButton('primary', 100%);
+	height: 3rem;
 }
 .divModalButtons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  .actionBtn {
-    width: 80%;
-  }
-  label {
-    grid-column: 1/3;
-    grid-row: 1/2;
-    text-align: center;
-  }
-  #divDelete {
-    grid-column: 1/2;
-    grid-row: 2/3;
-  }
-  #divCancel {
-    grid-column: 2/3;
-    grid-row: 2/3;
-  }
-  #divDelete,
-  #divCancel {
-    display: flex;
-    justify-content: center;
-    // align-items: center;
-  }
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	.actionBtn {
+		width: 80%;
+	}
+	label {
+		grid-column: 1/3;
+		grid-row: 1/2;
+		text-align: center;
+	}
+	#divDelete {
+		grid-column: 1/2;
+		grid-row: 2/3;
+	}
+	#divCancel {
+		grid-column: 2/3;
+		grid-row: 2/3;
+	}
+	#divDelete,
+	#divCancel {
+		display: flex;
+		justify-content: center;
+		// align-items: center;
+	}
 }
 // ************************************************
 
 .card {
-  display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  background-color: #f7f7f7;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0.5rem 1.2rem 0.5rem 0.5rem;
-  border-radius: 10px;
-  box-shadow: 0 10px 10px 0 rgba($color: $primary-color, $alpha: 0.15);
-  color: $primary-color;
+	display: grid;
+	grid-template-columns: 0.5fr 1fr;
+	background-color: #f7f7f7;
+	max-width: 400px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0.5rem 1.2rem 0.5rem 0.5rem;
+	border-radius: 10px;
+	box-shadow: 0 10px 10px 0 rgba($color: $primary-color, $alpha: 0.15);
+	color: $primary-color;
 
-  &__left img {
-    border-radius: 16px;
-  }
+	&__left img {
+		border-radius: 16px;
+	}
 
-  &__right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 7px;
-    width: 100%;
+	&__right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: 7px;
+		width: 100%;
 
-    h2 {
-      margin: 0;
-    }
+		h2 {
+			margin: 0;
+		}
 
-    p {
-      margin: 0;
-      margin-bottom: 7px;
-    }
-  }
+		p {
+			margin: 0;
+			margin-bottom: 7px;
+		}
+	}
 
-  &__actions {
-    display: flex;
-    justify-content: space-between;
-    button {
-      @include iconButton(
-        $bgColor: $primary-color,
-        $borderRadius: 30%,
-        $fontSize: 1rem,
-        $width: 30px,
-        $height: 30px
-      );
-    }
-  }
+	&__actions {
+		display: flex;
+		justify-content: space-between;
+		button {
+			@include iconButton(
+				$bgColor: $primary-color,
+				$borderRadius: 30%,
+				$fontSize: 1rem,
+				$width: 30px,
+				$height: 30px
+			);
+		}
+	}
 }
 
 .pdfBoxContent {
-  &__container {
-    background-color: $primary-color;
-    width: 97%;
-    margin: 0 auto;
-    border-radius: 15px;
-    padding-top: 2.5rem;
-  }
+	&__container {
+		background-color: $primary-color;
+		width: 97%;
+		margin: 0 auto;
+		border-radius: 15px;
+		padding-top: 2.5rem;
+	}
 
-  &__labelTitle,
-  &__label,
-  &__labelDesc,
-  &__labelSize,
-  &__labelFragile {
-    color: $pdf_text_color;
-  }
+	&__labelTitle,
+	&__label,
+	&__labelDesc,
+	&__labelSize,
+	&__labelFragile {
+		color: $pdf_text_color;
+	}
 
-  &__boxName,
-  &__boxDescription,
-  &__boxDescriptionBorderThicker,
-  &__boxDescriptionBorderThickerAddress {
-    margin-left: 0.6rem;
-    margin-right: 0.6rem;
-  }
+	&__boxName,
+	&__boxDescription,
+	&__boxDescriptionBorderThicker,
+	&__boxDescriptionBorderThickerAddress {
+		margin-left: 0.6rem;
+		margin-right: 0.6rem;
+	}
 
-  &__labelTitle {
-    text-transform: uppercase;
-    font-size: 1.3rem;
-  }
+	&__labelTitle {
+		text-transform: uppercase;
+		font-size: 1.3rem;
+	}
 
-  &__label {
-    font-size: 1rem;
-    font-weight: bold;
-  }
+	&__label {
+		font-size: 1rem;
+		font-weight: bold;
+	}
 
-  &__labelDesc {
-    font-size: 0.7rem;
-  }
+	&__labelDesc {
+		font-size: 0.7rem;
+	}
 
-  &__labelSize {
-    background-color: $accent-color;
-    border-radius: 10px;
-    padding: 0.1rem 0.7rem;
-    font-size: 1rem;
-  }
-  &__boxName {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 1rem;
-    align-items: center;
-    border-bottom: 3px solid $pdf_lines_color;
-  }
-  @mixin descBox($borderWidth: 0px) {
-    border-top: $borderWidth solid $pdf_lines_color;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    padding-bottom: 0.5rem;
-    padding-top: 0.2rem;
-  }
-  &__boxDescription {
-    @include descBox(1px);
-  }
-  &__boxDescriptionBorderThicker {
-    @include descBox();
-  }
-  &__boxDescriptionBorderThickerAddress {
-    @include descBox(3px);
-    & :nth-child(2) {
-      padding-top: 0.5rem;
-    }
-  }
-  &__labelFragile {
-    background-color: $pdf_bg_fragile;
-    letter-spacing: 2px;
-    width: 100%;
-    text-align: center;
-    padding-top: 0.3rem;
-    padding-bottom: 0.3rem;
-    margin-bottom: 1rem;
-    margin-top: 1.3rem;
-  }
-  .button.btn.btn-secondary {
-    width: 100%;
-  }
+	&__labelSize {
+		background-color: $accent-color;
+		border-radius: 10px;
+		padding: 0.1rem 0.7rem;
+		font-size: 1rem;
+	}
+	&__boxName {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 1rem;
+		align-items: center;
+		border-bottom: 3px solid $pdf_lines_color;
+	}
+	@mixin descBox($borderWidth: 0px) {
+		border-top: $borderWidth solid $pdf_lines_color;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(2, 1fr);
+		padding-bottom: 0.5rem;
+		padding-top: 0.2rem;
+	}
+	&__boxDescription {
+		@include descBox(1px);
+	}
+	&__boxDescriptionBorderThicker {
+		@include descBox();
+	}
+	&__boxDescriptionBorderThickerAddress {
+		@include descBox(3px);
+		& :nth-child(2) {
+			padding-top: 0.5rem;
+		}
+	}
+	&__labelFragile {
+		background-color: $pdf_bg_fragile;
+		letter-spacing: 2px;
+		width: 100%;
+		text-align: center;
+		padding-top: 0.3rem;
+		padding-bottom: 0.3rem;
+		margin-bottom: 1rem;
+		margin-top: 1.3rem;
+	}
+	.button.btn.btn-secondary {
+		width: 100%;
+	}
 
-  @include mediumDevice() {
-    &__container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3 / fr);
-    }
-    &__top {
-      grid-column: 1/3;
-      grid-row: 1/2;
-    }
-    &__left {
-      grid-column: 1/2;
-      grid-row: 2/3;
-    }
-    &__right {
-      grid-column: 2/3;
-      grid-row: 2/3;
-    }
+	@include mediumDevice() {
+		&__container {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(3 / fr);
+		}
+		&__top {
+			grid-column: 1/3;
+			grid-row: 1/2;
+		}
+		&__left {
+			grid-column: 1/2;
+			grid-row: 2/3;
+		}
+		&__right {
+			grid-column: 2/3;
+			grid-row: 2/3;
+		}
 
-    &__bottom {
-      grid-column: 1/3;
-      grid-row: 3/4;
-    }
-    &__boxDescriptionBorderThickerAddress {
-      text-align: right;
-    }
+		&__bottom {
+			grid-column: 1/3;
+			grid-row: 3/4;
+		}
+		&__boxDescriptionBorderThickerAddress {
+			text-align: right;
+		}
 
-    &__boxDescriptionBorderThicker {
-      @include descBox();
-    }
-    &__boxDescriptionBorderThickerAddress {
-      @include descBox();
-      & :nth-child(2) {
-        padding-top: 0.5rem;
-      }
-    }
-  }
+		&__boxDescriptionBorderThicker {
+			@include descBox();
+		}
+		&__boxDescriptionBorderThickerAddress {
+			@include descBox();
+			& :nth-child(2) {
+				padding-top: 0.5rem;
+			}
+		}
+	}
 }
 
 .editBoxContent {
-  &__left,
-  &__right {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto, 1fr);
-  }
+	&__left,
+	&__right {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(auto, 1fr);
+	}
 
-  &__left input,
-  & select,
-  &__editBoxWeight input {
-    border-radius: 10px;
-    height: 35px;
-    width: 100%;
-    margin-bottom: 0.7rem;
-  }
+	&__left input,
+	& select,
+	&__editBoxWeight input {
+		border-radius: 10px;
+		height: 35px;
+		width: 100%;
+		margin-bottom: 0.7rem;
+	}
 
-  &__left button {
-    width: 100%;
-    border-radius: 10px;
-    height: 35px;
-    background-color: white;
-    color: $primary-color;
-  }
+	&__left button {
+		width: 100%;
+		border-radius: 10px;
+		height: 35px;
+		background-color: white;
+		color: $primary-color;
+	}
 
-  &__left_button_selected {
-    background-color: $primary-color !important;
-    color: white !important;
-  }
+	&__left_button_selected {
+		background-color: $primary-color !important;
+		color: white !important;
+	}
 
-  &__boxDimensionsButtons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 0.5rem;
-    margin-bottom: 0.7rem;
-  }
+	&__boxDimensionsButtons {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: repeat(2, 1fr);
+		grid-gap: 0.5rem;
+		margin-bottom: 0.7rem;
+	}
 
-  &__editBoxWeight {
-    display: grid;
-    grid-template-columns: 6fr 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
-    margin-bottom: 0.7rem;
-  }
-  &__footerButtons {
-    width: 100%;
-  }
-  &__editBoxSwitch {
-    input {
-      background-color: white;
-      border: 1px solid $accent-color;
-      height: 25px !important;
-      width: 40px !important;
-    }
-    label {
-      padding-left: 0.5rem !important;
-    }
-    div {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      &:nth-child(2) {
-        color: $primary-color;
-        font-size: 0.75rem;
-      }
-    }
-  }
-  @include mediumDevice() {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    column-gap: 0.5rem;
-    align-items: start;
+	&__editBoxWeight {
+		display: grid;
+		grid-template-columns: 6fr 1fr;
+		grid-template-rows: 1fr;
+		justify-items: center;
+		margin-bottom: 0.7rem;
+	}
+	&__footerButtons {
+		width: 100%;
+	}
+	&__editBoxSwitch {
+		input {
+			background-color: white;
+			border: 1px solid $accent-color;
+			height: 25px !important;
+			width: 40px !important;
+		}
+		label {
+			padding-left: 0.5rem !important;
+		}
+		div {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+			&:nth-child(2) {
+				color: $primary-color;
+				font-size: 0.75rem;
+			}
+		}
+	}
+	@include mediumDevice() {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: 1fr;
+		column-gap: 0.5rem;
+		align-items: start;
 
-    &__footerButtons {
-      display: flex;
-      justify-content: flex-end;
+		&__footerButtons {
+			display: flex;
+			justify-content: flex-end;
 
-      button {
-        width: 50% !important;
-        margin: 0 !important;
-      }
-    }
-  }
+			button {
+				width: 50% !important;
+				margin: 0 !important;
+			}
+		}
+	}
 }
 
 .modal_large {
-  max-width: 80% !important;
+	max-width: 40% !important;
 }
 
 .field {
-  &__label {
-    color: $primary-color;
-    font-weight: bold;
-    font-size: 1.1rem;
+	&__label {
+		color: $primary-color;
+		font-weight: bold;
+		font-size: 1.1rem;
 
-    span {
-      color: $field-required-color;
-    }
-  }
+		span {
+			color: $field-required-color;
+		}
+	}
 
-  &__labelItalic {
-    color: $primary-color;
-    font-weight: italic;
-    font-size: 0.7rem;
-  }
+	&__labelItalic {
+		color: $primary-color;
+		font-weight: italic;
+		font-size: 0.7rem;
+	}
 
-  &__container {
-    display: flex;
-    align-items: center;
-    margin-top: 0.5rem;
+	&__container {
+		display: flex;
+		align-items: center;
+		margin-top: 0.5rem;
 
-    input {
-      width: 100%;
-      padding: 0.7rem;
-      border-radius: 16px;
-      border: 0;
-      color: $primary-color;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
-        inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-    }
+		input {
+			width: 100%;
+			padding: 0.7rem;
+			border-radius: 16px;
+			border: 0;
+			color: $primary-color;
+			box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+				inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+		}
 
-    span {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      right: 35px;
+		span {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			right: 35px;
 
-      @include iconButton(
-        $bgColor: $primary-color,
-        $borderRadius: 30%,
-        $fontSize: 0.9rem,
-        $width: 26px,
-        $height: 26px
-      );
-    }
-  }
+			@include iconButton(
+				$bgColor: $primary-color,
+				$borderRadius: 30%,
+				$fontSize: 0.9rem,
+				$width: 26px,
+				$height: 26px
+			);
+		}
+	}
 }
 
 .canvas {
-  box-shadow: 0 0 15px #000;
-  background-color: #aaa4;
-  margin: 1em;
+	box-shadow: 0 0 15px #000;
+	background-color: #aaa4;
+	margin: 1em;
 }
