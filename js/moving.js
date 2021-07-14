@@ -132,8 +132,6 @@ class Moving {
         }
     }
 
-    // Needs testing update Moving
-
     /**
      * Updates moving in firebase
      *
@@ -246,6 +244,11 @@ class Moving {
         }
     }
 
+    /**
+     * Gets a snapshot of movings for the current logged in user
+     *
+     * @param {Function} callBack   function that takes a snapshot as parameter
+     */
     getMovingsList(callBack) {
         try {
             if (this.userId) {
@@ -261,6 +264,11 @@ class Moving {
         }
     }
 
+    /**
+     * Gets all the movings and return an array of movings
+     *
+     * @returns array of movings
+     */
     async getMovings() {
         try {
             const getDoc = await db
@@ -289,6 +297,7 @@ class Moving {
     }
 
     /**
+     * Gets collaborators from a specific moving
      *
      * @param {Function} callBack
      */
@@ -303,6 +312,11 @@ class Moving {
         }
     }
 
+    /**
+     * Appends a new collaborator to moving collaborators array in firebase
+     *
+     * @param {String} collaboratorEmail
+     */
     async addCollaborator(collaboratorEmail) {
         try {
             await db
@@ -322,6 +336,11 @@ class Moving {
         }
     }
 
+    /**
+     * Deletes a collaborator from moving collaborators array in firebase
+     *
+     * @param {String} collaboratorEmail
+     */
     async deleteCollaborator(collaboratorEmail) {
         try {
             await db
@@ -342,8 +361,9 @@ class Moving {
     }
 
     /**
+     * Gets labels from moving instance
      *
-     * @param {Function} callBack
+     * @param {Function} callBack  this callback takes a snapshot as parameter
      */
     getLabels(callBack) {
         try {
@@ -356,6 +376,11 @@ class Moving {
         }
     }
 
+    /**
+     * Appends a new label to moving labels array in firebase
+     *
+     * @param {String} newLabel New label to add
+     */
     async addLabel(newLabel) {
         try {
             await db
@@ -372,6 +397,11 @@ class Moving {
         }
     }
 
+    /**
+     * Deletes a label from moving labels array in firebase
+     *
+     * @param {String} labelToDelete    Label to delete
+     */
     async deleteLabel(labelToDelete) {
         try {
             await db
@@ -390,6 +420,12 @@ class Moving {
         }
     }
 
+    /**
+     * Update box size measures
+     *
+     * @param {String} size        Size objective to modify
+     * @param {Object} newMeasures Object with keys length, width and height
+     */
     async updateSize(size, newMeasures) {
         try {
             const data = {};
