@@ -1,12 +1,6 @@
 /**
  * Movings Options Menu (Toggle plus menu button)
  */
-const menuBtn = document.querySelector('.moving-details .options-btn');
-const movingOptions = document.querySelector('.moving-details .moving-options');
-
-menuBtn.addEventListener('click', () => {
-    movingOptions.classList.toggle('active');
-});
 
 const movingsOutput = document.querySelector('.movings-wrapper');
 const movingsArr = [];
