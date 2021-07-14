@@ -173,3 +173,203 @@ const buildCollaborators = (collaboratorsList) => {
 };
 
 buildCollaborators(collaborators);
+
+
+/*Dimension buttons change color when selected*/
+const idEditBoxbtnDimensione_Small = document.getElementById(
+	'idEditBoxbtnDimensione_Small'
+);
+const idEditBoxbtnDimensione_Medium = document.getElementById(
+	'idEditBoxbtnDimensione_Medium'
+);
+const idEditBoxbtnDimensione_Large = document.getElementById(
+	'idEditBoxbtnDimensione_Large'
+);
+const idEditBoxbtnDimensione_Custom = document.getElementById(
+	'idEditBoxbtnDimensione_Custom'
+);
+
+idEditBoxbtnDimensione_Small.addEventListener('click', () => {
+	removeClassFromButtons();
+	idEditBoxbtnDimensione_Small.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Medium.addEventListener('click', () => {
+	removeClassFromButtons();
+	idEditBoxbtnDimensione_Medium.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Large.addEventListener('click', () => {
+	removeClassFromButtons();
+	idEditBoxbtnDimensione_Large.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+idEditBoxbtnDimensione_Custom.addEventListener('click', () => {
+	removeClassFromButtons();
+	idEditBoxbtnDimensione_Custom.classList.toggle(
+		'editBoxContent__left_button_selected'
+	);
+});
+
+const removeClassFromButtons = () => {
+	idEditBoxbtnDimensione_Small.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Medium.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Large.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+	idEditBoxbtnDimensione_Custom.classList.remove(
+		'editBoxContent__left_button_selected'
+	);
+};
+// **************************************************************
+
+/*detecting change in breakpoint to change edit box modal size*/
+const mediaQuery = window.matchMedia('(min-width: 900px)');
+const idEditBoxModalDialog = document.getElementById('idEditBoxModalDialog');
+mediaQuery.addEventListener('change', (e) => {
+	if (e.matches) {
+		idEditBoxModalDialog.classList.add('modal_large');
+	} else {
+		idEditBoxModalDialog.classList.remove('modal_large');
+
+/**
+ * Box Sizes Modal
+ */
+const saveBoxSizesBtn = document.getElementById('saveBoxSizesBtn');
+
+const resetBoxSizes = (fields) => {
+	fields.forEach((field) => {
+		field.classList.remove('error');
+	});
+};
+
+saveBoxSizesBtn.addEventListener('click', () => {
+	const smallInputs = document.querySelectorAll('.small-box-size');
+	const mediumInputs = document.querySelectorAll('.medium-box-size');
+	const largeInputs = document.querySelectorAll('.large-box-size');
+	const customInputs = document.querySelectorAll('.custom-box-size');
+	const boxSizeTitles = document.querySelectorAll('.boxSizeTitle');
+
+	const smallFields = document.querySelectorAll('.small-field');
+	const mediumFields = document.querySelectorAll('.medium-field');
+	const largeFields = document.querySelectorAll('.large-field');
+	const customFields = document.querySelectorAll('.custom-field');
+
+	// Reset
+	resetBoxSizes(boxSizeTitles);
+	resetBoxSizes(smallFields);
+	resetBoxSizes(mediumFields);
+	resetBoxSizes(largeFields);
+	resetBoxSizes(customFields);
+
+	//Validate Required fields
+	let requiredValidation = true;
+
+	smallInputs.forEach((input, index) => {
+		if (input.value === '') {
+			smallFields[index].classList.add('error');
+			boxSizeTitles[0].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	mediumInputs.forEach((input, index) => {
+		if (input.value === '') {
+			mediumFields[index].classList.add('error');
+			boxSizeTitles[1].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	largeInputs.forEach((input, index) => {
+		if (input.value === '') {
+			largeFields[index].classList.add('error');
+			boxSizeTitles[2].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	customInputs.forEach((input, index) => {
+		if (input.value === '') {
+			customFields[index].classList.add('error');
+			boxSizeTitles[3].classList.add('error');
+			requiredValidation = false;
+		}
+	});
+
+	if (requiredValidation) {
+		console.log('Call function to save box sizes in firebase');
+		$('#boxSizesModal').modal('hide');
+	}
+});
+
+/**
+ * New Box Modal
+ */
+const boxSizesBtns = document.querySelectorAll('.size-buttons button');
+
+boxSizesBtns.forEach((boxSizeBtn) => {
+	boxSizeBtn.addEventListener('click', () => {
+		const lastActive = document.querySelector(
+			'.size-buttons button.active'
+		);
+		if (lastActive) lastActive.classList.remove('active');
+		boxSizeBtn.classList.add('active');
+	});
+});
+
+const saveNewBoxBtn = document.getElementById('saveNewBoxBtn');
+
+//Save new box into moving
+saveNewBoxBtn.addEventListener('click', () => {
+	let requiredValidation = true;
+
+	const newBoxNameInput = document.getElementById('newBoxNameInput').value;
+	const newBoxLabelSelect =
+		document.getElementById('newBoxLabelSelect').value;
+	const sizeActive = document.querySelector('.size-buttons button.active');
+
+	const newBoxNameErrorMsg = document.getElementById('newBoxNameErrorMsg');
+	const newBoxLabelErrorMsg = document.getElementById('newBoxLabelErrorMsg');
+	const newBoxSizeErrorMsg = document.getElementById('newBoxSizeErrorMsg');
+
+	const newBoxNameField = document.getElementById('newBoxNameField');
+	const newBoxLabelField = document.getElementById('newBoxLabelField');
+	const newBoxSizeField = document.getElementById('newBoxSizeField');
+
+	//Reset
+	newBoxNameErrorMsg.innerText = '';
+	newBoxNameField.classList.remove('error');
+	newBoxLabelErrorMsg.innerText = '';
+	newBoxLabelField.classList.remove('error');
+	newBoxSizeErrorMsg.innerText = '';
+	newBoxSizeField.classList.remove('error');
+
+	//Required fields
+	if (newBoxNameInput === '') {
+		newBoxNameErrorMsg.innerHTML = 'Please enter new box name';
+		newBoxNameField.classList.add('error');
+		requiredValidation = false;
+	}
+	if (newBoxLabelSelect === '') {
+		newBoxLabelErrorMsg.innerHTML = 'Please select a box label';
+		newBoxLabelField.classList.add('error');
+		requiredValidation = false;
+	}
+	if (!sizeActive) {
+		newBoxSizeErrorMsg.innerHTML = 'Please select a box label';
+		newBoxSizeField.classList.add('error');
+		requiredValidation = false;
+	}
+
+	if (requiredValidation) {
+		console.log('call function to save new box');
+	}
+});
