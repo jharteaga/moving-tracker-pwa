@@ -92,8 +92,9 @@
 						<p>Fragile</p>
 					</div>
 					<div class="box__actions">
-						<button class="icon"><span class="fas fa-pencil-alt"></span></button>
-						<button class="icon"><span class="fas fa-trash"></span></button>
+						<button class="icon" data-bs-toggle="modal" data-bs-target="#pdfBoxModal"><span class="fas fa-file-pdf"></span></button>
+						<button class="icon" data-bs-toggle="modal" data-bs-target="#editBoxModal"><span class="fas fa-pencil-alt"></span></button>
+						<button class="icon"><span class="fas fa-trash" data-bs-toggle="modal" data-bs-target="#deleteModal"></span></button>
 					</div>
 					<div class="box__progress">
 						<p>Add box</p>
@@ -242,7 +243,146 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Edit box -->
+		<div class="modal fade" id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header border-0">
+						<h5 class="modal-title" id="collaboratorModalLabel"> Edit Box </h5>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+					</div>
+					<div class="modal-body">
+						<div class="editBoxContent" class="field__container form">
+							<div id="editBoxContent_left">
+								<label for="BoxNameInput" class="field__label">Name<span>*</span></label>
+                                <input type="text" id="idboxNameInput" name="BoxNameInput" ><br>
+
+								<label for="BoxDescriptionInput" class="field__label">Description</label>
+                                <input type="text" id="idBoxDescriptionInput" name="BoxDescriptionInput" class=""><br>
+
+								<label for="BoxLabelList" class="field__label">Box label<span>*</span></label>
+								<select id="idBoxLabelList">
+									<option value="0" selected>Select</option>
+									<option value="1">Volvo</option>
+									<option value="2">Bedroom 1</option>
+									<option value="3">Bedroom 2</option>
+									<option value="4">Bathroom 1</option>
+								</select>
+							</div>
+							<div id="editBoxContent_right">
+								<label for="BoxDimensionsInput" class="field__label">Dimensions<span>*</span></label>
+								<div class="boxDimensionsButtons">
+									<button>Small</button>
+									<button>Medium</button>
+									<button>Large</button>
+									<button>Custom</button>
+								</div>
+
+								<label for="BoxWeightInput" class="field__label">Weight</label>
+								<div class="editBoxWeight">
+									<input type="text" id="BoxWeightInput" name="BoxWeightInput" class="">
+									<label for="BoxDimensionsInput" class="field__label">Kg</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer border-0">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- PDF box -->
+		<div class="modal fade" id="pdfBoxModal" tabindex="-1" aria-labelledby="pdfModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header border-0">
+						<h5 class="modal-title" id="pdfModalLabel"> Dishes 1 </h5>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+					</div>
+					<div class="modal-body">
+						<div class="pdfBoxContent__container" >
+							<div class="pdfBoxContent__top">
+								<div class="pdfBoxContent__boxName">
+									<label for="BoxDescriptionInput" class="pdfBoxContent__labelTitle">Dishes 1</label>
+
+									<label id="idlblSize" class="pdfBoxContent__labelSize">Small</label>
+								</div>
+							</div>
+							<div class="pdfBoxContent__left">								
+								<div class="pdfBoxContent__boxDescriptionBorderThicker">
+									<label class="pdfBoxContent__label">Description:</label>
+									<label id="idlblDescription" class="pdfBoxContent__labelDesc">Plates, bowls and side plates</label>
+								</div>
+								<div class="pdfBoxContent__boxDescription">
+									<label class="pdfBoxContent__label">Box Label:</label>
+									<label id="idlblBoxLabel" class="pdfBoxContent__labelDesc">Kitchen</label>
+								</div>
+								<div class="pdfBoxContent__boxDescription">
+									<label class="pdfBoxContent__label">Volume:</label>
+									<label id="idlblVolume" class="pdfBoxContent__labelDesc">0.00924 m3</label>
+								</div>
+								<div class="pdfBoxContent__boxDescription">
+									<label class="pdfBoxContent__label">Value:</label>
+									<label id="idlblValue" class="pdfBoxContent__labelDesc">$ 650.00</label>
+								</div>
+								<div class="pdfBoxContent__boxDescription">
+									<label class="pdfBoxContent__label">Weight:</label>
+									<label id="idlblWeight" class="pdfBoxContent__labelDesc">15Kg</label>
+								</div>								
+							</div>
+
+							<div class="pdfBoxContent__right">
+								<div class="pdfBoxContent__boxDescriptionBorderThickerAddress">
+									<label class="pdfBoxContent__label"><span class="fak fa-moving"></span>&nbsp;&nbsp;Move to:</label>
+									<label id="idlblAddressMove" class="pdfBoxContent__labelDesc">1199 Marinaside Cescent, Vancouver V6Z 2Y2</label>
+								</div>	
+							</div>
+
+							<div class="pdfBoxContent__bottom">
+								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span class="fak fa-fragile"></span>FRAGILE</label>
+							</div>
+						</div>
+					</div>
+					<div id="pdfBox-modalFooter" class="modal-footer border-0">
+						<button id="idbtnDownload" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+							<i class="fak fa-download"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Download</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- delete -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deletelabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <h5 class="modal-title" id="newBoxModalLabel"> Add a Box </h5> -->
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						
+					</div>
+					<div class="modal-body">
+						<div class="divModalButtons">
+							<label class="field__label">Do you want to delete the selected box?</label>
+							<div id="divDelete">
+								<button id="btnDelete" class="delete-modal-closebtn"
+								>Delete</button>
+							</div>  
+							<div id="divCancel">
+								<button id="btnCancel" class="actionBtn" data-bs-dismiss="modal" >Cancel</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<script src="https://kit.fontawesome.com/7ba77cc2f3.js" crossorigin="anonymous"></script>
+		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
