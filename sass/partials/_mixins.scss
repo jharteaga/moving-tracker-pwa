@@ -135,3 +135,36 @@
   line-height: 38px;
   color: $heading-color;
 }
+
+@mixin justInput($width, $margin-top:0.5rem){
+	display: flex;
+	align-items: center;
+	margin-top: $margin-top;
+
+	input {
+		width: $width;
+		padding: 0.7rem;
+		border-radius: 16px;
+		border: 0;
+		color: #044468;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+			inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+	}
+
+	span {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		right: 35px;
+
+		@include iconButton(
+			$bgColor: #044468,
+			$borderRadius: 30%,
+			$fontSize: 0.9rem,
+			$width: 26px,
+			$height: 26px
+		);
+	}
+
+}
