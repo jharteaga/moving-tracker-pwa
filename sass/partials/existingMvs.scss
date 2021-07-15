@@ -1,30 +1,12 @@
-// @import "main.scss";
+
 
 $font-size-big:1.2rem;
 $light-grey : rgba(185, 185, 185,0.5);
 $dark-grey : rgb(83, 83, 83);
 $black : black;
 
-
-//inheritance
-%main-header {
-    background-color: $gray;
-    color: $white;
-    height: 3rem;
-    position: sticky;
-    top: 0;
-    padding: 1rem;
-    text-align: center;
-    font-family: $mainFont;
-    font-size: 0.9em;
-}
-
- %bottom-line {
-    border-bottom: $gray solid 2px;
-}
-%border {
-    border:  $gray solid 2px;
-}
+$iconSize : 2rem;
+$linearForCard : linear-gradient(to bottom, #94d8ff, 1%, #fff);
 
 //css
 *{
@@ -39,55 +21,230 @@ h2 {
     color: aliceblue
 }
 
+.bigContainer {
+    @include backgroundContainer();
+    position: static;
+    
+    @include mediumDevice(){
+        z-index: 0;
+        background: none;
+    }
+    
+
+    
+}
+
+.desktop-bg {
+    // display: none;
+    @include mediumDevice(){
+        // display: block;
+        height: 100vh;
+        background: linear-gradient(
+            180deg
+            , rgba(3, 164, 255, 0.3) 0%, white 15%, white 100%);
+        width: 100%;
+
+
+    }
+}
+
+.superBigContainer{
+
+    @include mediumDevice(){
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding-left: 124px;
+        padding-right: 124px;
+
+    }
+
+    
+}
+
+.ex-desk-left {
+    display: none;
+
+    @include mediumDevice(){
+        display: inline;
+        background-color: $desktop-left-bg-color;
+
+        .left-header {
+            text-align: right;
+            i {
+                @include profile-picture();
+                width: 66px;
+                height: 66px;
+            }
+        }
+
+        .left-main {
+            width: 30vw;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: 2rem;
+            img {
+                width: 100%;
+                object-fit: contain
+            }
+        
+        }
+
+        .left-footer {
+            text-align: center;
+            font-style: italic;
+            font-weight: $mainFont;
+            color:$white;
+            margin-top: 30rem;
+            font-size : $font-size-big
+        }
+    }
+}
+
+
+
 .existing-header {
-    @extend %main-header;
+
+    .existing-search-cntn{
+        display: none;
+    }
+
+    @include mediumDevice(){
+        // height: 3rem;
+    .m-icon, .profile-icon{
+        display: none;
+    }
+
+    .existing-search-cntn{
+        display: flex;
+        width: 60%;
+        margin-left: auto;
+    }
+    }
+   
+    @include header();
+    padding: 1rem 1rem 1rem;
+    align-items: center;
+
+    
+    .m-icon{
+        @include logo();
+
+    }
+
+    .profile-icon{
+        @include profile-picture();
+    }
 }
 
 .existing-header2 {
-    margin-top: 4rem;
-    text-align: center;
-    font-size:$font-size-big;
-    padding-bottom: 1rem;
-    @extend %bottom-line;
-    color: $gray;
+    h1{
+        @include h2();
+        font-size: 40px;
+
+    }
+
+    .plus-icon{
+        display: none;
+    }
+
+    @include mediumDevice(){
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3rem;
+
+        h1{
+            padding-top: 4rem;
+        }
+        .plus-icon{
+            display: inline;
+            text-align: center;
+            padding-top: 2rem;
+        }
+
+        h1 {
+            padding-left: 4rem;
+        }
+
+         .plusBtn {
+            @include iconButton($width:3.5rem,$height:3.5rem);
+            line-height:55px;
+            z-index: -100;
+        }
+    }
 }
 
 .existing-main {
-   
-
+width: 100%;
     h1 {
         color: $gray;
     }
+
+    @include mediumDevice(){
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    .ex-movings {
+        background-color: $text-color;
+        color: $white;
+        width: 70%;
+        border-radius: 10px;
+        padding: 1rem 0.5rem 1rem 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+        
+        // @include mediumDevice(){
+        //     width: auto;
+        //     height: 40vh;
+        //   }
+
+        .place{
+            font-size: 40px;
+            margin-top: 1rem;
+            color: $white;
+            overflow-wrap: break-word;
+        }
+
+        p {
+            overflow-wrap: break-word;
+        }
+
+        .date-p{
+            font-style: italic;
+
+        }
+
+        .exM-cards{
+            display: flex;
+            justify-content: space-between;
+            padding: 0 .5rem 0 .5rem;
+            margin-top: 3rem
+        }
+    }
+
+    .existing-search-cntn{
+        @include mediumDevice(){
+            display: none;
+        }
+    }
+
+    
 }
 
-.existing-search-cntn {
-    @extend %border;
-    margin: 1rem 20px 20px 20px;
-    border-radius: 7px;
-    height: 3rem;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
 
-    i {
-        color: $gray;
-        font-size: 1.7rem;
+.existing-search-cntn{
+    @include justInput(100%);
+    margin-left: 1rem;
+    
 
-    }
-    button, input {
-        border: none;
-        // height: 100%;
-    }
-
-    button {
-        width: 20%;
-        background-color: $white;
-    }
-    input {
-        outline: none;
-        height: 100%;
-        width: 100%;
-      
+    input::placeholder{
+        font-size: 0.8rem;
+        font-family: $mainFont;
     }
 }
 
@@ -95,18 +252,33 @@ h2 {
 .existing-footer {
     position: fixed;
     bottom: 0.5em;
-    width: 100%;
+    // width: 100%;
     color: $gray;
+    // margin-left: 20rem;
+    left: 80%;
+    
+
+    @include mediumDevice(){
+        display: none;
+    }
 
     .plus-cntn {
        text-align: right;
-       width: 95%;
+       width: 90%;
        margin-bottom: 1.5rem;
-
-       i {
-           font-size: 3.5rem;
+       
+       .plus-icon{
+           text-align: center;
+           z-index: 200000;
+        }
+        
+        .plusBtn {
+           @include iconButton($width:3.5rem,$height:3.5rem);
+           line-height:55px;
+        //    z-index: -100;
        }
     }
+
     .footer-cntn {
         display: flex;
         width: 100%;
@@ -126,326 +298,7 @@ h2 {
 }
 
 
-// modal  css
 
-.modal-window-active {
-    position: fixed;
-    z-index: 12000;
-    background-color: $white;
-    width: 90%;
-    height: 95vh;
-    top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    transition: all 0.8s ease-in-out;
-    border-radius: 10px;
-    
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 90%;
-        color: black;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    h1 {
-        color: $gray;
-       @extend %bottom-line;
-        line-height: 4rem;
-        text-align: center;
-    }
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-
-   h2 {
-       font-size: 1em;
-       font-weight: lighter;
-       margin-left: 2rem;
-       color: black;
-   }
-
-    .newMovesInp {
-        background-color: $white;
-        @extend %border;
-        outline: none;
-        transition: all 1s ease-in-out;
-        border-radius: 7px;
-        width: 80%;
-        align-self: center;
-        height: 2.5rem;
-        margin-top: 0.3rem;
-    }
-    
-   button {
-       width: 50%;
-       padding: 0.8rem;
-       border-radius: 10px;
-       @extend %border;
-       background-color: $gray;
-       margin-left: auto;
-       margin-right: auto;
-       color: $white;
-   }
-}
-
-.editModal-window-active {
-    position: fixed;
-    z-index: 12000;
-    background-color: $white;
-    width: 90%;
-    height: 95vh;
-    top: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    transition: all 0.8s ease-in-out;
-    border-radius: 10px;
-    
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 90%;
-        color: black;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    h1 {
-        color: $gray;
-       @extend %bottom-line;
-        line-height: 4rem;
-        text-align: center;
-    }
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-
-   h2 {
-       font-size: 1em;
-       font-weight: lighter;
-       margin-left: 2rem;
-       color: black;
-   }
-
-    .editMovesInp {
-        background-color: $white;
-        @extend %border;
-        outline: none;
-        transition: all 1s ease-in-out;
-        border-radius: 7px;
-        width: 80%;
-        align-self: center;
-        height: 2.5rem;
-        margin-top: 0.3rem;
-    }
-    
-   button {
-       width: 50%;
-       padding: 0.8rem;
-       border-radius: 10px;
-       @extend %border;
-       background-color: $gray;
-       margin-left: auto;
-       margin-right: auto;
-       color: $white;
-   }
-}
-
-.maskForModal {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    background-color: rgba(70, 70, 70,0.8);
-    z-index: 2;
-    transition: all 1s ease-in-out;
-}
-
-.maskForModal-hidden {
-    visibility: hidden;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    z-index: 2;
-    transition: all 1s ease-in-out;
-
-    position: fixed;
-}
-
-.editMaskForModal-hidden {
-    visibility: hidden;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    z-index: 2;
-    transition: all 1s ease-in-out;
-    position: fixed;
-}
-
-.editMaskForModal {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    background-color: rgba(70, 70, 70,0.8);
-    z-index: 2;
-    transition: all 1s ease-in-out;
-}
-
-.editModal-hidden {
-    visibility: hidden;
-    // top: 0;
-    width: 90%;
-    height: 10vh;
-    top: -20rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    position: fixed;
-    z-index: 12000;
-    transition: all 0.8s ease-in-out;
-
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 90%;
-        color: black;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    h1 {
-        color: $gray;
-       @extend %bottom-line;
-        line-height: 4rem;
-        text-align: center;
-    }
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-
-   h2 {
-       font-size: 1em;
-       font-weight: lighter;
-       margin-left: 2rem;
-   }
-
-    .editMovesInp {
-        background-color: $light-grey;
-        @extend %border;
-        outline: none;
-        transition: all 1s ease-in-out;
-        border-radius: 7px;
-        width: 80%;
-        align-self: center;
-        height: 2.5rem;
-        margin-top: 0.3rem;
-    }
-    
-   button {
-       visibility: hidden;
-       width: 50%;
-       padding: 0.8rem;
-       border-radius: 10px;
-       @extend %border;
-       background-color: $gray;
-       margin-left: auto;
-       margin-right: auto;
-       transition: all 0.3s ease-in-out;
-       color: $white;
-   }
-}
-
-.modal-hidden {
-    visibility: hidden;
-    // top: 0;
-    width: 90%;
-    height: 10vh;
-    top: -20rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    position: fixed;
-    z-index: 12000;
-    transition: all 0.8s ease-in-out;
-
-    div {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        height: 90%;
-        color: black;
-    }
-
-    li {
-        list-style: none;
-    }
-
-    h1 {
-        color: $gray;
-       @extend %bottom-line;
-        line-height: 4rem;
-        text-align: center;
-    }
-    ul {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-
-
-   h2 {
-       font-size: 1em;
-       font-weight: lighter;
-       margin-left: 2rem;
-   }
-
-    .newMovesInp {
-        background-color: $light-grey;
-        @extend %border;
-        outline: none;
-        transition: all 1s ease-in-out;
-        border-radius: 7px;
-        width: 80%;
-        align-self: center;
-        height: 2.5rem;
-        margin-top: 0.3rem;
-    }
-    
-   button {
-       visibility: hidden;
-       width: 50%;
-       padding: 0.8rem;
-       border-radius: 10px;
-       @extend %border;
-       background-color: $gray;
-       margin-left: auto;
-       margin-right: auto;
-       transition: all 0.3s ease-in-out;
-       color: $white;
-   }
-}
 
 .ex-cntn{
     width: 80%;
@@ -477,125 +330,155 @@ h2 {
     }
 }
 
-.modal-delete-mask {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    background-color: rgba(167, 167, 167, 0.8);
-    z-index: 2;
-    transition: all 1s ease-in-out;
 
-    .modal-delete{
-        @extend %border;
-        width: 90%;
-        position: fixed;
-        top: 15rem;
-        left: 1rem;
-        right: 1rem;
-        background-color: $white;
-        height: 15rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: all 1s ease-in-out;
 
-        .cross2 {
-            font-size: 5rem;
-            color: $dark-grey;
-
-        }
-
-        h2 {
-            color: $dark-grey;
-            font-size: 1.1em;
-            font-weight: lighter;
-            text-align: center;
-            padding: 0.5em;
-        }
-
-        p {
-            font-size: 0.9em;
-            color: $gray;
-        }
-
-        .delete-btnCntn{
-            margin-top: 1em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        button {
-            @extend %border;
-            border-radius: 10px;
-            width: 46%;
-            height: 2.5rem;
-        }
-
-        .delete {
-            background-color: $gray;
-        }
-    }
+// boostrap modal
+.existing-footer{
+    // z-index: -10000;
 }
 
-.modal-delete-mask-hidden {
-    visibility: hidden;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    // background-color: rgba(167, 167, 167, 0.8);
-    z-index: 2;
-    transition: all 1s ease-in-out;
 
-    .modal-delete{
-        @extend %border;
-        width: 90%;
-        position: fixed;
-        top: -20rem;
-        left: 1rem;
-        right: 1rem;
-        background-color: $white;
-        height: 15rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: all 1s ease-in-out;
-
-        .cross2 {
-            font-size: 5rem;
-            color: $dark-grey;
-
+    // .plus-icon{
+    //     @include iconButton
+    // }
+    .modal-header{
+        border-bottom: none;
+        padding-top: 2rem;
+    
+        .modal-title{
+            color: $label-form-color;
+            font-family: $mainFont;
+            font-size: 2rem;
+            font-weight: bolder;
         }
-
-        h2 {
-            color: $black;
-            font-size: 1.1em;
-            font-weight: lighter;
-            text-align: center;
-            padding: 0.5em;
+    
+    }
+    
+    .modal-content{
+        background: $linearForCard;
+        border: none;
+        
+        @include mediumDevice(){
+            height: 80vh;
+            
         }
-
-        p {
-            font-size: 0.9em;
-            // margin-top: 0.5em;
-        }
-
-        .delete-btnCntn{
-            margin-top: 1em;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        button {
-            @extend %border;
-            border-radius: 10px;
-            width: 46%;
-            height: 2.5rem;
+        
+    }
+    
+    .modal-dialog{
+        margin-top: 2rem;
+        
+        @include mediumDevice(){
+            max-width: 80%;
+            
         }
     }
+    
+    .modal-body {
+        z-index: 100000;
+    
+        .li {
+            padding-left: 0;
+            margin-bottom: 0;
+            
+            span {
+                color:$field-required-color;
+            }
+        }
+    
+        label {
+            text-align: left;
+            font-family: $mainFont;
+            color: $label-form-color;
+            font-size: 1rem;
+            padding-left: 0.5rem;
+        }
+
+        @include mediumDevice(){
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            
+        }
+    }
+    
+    .newMovesInp, .newMovesInpEdit{
+                @include squareButton('secondary',95%);
+                // background-color: $white;
+                // @extend %border;
+                outline: none;
+                transition: all 1s ease-in-out;
+                // border-radius: 7px;
+                // width: 80%;
+                align-self: center;
+                height: 2.5rem;
+                margin-top: 0;
+                box-shadow: $field-drop-shadow;
+                border: none;
+
+                @include mediumDevice(){
+                    border: 1px solid $field-required-color;
+                      height: 4rem;
+                  }
+            }
+    
+    
+    .modal-footer{
+        border-top: none;
+    
+        .save-btn, .save-btn-edit{
+            @include squareButton("primary",85%);
+            height: 50px;
+            text-align: center;
+            line-height: normal;
+            margin-right: auto;
+            margin-left: auto;
+            outline: none;
+
+            @include mediumDevice(){
+               width: 40%;
+              }
+        }
+    }
+
+
+#deleteModal {
+   .modal-body {
+       text-align: center;
+       padding-top: 3rem;
+
+       @include mediumDevice(){
+           display: inline;
+
+           line-height: 3rem;
+
+           
+       }
+   }
+
+   .modal-content{
+       margin-top: 4rem;
+
+       @include mediumDevice(){
+           width: 60%;
+           margin-left: auto;
+           margin-right: auto;
+           height: 30vh;
+       }
+   }
+
+   .modal-footer{
+       justify-content: space-around;
+       flex-direction: row;
+   }
+
+   button{
+       width: 46%;
+
+       &:nth-of-type(2){
+           @include squareButton("primary",46%)
+       }
+       &:nth-of-type(1){
+        @include squareButton("secondary",46%)
+       }
+   }
 }
