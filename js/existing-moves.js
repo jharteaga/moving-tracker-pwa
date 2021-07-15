@@ -18,7 +18,7 @@ const saveBtn = document.querySelector(".save-btn")
 
 let num = 0
 
-createEl = (parent,el, className, className2,moveTo, desc,month, day, year)=> {
+const createEl = (parent,el, className, className2,moveTo, desc,month, day, year)=> {
     const createDiv = document.createElement(el)
     createDiv.classList.add(className)
     createDiv.classList.add(className2)
@@ -27,9 +27,9 @@ createEl = (parent,el, className, className2,moveTo, desc,month, day, year)=> {
     <p class="desc">${desc}</p><p class="date-p">${month} ${day}, ${year}</p>
     </div>
     <div class="exM-cards">
-    <i class="fak fa-edit" data-bs-toggle="modal"  data-bs-target="#edit-modal"></i>
+    <i class="fak fa-feather-edit-2" data-bs-toggle="modal"  data-bs-target="#edit-modal"></i>
     <i class="fak fa-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
-    <!-- Modal -->
+    
     
     </div>`
     parent.appendChild(createDiv)
@@ -78,7 +78,7 @@ saveBtn.addEventListener("click", ()=>{
     
 
     //edit
-    const editBtn = document.querySelectorAll(".fa-edit")
+    const editBtn = document.querySelectorAll(".fa-feather-edit-2")
     
     editBtn[editBtn.length-1].addEventListener("click", ()=>{
         const index = editBtn.length-1

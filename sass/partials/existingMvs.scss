@@ -377,7 +377,7 @@ width: 100%;
     .modal-body {
         z-index: 100000;
     
-        ul {
+        .li {
             padding-left: 0;
             margin-bottom: 0;
             
@@ -386,7 +386,7 @@ width: 100%;
             }
         }
     
-        h2 {
+        label {
             text-align: left;
             font-family: $mainFont;
             color: $label-form-color;
