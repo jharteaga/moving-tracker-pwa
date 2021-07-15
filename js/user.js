@@ -1,4 +1,8 @@
 class User {
+    /**
+     * User class that stores logged in user information
+     * with authentication methods and database methods for user.
+     */
     constructor() {
         this.userId = '';
         this.userName = '';
@@ -31,7 +35,15 @@ class User {
                     await this._addUserDb(email, userName, signup.user.uid);
 
                     //Move to Onboaring page
-                    window.location.href = 'pages/onboarding.html';
+                    // window.location.href = 'pages/onboarding.html';
+
+                    //Move to Welcome page
+                    if (window.location.pathname === '/index.html' || window.location.pathname === '/'){
+                        window.location.href = 'pages/welcome.html';
+                    } else {
+                        window.location.href = 'welcome.html';
+                    };
+
                 }
             } else {
                 this.userError =
@@ -92,12 +104,14 @@ class User {
     }
 
     /**
-     * Verify Login Status
+     * Verifies Login Status
      *
      * Verifies if the current user is logged in, if it is logged in redirects
      * the user to movings page, otherwise redirects to login page.
+     *
+     * @param {Function} callBack
      */
-    isLoggedIn(cb) {
+    isLoggedIn(callBack) {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 if (
@@ -105,12 +119,11 @@ class User {
                     window.location.pathname === '/index.html'
                 ) {
                     console.log('User Logged in');
-                    console.log(window.location.pathname);
                     window.location.href = 'pages/movings.html';
                 } else {
                     await this._getUserDb(user.uid);
-                    if (cb) {
-                        cb();
+                    if (callBack) {
+                        callBack();
                     }
                     console.log(this);
                 }
