@@ -230,14 +230,7 @@ const removeClassFromButtons = () => {
 };
 // **************************************************************
 
-/*detecting change in breakpoint to change edit box modal size*/
 
-let resizeModal = new ResizeModal(900,idEditBoxModalDialog)
-
-resizeModal.onLoad();
-resizeModal.onScreenSizeChange();
-
-/************************************************************** */
 
 /**
  * Box Sizes Modal
@@ -373,3 +366,24 @@ saveNewBoxBtn.addEventListener('click', () => {
 		console.log('call function to save new box');
 	}
 });
+
+
+
+
+/*detecting change in breakpoint to change edit box modal size*/
+/************************************************************** */
+let resizeNewBoxModal = new ResizeModal(900,idNewBoxModalDialog);
+
+resizeNewBoxModal.onLoad();
+resizeNewBoxModal.onScreenSizeChange(); 
+
+/************************************************************** */
+
+/*detecting change in breakpoint to change edit box modal size*/
+
+let resizeEditBoxModal = new ResizeModal(900,idEditBoxModalDialog)
+
+resizeEditBoxModal.onLoad();
+resizeEditBoxModal.onScreenSizeChange();
+
+/************************************************************** */
