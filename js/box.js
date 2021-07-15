@@ -23,7 +23,8 @@ class Box{
             boxSize: boxSize,
             weight: weight,
             fragile: fragile,
-            status: status
+            status: status,
+            dateAdded: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then((doc_ref ) => {
             return "Box successfully saved!";
@@ -91,7 +92,7 @@ class Box{
 
     getItems(idMoving,idBox){
         
-        let items = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`);
+        let items = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).orderBy('dateAdded','desc');
 
         let itemsDocs= [];
 
@@ -109,7 +110,6 @@ class Box{
             });
             return itemsDocs;
         });
-        // return itemsDocs;
     }
     
 }

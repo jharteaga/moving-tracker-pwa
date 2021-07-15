@@ -18,7 +18,8 @@ class Item {
             description: description,
             cathegory: cathegory,
             quantity: quantity,
-            value: value
+            value: value,
+            dateAdded: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(() => {
             return "Item successfully saved!";
