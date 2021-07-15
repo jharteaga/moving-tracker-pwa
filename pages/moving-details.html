@@ -12,8 +12,9 @@
 			integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="../styles/styles.css" />
-		<script src="../js/resizeModal.js" defer></script>
+		<script src="../js/resizeModal.js" defer ></script>
 		<script src="../js/moving-details.js" defer></script>
+		
 	</head>
 
 	<body class="moving-details">
@@ -98,7 +99,7 @@
 						<button class="icon" data-bs-toggle="modal" data-bs-target="#editBoxModal"><span
 								class="fas fa-pencil-alt"></span></button>
 						<button class="icon"><span class="fas fa-trash" data-bs-toggle="modal"
-								data-bs-target="#deleteModal"></span></button>
+								data-bs-target="#deleteBoxModal"></span></button>
 					</div>
 					<div class="box__progress">
 						<p>Add box</p>
@@ -290,7 +291,7 @@
 		</div>
 		<!-- New Box Modal -->
 		<div class="modal fade" id="newBoxModal" tabindex="-1" aria-labelledby="newBoxModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
+			<div id="idNewBoxModalDialog" class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="newBoxModalLabel">Add a Box</h5>
@@ -369,10 +370,10 @@
 						<div class="editBoxContent">
 							<div class="editBoxContent__left">
 								<label for="BoxNameInput" class="field__label">Name<span>*</span></label>
-                <input type="text" id="idEditBoxNameInput" name="BoxNameInput" >
+                				<input type="text" id="idEditBoxNameInput" name="BoxNameInput" >
 
 								<label for="BoxDescriptionInput" class="field__label">Description</label>
-                <input type="text" id="idEditBoxDescriptionInput" name="BoxDescriptionInput" class="">
+               					 <input type="text" id="idEditBoxDescriptionInput" name="BoxDescriptionInput" class="">
                 
 								<label for="BoxLabelList" class="field__label">Box label<span>*</span></label>
 								<select id="idEditBoxLabelList">
@@ -480,7 +481,7 @@
 			</div>
 		</div>
 		<!-- delete -->
-		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deletelabel" aria-hidden="true">
+		<div class="modal fade" id="deleteBoxModal" tabindex="-1" aria-labelledby="deletelabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -507,7 +508,11 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
-		<script src="../js/moving-details.js"></script>
+				
+		
+	
 	</body>
+
+	
 
 </html>
