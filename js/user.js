@@ -4,14 +4,14 @@ class User {
      * with authentication methods and database methods for user.
      */
     constructor() {
-        this.userId = '';
-        this.userName = '';
-        this.email = '';
+        this.userId = "";
+        this.userName = "";
+        this.email = "";
         this.locations = [];
         this.sizes = [];
         this.movings = [];
-        this.createdAt = '';
-        this.userError = '';
+        this.createdAt = "";
+        this.userError = "";
     }
 
     /**
@@ -31,23 +31,25 @@ class User {
                     password
                 );
                 if (signup.user.uid) {
-                    console.log('User Signed up');
+                    console.log("User Signed up");
                     await this._addUserDb(email, userName, signup.user.uid);
 
                     //Move to Onboaring page
                     // window.location.href = 'pages/onboarding.html';
 
                     //Move to Welcome page
-                    if (window.location.pathname === '/index.html' || window.location.pathname === '/'){
-                        window.location.href = 'pages/welcome.html';
+                    if (
+                        window.location.pathname === "/index.html" ||
+                        window.location.pathname === "/"
+                    ) {
+                        window.location.href = "pages/welcome.html";
                     } else {
-                        window.location.href = 'welcome.html';
-                    };
-
+                        window.location.href = "welcome.html";
+                    }
                 }
             } else {
                 this.userError =
-                    'Confirmation password does not match password field';
+                    "Confirmation password does not match password field";
             }
         } catch (error) {
             this.userError = error.message;
@@ -69,15 +71,15 @@ class User {
                 password
             );
             if (login.user.uid) {
-                console.log('User Logged in');
+                console.log("User Logged in");
                 await this._getUserDb(login.user.uid);
 
                 //Move to existing Moving page
-                if (window.location.pathname !== '/pages/movings.html') {
-                    window.location.pathname = 'pages/movings.html';
+                if (window.location.pathname !== "/pages/movings.html") {
+                    window.location.pathname = "movings.html";
                 }
             } else {
-                this.userError = 'Login Error';
+                this.userError = "Login Error";
             }
         } catch (error) {
             this.userError = error.message;
@@ -93,10 +95,10 @@ class User {
     async userLogout() {
         try {
             await auth.signOut();
-            console.log('User Logged Out');
-            this.userId = '';
-            this.userName = '';
-            this.email = '';
+            console.log("User Logged Out");
+            this.userId = "";
+            this.userName = "";
+            this.email = "";
         } catch (error) {
             this.userError = error.message;
             console.log(error.message);
@@ -115,11 +117,11 @@ class User {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 if (
-                    window.location.pathname === '/' ||
-                    window.location.pathname === '/index.html'
+                    window.location.pathname === "/" ||
+                    window.location.pathname === "/index.html"
                 ) {
-                    console.log('User Logged in');
-                    window.location.href = 'pages/movings.html';
+                    console.log("User Logged in");
+                    window.location.href = "pages/movings.html";
                 } else {
                     await this._getUserDb(user.uid);
                     if (callBack) {
@@ -128,10 +130,13 @@ class User {
                     console.log(this);
                 }
             } else {
-                if (window.location.pathname === '/') {
+                if (
+                    window.location.pathname === "/" ||
+                    window.location.pathname === "/index.html"
+                ) {
                     return;
-                } else if (window.location.pathname !== '/pages/sign-in.html') {
-                    window.location.href = 'pages/sign-in.html';
+                } else if (window.location.pathname !== "/pages/sign-in.html") {
+                    window.location.href = "sign-in.html";
                 }
             }
         });
@@ -154,7 +159,7 @@ class User {
                 createdAt: firebase.firestore.Timestamp.now(),
             };
 
-            await db.collection('users').doc(userId).set(data);
+            await db.collection("users").doc(userId).set(data);
 
             await this._getUserDb(userId);
         } catch (error) {
@@ -170,7 +175,7 @@ class User {
      */
     async _getUserDb(userId) {
         try {
-            const getDoc = await db.collection('users').doc(userId).get();
+            const getDoc = await db.collection("users").doc(userId).get();
 
             const doc = getDoc.data();
 
@@ -183,8 +188,8 @@ class User {
                 this.movings = doc.movings;
                 this.createdAt = doc.createdAt;
             } else {
-                console.log('Firestore error adding user to database');
-                this.userError = 'Firestore error adding user to database';
+                console.log("Firestore error adding user to database");
+                this.userError = "Firestore error adding user to database";
             }
         } catch (error) {
             this.userError = error.message;
@@ -200,7 +205,7 @@ class User {
     async updateUserMovings(userMovings) {
         console.log(userMovings);
         try {
-            await db.collection('users').doc(this.userId).update({
+            await db.collection("users").doc(this.userId).update({
                 movings: userMovings,
             });
 
@@ -223,7 +228,7 @@ class User {
             };
 
             await db
-                .collection('users')
+                .collection("users")
                 .doc(this.userId)
                 .set(data, { merge: true });
 

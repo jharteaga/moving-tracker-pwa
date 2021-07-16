@@ -11,16 +11,16 @@ class Moving {
      * @param {Date=} date           when is the moving taking place
      */
     constructor(
-        userId = '',
-        movingTitle = '',
-        description = '',
-        from = '',
-        to = '',
-        date = ''
+        userId = "",
+        movingTitle = "",
+        description = "",
+        from = "",
+        to = "",
+        date = ""
     ) {
         this.userId = userId;
-        this.movingId = '';
-        this.createdAt = '';
+        this.movingId = "";
+        this.createdAt = "";
         this.movingTitle = movingTitle;
         this.movingDescription = description;
         this.from = from;
@@ -28,26 +28,9 @@ class Moving {
         this.date = date;
         this.boxes = [];
         this.collaborators = [];
-        this.labels = ['Kitchen', 'Master Bedroom', 'Dinning Room', 'Bathroom'];
-        this.sizes = {
-            small: {
-                length: 20,
-                width: 30,
-                height: 20,
-            },
-            medium: {
-                length: 30,
-                width: 40,
-                large: 30,
-            },
-            large: {
-                length: 40,
-                width: 50,
-                large: 40,
-            },
-            custom: {},
-        };
-        this.movingError = '';
+        this.labels = [];
+        this.sizes = {};
+        this.movingError = "";
     }
 
     /**
@@ -67,8 +50,30 @@ class Moving {
                 boxes: [],
                 collaborators: {},
                 createdAt: firebase.firestore.Timestamp.now(),
-                labels: this.labels,
-                sizes: this.sizes,
+                labels: [
+                    "Kitchen",
+                    "Master Bedroom",
+                    "Dinning Room",
+                    "Bathroom",
+                ],
+                sizes: {
+                    small: {
+                        length: 20,
+                        width: 30,
+                        height: 20,
+                    },
+                    medium: {
+                        length: 30,
+                        width: 40,
+                        large: 30,
+                    },
+                    large: {
+                        length: 40,
+                        width: 50,
+                        large: 40,
+                    },
+                    custom: {},
+                },
             };
 
             if (
@@ -76,7 +81,7 @@ class Moving {
                     (e) => e.movingTitle === this.movingTitle
                 )
             ) {
-                await db.collection('movings').doc().set(data);
+                await db.collection("movings").doc().set(data);
 
                 // gets moving created
                 await this.getMovingByTitle(
@@ -86,7 +91,7 @@ class Moving {
 
                 // updates movings on user instance
                 await userInstance.updateUserMovings(await this.getMovings());
-                this.movingError = '';
+                this.movingError = "";
             } else {
                 console.log(
                     `There is already a moving with that title for ${userInstance.userName}.`
@@ -108,19 +113,19 @@ class Moving {
     async deleteMoving(userInstance, movingId) {
         try {
             if (userInstance.movings.find((e) => e.movingId === movingId)) {
-                await db.collection('movings').doc(movingId).delete();
+                await db.collection("movings").doc(movingId).delete();
                 await userInstance.updateUserMovings(await this.getMovings());
                 this.userId = userInstance.userId;
-                this.movingId = '';
-                this.movingTitle = '';
-                this.description = '';
-                this.from = '';
-                this.to = '';
-                this.date = '';
+                this.movingId = "";
+                this.movingTitle = "";
+                this.description = "";
+                this.from = "";
+                this.to = "";
+                this.date = "";
                 this.boxes = [];
                 this.collaborators = {};
-                this.createdAt = '';
-                this.movingError = '';
+                this.createdAt = "";
+                this.movingError = "";
             } else {
                 console.log(`This moving does not exist.`);
                 this.movingError = `This moving does not exist.`;
@@ -160,12 +165,12 @@ class Moving {
             };
 
             await db
-                .collection('movings')
+                .collection("movings")
                 .doc(this.movingId)
                 .update(data, { merge: true });
             await userInstance.updateUserMovings(await this.getMovings());
 
-            this.movingError = '';
+            this.movingError = "";
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -182,9 +187,9 @@ class Moving {
     async getMovingByTitle(userId, movingTitle) {
         try {
             const getDoc = await db
-                .collection('movings')
-                .where('creatorId', '==', userId)
-                .where('movingTitle', '==', movingTitle)
+                .collection("movings")
+                .where("creatorId", "==", userId)
+                .where("movingTitle", "==", movingTitle)
                 .get();
 
             const doc = [];
@@ -203,7 +208,7 @@ class Moving {
             this.boxes = doc[0].data().boxes;
             this.collaborators = doc[0].data().collaborators;
             this.createdAt = doc[0].data().createdAt;
-            this.movingError = '';
+            this.movingError = "";
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -220,7 +225,7 @@ class Moving {
      */
     async getMovingById(movingId) {
         try {
-            const docDB = await db.collection('movings').doc(movingId).get();
+            const docDB = await db.collection("movings").doc(movingId).get();
             const doc = docDB.data();
 
             if (doc) {
@@ -234,8 +239,50 @@ class Moving {
                 this.boxes = doc.boxes;
                 this.collaborators = doc.collaborators;
                 this.createdAt = doc.createdAt;
-                this.movingError = '';
+                this.movingError = "";
+                this.labels = doc.labels;
             }
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    /**
+     * Gets a moving snapshot by Id
+     *
+     * @param {String} movingId
+     * @param {Function} callBack
+     * @returns {Object} User Instance
+     */
+    async getMovingSnapshotById(movingId, callBack) {
+        try {
+            db.collection("movings")
+                .doc(movingId)
+                .onSnapshot((snapshot) => {
+                    const doc = snapshot.data();
+
+                    if (doc) {
+                        this.userId = doc.creatorId;
+                        this.movingId = snapshot.id;
+                        this.movingTitle = doc.movingTitle;
+                        this.description = doc.description;
+                        this.from = doc.from;
+                        this.to = doc.to;
+                        this.date = doc.date;
+                        this.boxes = doc.boxes;
+                        this.collaborators = doc.collaborators;
+                        this.createdAt = doc.createdAt;
+                        this.movingError = "";
+                        this.labels = doc.labels;
+                    }
+
+                    if (callBack) {
+                        callBack();
+                    }
+                });
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -252,8 +299,8 @@ class Moving {
     getMovingsList(callBack) {
         try {
             if (this.userId) {
-                db.collection('movings')
-                    .where('creatorId', '==', this.userId)
+                db.collection("movings")
+                    .where("creatorId", "==", this.userId)
                     .onSnapshot(callBack);
             }
         } catch (error) {
@@ -272,8 +319,8 @@ class Moving {
     async getMovings() {
         try {
             const getDoc = await db
-                .collection('movings')
-                .where('creatorId', '==', this.userId)
+                .collection("movings")
+                .where("creatorId", "==", this.userId)
                 .get();
 
             const doc = [];
@@ -303,7 +350,7 @@ class Moving {
      */
     getCollaborators(callBack) {
         try {
-            db.collection('movings').doc(this.movingId).onSnapshot(callBack);
+            db.collection("movings").doc(this.movingId).onSnapshot(callBack);
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -320,7 +367,7 @@ class Moving {
     async addCollaborator(collaboratorEmail) {
         try {
             await db
-                .collection('movings')
+                .collection("movings")
                 .doc(this.movingId)
                 .update({
                     collaborators:
@@ -344,7 +391,7 @@ class Moving {
     async deleteCollaborator(collaboratorEmail) {
         try {
             await db
-                .collection('movings')
+                .collection("movings")
                 .doc(this.movingId)
                 .update({
                     collaborators:
@@ -367,7 +414,7 @@ class Moving {
      */
     getLabels(callBack) {
         try {
-            db.collection('movings').doc(this.movingId).onSnapshot(callBack);
+            db.collection("movings").doc(this.movingId).onSnapshot(callBack);
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
@@ -384,7 +431,7 @@ class Moving {
     async addLabel(newLabel) {
         try {
             await db
-                .collection('movings')
+                .collection("movings")
                 .doc(this.movingId)
                 .update({
                     labels: firebase.firestore.FieldValue.arrayUnion(newLabel),
@@ -405,7 +452,7 @@ class Moving {
     async deleteLabel(labelToDelete) {
         try {
             await db
-                .collection('movings')
+                .collection("movings")
                 .doc(this.movingId)
                 .update({
                     labels: firebase.firestore.FieldValue.arrayRemove(
@@ -430,7 +477,7 @@ class Moving {
         try {
             const data = {};
             data[size] = { newMeasures };
-            await db.collection('movings').doc(this.movingId).update(data);
+            await db.collection("movings").doc(this.movingId).update(data);
         } catch (error) {
             this.movingError = error.message;
             console.log(`Error code: ${error.code}`);
