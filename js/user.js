@@ -76,7 +76,7 @@ class User {
 
                 //Move to existing Moving page
                 if (window.location.pathname !== "/pages/movings.html") {
-                    window.location.pathname = "movings.html";
+                    window.location.pathname = "/pages/movings.html";
                 }
             } else {
                 this.userError = "Login Error";
