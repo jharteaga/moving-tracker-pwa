@@ -7,14 +7,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Moving Details</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
+			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+			crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
 			integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="../styles/styles.css" />
-		<script src="../js/resizeModal.js" defer ></script>
+		<script src="../js/resizeModal.js" defer></script>
 		<script src="../js/moving-details.js" defer></script>
-		
 	</head>
 
 	<body class="moving-details">
@@ -112,12 +112,14 @@
 			<button class="options-btn round"><span class="fas fa-plus"></span></button>
 		</div>
 		<!-- Box Labels Modal -->
-		<div class="modal fade" id="boxLabelsModal" tabindex="-1" aria-labelledby="boxLabelsModalLabel" aria-hidden="true">
+		<div class="modal fade" id="boxLabelsModal" tabindex="-1" aria-labelledby="boxLabelsModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="boxLabelsModalLabel"> Box Labels </h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer border-0">
@@ -127,12 +129,14 @@
 			</div>
 		</div>
 		<!-- Box Sizes Modal -->
-		<div class="modal fade" id="boxSizesModal" tabindex="-1" aria-labelledby="boxSizesModalLabel" aria-hidden="true">
+		<div class="modal fade" id="boxSizesModal" tabindex="-1" aria-labelledby="boxSizesModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="boxSizesModalLabel"> Box Sizes </h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
 						<p>Define box sizes</p>
@@ -140,13 +144,13 @@
 						<div class="accordion" id="boxSizesAccordion">
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingOne">
-									<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-										aria-expanded="true" aria-controls="collapseOne">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse"
+										data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 										<span class="boxSizeTitle">Small</span>
 									</button>
 								</h2>
-								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-									data-bs-parent="#boxSizesAccordion">
+								<div id="collapseOne" class="accordion-collapse collapse show"
+									aria-labelledby="headingOne" data-bs-parent="#boxSizesAccordion">
 									<div class="accordion-body">
 										<div class="box-size">
 											<div class="box-size__image">
@@ -155,17 +159,20 @@
 											<div class="box-size__measures">
 												<div class="box-size__field small-field">
 													<label>Length<span>&#10038;</span></label>
-													<input type="text" name="smallLengthInput" id="smallLengthInput" class="small-box-size">
+													<input type="text" name="smallLengthInput" id="smallLengthInput"
+														class="small-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field small-field">
 													<label>Width<span>&#10038;</span></label>
-													<input type="text" name="smallWidthInput" id="smallWidthInput" class="small-box-size">
+													<input type="text" name="smallWidthInput" id="smallWidthInput"
+														class="small-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field small-field">
 													<label>Height<span>&#10038;</span></label>
-													<input type="text" name="smallHeightInput" id="smallHeightInput" class="small-box-size">
+													<input type="text" name="smallHeightInput" id="smallHeightInput"
+														class="small-box-size">
 													<small>cm.</small>
 												</div>
 											</div>
@@ -190,17 +197,20 @@
 											<div class="box-size__measures">
 												<div class="box-size__field medium-field">
 													<label>Length<span>&#10038;</span></label>
-													<input type="text" name="mediumLengthInput" id="mediumLengthInput" class="medium-box-size">
+													<input type="text" name="mediumLengthInput" id="mediumLengthInput"
+														class="medium-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field medium-field">
 													<label>Width<span>&#10038;</span></label>
-													<input type="text" name="mediumWidthInput" id="mediumWidthInput" class="medium-box-size">
+													<input type="text" name="mediumWidthInput" id="mediumWidthInput"
+														class="medium-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field medium-field">
 													<label>Height<span>&#10038;</span></label>
-													<input type="text" name="mediumHeightInput" id="mediumHeightInput" class="medium-box-size">
+													<input type="text" name="mediumHeightInput" id="mediumHeightInput"
+														class="medium-box-size">
 													<small>cm.</small>
 												</div>
 											</div>
@@ -211,12 +221,13 @@
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingThree">
 									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-										data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+										data-bs-target="#collapseThree" aria-expanded="false"
+										aria-controls="collapseThree">
 										<span class="boxSizeTitle">Large</span>
 									</button>
 								</h2>
-								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-									data-bs-parent="#boxSizesAccordion">
+								<div id="collapseThree" class="accordion-collapse collapse"
+									aria-labelledby="headingThree" data-bs-parent="#boxSizesAccordion">
 									<div class="accordion-body">
 										<div class="box-size">
 											<div class="box-size__image">
@@ -225,17 +236,20 @@
 											<div class="box-size__measures">
 												<div class="box-size__field large-field">
 													<label>Length<span>&#10038;</span></label>
-													<input type="text" name="largeLengthInput" id="largeLengthInput" class="large-box-size">
+													<input type="text" name="largeLengthInput" id="largeLengthInput"
+														class="large-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field large-field">
 													<label>Width<span>&#10038;</span></label>
-													<input type="text" name="largeWidthInput" id="largeWidthInput" class="large-box-size">
+													<input type="text" name="largeWidthInput" id="largeWidthInput"
+														class="large-box-size">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field large-field">
 													<label>Height<span>&#10038;</span></label>
-													<input type="text" name="largeHeightInput" id="largeHeightInput" class="large-box-size">
+													<input type="text" name="largeHeightInput" id="largeHeightInput"
+														class="large-box-size">
 													<small>cm.</small>
 												</div>
 											</div>
@@ -246,12 +260,13 @@
 							<div class="accordion-item">
 								<h2 class="accordion-header" id="headingFourth">
 									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-										data-bs-target="#collapseFourth" aria-expanded="false" aria-controls="collapseThree">
+										data-bs-target="#collapseFourth" aria-expanded="false"
+										aria-controls="collapseThree">
 										<span class="boxSizeTitle">Custom</span>
 									</button>
 								</h2>
-								<div id="collapseFourth" class="accordion-collapse collapse" aria-labelledby="headingFourth"
-									data-bs-parent="#boxSizesAccordion">
+								<div id="collapseFourth" class="accordion-collapse collapse"
+									aria-labelledby="headingFourth" data-bs-parent="#boxSizesAccordion">
 									<div class="accordion-body">
 										<div class="box-size">
 											<div class="box-size__image">
@@ -260,20 +275,20 @@
 											<div class="box-size__measures">
 												<div class="box-size__field custom-field">
 													<label>Length<span>&#10038;</span></label>
-													<input type="text" name="customLengthInput" id="customLengthInput" class="custom-box-size"
-														value="0">
+													<input type="text" name="customLengthInput" id="customLengthInput"
+														class="custom-box-size" value="0">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field custom-field">
 													<label>Width<span>&#10038;</span></label>
-													<input type="text" name="customWidthInput" id="customWidthInput" class="custom-box-size"
-														value="0">
+													<input type="text" name="customWidthInput" id="customWidthInput"
+														class="custom-box-size" value="0">
 													<small>cm.</small>
 												</div>
 												<div class="box-size__field custom-field">
 													<label>Height<span>&#10038;</span></label>
-													<input type="text" name="customHeightInput" id="customHeightInput" class="custom-box-size"
-														value="0">
+													<input type="text" name="customHeightInput" id="customHeightInput"
+														class="custom-box-size" value="0">
 													<small>cm.</small>
 												</div>
 											</div>
@@ -295,7 +310,8 @@
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="newBoxModalLabel">Add a Box</h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
 						<div class="input-wrapper" id="newBoxNameField">
@@ -347,7 +363,8 @@
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="collaboratorModalLabel"> Collaborators </h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body"></div>
 					<div class="modal-footer border-0">
@@ -357,24 +374,22 @@
 			</div>
 		</div>
 		<!-- Edit box -->
-
 		<div class="modal fade " id="editBoxModal" tabindex="-1" aria-labelledby="editModalLabel" role="dialog"
 			aria-hidden="true">
-			<div id="idEditBoxModalDialog" class="modal-dialog " >
+			<div id="idEditBoxModalDialog" class="modal-dialog ">
 				<div class="modal-content ">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="collaboratorModalLabel"> Edit Box </h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
 						<div class="editBoxContent">
 							<div class="editBoxContent__left">
 								<label for="BoxNameInput" class="field__label">Name<span>*</span></label>
-                				<input type="text" id="idEditBoxNameInput" name="BoxNameInput" >
-
+								<input type="text" id="idEditBoxNameInput" name="BoxNameInput">
 								<label for="BoxDescriptionInput" class="field__label">Description</label>
-               					 <input type="text" id="idEditBoxDescriptionInput" name="BoxDescriptionInput" class="">
-                
+								<input type="text" id="idEditBoxDescriptionInput" name="BoxDescriptionInput" class="">
 								<label for="BoxLabelList" class="field__label">Box label<span>*</span></label>
 								<select id="idEditBoxLabelList">
 									<option value="0" selected>Select</option>
@@ -383,10 +398,8 @@
 									<option value="3">Bedroom 2</option>
 									<option value="4">Bathroom 1</option>
 								</select>
-
 								<label for="BoxDimensionsInput" class="field__label">Dimensions<span>*</span></label>
 								<div class="editBoxContent__boxDimensionsButtons">
-									
 									<div><button id="idEditBoxbtnDimensione_Small">Small</button></div>
 									<div><button id="idEditBoxbtnDimensione_Medium">Medium</button></div>
 									<div><button id="idEditBoxbtnDimensione_Large">Large</button></div>
@@ -399,12 +412,10 @@
 									<input type="text" id="BoxWeightInput" name="BoxWeightInput" class="">
 									<label for="BoxDimensionsInput" class="field__label">Kg</label>
 								</div>
-
 								<div class="form-check form-switch editBoxContent__editBoxSwitch">
 									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
 									<label class="field__label" for="flexSwitchCheckDefault">Label as fragile</label>
-								  </div>
-
+								</div>
 								<div class="form-check form-switch editBoxContent__editBoxSwitch">
 									<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
 									<div>
@@ -417,7 +428,8 @@
 					</div>
 					<div class="modal-footer border-0">
 						<div class="editBoxContent__footerButtons">
-							<button id="idbtnEditBoxSave" type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Save </button>
+							<button id="idbtnEditBoxSave" type="button" class="btn btn-secondary"
+								data-bs-dismiss="modal"> Save </button>
 						</div>
 					</div>
 				</div>
@@ -429,7 +441,8 @@
 				<div class="modal-content">
 					<div class="modal-header border-0">
 						<h5 class="modal-title" id="pdfModalLabel"> Dishes 1 </h5>
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
 						<div class="pdfBoxContent__container">
@@ -442,7 +455,8 @@
 							<div class="pdfBoxContent__left">
 								<div class="pdfBoxContent__boxDescriptionBorderThicker">
 									<label class="pdfBoxContent__label">Description:</label>
-									<label id="idlblDescription" class="pdfBoxContent__labelDesc">Plates, bowls and side plates</label>
+									<label id="idlblDescription" class="pdfBoxContent__labelDesc">Plates, bowls and side
+										plates</label>
 								</div>
 								<div class="pdfBoxContent__boxDescription">
 									<label class="pdfBoxContent__label">Box Label:</label>
@@ -463,13 +477,15 @@
 							</div>
 							<div class="pdfBoxContent__right">
 								<div class="pdfBoxContent__boxDescriptionBorderThickerAddress">
-									<label class="pdfBoxContent__label"><span class="fak fa-moving"></span>&nbsp;&nbsp;Move to:</label>
-									<label id="idlblAddressMove" class="pdfBoxContent__labelDesc">1199 Marinaside Cescent, Vancouver V6Z
-										2Y2</label>
+									<label class="pdfBoxContent__label"><span
+											class="fak fa-moving"></span>&nbsp;&nbsp;Move to:</label>
+									<label id="idlblAddressMove" class="pdfBoxContent__labelDesc">1199 Marinaside
+										Cescent, Vancouver V6Z 2Y2</label>
 								</div>
 							</div>
 							<div class="pdfBoxContent__bottom">
-								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span class="fak fa-fragile-1"></span>FRAGILE</label>
+								<label id="lblFragile" class="pdfBoxContent__labelFragile"><span
+										class="fak fa-fragile-1"></span>FRAGILE</label>
 							</div>
 						</div>
 					</div>
@@ -486,7 +502,8 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<!-- <h5 class="modal-title" id="newBoxModalLabel"> Add a Box </h5> -->
-						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+						<button type="button" data-bs-dismiss="modal" aria-label="Close"><span
+								class="fas fa-times"></span></button>
 					</div>
 					<div class="modal-body">
 						<div class="divModalButtons">
@@ -508,11 +525,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 			crossorigin="anonymous"></script>
-				
-		
-	
 	</body>
-
-	
 
 </html>
