@@ -65,12 +65,12 @@ class Moving {
                     medium: {
                         length: 30,
                         width: 40,
-                        large: 30,
+                        height: 30,
                     },
                     large: {
                         length: 40,
                         width: 50,
-                        large: 40,
+                        height: 40,
                     },
                     custom: {},
                 },
@@ -274,6 +274,7 @@ class Moving {
                         this.date = doc.date;
                         this.boxes = doc.boxes;
                         this.collaborators = doc.collaborators;
+                        this.sizes = doc.sizes;
                         this.createdAt = doc.createdAt;
                         this.movingError = "";
                         this.labels = doc.labels;
@@ -473,10 +474,9 @@ class Moving {
      * @param {String} size        Size objective to modify
      * @param {Object} newMeasures Object with keys length, width and height
      */
-    async updateSize(size, newMeasures) {
+    async updateSizes(newMeasures) {
         try {
-            const data = {};
-            data[size] = { newMeasures };
+            const data = { sizes: newMeasures };
             await db.collection("movings").doc(this.movingId).update(data);
         } catch (error) {
             this.movingError = error.message;
