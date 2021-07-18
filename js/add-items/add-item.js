@@ -69,14 +69,14 @@ const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value
       
  
     let item = new Item();
-  
+    let msgRetrived = ""
     if (idItem=="")
         {
-            let msg = item.add(idMoving,idBox,name,description, category, qty, value);
+            item.add(idMoving,idBox,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg});
         }
     else
-        {
-            let msg = item.update(idMoving,idBox,idItem,name,description, category, qty, value);
+        {            
+            item.update(idMoving,idBox,idItem,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg});;
         }
     // msg needs to be displayed to user
 

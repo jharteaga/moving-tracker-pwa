@@ -12,7 +12,7 @@ class Item {
     }
 
     add(idMoving, idBox, name, description="", cathegory="", quantity="",value="") {
-        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).add({
+        return db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).add({
             idBox: idBox,
             name: name,
             description: description,
@@ -30,7 +30,7 @@ class Item {
     }
 
     delete(idMoving,idBox,IdItem){
-        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem).delete().then(() => {
+        return db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem).delete().then(() => {
             return "Item successfully deleted!";
         }).catch((error) => {
             return "Error removing item: ", error;
@@ -73,7 +73,6 @@ class Item {
                         value: doc.data().value
                     }
                 );
-                console.log(item);
                 return item;
             } else {
                 return "No item found!";
