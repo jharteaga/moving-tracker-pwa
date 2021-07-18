@@ -10,12 +10,17 @@ const moving = new Moving();
 user.isLoggedIn(async () => {
     const moving = new Moving(user.userId);
     moving.getMovingsList((snapshot) => {
-        movingsArr.length = 0;
-        snapshot.forEach((doc) => {
-            movingsArr.push(doc);
+        moving.getMovingsCollaboratorList(user.email, (snapshotCollab) => {
+            movingsArr.length = 0;
+            snapshot.forEach((doc) => {
+                movingsArr.push(doc);
+            });
+            snapshotCollab.forEach((docCollab) => {
+                movingsArr.push(docCollab);
+            });
+            // console.log(snapshotCollab);
+            renderMovings();
         });
-        console.log(movingsArr);
-        renderMovings();
     });
 });
 /**
@@ -24,6 +29,7 @@ user.isLoggedIn(async () => {
 
 const movingsOutput = document.querySelector(".movings-wrapper");
 const movingsArr = [];
+const movingsCollabArr = [];
 
 function renderMovings() {
     movingsOutput.innerHTML = "";
