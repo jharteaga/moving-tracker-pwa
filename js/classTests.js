@@ -4,8 +4,6 @@
 //  ***************************************************************************
 //  ***************************************************************************
 
-const user = new User();
-
 // user.userSignUp('pepito@gmail.com', 'Pepito', '1232131', '1232131')
 //     .then(() => {
 //         console.log(
@@ -153,7 +151,7 @@ const user = new User();
 //     });
 
 // let movingArr = [];
-
+const user = new User();
 user.isLoggedIn(async () => {
     const moving = new Moving(user.userId);
     // await moving.getMovingById('GqYTzfGv2MzOcKZwhesI');

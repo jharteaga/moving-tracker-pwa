@@ -1,4 +1,24 @@
 /**
+ *
+ * User and Moving instance declarations
+ *
+ */
+
+const user = new User();
+const moving = new Moving();
+
+user.isLoggedIn(async () => {
+    const moving = new Moving(user.userId);
+    moving.getMovingsList((snapshot) => {
+        movingsArr.length = 0;
+        snapshot.forEach((doc) => {
+            movingsArr.push(doc);
+        });
+        console.log(movingsArr);
+        renderMovings();
+    });
+});
+/**
  * Movings Options Menu (Toggle plus menu button)
  */
 
@@ -92,7 +112,6 @@ saveEditMovingBtn.addEventListener("submit", async (event) => {
     );
 });
 
-const moving = new Moving();
 function addEventListersEdit() {
     const editButtons = document.querySelectorAll(".button-edit");
     editButtons.forEach((button) => {

@@ -10,7 +10,7 @@ const moving = new Moving();
  * Fetch labels snapshot from firebase to update ui, uses movingId from
  * session storage.
  */
-function fetchLabels() {
+function fetchMovingDetails() {
     moving.getMovingSnapshotById(
         window.sessionStorage.getItem("movingId"),
         () => {
@@ -19,13 +19,66 @@ function fetchLabels() {
                 boxLabels.push({ id: boxLabels.length + 1, name: label });
             });
             buildBoxLabels(boxLabels);
+            collaborators.length = 0;
+            moving.collaborators.forEach((collaborator) => {
+                collaborators.push({
+                    id: collaborators.length + 1,
+                    name: collaborator,
+                });
+            });
+            buildCollaborators(collaborators);
+            console.log(
+                moving.sizes[Object.keys(moving.sizes)[1]].height,
+                Object.keys(moving.sizes)[1]
+            );
+
+            /**
+             * Populates sizes details on page load
+             */
+            Object.keys(moving.sizes).forEach((size) => {
+                switch (size) {
+                    case "small":
+                        smallInputs[0].value = moving.sizes[size].length;
+                        smallInputs[1].value = moving.sizes[size].width;
+                        smallInputs[2].value = moving.sizes[size].height;
+
+                        break;
+                    case "medium":
+                        mediumInputs[0].value = moving.sizes[size].length;
+                        mediumInputs[1].value = moving.sizes[size].width;
+                        mediumInputs[2].value = moving.sizes[size].height;
+
+                        break;
+                    case "large":
+                        largeInputs[0].value = moving.sizes[size].length;
+                        largeInputs[1].value = moving.sizes[size].width;
+                        largeInputs[2].value = moving.sizes[size].height;
+
+                        break;
+                    case "custom":
+                        customInputs[0].value = moving.sizes[size].length
+                            ? moving.sizes[size].length
+                            : "0";
+                        customInputs[1].value = moving.sizes[size].width
+                            ? moving.sizes[size].width
+                            : "0";
+                        customInputs[2].value = moving.sizes[size].height
+                            ? moving.sizes[size].height
+                            : "0";
+
+                        break;
+
+                    default:
+                        break;
+                }
+            });
         }
     );
 }
 
 user.isLoggedIn(async () => {
     moving.userId = user.userId;
-    fetchLabels();
+    fetchMovingDetails();
 });
 
 /**
@@ -79,7 +132,7 @@ const addInputLabel = () => {
             // });
 
             moving.addLabel(newBoxLabelInput.value);
-            fetchLabels();
+            fetchMovingDetails();
         }
     });
 };
@@ -117,7 +170,7 @@ const buildBoxLabels = (labelsList) => {
                 console.log(labelToDelete);
                 await moving.deleteLabel(labelToDelete);
 
-                fetchLabels();
+                fetchMovingDetails();
             });
         });
     }
@@ -127,6 +180,12 @@ const buildBoxLabels = (labelsList) => {
 // buildBoxLabels(boxLabels);
 
 /**
+ *
+ * Collaborators
+ *
+ */
+
+/**
  * Collaborator Modal
  */
 const modalBodyCollaborator = document.querySelector(
@@ -134,7 +193,7 @@ const modalBodyCollaborator = document.querySelector(
 );
 
 //Dummy Array to loop through every collaborator for the moving
-const collaborators = [{ id: 1, name: "Jose Arteaga" }];
+const collaborators = [];
 
 /**
  * Build the last input inside the collaborator modal
@@ -163,12 +222,13 @@ const addInputCollaborator = () => {
         );
 
         if (newCollaboratorInput.value) {
-            collaborators.push({
-                id: collaborators.length + 1,
-                name: newCollaboratorInput.value,
-            });
+            // collaborators.push({
+            //     id: collaborators.length + 1,
+            //     name: newCollaboratorInput.value,
+            // });
 
-            buildCollaborators(collaborators);
+            moving.addCollaborator(newCollaboratorInput.value);
+            fetchMovingDetails();
         }
     });
 };
@@ -199,16 +259,20 @@ const buildCollaborators = (collaboratorsList) => {
 
             modalBodyCollaborator.appendChild(collaboratorContainer);
 
-            spanTrash.addEventListener("click", function () {
-                collaborators.splice(index, 1);
-                buildCollaborators(collaborators);
+            spanTrash.addEventListener("click", async function (e) {
+                // collaborators.splice(index, 1);
+                const collaboratorToDelete =
+                    e.target.parentElement.children[0].textContent;
+                console.log(collaboratorToDelete);
+                await moving.deleteCollaborator(
+                    e.target.parentElement.children[0].textContent
+                );
+                fetchMovingDetails();
             });
         });
     }
     addInputCollaborator();
 };
-
-buildCollaborators(collaborators);
 
 /*Dimension buttons change color when selected*/
 const idEditBoxbtnDimensione_Small = document.getElementById(
@@ -276,11 +340,11 @@ const resetBoxSizes = (fields) => {
     });
 };
 
+const smallInputs = document.querySelectorAll(".small-box-size");
+const mediumInputs = document.querySelectorAll(".medium-box-size");
+const largeInputs = document.querySelectorAll(".large-box-size");
+const customInputs = document.querySelectorAll(".custom-box-size");
 saveBoxSizesBtn.addEventListener("click", () => {
-    const smallInputs = document.querySelectorAll(".small-box-size");
-    const mediumInputs = document.querySelectorAll(".medium-box-size");
-    const largeInputs = document.querySelectorAll(".large-box-size");
-    const customInputs = document.querySelectorAll(".custom-box-size");
     const boxSizeTitles = document.querySelectorAll(".boxSizeTitle");
 
     const smallFields = document.querySelectorAll(".small-field");
@@ -331,7 +395,29 @@ saveBoxSizesBtn.addEventListener("click", () => {
     });
 
     if (requiredValidation) {
-        console.log("Call function to save box sizes in firebase");
+        const data = {
+            small: {
+                length: smallInputs[0].value,
+                width: smallInputs[1].value,
+                height: smallInputs[2].value,
+            },
+            medium: {
+                length: mediumInputs[0].value,
+                width: mediumInputs[1].value,
+                height: mediumInputs[2].value,
+            },
+            large: {
+                length: largeInputs[0].value,
+                width: largeInputs[1].value,
+                height: largeInputs[2].value,
+            },
+            custom: {
+                length: customInputs[0].value,
+                width: customInputs[1].value,
+                height: customInputs[2].value,
+            },
+        };
+        moving.updateSizes(data);
         $("#boxSizesModal").modal("hide");
     }
 });
