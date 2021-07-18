@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+
+    <!-- Stylings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../styles/styles.css">
+
+    <!-- JavaScript -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
+    <script src="../js/firebase.js" defer></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/index.js" defer></script>
+    <script src="../js/user.js" defer></script>
+    <script src="../js/user-profile.js" defer></script>
+</head>
+<body class="user-profile">
+    
+    <div class="user-profile-desktop-left">
+        <img src="../img/moving-tracker-logo.svg">
+        <h1>Profile</h1>
+        <p>&copy; 2021 Moving tracker. <br>All Rights Reserved.</p>
+    </div>
+
+    <main>
+        <div class="background"></div>
+
+        <div class="wrapper">
+
+            <div class="profile-pic">
+                <img src="../img/profile/user-default.png">
+                <i id="editUserPicBtn" class="fas fa-pen"></i>
+            </div>
+
+            <div class="profile-name field__container" id="profile-name">
+                <p id="userName"></p>
+                <input type="text" name="newUserName" id="newUserName">
+                <i id="editUserNameBtn" class="fas fa-pen"></i> 
+                <i id="closeEditUserNameBtn" class="fas fa-times"></i> 
+                <button id="nameSaveBtn">Save</button>
+            </div>
+
+            <p id="userEmail"></p>
+
+            <button id="logoutBtn"><i class="fas fa-power-off"></i> Logout</button>
+
+            <div class="picEditMethod hidden">
+                <div class="menuHeader">
+                    <p>Edit picture</p>
+                    <i class="fas fa-times" id="closeBtn"></i>
+                </div>
+                <p id="fromPc">Choose from your computer</p>
+                <p>Choose from your gallery</p>
+            </div>
+
+            <div class="file-selector" id="fileSelector">
+                <i class="fas fa-times" id="fileSelctCloseBtn"></i>
+                <input type="file" id="newUserPic">
+                <button id="picSaveBtn">Save</button>
+            </div>
+            
+        </div>
+
+
+
+    </main>
+
+</body>
+</html>
