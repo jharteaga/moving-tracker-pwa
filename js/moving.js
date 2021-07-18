@@ -48,7 +48,7 @@ class Moving {
                 date: this.date,
                 creatorId: userInstance.userId,
                 boxes: [],
-                collaborators: {},
+                collaborators: [],
                 createdAt: firebase.firestore.Timestamp.now(),
                 labels: [
                     "Kitchen",
