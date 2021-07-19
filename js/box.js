@@ -15,7 +15,7 @@ class Box{
     }
 
     add(idMoving, idBox="", name="", description="", label="", boxSize="", weight="", fragile=0, status="open"){
-        db.collection(`/movings/${idMoving}/boxes`).add({
+        return db.collection(`/movings/${idMoving}/boxes`).add({
             idMoving: idMoving,
             name: name,
             description: description,
@@ -35,7 +35,7 @@ class Box{
     }
  
     delete(idMoving,idBox){
-        db.collection(`/movings/${idMoving}/boxes`).doc(idBox).delete().then(() => {
+        return db.collection(`/movings/${idMoving}/boxes`).doc(idBox).delete().then(() => {
             return "Box successfully deleted!";
         }).catch((error) => {
             return "Error removing box: ", error;
@@ -79,7 +79,6 @@ class Box{
                         status: doc.data().status
                     };                
             } else {
-                console.log("Box not found!")
                 return "Box not found!";
             }
         }).catch((error) => {
