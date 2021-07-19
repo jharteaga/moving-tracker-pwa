@@ -494,7 +494,7 @@ saveNewBoxBtn.addEventListener('click', () => {
       null,
       newBoxNameInput.value,
       newBoxDescInput.value,
-      newBoxLabelSelect.value,
+      newBoxLabelSelect.selectedOptions[0].text,
       sizeActive.innerText
     );
 
