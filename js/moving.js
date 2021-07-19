@@ -313,6 +313,27 @@ class Moving {
     }
 
     /**
+     * Gets a snapshot of collaborator movings for the
+     * current user
+     *
+     * @param {Function} callBack
+     */
+    getMovingsCollaboratorList(userEmail, callBack) {
+        try {
+            if (this.userId) {
+                db.collection("movings")
+                    .where("collaborators", "array-contains", userEmail)
+                    .onSnapshot(callBack);
+            }
+        } catch (error) {
+            this.movingError = error.message;
+            console.log(`Error code: ${error.code}`);
+            console.log(`Error message: ${error.message}`);
+            console.log(error);
+        }
+    }
+
+    /**
      * Gets all the movings and return an array of movings
      *
      * @returns array of movings
