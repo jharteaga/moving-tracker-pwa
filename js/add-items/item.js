@@ -6,19 +6,20 @@ class Item {
         this.idBox="";
         this.name= "",
         this.description = "",
-        this.cathegory = "",
+        this.category = "",
         this.quantity = "",
         this.value = "" 
     }
 
-    add(idMoving, idBox, name, description="", cathegory="", quantity="",value="") {
-        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).add({
+    add(idMoving, idBox, name, description="", category="", quantity="",value="") {
+        return db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).add({
             idBox: idBox,
             name: name,
             description: description,
-            cathegory: cathegory,
+            category: category,
             quantity: quantity,
-            value: value
+            value: value,
+            dateAdded: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then(() => {
             return "Item successfully saved!";
@@ -29,21 +30,21 @@ class Item {
     }
 
     delete(idMoving,idBox,IdItem){
-        db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem).delete().then(() => {
+        return db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem).delete().then(() => {
             return "Item successfully deleted!";
         }).catch((error) => {
             return "Error removing item: ", error;
         });
     }
 
-     update (idMoving, idBox, IdItem, name, description="", cathegory="", quantity="",value=""){
+     update (idMoving, idBox, IdItem, name, description="", category="", quantity="",value=""){
         let item = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(IdItem);
 
         return item.update({
             idBox: idBox,
             name: name,
             description: description,
-            cathegory: cathegory,
+            category: category,
             quantity: quantity,
             value: value
         })
@@ -58,7 +59,7 @@ class Item {
     getItem(idMoving, idBox,idItem){
         let itemDocument = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).doc(idItem);
         let item = [];
-        itemDocument.get().then((doc) => {
+        return itemDocument.get().then((doc) => {
             if (doc.exists) {
                 const id = `${doc. id}`
                 item.push (
@@ -67,12 +68,11 @@ class Item {
                         idBox: doc.data().idBox,
                         name:doc.data(). name,
                         description: doc.data().description,
-                        cathegory: doc.data().cathegory,
+                        category: doc.data().category,
                         quantity: doc.data().quantity,
                         value: doc.data().value
                     }
                 );
-                console.log(item);
                 return item;
             } else {
                 return "No item found!";

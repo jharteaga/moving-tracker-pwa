@@ -8,14 +8,19 @@ let indicator = document.querySelector('.carousel-indicators .active');
 let slide = indicator.getAttribute('data-bs-slide-to');
 
 next.addEventListener('click', () => {
-	if (slide <= 3) {
+
+	if (slide == 3) {
+		//Send to Movings Page
+		window.location.href = 'movings.html';
+
+	} else if (slide <= 3) {
 		carousel.next();
 
 		indicator = document.querySelector('.carousel-indicators .active');
 		slide = indicator.getAttribute('data-bs-slide-to');
 
-		if (slide == 3) {
-			next.classList.add('disabled');
-		}
+		// if (slide == 3) {
+		// 	next.classList.add('disabled');
+		// }
 	}
 });

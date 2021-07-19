@@ -15,7 +15,7 @@ class Box{
     }
 
     add(idMoving, idBox="", name="", description="", label="", boxSize="", weight="", fragile=0, status="open"){
-        db.collection(`/movings/${idMoving}/boxes`).add({
+        return db.collection(`/movings/${idMoving}/boxes`).add({
             idMoving: idMoving,
             name: name,
             description: description,
@@ -23,7 +23,8 @@ class Box{
             boxSize: boxSize,
             weight: weight,
             fragile: fragile,
-            status: status
+            status: status,
+            dateAdded: firebase.firestore.FieldValue.serverTimestamp()
         })
         .then((doc_ref ) => {
             return "Box successfully saved!";
@@ -34,7 +35,7 @@ class Box{
     }
  
     delete(idMoving,idBox){
-        db.collection(`/movings/${idMoving}/boxes`).doc(idBox).delete().then(() => {
+        return db.collection(`/movings/${idMoving}/boxes`).doc(idBox).delete().then(() => {
             return "Box successfully deleted!";
         }).catch((error) => {
             return "Error removing box: ", error;
@@ -78,7 +79,6 @@ class Box{
                         status: doc.data().status
                     };                
             } else {
-                console.log("Box not found!")
                 return "Box not found!";
             }
         }).catch((error) => {
@@ -91,7 +91,7 @@ class Box{
 
     getItems(idMoving,idBox){
         
-        let items = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`);
+        let items = db.collection(`/movings/${idMoving}/boxes/${idBox}/items`).orderBy('dateAdded','desc');
 
         let itemsDocs= [];
 
@@ -109,7 +109,6 @@ class Box{
             });
             return itemsDocs;
         });
-        // return itemsDocs;
     }
     
 }

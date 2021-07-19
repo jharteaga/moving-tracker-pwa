@@ -13,6 +13,19 @@ boxContent.getBox(idMoving,idBox).then(box => {
     boxNameDisplay.innerHTML = box.name;
 });
 
+/********************************/
+//this function change add item modal title
+const changeAddItemModalTitle = (title) => {
+	const boxLabelsModalLabel = document.getElementById("boxLabelsModalLabel")
+	boxLabelsModalLabel.innerHTML = title
+}
+
+/********************************/
+//this function clean hidden input storing item id 
+const cleanHiddenidInput = () => {
+	const iditemSelected = document.getElementById("iditemSelected")
+	iditemSelected.value = ""
+}
 
 // ***********************************************
 //Print items from firebase
@@ -30,7 +43,13 @@ resizeModal.onScreenSizeChange();
 
 /************************************************************** */
 
-
+/*show modal message */
+const showModalMsg = (msg) =>{
+	const idlblMsg = document.getElementById("idlblMsg")
+	idlblMsg.innerHTML=msg
+		let myModal = new bootstrap.Modal(document.getElementById("msgItemModal"));
+		myModal.show();
+}
 
 
 
