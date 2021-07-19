@@ -43,28 +43,23 @@ addItemBtn.addEventListener('click', ()=>{
     const itemValueInput = document.getElementById("itemValueInput");
     const itemImageInput = document.getElementById("itemImageInput");
  
-    
-    //ADDED BY ALEJANDRA
+    //look for element where idItem is stored
+    const iditemSelected = document.getElementById("iditemSelected")
+    const idItem = iditemSelected.value;
+
         //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
         const idMoving="7lI4hu7cuqmurPqSFa72";
         const idBox = "xtV5zrXtZcuN33KHxF2l";  
-        const idItem = "";
-
+        
         // if idItem is passed, it will update, otherwise, it will add a new item
     addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
     // ******************************************
 
-    /********************************/
-    //Items need to be reprinted
-    /********************************/
-    let boxContent = new Box();
-    boxContent.getItems(idMoving,idBox).then(items => {
-        printItems(items);
-    });
 })
 
  //ADDED BY ALEJANDRA
  /* function to send item data to firebase */
+
 const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value)=>{
       
  
@@ -72,21 +67,37 @@ const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value
     let msgRetrived = ""
     if (idItem=="")
         {
-            item.add(idMoving,idBox,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg});
+            item.add(idMoving,idBox,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg;
+                print(idMoving, idBox)
+                //clean inputs
+                cleanHiddenidInput()
+                cleanInputs()
+            });
         }
     else
         {            
-            item.update(idMoving,idBox,idItem,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg});;
-        }
-    // msg needs to be displayed to user
+            item.update(idMoving,idBox,idItem,name,description, category, qty, value).then((msg)=>{
+                print(idMoving, idBox)
+                //clean inputs
+                cleanHiddenidInput()
+                cleanInputs();
 
-    //clean inputs
-    cleanInputs();
+                showModalMsg(msg)});
+        }
 
     let modal = new bootstrap.Modal(document.getElementById('itemModal'),{keyboard:false});
-    console.log(modal)
         modal.hide();
+   
+}
 
+const print =(idMoving,idBox)=>{
+    /********************************/
+    //Items need to be reprinted
+    /********************************/
+    let boxContent = new Box();
+    boxContent.getItems(idMoving,idBox).then(items => {
+        printItems(items);
+    });
 }
 
 /* ADDED BY ALEJANDRA*/

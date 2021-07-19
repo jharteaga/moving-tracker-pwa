@@ -50,6 +50,7 @@ const printItems = (items)=>{
         btnEdit.setAttribute("class","button");
         btnEdit.setAttribute("data-bs-toggle","modal");
         btnEdit.setAttribute("data-bs-target","#itemModal");
+        btnEdit.setAttribute('onclick','updateItemOpenModal(this)'); //function to pass item selected info to modal
         let iEdit = document.createElement("i");
         iEdit.setAttribute("class","fas fa-pencil-alt");
         btnEdit.appendChild(iEdit);
@@ -62,7 +63,7 @@ const printItems = (items)=>{
         btnTrash.setAttribute("class","button");
         btnTrash.setAttribute("data-bs-toggle","modal");
         btnTrash.setAttribute("data-bs-target","#deleteItemModal");
-        btnTrash.setAttribute('onclick','deleteItemQuestion(this)');
+        btnTrash.setAttribute('onclick','deleteItemQuestion(this)'); // function to pass item id selected to hidden input
         let iTrash = document.createElement("i");
         iTrash.setAttribute("class","fas fa-trash");
         btnTrash.appendChild(iTrash);

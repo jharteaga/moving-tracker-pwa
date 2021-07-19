@@ -23,9 +23,13 @@
     <script src="../js/box-content.js" defer></script>
 
     <!-- Item Class -->
+    <script src="../js/add-items/delete-item.js" defer></script>
     <script src="../js/add-items/printItems.js" defer></script>
-    <script src="../js/add-items/item.js" defer></script>
+    <script src="../js/add-items/update-item.js" defer></script>
     <script src="../js/add-items/add-item.js" defer></script>
+    <script src="../js/add-items/item.js" defer></script>
+    
+  
 
     
 
@@ -91,13 +95,13 @@
             </div>
             
             <!-- this element is used to store ite id to be edited or deleted -->
-            <input type="hidden" id='iditemSelected'>
+            <input type="hidden" id='iditemSelected' value="">
             <!-- **************************************  -->
             <ul id="itemListDisplay">
                 <!-- Items are created here dinamically -->
             </ul>
 
-            <a class="btnAdd" href="" data-bs-toggle="modal" data-bs-target="#itemModal">+</a>
+            <a class="btnAdd" href="" data-bs-toggle="modal" data-bs-target="#itemModal" onclick="changeAddItemModalTitle('Add Item')">+</a>
 
             
             <!-- New item Modal -->
@@ -106,14 +110,14 @@
                 <div class="modal-content   ">
                     <div class="modal-header">
                         <h5 class="modal-title" id="boxLabelsModalLabel">
-                            Item
+                            
                         </h5>
                         <button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
                     </div>
                     <div class="modal-body">
                         <div class="field__container form">
                             <div class="div1">
-                                <label for="itemNameInput" class="field__label">Name</label>
+                                <label for="itemNameInput" class="field__label">Name*</label>
                                 <input type="text" id="itemNameInput" name="itemNameInput" ><br>
                     
                                 <label for="itemDescriptionInput" class="field__label">Description</label>

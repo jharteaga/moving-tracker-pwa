@@ -14,44 +14,11 @@ boxContent.getBox(idMoving,idBox).then(box => {
 });
 
 /********************************/
-//this function is passed to the delete icon button to confirm delete
-const deleteItemQuestion = (e)=>{
-	// ***********************************************/
-	//get item ID
-	const idItem = e.parentNode.children[2].value
-	// ***********************************************/
-
-	//get hidden input to store id
-	const iditemSelected = document.getElementById("iditemSelected")
-	iditemSelected.value = idItem
+//this function change add item modal title
+const changeAddItemModalTitle = (title) => {
+	const boxLabelsModalLabel = document.getElementById("boxLabelsModalLabel")
+	boxLabelsModalLabel.innerHTML = title
 }
-
-/********************************/
-// this funcion delete item
-const deleteItem = ()=> {
-	let msgRetrived=""
-	//select hidden id
-	const iditemSelected = document.getElementById("iditemSelected")
-	//******************* */
-	const itemTobeDeleted = iditemSelected.value
-
-	const item = new Item()
-	item.delete(idMoving,idBox,itemTobeDeleted).then((msg)=>
-	{	
-		//get response message and show it in modal
-		const idlblMsg = document.getElementById("idlblMsg")
-		idlblMsg.innerHTML=msg
-		let myModal = new bootstrap.Modal(document.getElementById("msgItemModal"));
-		myModal.show();
-	})
-	
-	cleanHiddenidInput()
-	boxContent.getItems(idMoving,idBox).then(items => {
-		printItems(items);
-	});
-	
-}
-
 
 /********************************/
 //this function clean hidden input storing item id 
@@ -76,7 +43,13 @@ resizeModal.onScreenSizeChange();
 
 /************************************************************** */
 
-
+/*show modal message */
+const showModalMsg = (msg) =>{
+	const idlblMsg = document.getElementById("idlblMsg")
+	idlblMsg.innerHTML=msg
+		let myModal = new bootstrap.Modal(document.getElementById("msgItemModal"));
+		myModal.show();
+}
 
 
 
