@@ -6,6 +6,8 @@ const user = new User();
 
 const moving = new Moving();
 
+const box = new Box();
+
 /**
  * Fetch labels snapshot from firebase to update ui, uses movingId from
  * session storage.
@@ -447,8 +449,9 @@ const saveNewBoxBtn = document.getElementById('saveNewBoxBtn');
 saveNewBoxBtn.addEventListener('click', () => {
   let requiredValidation = true;
 
-  const newBoxNameInput = document.getElementById('newBoxNameInput').value;
-  const newBoxLabelSelect = document.getElementById('newBoxLabelSelect').value;
+  const newBoxNameInput = document.getElementById('newBoxNameInput');
+  const newBoxLabelSelect = document.getElementById('newBoxLabelSelect');
+  const newBoxDescInput = document.getElementById('newBoxDescInput');
   const sizeActive = document.querySelector('.size-buttons button.active');
 
   const newBoxNameErrorMsg = document.getElementById('newBoxNameErrorMsg');
@@ -468,12 +471,12 @@ saveNewBoxBtn.addEventListener('click', () => {
   newBoxSizeField.classList.remove('error');
 
   //Required fields
-  if (newBoxNameInput === '') {
+  if (newBoxNameInput.value === '') {
     newBoxNameErrorMsg.innerHTML = 'Please enter new box name';
     newBoxNameField.classList.add('error');
     requiredValidation = false;
   }
-  if (newBoxLabelSelect === '') {
+  if (newBoxLabelSelect.value === '') {
     newBoxLabelErrorMsg.innerHTML = 'Please select a box label';
     newBoxLabelField.classList.add('error');
     requiredValidation = false;
@@ -485,7 +488,24 @@ saveNewBoxBtn.addEventListener('click', () => {
   }
 
   if (requiredValidation) {
-    console.log('call function to save new box');
+    //Call add method from Box class to add to firebase
+    box.add(
+      window.sessionStorage.getItem('movingId'),
+      null,
+      newBoxNameInput.value,
+      newBoxDescInput.value,
+      newBoxLabelSelect.selectedOptions[0].text,
+      sizeActive.innerText
+    );
+
+    //Reset fields
+    newBoxNameInput.value = '';
+    newBoxDescInput.value = '';
+    newBoxLabelSelect.value = '';
+    sizeActive.classList.remove('active');
+
+    //Close modal
+    $('#newBoxModal').modal('hide');
   }
 });
 
