@@ -32,14 +32,12 @@ function fetchMovingDetails() {
       moving.sizes[Object.keys(moving.sizes)[1]].height,
       Object.keys(moving.sizes)[1]
     );
-    // console.log('moving', moving);
     moving.getBoxesByMovingId(movingId, (snapshots) => {
       boxes.length = 0;
       snapshots.forEach((box) => {
-        // boxes.push()
         boxes.push({
           idMoving: box.data().idMoving,
-          idBox: box.data().idBox,
+          idBox: box.id,
           name: box.data().name,
           description: box.data().description,
           label: box.data().label,
@@ -549,17 +547,8 @@ resizeEditBoxModal.onScreenSizeChange();
  * specific moving
  */
 const boxesWrapper = document.querySelector('.boxes-wrapper');
-// const boxes = [
-//   {
-//     name: 'Box1',
-//     boxSize: 'Medium',
-//     fragile: 1,
-//     label: 'Kitchen',
-//     weight: '100',
-//     status: 'open',
-//   },
-// ];
 
+//Array to loop through every box related with moving id
 const boxes = [];
 
 const buildBoxesList = (boxes) => {
@@ -567,6 +556,8 @@ const buildBoxesList = (boxes) => {
   boxes.forEach((box) => {
     const boxContainer = document.createElement('div');
     boxContainer.classList.add('box');
+    boxContainer.setAttribute('id', box.idBox);
+
     const boxImage = document.createElement('div');
     boxImage.classList.add('box__image');
     const boxStatusIcon = document.createElement('span');
@@ -579,17 +570,21 @@ const buildBoxesList = (boxes) => {
     sizeWrapper.appendChild(sizeText);
     boxImage.appendChild(boxStatusIcon);
     boxImage.appendChild(sizeWrapper);
+
     const boxInfo = document.createElement('div');
     boxInfo.classList.add('box__info');
     boxInfo.innerHTML = ` <p><span>Weight: </span>${box.weight}kg</p>
                           <p><span>Value: </span>$0.00</p>`;
+
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
     boxMetadata.innerHTML = `<p>${box.name}</p>
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>`;
+
     const boxActions = document.createElement('div');
     boxActions.classList.add('box__actions');
+
     const pdfBoxModalBtn = document.createElement('button');
     pdfBoxModalBtn.classList.add('icon');
     pdfBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
@@ -597,6 +592,7 @@ const buildBoxesList = (boxes) => {
     const pdfIcon = document.createElement('span');
     pdfIcon.className = 'fas fa-file-pdf';
     pdfBoxModalBtn.appendChild(pdfIcon);
+
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
     editBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
@@ -604,6 +600,7 @@ const buildBoxesList = (boxes) => {
     const pencilIcon = document.createElement('span');
     pencilIcon.className = 'fas fa-pencil-alt';
     editBoxModalBtn.appendChild(pencilIcon);
+
     const removeBoxModalBtn = document.createElement('button');
     removeBoxModalBtn.classList.add('icon');
     removeBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
@@ -611,9 +608,11 @@ const buildBoxesList = (boxes) => {
     const trashIcon = document.createElement('span');
     trashIcon.className = 'fas fa-trash';
     removeBoxModalBtn.appendChild(trashIcon);
+
     boxActions.appendChild(pdfBoxModalBtn);
     boxActions.appendChild(editBoxModalBtn);
     boxActions.appendChild(removeBoxModalBtn);
+
     const boxProgress = document.createElement('div');
     boxProgress.classList.add('box__progress');
     boxProgress.innerHTML = `
@@ -621,6 +620,7 @@ const buildBoxesList = (boxes) => {
       <p>Add items</p>
       <p>Close box</p>
       <p>Download label</p>`;
+
     boxContainer.appendChild(boxImage);
     boxContainer.appendChild(boxInfo);
     boxContainer.appendChild(boxMetadata);

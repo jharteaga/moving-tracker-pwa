@@ -13,7 +13,6 @@
     row-gap: 2rem;
     justify-items: center;
     width: 100%;
-    overscroll-behavior: auto;
 
     .box {
       display: grid;
@@ -29,7 +28,6 @@
       background-color: white;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
-      z-index: -1;
 
       &__image {
         grid-area: image;
