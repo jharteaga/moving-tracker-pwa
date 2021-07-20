@@ -13,72 +13,89 @@ const box = new Box();
  * session storage.
  */
 function fetchMovingDetails() {
-  moving.getMovingSnapshotById(
-    window.sessionStorage.getItem('movingId'),
-    () => {
-      boxLabels.length = 0;
-      moving.labels.forEach((label) => {
-        boxLabels.push({ id: boxLabels.length + 1, name: label });
+  const movingId = window.sessionStorage.getItem('movingId');
+  moving.getMovingSnapshotById(movingId, () => {
+    boxLabels.length = 0;
+    moving.labels.forEach((label) => {
+      boxLabels.push({ id: boxLabels.length + 1, name: label });
+    });
+    buildBoxLabels(boxLabels);
+    collaborators.length = 0;
+    moving.collaborators.forEach((collaborator) => {
+      collaborators.push({
+        id: collaborators.length + 1,
+        name: collaborator,
       });
-      buildBoxLabels(boxLabels);
-      collaborators.length = 0;
-      moving.collaborators.forEach((collaborator) => {
-        collaborators.push({
-          id: collaborators.length + 1,
-          name: collaborator,
+    });
+    buildCollaborators(collaborators);
+    console.log(
+      moving.sizes[Object.keys(moving.sizes)[1]].height,
+      Object.keys(moving.sizes)[1]
+    );
+    // console.log('moving', moving);
+    moving.getBoxesByMovingId(movingId, (snapshots) => {
+      boxes.length = 0;
+      snapshots.forEach((box) => {
+        // boxes.push()
+        boxes.push({
+          idMoving: box.data().idMoving,
+          idBox: box.data().idBox,
+          name: box.data().name,
+          description: box.data().description,
+          label: box.data().label,
+          boxSize: box.data().boxSize,
+          weight: box.data().weight,
+          fragile: box.data().fragile,
+          status: box.data().status,
         });
       });
-      buildCollaborators(collaborators);
-      console.log(
-        moving.sizes[Object.keys(moving.sizes)[1]].height,
-        Object.keys(moving.sizes)[1]
-      );
+      buildBoxesList(boxes);
+    });
 
-      /**
-       * Populates sizes details on page load
-       */
-      Object.keys(moving.sizes).forEach((size) => {
-        switch (size) {
-          case 'small':
-            smallInputs[0].value = moving.sizes[size].length;
-            smallInputs[1].value = moving.sizes[size].width;
-            smallInputs[2].value = moving.sizes[size].height;
+    /**
+     * Populates sizes details on page load
+     */
+    Object.keys(moving.sizes).forEach((size) => {
+      switch (size) {
+        case 'small':
+          smallInputs[0].value = moving.sizes[size].length;
+          smallInputs[1].value = moving.sizes[size].width;
+          smallInputs[2].value = moving.sizes[size].height;
 
-            break;
-          case 'medium':
-            mediumInputs[0].value = moving.sizes[size].length;
-            mediumInputs[1].value = moving.sizes[size].width;
-            mediumInputs[2].value = moving.sizes[size].height;
+          break;
+        case 'medium':
+          mediumInputs[0].value = moving.sizes[size].length;
+          mediumInputs[1].value = moving.sizes[size].width;
+          mediumInputs[2].value = moving.sizes[size].height;
 
-            break;
-          case 'large':
-            largeInputs[0].value = moving.sizes[size].length;
-            largeInputs[1].value = moving.sizes[size].width;
-            largeInputs[2].value = moving.sizes[size].height;
+          break;
+        case 'large':
+          largeInputs[0].value = moving.sizes[size].length;
+          largeInputs[1].value = moving.sizes[size].width;
+          largeInputs[2].value = moving.sizes[size].height;
 
-            break;
-          case 'custom':
-            customInputs[0].value = moving.sizes[size].length
-              ? moving.sizes[size].length
-              : '0';
-            customInputs[1].value = moving.sizes[size].width
-              ? moving.sizes[size].width
-              : '0';
-            customInputs[2].value = moving.sizes[size].height
-              ? moving.sizes[size].height
-              : '0';
+          break;
+        case 'custom':
+          customInputs[0].value = moving.sizes[size].length
+            ? moving.sizes[size].length
+            : '0';
+          customInputs[1].value = moving.sizes[size].width
+            ? moving.sizes[size].width
+            : '0';
+          customInputs[2].value = moving.sizes[size].height
+            ? moving.sizes[size].height
+            : '0';
 
-            break;
+          break;
 
-          default:
-            break;
-        }
-      });
-    }
-  );
+        default:
+          break;
+      }
+    });
+  });
 }
 
-user.isLoggedIn(async () => {
+user.isLoggedIn(() => {
   moving.userId = user.userId;
   fetchMovingDetails();
 });
@@ -141,7 +158,7 @@ const addInputLabel = () => {
       // });
 
       moving.addLabel(newBoxLabelInput.value);
-      fetchMovingDetails();
+      // fetchMovingDetails();
     }
   });
 };
@@ -178,7 +195,7 @@ const buildBoxLabels = (labelsList) => {
         console.log(labelToDelete);
         await moving.deleteLabel(labelToDelete);
 
-        fetchMovingDetails();
+        // fetchMovingDetails();
       });
     });
   }
@@ -236,7 +253,7 @@ const addInputCollaborator = () => {
       // });
 
       moving.addCollaborator(newCollaboratorInput.value);
-      fetchMovingDetails();
+      // fetchMovingDetails();
     }
   });
 };
@@ -275,7 +292,7 @@ const buildCollaborators = (collaboratorsList) => {
         await moving.deleteCollaborator(
           e.target.parentElement.children[0].textContent
         );
-        fetchMovingDetails();
+        // fetchMovingDetails();
       });
     });
   }
@@ -526,3 +543,89 @@ resizeEditBoxModal.onLoad();
 resizeEditBoxModal.onScreenSizeChange();
 
 /************************************************************** */
+
+/**
+ * Build the UI to list all the boxes according to a
+ * specific moving
+ */
+const boxesWrapper = document.querySelector('.boxes-wrapper');
+// const boxes = [
+//   {
+//     name: 'Box1',
+//     boxSize: 'Medium',
+//     fragile: 1,
+//     label: 'Kitchen',
+//     weight: '100',
+//     status: 'open',
+//   },
+// ];
+
+const boxes = [];
+
+const buildBoxesList = (boxes) => {
+  boxesWrapper.innerHTML = '';
+  boxes.forEach((box) => {
+    const boxContainer = document.createElement('div');
+    boxContainer.classList.add('box');
+    const boxImage = document.createElement('div');
+    boxImage.classList.add('box__image');
+    const boxStatusIcon = document.createElement('span');
+    boxStatusIcon.className = `fak fa-${box.status}-box`;
+    const sizeWrapper = document.createElement('p');
+    const sizeLabel = document.createElement('span');
+    const sizeText = document.createTextNode(`${box.boxSize}`);
+    sizeLabel.innerText = 'Size: ';
+    sizeWrapper.appendChild(sizeLabel);
+    sizeWrapper.appendChild(sizeText);
+    boxImage.appendChild(boxStatusIcon);
+    boxImage.appendChild(sizeWrapper);
+    const boxInfo = document.createElement('div');
+    boxInfo.classList.add('box__info');
+    boxInfo.innerHTML = ` <p><span>Weight: </span>${box.weight}kg</p>
+                          <p><span>Value: </span>$0.00</p>`;
+    const boxMetadata = document.createElement('div');
+    boxMetadata.classList.add('box__metadata');
+    boxMetadata.innerHTML = `<p>${box.name}</p>
+                             <p>${box.label}</p>
+                             <p>${box.fragile ? 'Fragile' : ''}</p>`;
+    const boxActions = document.createElement('div');
+    boxActions.classList.add('box__actions');
+    const pdfBoxModalBtn = document.createElement('button');
+    pdfBoxModalBtn.classList.add('icon');
+    pdfBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
+    pdfBoxModalBtn.setAttribute('data-bs-target', '#pdfBoxModal');
+    const pdfIcon = document.createElement('span');
+    pdfIcon.className = 'fas fa-file-pdf';
+    pdfBoxModalBtn.appendChild(pdfIcon);
+    const editBoxModalBtn = document.createElement('button');
+    editBoxModalBtn.classList.add('icon');
+    editBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
+    editBoxModalBtn.setAttribute('data-bs-target', '#editBoxModal');
+    const pencilIcon = document.createElement('span');
+    pencilIcon.className = 'fas fa-pencil-alt';
+    editBoxModalBtn.appendChild(pencilIcon);
+    const removeBoxModalBtn = document.createElement('button');
+    removeBoxModalBtn.classList.add('icon');
+    removeBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
+    removeBoxModalBtn.setAttribute('data-bs-target', '#deleteBoxModal');
+    const trashIcon = document.createElement('span');
+    trashIcon.className = 'fas fa-trash';
+    removeBoxModalBtn.appendChild(trashIcon);
+    boxActions.appendChild(pdfBoxModalBtn);
+    boxActions.appendChild(editBoxModalBtn);
+    boxActions.appendChild(removeBoxModalBtn);
+    const boxProgress = document.createElement('div');
+    boxProgress.classList.add('box__progress');
+    boxProgress.innerHTML = `
+      <p>Add box</p>
+      <p>Add items</p>
+      <p>Close box</p>
+      <p>Download label</p>`;
+    boxContainer.appendChild(boxImage);
+    boxContainer.appendChild(boxInfo);
+    boxContainer.appendChild(boxMetadata);
+    boxContainer.appendChild(boxActions);
+    boxContainer.appendChild(boxProgress);
+    boxesWrapper.appendChild(boxContainer);
+  });
+};
