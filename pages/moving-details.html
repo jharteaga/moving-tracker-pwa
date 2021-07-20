@@ -107,6 +107,7 @@
           </li>
         </ul>
       </aside>
+      <input type="hidden" id="boxSelectedId" value="" />
       <div class="boxes-wrapper"></div>
       <button class="options-btn round">
         <span class="fas fa-plus"></span>
@@ -751,7 +752,7 @@
                 >Do you want to delete the selected box?</label
               >
               <div id="divDelete">
-                <button id="btnDelete" class="delete-modal-closebtn">
+                <button id="btnBoxDelete" class="delete-modal-closebtn">
                   Delete
                 </button>
               </div>
@@ -769,6 +770,45 @@
         </div>
       </div>
     </div>
+
+    <!-- Are you sure question Modal  -->
+    <div
+      class="modal fade"
+      id="questionModal"
+      tabindex="-1"
+      aria-labelledby="questionModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="questionModalLabel">Delete Box</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure that you want to delete the box?
+          </div>
+          <div class="modal-footer border-0">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              No
+            </button>
+            <button type="button" class="btn btn-primary" id="removeBoxBtn">
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://kit.fontawesome.com/7ba77cc2f3.js"
       crossorigin="anonymous"
