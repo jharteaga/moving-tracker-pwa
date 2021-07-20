@@ -609,6 +609,11 @@ const buildBoxesList = (boxes) => {
     trashIcon.className = 'fas fa-trash';
     removeBoxModalBtn.appendChild(trashIcon);
 
+    removeBoxModalBtn.addEventListener('click', () => {
+      const boxSelectedId = document.getElementById('boxSelectedId');
+      boxSelectedId.value = box.idBox;
+    });
+
     boxActions.appendChild(pdfBoxModalBtn);
     boxActions.appendChild(editBoxModalBtn);
     boxActions.appendChild(removeBoxModalBtn);
@@ -629,3 +634,24 @@ const buildBoxesList = (boxes) => {
     boxesWrapper.appendChild(boxContainer);
   });
 };
+
+/**
+ * Delete a box from the modal
+ */
+const btnBoxDelete = document.getElementById('btnBoxDelete');
+btnBoxDelete.addEventListener('click', () => {
+  $('#deleteBoxModal').modal('hide');
+  $('#questionModal').modal('show');
+});
+
+const removeBoxBtn = document.getElementById('removeBoxBtn');
+removeBoxBtn.addEventListener('click', () => {
+  const movingId = window.sessionStorage.getItem('movingId');
+  const boxSelectedId = document.getElementById('boxSelectedId').value;
+  try {
+    box.delete(movingId, boxSelectedId);
+    $('#questionModal').modal('hide');
+  } catch (err) {
+    console.log('Error deleting the selected box: ', err);
+  }
+});

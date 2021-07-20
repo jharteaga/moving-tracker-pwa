@@ -1,0 +1,48 @@
+.moving-details #questionModal.modal .modal-dialog {
+  max-width: 400px;
+  width: 100%;
+
+  .modal-content {
+    border-radius: 30px;
+    background: linear-gradient(
+      180deg,
+      rgba(138, 204, 243, 1) 0%,
+      rgba(255, 255, 255, 1) 40%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: $primary-color;
+
+    .modal-header h5 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-left: 0.5rem;
+    }
+
+    .modal-header button {
+      border: 0;
+      background-color: transparent;
+
+      span {
+        font-weight: bold;
+        color: $text-color;
+        font-size: 2rem;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .modal-footer {
+      padding-bottom: 1rem;
+      button.btn.btn-secondary {
+        @include squareButton('secondary', $width: 40%);
+        margin: 0 auto;
+      }
+      button.btn.btn-primary {
+        @include squareButton('primary', $width: 40%);
+        margin: 0 auto;
+      }
+    }
+  }
+}

@@ -109,7 +109,7 @@
     .modal-footer {
       padding-bottom: 1rem;
       button.btn.btn-secondary {
-        @include squareButton("primary", $width: 95%);
+        @include squareButton('primary', $width: 95%);
         margin: 0 auto;
       }
     }
