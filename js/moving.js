@@ -241,6 +241,25 @@ class Moving {
   }
 
   /**
+   * Get boxes by moving Id
+   *
+   * @param {String} movingId
+   * @returns array[boxes]
+   */
+  getBoxesByMovingId(movingId, callBack) {
+    try {
+      if (this.userId) {
+        db.collection(`/movings/${movingId}/boxes`).onSnapshot(callBack);
+      }
+    } catch (error) {
+      this.movingError = error.message;
+      console.log(`Error code: ${error.code}`);
+      console.log(`Error message: ${error.message}`);
+      console.log(error);
+    }
+  }
+
+  /**
    * Gets a moving snapshot by Id
    *
    * @param {String} movingId

@@ -7,7 +7,7 @@
 const user = new User();
 const moving = new Moving();
 
-user.isLoggedIn(async () => {
+user.isLoggedIn(() => {
   const moving = new Moving(user.userId);
   moving.getMovingsList((snapshot) => {
     moving.getMovingsCollaboratorList(user.email, (snapshotCollab) => {
