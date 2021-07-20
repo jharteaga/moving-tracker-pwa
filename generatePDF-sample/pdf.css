@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: black;
+}
+
+.containerToDownload{
+    background-color: #044468;
+    padding: 3rem 1rem 3rem 1rem;
+}
+
+.pdf-header2 h1 {
+    font-size: 1.5rem;
+} 
+
+.pdf-header2 h2 {
+    text-align: right;
+    border-bottom: 2px solid white;
+    padding-bottom: 1rem;
+}
+
+.eacItem {
+    margin-top: 1rem;
+    border-bottom: 1px solid white;
+    padding-bottom: 0.7rem;
+}
+
+i {
+    margin-right: 0.5rem;
+}
+
+.last {
+    border: none;
+}
+
+.pdf-img-con{
+    width: 100%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    height: 3rem;
+    align-items: center;
+}
+
+button p{
+    background-color: yellow;
+    color: black;
+}
