@@ -272,7 +272,6 @@ class Moving {
         .doc(movingId)
         .onSnapshot((snapshot) => {
           const doc = snapshot.data();
-          console.log(movingId);
 
           if (doc) {
             this.userId = doc.creatorId;
@@ -352,7 +351,7 @@ class Moving {
     try {
       const getDoc = await db
         .collection('movings')
-        .where('creatorId', '==', this.userId)
+        .where('creatorId', '==', user.userId)
         .get();
 
       const doc = [];

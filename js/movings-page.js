@@ -18,7 +18,6 @@ user.isLoggedIn(() => {
       snapshotCollab.forEach((docCollab) => {
         movingsArr.push(docCollab);
       });
-      // console.log(snapshotCollab);
       renderMovings();
     });
   });
@@ -34,7 +33,6 @@ const movingsCollabArr = [];
 function renderMovings() {
   movingsOutput.innerHTML = '';
   movingsArr.forEach((moving) => {
-    console.log('dsfsdffd');
     const movingWrapper = document.createElement('div');
     movingWrapper.classList.add('moving-wrapper');
     movingWrapper.id = moving.id;
@@ -51,14 +49,18 @@ function renderMovings() {
     movingDateDiv.innerHTML = `${moving.data().date}`;
     const movingActions = document.createElement('div');
     movingActions.classList.add('moving__actions');
-    movingActions.innerHTML = `
-                        <button class="icon button-edit" data-bs-toggle="modal" data-bs-target="#editMovingModal" id="edit-${moving.id}">
-                            <span class="fas fa-pencil-alt"></span>
-                        </button>
-                        <button class="icon button-delete">
-                            <span class="fas fa-trash"></span>
-                        </button>
-                    `;
+    if (user.userId === moving.data().creatorId) {
+      movingActions.innerHTML = `<button class="icon button-edit" data-bs-toggle="modal" data-bs-target="#editMovingModal" id="edit-${moving.id}">
+        <span class="fas fa-pencil-alt"></span>
+        </button>
+        <button class="icon button-delete" 
+        data-bs-toggle="modal" data-bs-target="#deleteMovingModal"
+        id="delete-${moving.id}"
+        >
+        <span class="fas fa-trash"></span>
+        </button>
+      `;
+    }
     movingWrapper.appendChild(movingTitleDiv);
     movingWrapper.appendChild(movingAddressDiv);
     movingWrapper.appendChild(movingDateDiv);
@@ -66,6 +68,7 @@ function renderMovings() {
     movingsOutput.appendChild(movingWrapper);
     addEventListersEdit();
     addEventListersRedirects();
+    addEventListenersDelete();
   });
 }
 
@@ -106,7 +109,6 @@ const saveEditMovingBtn = document.querySelector('#editMovingForm');
 saveEditMovingBtn.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  console.log(editMovingTitle.value);
   await moving.updateMoving(
     user,
     editMovingTitle.value,
@@ -130,15 +132,12 @@ function addEventListersEdit() {
       editMovingDate.value = '';
       event.preventDefault();
       await moving.getMovingById(movingId);
-      console.log(moving);
       editMovingTitle.value = moving.movingTitle;
       editMovingDescription.value = moving.description;
       editMovingFrom.value = moving.from;
       editMovingTo.value = moving.to;
       editMovingDate.value = moving.date;
-      console.log(moving.date);
     });
-    // console.log(button.id);
   });
 }
 // End Edit Moving Section
@@ -155,6 +154,33 @@ function addEventListersRedirects() {
 
       window.location.href = 'moving-details.html';
     });
-    // console.log(button.id);
   });
 }
+
+let movingIdDelete = '';
+const deleteBtn = document.querySelector('#btnDelete');
+const cancelBtn = document.querySelector('#btnCancel');
+
+function addEventListenersDelete() {
+  const deleteButtons = document.querySelectorAll('.button-delete');
+  deleteButtons.forEach((button) => {
+    const movingId = button.id.split('-')[1];
+    const elem = document.querySelector(`#${button.id}`);
+
+    elem.addEventListener('click', (e) => {
+      e.preventDefault();
+      movingIdDelete = movingId;
+    });
+  });
+}
+
+deleteBtn.addEventListener('click', async (e) => {
+  e.preventDefault();
+  if (movingIdDelete.length > 0) {
+    await moving.deleteMoving(user, movingIdDelete);
+  }
+});
+
+cancelBtn.addEventListener('click', () => {
+  movingIdDelete = '';
+});
