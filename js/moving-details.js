@@ -561,7 +561,11 @@ const buildBoxesList = (boxes) => {
     const boxImage = document.createElement('div');
     boxImage.classList.add('box__image');
     const boxStatusIcon = document.createElement('span');
-    boxStatusIcon.className = `fak fa-${box.status}-box`;
+    if (box.status) {
+      boxStatusIcon.className = `fak fa-close-box`;
+    } else {
+      boxStatusIcon.className = `fak fa-open-box`;
+    }
     const sizeWrapper = document.createElement('p');
     const sizeLabel = document.createElement('span');
     const sizeText = document.createTextNode(`${box.boxSize}`);
@@ -600,6 +604,11 @@ const buildBoxesList = (boxes) => {
     const pencilIcon = document.createElement('span');
     pencilIcon.className = 'fas fa-pencil-alt';
     editBoxModalBtn.appendChild(pencilIcon);
+
+    editBoxModalBtn.addEventListener('click', () => {
+      const boxSelectedId = document.getElementById('boxSelectedId');
+      boxSelectedId.value = box.idBox;
+    });
 
     const removeBoxModalBtn = document.createElement('button');
     removeBoxModalBtn.classList.add('icon');
@@ -653,5 +662,87 @@ removeBoxBtn.addEventListener('click', () => {
     $('#questionModal').modal('hide');
   } catch (err) {
     console.log('Error deleting the selected box: ', err);
+  }
+});
+
+/**
+ * Populate Edit box from the modal with info from firebase
+ */
+const editBoxModal = document.getElementById('editBoxModal');
+editBoxModal.addEventListener('shown.bs.modal', async () => {
+  const idEditBoxNameInput = document.getElementById('idEditBoxNameInput');
+  const idEditBoxDescriptionInput = document.getElementById(
+    'idEditBoxDescriptionInput'
+  );
+  const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
+  const BoxWeightInput = document.getElementById('BoxWeightInput');
+  const idBoxFragileCheck = document.getElementById('idBoxFragileCheck');
+  const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
+  const boxSizesBtns = document.querySelectorAll(
+    '.editBoxContent__boxDimensionsButtons button'
+  );
+  try {
+    const movingId = window.sessionStorage.getItem('movingId');
+    const boxSelectedId = document.getElementById('boxSelectedId').value;
+
+    const boxInfo = await box.getBox(movingId, boxSelectedId);
+
+    idEditBoxNameInput.value = boxInfo.name;
+    idEditBoxDescriptionInput.value = boxInfo.description;
+    idEditBoxLabelList.value = 1;
+    BoxWeightInput.value = boxInfo.weight;
+    idBoxFragileCheck.checked = boxInfo.fragile;
+    idBoxCloseCheck.checked = boxInfo.status;
+
+    boxSizesBtns.forEach((boxSize) => {
+      if (boxSize.innerText === boxInfo.boxSize) {
+        boxSize.classList.add('editBoxContent__left_button_selected');
+      } else {
+        boxSize.classList.remove('editBoxContent__left_button_selected');
+      }
+    });
+  } catch (err) {
+    console.log('Error getting the box: ', err);
+  }
+});
+
+/**
+ * Edit a box according to a moving id
+ */
+const idbtnEditBoxSave = document.getElementById('idbtnEditBoxSave');
+idbtnEditBoxSave.addEventListener('click', () => {
+  const idEditBoxNameInput =
+    document.getElementById('idEditBoxNameInput').value;
+  const idEditBoxDescriptionInput = document.getElementById(
+    'idEditBoxDescriptionInput'
+  ).value;
+
+  const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
+  const BoxWeightInput = document.getElementById('BoxWeightInput').value;
+  const idBoxFragileCheck = document.getElementById('idBoxFragileCheck');
+  const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
+  const boxSizeSelected = document.querySelector(
+    '.editBoxContent__left_button_selected'
+  ).innerText;
+
+  try {
+    const movingId = window.sessionStorage.getItem('movingId');
+    const boxSelectedId = document.getElementById('boxSelectedId').value;
+
+    box.update(
+      movingId,
+      boxSelectedId,
+      idEditBoxNameInput,
+      idEditBoxDescriptionInput,
+      idEditBoxLabelList.options[idEditBoxLabelList.value].text,
+      boxSizeSelected,
+      BoxWeightInput,
+      idBoxFragileCheck.checked,
+      idBoxCloseCheck.checked
+    );
+
+    $('#editBoxModal').modal('hide');
+  } catch (err) {
+    console.log('Error updating the box: ', err);
   }
 });
