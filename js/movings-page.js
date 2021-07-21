@@ -77,20 +77,26 @@ const saveMovingBtn = document.querySelector('#createMovingForm');
 
 saveMovingBtn.addEventListener('submit', async (event) => {
   event.preventDefault();
-  const movingTitle = document.querySelector('#movingTitle').value;
-  const movingDescription = document.querySelector('#movingDescription').value;
-  const movingFrom = document.querySelector('#movingFrom').value;
-  const movingTo = document.querySelector('#movingTo').value;
-  const movingDate = document.querySelector('#movingDate').value;
+  const movingTitle = document.querySelector('#movingTitle');
+  const movingDescription = document.querySelector('#movingDescription');
+  const movingFrom = document.querySelector('#movingFrom');
+  const movingTo = document.querySelector('#movingTo');
+  const movingDate = document.querySelector('#movingDate');
   const moving = new Moving(
     user.userId,
-    movingTitle,
-    movingDescription,
-    movingFrom,
-    movingTo,
-    movingDate
+    movingTitle.value,
+    movingDescription.value,
+    movingFrom.value,
+    movingTo.value,
+    movingDate.value
   );
   await moving.addMovingToDb(user);
+  user.userId = '';
+  movingTitle.value = '';
+  movingDescription.value = '';
+  movingFrom.value = '';
+  movingTo.value = '';
+  movingDate.value = '';
 });
 
 // End Save Moving Section
