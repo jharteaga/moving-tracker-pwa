@@ -561,7 +561,11 @@ const buildBoxesList = (boxes) => {
     const boxImage = document.createElement('div');
     boxImage.classList.add('box__image');
     const boxStatusIcon = document.createElement('span');
-    boxStatusIcon.className = `fak fa-${box.status}-box`;
+    if (box.status) {
+      boxStatusIcon.className = `fak fa-close-box`;
+    } else {
+      boxStatusIcon.className = `fak fa-open-box`;
+    }
     const sizeWrapper = document.createElement('p');
     const sizeLabel = document.createElement('span');
     const sizeText = document.createTextNode(`${box.boxSize}`);
@@ -687,8 +691,8 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
     idEditBoxDescriptionInput.value = boxInfo.description;
     idEditBoxLabelList.value = 1;
     BoxWeightInput.value = boxInfo.weight;
-    idBoxFragileCheck.checked = !!boxInfo.fragile;
-    idBoxCloseCheck.checked = false;
+    idBoxFragileCheck.checked = boxInfo.fragile;
+    idBoxCloseCheck.checked = boxInfo.status;
 
     boxSizesBtns.forEach((boxSize) => {
       if (boxSize.innerText === boxInfo.boxSize) {
@@ -733,8 +737,8 @@ idbtnEditBoxSave.addEventListener('click', () => {
       idEditBoxLabelList.options[idEditBoxLabelList.value].text,
       boxSizeSelected,
       BoxWeightInput,
-      idBoxFragileCheck.checked ? 1 : 0,
-      idBoxCloseCheck.checked ? 1 : 0
+      idBoxFragileCheck.checked,
+      idBoxCloseCheck.checked
     );
 
     $('#editBoxModal').modal('hide');
