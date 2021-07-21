@@ -256,9 +256,10 @@
           top: 90px;
         }
         .nav-breadcrum {
-          position: sticky;
-          top: 182px;
-          z-index: 50;
+          display: none;
+          // position: sticky;
+          // top: 182px;
+          // z-index: 50;
         }
         #background-container {
           z-index: -5;

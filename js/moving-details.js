@@ -578,7 +578,7 @@ const buildBoxesList = (boxes) => {
 
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
-    boxMetadata.innerHTML = `<p>${box.name}</p>
+    boxMetadata.innerHTML = `<a href="box-content.html"><p>${box.name}</p></a>
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>`;
 

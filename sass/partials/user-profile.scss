@@ -26,15 +26,32 @@
             width: 100%;
         }
 
+        .top {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            img {
+                width: 56px;
+            }
+
+            a {
+                width: 24px;
+                text-align: end;
+            }
+        }
+
         .wrapper {
-            margin-top: 25%;
             position: relative;
 
 
             .profile-pic {
                 position: relative;
                 max-width: 400px;
-                margin: 0 auto;
+                margin: 5% auto 0 auto;
                 text-align: center;
 
                 img {
@@ -108,11 +125,11 @@
                     display: none;
                 }
 
-                button {
-                    display: none;
+                button#nameSaveBtn {
                     @include squareButton(primary);
                     width: 70%;
                     margin-top: 8rem;
+                    display: none;
                 }
             }
 
@@ -277,10 +294,14 @@
         main { 
             grid-column: 2 / 3;
 
+            .top {
+                display: none;
+            }
+
             .wrapper {
                 width: 100%;
                 position: relative;
-                
+                margin-top: 15%;
 
                 .profile-pic {
                 

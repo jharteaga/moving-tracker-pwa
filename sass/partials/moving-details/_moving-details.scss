@@ -94,14 +94,16 @@
         padding-left: 12px;
         border-top-right-radius: 10px;
 
-        p {
+        a {
           margin: 0;
+          font-weight: bold;
+          font-size: 1.4rem;
+          margin-top: 12px;
+          color: $text-color;
+        }
 
-          &:first-child {
-            font-weight: bold;
-            font-size: 1.4rem;
-            margin-top: 12px;
-          }
+        > p {
+          margin: 0;
 
           &:nth-child(2) {
             font-size: 1.2rem;

@@ -11,6 +11,7 @@ Table of Contents
 4. Welcome
 5. Onboarding
 6. Existing Movings
+6.5 Movings
 7. Moving Details
 8. PDF
 9. Box Content
@@ -47,6 +48,9 @@ Table of Contents
 
 /* 6. Existing Movings ================================== */
 @import "partials/existingMvs";
+
+/* 6.5 Movings ================================== */
+@import "partials/movings";
 
 /* 7. Moving Details =============================== */
 @import "partials/moving-details/moving-details";
