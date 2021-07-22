@@ -112,10 +112,6 @@ class User {
   async setProfilePicture(file) {
     try {
       const req = await storage.child(file.name).put(file);
-      //   console.log(await req.ref.getDownloadURL());
-      document.querySelector(
-        '.profile-pic img'
-      ).src = `${await req.ref.getDownloadURL()}`;
       await this._setProfilePictureUrl(await req.ref.getDownloadURL());
     } catch (error) {
       this.userError = error.message;
