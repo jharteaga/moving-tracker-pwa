@@ -49,6 +49,7 @@ function renderMovings() {
     movingDateDiv.innerHTML = `${moving.data().date}`;
     const movingActions = document.createElement('div');
     movingActions.classList.add('moving__actions');
+    console.log(user.userId, moving.data().creatorId);
     if (user.userId === moving.data().creatorId) {
       movingActions.innerHTML = `<button class="icon button-edit" data-bs-toggle="modal" data-bs-target="#editMovingModal" id="edit-${moving.id}">
         <span class="fas fa-pencil-alt"></span>
@@ -91,7 +92,6 @@ saveMovingBtn.addEventListener('submit', async (event) => {
     movingDate.value
   );
   await moving.addMovingToDb(user);
-  user.userId = '';
   movingTitle.value = '';
   movingDescription.value = '';
   movingFrom.value = '';
