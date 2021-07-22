@@ -8,12 +8,13 @@ const moving = new Moving();
 
 const box = new Box();
 
+const movingId = window.sessionStorage.getItem('movingId');
+
 /**
  * Fetch labels snapshot from firebase to update ui, uses movingId from
  * session storage.
  */
-function fetchMovingDetails() {
-  const movingId = window.sessionStorage.getItem('movingId');
+function fetchMovingDetails() { 
   moving.getMovingSnapshotById(movingId, () => {
     //moving title
     const movingTitle = document.getElementById('movingTitle')
@@ -23,6 +24,14 @@ function fetchMovingDetails() {
     moving.labels.forEach((label) => {
       boxLabels.push({ id: boxLabels.length + 1, name: label });
     });
+
+    //fill dropdownlists (edit box and new box) with moving labels 
+    const idEditBoxLabelList = document.getElementById("idEditBoxLabelList")
+    const newBoxLabelSelect = document.getElementById("newBoxLabelSelect")
+    fillLabelDropDownList(idEditBoxLabelList,boxLabels)
+    fillLabelDropDownList(newBoxLabelSelect,boxLabels)
+
+
     buildBoxLabels(boxLabels);
     collaborators.length = 0;
     moving.collaborators.forEach((collaborator) => {
@@ -97,6 +106,29 @@ function fetchMovingDetails() {
   });
 }
 
+
+//this function fills label dropdown list, parameters: 
+//*****************************************labelDropdownList: select HTML element to add labels
+//*****************************************boxLabelList:  array with labels from firebase
+const fillLabelDropDownList =(labelDropdownList,boxLabelList)=>{
+  labelDropdownList.innerHTML = ''
+  const option = document.createElement('option')
+  option.setAttribute('value',0)
+  option.innerHTML="Select a label"
+  labelDropdownList.appendChild(option)
+  boxLabelList.forEach(e=>{
+    const idLabel = e.id
+    const nameLabel = e.name 
+    const option = document.createElement('option')
+    option.setAttribute('value',idLabel )
+    option.innerHTML=nameLabel
+    labelDropdownList.appendChild(option)
+  } )
+   
+}
+
+
+
 user.isLoggedIn(() => {
   moving.userId = user.userId;
   fetchMovingDetails();
@@ -160,6 +192,12 @@ const addInputLabel = () => {
       // });
 
       moving.addLabel(newBoxLabelInput.value);
+
+      //refill dropdownlistlabels
+      const idEditBoxLabelList = document.getElementById("idEditBoxLabelList")
+      const newBoxLabelSelect = document.getElementById("newBoxLabelSelect")
+      fillLabelDropDownList(idEditBoxLabelList,boxLabels)
+      fillLabelDropDownList(newBoxLabelSelect,boxLabels)
       // fetchMovingDetails();
     }
   });
@@ -546,16 +584,6 @@ resizeEditBoxModal.onScreenSizeChange();
 
 /************************************************************** */
 
-
-//pass item selected it to session variable
-const sendItemId=(e)=>{
-  const itemId = e.parentElement.parentElement.id
-  // console.log(itemId)
-  window.sessionStorage.setItem("itemId", itemId)
-}
-/********************************************** */
-
-
 /**
  * Build the UI to list all the boxes according to a
  * specific moving
@@ -596,7 +624,7 @@ const buildBoxesList = (boxes) => {
 
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
-    boxMetadata.innerHTML = `<a onclick="sendItemId(this)" href="box-content.html"><p>${box.name}</p></a>
+    boxMetadata.innerHTML = `<a href="box-content.html"><p>${box.name}</p></a>
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>`;
 
@@ -616,7 +644,6 @@ const buildBoxesList = (boxes) => {
       // console.log(boxSelectedId.value )
     });
 
-    
 
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
@@ -711,7 +738,22 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
 
     idEditBoxNameInput.value = boxInfo.name;
     idEditBoxDescriptionInput.value = boxInfo.description;
-    idEditBoxLabelList.value = 1;
+    
+    // const totalLabelsinList = idEditBoxLabelList.options.length;
+    // for(let i=0;i<=totalLabelsinList;i++){
+    //   if (idEditBoxLabelList)
+    // }
+
+    Array.from(idEditBoxLabelList.options).forEach(e=>{
+      if(e.text==boxInfo.label){
+        idEditBoxLabelList.value = e.value
+      }
+    })
+
+    // console.log(idEditBoxLabelList)
+    // idEditBoxLabelList.value = 2
+
+
     BoxWeightInput.value = boxInfo.weight;
     idBoxFragileCheck.checked = boxInfo.fragile;
     idBoxCloseCheck.checked = boxInfo.status;
