@@ -28,10 +28,10 @@ function fetchMovingDetails() {
       });
     });
     buildCollaborators(collaborators);
-    console.log(
-      moving.sizes[Object.keys(moving.sizes)[1]].height,
-      Object.keys(moving.sizes)[1]
-    );
+    // console.log(
+    //   moving.sizes[Object.keys(moving.sizes)[1]].height,
+    //   Object.keys(moving.sizes)[1]
+    // );
     moving.getBoxesByMovingId(movingId, (snapshots) => {
       boxes.length = 0;
       snapshots.forEach((box) => {
@@ -596,6 +596,12 @@ const buildBoxesList = (boxes) => {
     const pdfIcon = document.createElement('span');
     pdfIcon.className = 'fas fa-file-pdf';
     pdfBoxModalBtn.appendChild(pdfIcon);
+    pdfBoxModalBtn.addEventListener('click', () => {
+      const boxSelectedId = document.getElementById('boxSelectedId');
+      boxSelectedId.value = box.idBox;
+      // console.log(boxSelectedId.value )
+    });
+
 
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
@@ -608,6 +614,7 @@ const buildBoxesList = (boxes) => {
     editBoxModalBtn.addEventListener('click', () => {
       const boxSelectedId = document.getElementById('boxSelectedId');
       boxSelectedId.value = box.idBox;
+
     });
 
     const removeBoxModalBtn = document.createElement('button');
@@ -711,19 +718,14 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
  */
 const idbtnEditBoxSave = document.getElementById('idbtnEditBoxSave');
 idbtnEditBoxSave.addEventListener('click', () => {
-  const idEditBoxNameInput =
-    document.getElementById('idEditBoxNameInput').value;
-  const idEditBoxDescriptionInput = document.getElementById(
-    'idEditBoxDescriptionInput'
-  ).value;
+  const idEditBoxNameInput =  document.getElementById('idEditBoxNameInput').value;
+  const idEditBoxDescriptionInput = document.getElementById('idEditBoxDescriptionInput').value;
 
   const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
   const BoxWeightInput = document.getElementById('BoxWeightInput').value;
   const idBoxFragileCheck = document.getElementById('idBoxFragileCheck');
   const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
-  const boxSizeSelected = document.querySelector(
-    '.editBoxContent__left_button_selected'
-  ).innerText;
+  const boxSizeSelected = document.querySelector('.editBoxContent__left_button_selected').innerText;
 
   try {
     const movingId = window.sessionStorage.getItem('movingId');
@@ -746,3 +748,71 @@ idbtnEditBoxSave.addEventListener('click', () => {
     console.log('Error updating the box: ', err);
   }
 });
+
+
+/************************************** */
+//populate pdf modal
+/************************************** */
+
+const pdfBoxModal = document.getElementById('pdfBoxModal');
+pdfBoxModal.addEventListener('shown.bs.modal',async ()=>{
+  try{
+    const boxSelectedId = document.getElementById('boxSelectedId');
+    const movingId = window.sessionStorage.getItem('movingId');
+    const boxInfo = await box.getBox(movingId, boxSelectedId.value);
+    const movingInfo = await moving.getMovingById(movingId);
+    const items = await box.getItems(movingId,boxSelectedId.value);
+
+
+    pdfModalLabel.innerHTML =  boxInfo.name;
+    BoxName.innerHTML  = boxInfo.name;
+    idlblSize.innerHTML = boxInfo.boxSize;
+    idlblDescription.innerHTML = boxInfo.description;
+    idlblBoxLabel.innerHTML = boxInfo.label;
+    idlblVolume.innerHTML = `${boxVolume(boxInfo.boxSize)} &#13221;`
+    let value=0
+   items.forEach(element => {
+     value+=Number(element.value)
+   });
+  
+    idlblValue.innerHTML = `$ ${value}`;
+    idlblWeight.innerHTML = boxInfo.weight + ' Kg';
+    idlblAddressMove.innerHTML = moving.to;
+    const lblFragile = document.getElementById('lblFragile')
+    if (boxInfo.fragile)
+    {
+      lblFragile.classList.remove('pdfBoxContent__labelFragile_hidden')
+    }
+    else{
+      lblFragile.classList.add('pdfBoxContent__labelFragile_hidden')
+    }
+  }
+  catch(err){
+    console.log(err)
+  }
+
+})
+
+const boxVolume = (boxSize) => {
+  let volume=0
+  switch (boxSize.toUpperCase()){
+    case 'SMALL':
+      volume =smallInputs[0].value * smallInputs[1].value * smallInputs[2].value;
+      break;
+    case 'MEDIUM':
+      volume =mediumInputs[0].value * mediumInputs[1].value * mediumInputs[2].value;
+      break;
+    case 'LARGE':
+      volume =largeInputs[0].value * largeInputs[1].value * largeInputs[2].value;
+      break;
+    case 'CUSTOM':
+      volume =customInputs[0].value * customInputs[1].value * customInputs[2].value;
+      break;
+  }
+  //volume is in cubic cm, convert to cubic mts 
+  console.log(volume)
+  volume = volume/100;
+  return volume;
+}
+
+
