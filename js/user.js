@@ -103,6 +103,12 @@ class User {
     }
   }
 
+  /**
+   * Method that takes a file (picture) as input, uploads it to firebase storage,
+   * and saves the url to current user.
+   *
+   * @param {File} file
+   */
   async setProfilePicture(file) {
     try {
       const req = await storage.child(file.name).put(file);
@@ -117,6 +123,11 @@ class User {
     }
   }
 
+  /**
+   * Private function to set user profile picture url in user document in firestore
+   *
+   * @param {String} profilePictureUrl
+   */
   async _setProfilePictureUrl(profilePictureUrl) {
     try {
       const data = {
