@@ -18,7 +18,7 @@ class Box {
     description = '',
     label = '',
     boxSize = '',
-    weight = '',
+    weight = '0',
     fragile = false,
     status = false
   ) {
@@ -138,4 +138,40 @@ class Box {
       return itemsDocs;
     });
   }
+
+
+  async getBoxSizebyMovingIdandBoxSizeName(movingId, boxSize) {
+    try {
+      db.collection('movings')
+        .doc(movingId)
+        .where(boxSize)
+        .onSnapshot((snapshot) => {
+          const doc = snapshot.data();
+
+          if (doc) {
+            this.userId = doc.creatorId;
+            this.movingId = snapshot.id;
+            this.movingTitle = doc.movingTitle;
+            this.description = doc.description;
+            this.from = doc.from;
+            this.to = doc.to;
+            this.date = doc.date;
+            this.boxes = doc.boxes;
+            this.collaborators = doc.collaborators;
+            this.sizes = doc.sizes;
+            this.createdAt = doc.createdAt;
+            this.movingError = '';
+            this.labels = doc.labels;
+          }
+        });
+    } catch (error) {
+      this.movingError = error.message;
+      console.log(`Error code: ${error.code}`);
+      console.log(`Error message: ${error.message}`);
+      console.log(error);
+    }
+  }
+
+
+
 }

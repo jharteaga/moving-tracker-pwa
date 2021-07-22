@@ -34,7 +34,7 @@
   // width: 80%;
   // height: 3rem;
 
-  @include squareButton('secondary', 100%);
+  @include squareButton("secondary", 100%);
   height: 3rem;
 }
 
@@ -79,7 +79,7 @@
 
 //class for delete modal
 .actionBtn {
-  @include squareButton('primary', 100%);
+  @include squareButton("primary", 100%);
   height: 3rem;
 }
 .divModalButtons {
@@ -241,6 +241,9 @@
     margin-bottom: 1rem;
     margin-top: 1.3rem;
   }
+  &__labelFragile_hidden {
+    display: none;
+  }
   .button.btn.btn-secondary {
     width: 100%;
   }
@@ -268,6 +271,7 @@
       grid-column: 1/3;
       grid-row: 3/4;
     }
+
     &__boxDescriptionBorderThickerAddress {
       text-align: right;
     }
