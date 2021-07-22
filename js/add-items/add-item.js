@@ -48,8 +48,11 @@ addItemBtn.addEventListener('click', ()=>{
     const idItem = iditemSelected.value;
 
         //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
-        const idMoving="mPkQ3bczO9EHyBQ2LVSt";
-        const idBox = "0L4BgcxzedWLa60wi5e7";  
+        const idMoving = window.sessionStorage.getItem('movingId');
+        const idBox =  window.sessionStorage.getItem('itemId') 
+
+        // const idMoving="mPkQ3bczO9EHyBQ2LVSt";
+        // const idBox = "0L4BgcxzedWLa60wi5e7";  
         
         // if idItem is passed, it will update, otherwise, it will add a new item
     addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
