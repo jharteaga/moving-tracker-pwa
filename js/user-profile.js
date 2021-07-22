@@ -1,5 +1,7 @@
 console.log('connected');
 
+const storage = firebase.storage().ref();
+
 //Define
 const user = new User();
 const userName = document.getElementById('userName');
