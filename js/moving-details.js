@@ -546,6 +546,16 @@ resizeEditBoxModal.onScreenSizeChange();
 
 /************************************************************** */
 
+
+//pass item selected it to session variable
+const sendItemId=(e)=>{
+  const itemId = e.parentElement.parentElement.id
+  // console.log(itemId)
+  window.sessionStorage.setItem("itemId", itemId)
+}
+/********************************************** */
+
+
 /**
  * Build the UI to list all the boxes according to a
  * specific moving
@@ -586,7 +596,7 @@ const buildBoxesList = (boxes) => {
 
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
-    boxMetadata.innerHTML = `<a href="box-content.html"><p>${box.name}</p></a>
+    boxMetadata.innerHTML = `<a onclick="sendItemId(this)" href="box-content.html"><p>${box.name}</p></a>
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>`;
 
@@ -606,6 +616,7 @@ const buildBoxesList = (boxes) => {
       // console.log(boxSelectedId.value )
     });
 
+    
 
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
