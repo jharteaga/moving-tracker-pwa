@@ -16,8 +16,8 @@ function fetchMovingDetails() {
   const movingId = window.sessionStorage.getItem('movingId');
   moving.getMovingSnapshotById(movingId, () => {
     //moving title
-    const movingTitle = document.getElementById('movingTitle')
-    movingTitle.innerHTML=moving.movingTitle
+    const movingTitle = document.getElementById('movingTitle');
+    movingTitle.innerHTML = moving.movingTitle;
     /*********************************** */
     boxLabels.length = 0;
     moving.labels.forEach((label) => {
@@ -57,43 +57,45 @@ function fetchMovingDetails() {
     /**
      * Populates sizes details on page load
      */
-    Object.keys(moving.sizes).forEach((size) => {
-      switch (size) {
-        case 'small':
-          smallInputs[0].value = moving.sizes[size].length;
-          smallInputs[1].value = moving.sizes[size].width;
-          smallInputs[2].value = moving.sizes[size].height;
+    if (moving.sizes) {
+      Object.keys(moving.sizes).forEach((size) => {
+        switch (size) {
+          case 'small':
+            smallInputs[0].value = moving.sizes[size].length;
+            smallInputs[1].value = moving.sizes[size].width;
+            smallInputs[2].value = moving.sizes[size].height;
 
-          break;
-        case 'medium':
-          mediumInputs[0].value = moving.sizes[size].length;
-          mediumInputs[1].value = moving.sizes[size].width;
-          mediumInputs[2].value = moving.sizes[size].height;
+            break;
+          case 'medium':
+            mediumInputs[0].value = moving.sizes[size].length;
+            mediumInputs[1].value = moving.sizes[size].width;
+            mediumInputs[2].value = moving.sizes[size].height;
 
-          break;
-        case 'large':
-          largeInputs[0].value = moving.sizes[size].length;
-          largeInputs[1].value = moving.sizes[size].width;
-          largeInputs[2].value = moving.sizes[size].height;
+            break;
+          case 'large':
+            largeInputs[0].value = moving.sizes[size].length;
+            largeInputs[1].value = moving.sizes[size].width;
+            largeInputs[2].value = moving.sizes[size].height;
 
-          break;
-        case 'custom':
-          customInputs[0].value = moving.sizes[size].length
-            ? moving.sizes[size].length
-            : '0';
-          customInputs[1].value = moving.sizes[size].width
-            ? moving.sizes[size].width
-            : '0';
-          customInputs[2].value = moving.sizes[size].height
-            ? moving.sizes[size].height
-            : '0';
+            break;
+          case 'custom':
+            customInputs[0].value = moving.sizes[size].length
+              ? moving.sizes[size].length
+              : '0';
+            customInputs[1].value = moving.sizes[size].width
+              ? moving.sizes[size].width
+              : '0';
+            customInputs[2].value = moving.sizes[size].height
+              ? moving.sizes[size].height
+              : '0';
 
-          break;
+            break;
 
-        default:
-          break;
-      }
-    });
+          default:
+            break;
+        }
+      });
+    }
   });
 }
 
@@ -546,15 +548,13 @@ resizeEditBoxModal.onScreenSizeChange();
 
 /************************************************************** */
 
-
 //pass item selected it to session variable
-const sendItemId=(e)=>{
-  const itemId = e.parentElement.parentElement.id
+const sendItemId = (e) => {
+  const itemId = e.parentElement.parentElement.id;
   // console.log(itemId)
-  window.sessionStorage.setItem("itemId", itemId)
-}
+  window.sessionStorage.setItem('itemId', itemId);
+};
 /********************************************** */
-
 
 /**
  * Build the UI to list all the boxes according to a
@@ -596,7 +596,9 @@ const buildBoxesList = (boxes) => {
 
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
-    boxMetadata.innerHTML = `<a onclick="sendItemId(this)" href="box-content.html"><p>${box.name}</p></a>
+    boxMetadata.innerHTML = `<a onclick="sendItemId(this)" href="box-content.html"><p>${
+      box.name
+    }</p></a>
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>`;
 
@@ -616,8 +618,6 @@ const buildBoxesList = (boxes) => {
       // console.log(boxSelectedId.value )
     });
 
-    
-
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
     editBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
@@ -629,7 +629,6 @@ const buildBoxesList = (boxes) => {
     editBoxModalBtn.addEventListener('click', () => {
       const boxSelectedId = document.getElementById('boxSelectedId');
       boxSelectedId.value = box.idBox;
-
     });
 
     const removeBoxModalBtn = document.createElement('button');
@@ -733,14 +732,19 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
  */
 const idbtnEditBoxSave = document.getElementById('idbtnEditBoxSave');
 idbtnEditBoxSave.addEventListener('click', () => {
-  const idEditBoxNameInput =  document.getElementById('idEditBoxNameInput').value;
-  const idEditBoxDescriptionInput = document.getElementById('idEditBoxDescriptionInput').value;
+  const idEditBoxNameInput =
+    document.getElementById('idEditBoxNameInput').value;
+  const idEditBoxDescriptionInput = document.getElementById(
+    'idEditBoxDescriptionInput'
+  ).value;
 
   const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
   const BoxWeightInput = document.getElementById('BoxWeightInput').value;
   const idBoxFragileCheck = document.getElementById('idBoxFragileCheck');
   const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
-  const boxSizeSelected = document.querySelector('.editBoxContent__left_button_selected').innerText;
+  const boxSizeSelected = document.querySelector(
+    '.editBoxContent__left_button_selected'
+  ).innerText;
 
   try {
     const movingId = window.sessionStorage.getItem('movingId');
@@ -764,70 +768,66 @@ idbtnEditBoxSave.addEventListener('click', () => {
   }
 });
 
-
 /************************************** */
 //populate pdf modal
 /************************************** */
 
 const pdfBoxModal = document.getElementById('pdfBoxModal');
-pdfBoxModal.addEventListener('shown.bs.modal',async ()=>{
-  try{
+pdfBoxModal.addEventListener('shown.bs.modal', async () => {
+  try {
     const boxSelectedId = document.getElementById('boxSelectedId');
     const movingId = window.sessionStorage.getItem('movingId');
     const boxInfo = await box.getBox(movingId, boxSelectedId.value);
     const movingInfo = await moving.getMovingById(movingId);
-    const items = await box.getItems(movingId,boxSelectedId.value);
+    const items = await box.getItems(movingId, boxSelectedId.value);
 
-
-    pdfModalLabel.innerHTML =  boxInfo.name;
-    BoxName.innerHTML  = boxInfo.name;
+    pdfModalLabel.innerHTML = boxInfo.name;
+    BoxName.innerHTML = boxInfo.name;
     idlblSize.innerHTML = boxInfo.boxSize;
     idlblDescription.innerHTML = boxInfo.description;
     idlblBoxLabel.innerHTML = boxInfo.label;
-    idlblVolume.innerHTML = `${boxVolume(boxInfo.boxSize)} &#13221;`
-    let value=0
-   items.forEach(element => {
-     value+=Number(element.value)
-   });
-  
+    idlblVolume.innerHTML = `${boxVolume(boxInfo.boxSize)} &#13221;`;
+    let value = 0;
+    items.forEach((element) => {
+      value += Number(element.value);
+    });
+
     idlblValue.innerHTML = `$ ${value}`;
     idlblWeight.innerHTML = boxInfo.weight + ' Kg';
     idlblAddressMove.innerHTML = moving.to;
-    const lblFragile = document.getElementById('lblFragile')
-    if (boxInfo.fragile)
-    {
-      lblFragile.classList.remove('pdfBoxContent__labelFragile_hidden')
+    const lblFragile = document.getElementById('lblFragile');
+    if (boxInfo.fragile) {
+      lblFragile.classList.remove('pdfBoxContent__labelFragile_hidden');
+    } else {
+      lblFragile.classList.add('pdfBoxContent__labelFragile_hidden');
     }
-    else{
-      lblFragile.classList.add('pdfBoxContent__labelFragile_hidden')
-    }
+  } catch (err) {
+    console.log(err);
   }
-  catch(err){
-    console.log(err)
-  }
-
-})
+});
 
 const boxVolume = (boxSize) => {
-  let volume=0
-  switch (boxSize.toUpperCase()){
+  let volume = 0;
+  switch (boxSize.toUpperCase()) {
     case 'SMALL':
-      volume =smallInputs[0].value * smallInputs[1].value * smallInputs[2].value;
+      volume =
+        smallInputs[0].value * smallInputs[1].value * smallInputs[2].value;
       break;
     case 'MEDIUM':
-      volume =mediumInputs[0].value * mediumInputs[1].value * mediumInputs[2].value;
+      volume =
+        mediumInputs[0].value * mediumInputs[1].value * mediumInputs[2].value;
       break;
     case 'LARGE':
-      volume =largeInputs[0].value * largeInputs[1].value * largeInputs[2].value;
+      volume =
+        largeInputs[0].value * largeInputs[1].value * largeInputs[2].value;
       break;
     case 'CUSTOM':
-      volume =customInputs[0].value * customInputs[1].value * customInputs[2].value;
+      volume =
+        customInputs[0].value * customInputs[1].value * customInputs[2].value;
       break;
   }
-  //volume is in cubic cm, convert to cubic mts 
-  console.log(volume)
-  volume = volume/100;
+  //volume is in cubic cm, convert to cubic mts
+  console.log(volume);
+  volume = volume / 100;
   return volume;
-}
-
-
+};
