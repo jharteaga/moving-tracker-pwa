@@ -15,6 +15,10 @@ const box = new Box();
 function fetchMovingDetails() {
   const movingId = window.sessionStorage.getItem('movingId');
   moving.getMovingSnapshotById(movingId, () => {
+    //moving title
+    const movingTitle = document.getElementById('movingTitle')
+    movingTitle.innerHTML=moving.movingTitle
+    /*********************************** */
     boxLabels.length = 0;
     moving.labels.forEach((label) => {
       boxLabels.push({ id: boxLabels.length + 1, name: label });
