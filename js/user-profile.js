@@ -58,15 +58,35 @@ window.addEventListener('resize', () => {
   console.log(windowSize);
 })
 
+
+//To judge if user is accessing by smartphone or not
+function isSmartPhone() {
+  if(navigator.userAgent.match(/iPhone|Android.+Mobile/)){
+    return true;
+  } else {
+    return false;
+  }
+}
+console.log(isSmartPhone());
+
+
 //Edit Picture
 editUserPicBtn.addEventListener('click', () => {
-
+  //Judging by window size
   if(windowSize < 900){
     fileSelector.style.display = 'block';
   } else {
     picEditMethod.classList.remove('hidden');
     logoutBtn.style.display = 'none';
   }
+
+  //Judging by isSmartPhone
+  // if(isSmartPhone()){
+  //   fileSelector.style.display = 'block';
+  // } else {
+  //   picEditMethod.classList.remove('hidden');
+  //   logoutBtn.style.display = 'none';
+  // }
 });
 
 closeBtn.addEventListener('click', () => {
