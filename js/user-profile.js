@@ -3,6 +3,9 @@ console.log('connected');
 const storage = firebase.storage().ref();
 
 //Define
+let windowSize = document.documentElement.clientWidth;
+console.log(windowSize);
+
 const user = new User();
 const userName = document.getElementById('userName');
 const userEmail = document.getElementById('userEmail');
@@ -24,17 +27,46 @@ const fileSelector = document.getElementById('fileSelector');
 const picSaveBtn = document.getElementById('picSaveBtn');
 const fileSelctCloseBtn = document.getElementById('fileSelctCloseBtn');
 
+const newUserPic = document.getElementById('newUserPic');
+const uploadedPic = document.querySelector('.profile-pic img');
+
 //When loading the page
 user.isLoggedIn(() => {
   userName.innerHTML = user.userName;
   userEmail.innerHTML = user.email;
   newUserName.value = user.userName;
+  uploadedPic.src = user.userProfilePictureUrl;
+
+  fetch(user.userProfilePictureUrl)
+  .then((response) => {
+    console.log(response);
+      if(response.ok){
+        uploadedPic.src = user.userProfilePictureUrl;
+      } else {
+        uploadedPic.src = "../img/profile/user-default.png";
+      }
+  }).catch((error) => {
+    console.log(error);
+  })
+
 });
+
+
+//When window size changed  => to show the uploading method differently
+window.addEventListener('resize', () => {
+  windowSize = document.documentElement.clientWidth;
+  console.log(windowSize);
+})
 
 //Edit Picture
 editUserPicBtn.addEventListener('click', () => {
-  picEditMethod.classList.remove('hidden');
-  logoutBtn.style.display = 'none';
+
+  if(windowSize < 900){
+    fileSelector.style.display = 'block';
+  } else {
+    picEditMethod.classList.remove('hidden');
+    logoutBtn.style.display = 'none';
+  }
 });
 
 closeBtn.addEventListener('click', () => {
@@ -90,10 +122,14 @@ fileSelctCloseBtn.addEventListener('click', () => {
 });
 
 //Choose from PC => Save
-picSaveBtn.addEventListener('click', () => {
+picSaveBtn.addEventListener('click', async () => {
   fileSelector.style.display = 'none';
   picEditMethod.classList.add('hidden');
   logoutBtn.style.display = 'flex';
 
   //Need to add the code to send the file to Firestore
+  await user.setProfilePicture(newUserPic.files[0]);
+  console.log(newUserPic.files[0]);
+  console.log(user.userProfilePictureUrl);
+  uploadedPic.src = user.userProfilePictureUrl;
 });
