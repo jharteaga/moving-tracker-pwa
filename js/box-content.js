@@ -59,6 +59,29 @@ const showModalMsg = (msg) =>{
 }
 
 
+/********************************/
+/* Load profile picture */
+/********************************/
+const user = new User();
+
+user.isLoggedIn(() => {
+	console.log(user.userProfilePictureUrl);
+	const profilePhoto = document.querySelector('.profile-picture');
+
+	profilePhoto.src = user.userProfilePictureUrl;
+
+	fetch(user.userProfilePictureUrl)
+	.then((response) => {
+	console.log(response);
+		if(response.ok){
+		profilePhoto.src = user.userProfilePictureUrl;
+		} else {
+		profilePhoto.src = "../img/profile/user-default.svg";
+		}
+	}).catch((error) => {
+	console.log(error);
+	})
+});
 
 
 

@@ -21,6 +21,30 @@ user.isLoggedIn(() => {
       renderMovings();
     });
   });
+
+  //Load profile picture
+  console.log(user.userProfilePictureUrl);
+  const profilePhotoDesktop = document.querySelector('.profile-photo.desktop');
+  const profilePhotoMobile = document.querySelector('.profile-photo.mobile');
+
+  profilePhotoDesktop.src = user.userProfilePictureUrl;
+  profilePhotoMobile.src = user.userProfilePictureUrl;
+  
+  fetch(user.userProfilePictureUrl)
+  .then((response) => {
+    console.log(response);
+      if(response.ok){
+        profilePhotoDesktop.src = user.userProfilePictureUrl;
+        profilePhotoMobile.src = user.userProfilePictureUrl;
+      } else {
+        profilePhotoDesktop.src = "../img/profile/user-default.svg";
+        profilePhotoMobile.src = "../img/profile/user-default.svg";
+      }
+  }).catch((error) => {
+    console.log(error);
+  })
+  
+
 });
 /**
  * Movings Options Menu (Toggle plus menu button)

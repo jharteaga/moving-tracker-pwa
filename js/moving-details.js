@@ -18,7 +18,9 @@ function fetchMovingDetails() {
   moving.getMovingSnapshotById(movingId, () => {
     //moving title
     const movingTitle = document.getElementById('movingTitle');
+    const movingTitleMobile = document.getElementById('movingTitleMobile');
     movingTitle.innerHTML = moving.movingTitle;
+    movingTitleMobile.innerHTML = moving.movingTitle;
     /*********************************** */
     boxLabels.length = 0;
     moving.labels.forEach((label) => {
@@ -134,6 +136,30 @@ const fillLabelDropDownList =(labelDropdownList,boxLabelList)=>{
 user.isLoggedIn(() => {
   moving.userId = user.userId;
   fetchMovingDetails();
+
+  //Load profile picture
+  console.log(user.userProfilePictureUrl);
+  const profilePhotoDesktop = document.querySelector('.profile-photo.desktop');
+  const profilePhotoMobile = document.querySelector('.profile-photo.mobile');
+
+  profilePhotoDesktop.src = user.userProfilePictureUrl;
+  profilePhotoMobile.src = user.userProfilePictureUrl;
+  
+  fetch(user.userProfilePictureUrl)
+  .then((response) => {
+    console.log(response);
+      if(response.ok){
+        profilePhotoDesktop.src = user.userProfilePictureUrl;
+        profilePhotoMobile.src = user.userProfilePictureUrl;
+      } else {
+        profilePhotoDesktop.src = "../img/profile/user-default.svg";
+        profilePhotoMobile.src = "../img/profile/user-default.svg";
+      }
+  }).catch((error) => {
+    console.log(error);
+  })
+  
+  
 });
 
 /**
