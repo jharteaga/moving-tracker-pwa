@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome</title>
 
-
     <!-- Stylings -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
 
     <!-- JavaScript -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"
+      defer
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"
+      defer
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
+      defer
+    ></script>
     <script src="../js/firebase.js" defer></script>
     <script src="../js/main.js" defer></script>
-    <script src="../js/index.js" defer></script>
     <script src="../js/user.js" defer></script>
     <script src="../js/welcome.js" defer></script>
-</head>
-<body class="welcome-page">
-
+  </head>
+  <body class="welcome-page">
     <div class="welcome-page-desktop-left">
+      <img src="../img/moving-tracker-logo.svg" />
 
-        <img src="../img/moving-tracker-logo.svg">
-        
-        <p><span>&copy;</span> 2021 Moving tracker. <br>All Rights Reserved.</p>
-
+      <p><span>&copy;</span> 2021 Moving tracker. <br />All Rights Reserved.</p>
     </div>
 
     <main>
+      <div class="background"></div>
 
-        <div class="background"></div>
-        
-        <div class="wrapper">
-            
-            <h1>Welcome,<br><span id="userName"></span></h1>
-            
+      <div class="wrapper">
+        <h1>Welcome,<br /><span id="userName"></span></h1>
 
-            <div class="welcome-page-main-message">
-
-                <p>Your account was created successfully.</p>
-                <p>You will receive a notification in your e-mail.</p>
-                <p>Now start moving.</p>
-
-            </div>
-
-            <a href="onboarding.html">Next</a>
-        
+        <div class="welcome-page-main-message">
+          <p>Your account was created successfully.</p>
+          <p>You will receive a notification in your e-mail.</p>
+          <p>Now start moving.</p>
         </div>
 
+        <a href="onboarding.html">Next</a>
+      </div>
     </main>
-    
-</body>
+  </body>
 </html>
