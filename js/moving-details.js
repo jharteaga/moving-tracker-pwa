@@ -59,6 +59,7 @@ function fetchMovingDetails() {
           weight: box.data().weight,
           fragile: box.data().fragile,
           status: box.data().status,
+          value: box.data().value,
         });
       });
       buildBoxesList(boxes);
@@ -139,22 +140,21 @@ user.isLoggedIn(() => {
 
   profilePhotoDesktop.src = user.userProfilePictureUrl;
   profilePhotoMobile.src = user.userProfilePictureUrl;
-  
+
   fetch(user.userProfilePictureUrl)
-  .then((response) => {
-    console.log(response);
-      if(response.ok){
+    .then((response) => {
+      console.log(response);
+      if (response.ok) {
         profilePhotoDesktop.src = user.userProfilePictureUrl;
         profilePhotoMobile.src = user.userProfilePictureUrl;
       } else {
-        profilePhotoDesktop.src = "../img/profile/user-default.svg";
-        profilePhotoMobile.src = "../img/profile/user-default.svg";
+        profilePhotoDesktop.src = '../img/profile/user-default.svg';
+        profilePhotoMobile.src = '../img/profile/user-default.svg';
       }
-  }).catch((error) => {
-    console.log(error);
-  })
-  
-  
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 /**
@@ -650,8 +650,8 @@ const buildBoxesList = (boxes) => {
 
     const boxInfo = document.createElement('div');
     boxInfo.classList.add('box__info');
-    boxInfo.innerHTML = ` <p><span>Weight: </span>${box.weight}kg</p>
-                          <p><span>Value: </span>$0.00</p>`;
+    boxInfo.innerHTML = ` <p><span>Weight: </span>${box.weight} kg</p>
+                          <p><span>Value: </span>$${box.value}</p>`;
 
     const boxMetadata = document.createElement('div');
     boxMetadata.classList.add('box__metadata');
