@@ -43,7 +43,7 @@ user.isLoggedIn(() => {
       if(response.ok){
         uploadedPic.src = user.userProfilePictureUrl;
       } else {
-        uploadedPic.src = "../img/profile/user-default.png";
+        uploadedPic.src = "../img/profile/user-default.svg";
       }
   }).catch((error) => {
     console.log(error);
