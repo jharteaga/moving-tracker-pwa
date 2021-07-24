@@ -18,6 +18,10 @@
       src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
       defer
     ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-storage.js"
+      defer
+    ></script>
     <script src="../js/firebase.js" defer></script>
     <script src="../js/main.js" defer></script>
     <!-- ******* -->
@@ -127,7 +131,7 @@
           class="btnAdd round"
           data-bs-toggle="modal"
           data-bs-target="#itemModal"
-          onclick="changeAddItemModalTitle('Add Item')"
+          onclick="changeAddItemModalTitle('Add Item');"
         >
           <span class="fas fa-plus"></span>
         </button>
@@ -231,16 +235,15 @@
                 <div class="div3">
                   <label for="itemImageInput" class="field__label">Photo</label>
                   <div class="photo">
-                    <div id="preview"></div>
                     <input
                       type="file"
                       class="picInput"
-                      accept="image/x-png,image/jpeg,image/gif"
-                      onChange="picSelect(this)"
+                      accept="image/*"
                       capture="environment"
                       id="newItemImageInput"
                       name="newItemImageInput"
                     />
+                    <div id="preview"></div>
                   </div>
                 </div>
               </div>

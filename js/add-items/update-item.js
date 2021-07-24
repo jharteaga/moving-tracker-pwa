@@ -16,7 +16,6 @@ const updateItemOpenModal = (e) => {
   changeAddItemModalTitle('Update item');
 
   const item = new Item();
-  console.log(idMoving, idBox, idItem);
   item.getItem(idMoving, idBox, idItem).then((data) => {
     const itemNameInput = document.getElementById('newItemNameInput');
     const itemDescriptionInput = document.getElementById(
