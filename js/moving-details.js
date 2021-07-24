@@ -14,7 +14,7 @@ const movingId = window.sessionStorage.getItem('movingId');
  * Fetch labels snapshot from firebase to update ui, uses movingId from
  * session storage.
  */
-function fetchMovingDetails() { 
+function fetchMovingDetails() {
   moving.getMovingSnapshotById(movingId, () => {
     //moving title
     const movingTitle = document.getElementById('movingTitle');
@@ -25,12 +25,11 @@ function fetchMovingDetails() {
       boxLabels.push({ id: boxLabels.length + 1, name: label });
     });
 
-    //fill dropdownlists (edit box and new box) with moving labels 
-    const idEditBoxLabelList = document.getElementById("idEditBoxLabelList")
-    const newBoxLabelSelect = document.getElementById("newBoxLabelSelect")
-    fillLabelDropDownList(idEditBoxLabelList,boxLabels)
-    fillLabelDropDownList(newBoxLabelSelect,boxLabels)
-
+    //fill dropdownlists (edit box and new box) with moving labels
+    const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
+    const newBoxLabelSelect = document.getElementById('newBoxLabelSelect');
+    fillLabelDropDownList(idEditBoxLabelList, boxLabels);
+    fillLabelDropDownList(newBoxLabelSelect, boxLabels);
 
     buildBoxLabels(boxLabels);
     collaborators.length = 0;
@@ -108,28 +107,24 @@ function fetchMovingDetails() {
   });
 }
 
-
-//this function fills label dropdown list, parameters: 
+//this function fills label dropdown list, parameters:
 //*****************************************labelDropdownList: select HTML element to add labels
 //*****************************************boxLabelList:  array with labels from firebase
-const fillLabelDropDownList =(labelDropdownList,boxLabelList)=>{
-  labelDropdownList.innerHTML = ''
-  const option = document.createElement('option')
-  option.setAttribute('value',0)
-  option.innerHTML="Select a label"
-  labelDropdownList.appendChild(option)
-  boxLabelList.forEach(e=>{
-    const idLabel = e.id
-    const nameLabel = e.name 
-    const option = document.createElement('option')
-    option.setAttribute('value',idLabel )
-    option.innerHTML=nameLabel
-    labelDropdownList.appendChild(option)
-  } )
-   
-}
-
-
+const fillLabelDropDownList = (labelDropdownList, boxLabelList) => {
+  labelDropdownList.innerHTML = '';
+  const option = document.createElement('option');
+  option.setAttribute('value', 0);
+  option.innerHTML = 'Select a label';
+  labelDropdownList.appendChild(option);
+  boxLabelList.forEach((e) => {
+    const idLabel = e.id;
+    const nameLabel = e.name;
+    const option = document.createElement('option');
+    option.setAttribute('value', idLabel);
+    option.innerHTML = nameLabel;
+    labelDropdownList.appendChild(option);
+  });
+};
 
 user.isLoggedIn(() => {
   moving.userId = user.userId;
@@ -196,10 +191,10 @@ const addInputLabel = () => {
       moving.addLabel(newBoxLabelInput.value);
 
       //refill dropdownlistlabels
-      const idEditBoxLabelList = document.getElementById("idEditBoxLabelList")
-      const newBoxLabelSelect = document.getElementById("newBoxLabelSelect")
-      fillLabelDropDownList(idEditBoxLabelList,boxLabels)
-      fillLabelDropDownList(newBoxLabelSelect,boxLabels)
+      const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
+      const newBoxLabelSelect = document.getElementById('newBoxLabelSelect');
+      fillLabelDropDownList(idEditBoxLabelList, boxLabels);
+      fillLabelDropDownList(newBoxLabelSelect, boxLabels);
       // fetchMovingDetails();
     }
   });
@@ -588,9 +583,9 @@ resizeEditBoxModal.onScreenSizeChange();
 
 //pass item selected it to session variable
 const sendItemId = (e) => {
-  const itemId = e.parentElement.parentElement.id;
+  const boxId = e.parentElement.parentElement.id;
   // console.log(itemId)
-  window.sessionStorage.setItem('itemId', itemId);
+  window.sessionStorage.setItem('boxId', boxId);
 };
 /********************************************** */
 
@@ -656,7 +651,6 @@ const buildBoxesList = (boxes) => {
       boxSelectedId.value = box.idBox;
       // console.log(boxSelectedId.value )
     });
-
 
     const editBoxModalBtn = document.createElement('button');
     editBoxModalBtn.classList.add('icon');
@@ -750,21 +744,20 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
 
     idEditBoxNameInput.value = boxInfo.name;
     idEditBoxDescriptionInput.value = boxInfo.description;
-    
+
     // const totalLabelsinList = idEditBoxLabelList.options.length;
     // for(let i=0;i<=totalLabelsinList;i++){
     //   if (idEditBoxLabelList)
     // }
 
-    Array.from(idEditBoxLabelList.options).forEach(e=>{
-      if(e.text==boxInfo.label){
-        idEditBoxLabelList.value = e.value
+    Array.from(idEditBoxLabelList.options).forEach((e) => {
+      if (e.text == boxInfo.label) {
+        idEditBoxLabelList.value = e.value;
       }
-    })
+    });
 
     // console.log(idEditBoxLabelList)
     // idEditBoxLabelList.value = 2
-
 
     BoxWeightInput.value = boxInfo.weight;
     idBoxFragileCheck.checked = boxInfo.fragile;

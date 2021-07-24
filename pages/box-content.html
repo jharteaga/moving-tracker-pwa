@@ -1,232 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Box Content</title>
-
-  
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js" defer></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"
+      defer
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"
+      defer
+    ></script>
+    <script
+      src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"
+      defer
+    ></script>
     <script src="../js/firebase.js" defer></script>
     <script src="../js/main.js" defer></script>
     <!-- ******* -->
-
     <!-- User Class -->
     <script src="../js/user.js" defer></script>
-
     <!-- Resize modal Class -->
     <script src="../js/resizeModal.js" defer></script>
-
     <!-- Moving Class -->
     <script src="../js/moving.js" defer></script>
-    
     <!-- Box Class -->
     <script src="../js/box.js" defer></script>
     <script src="../js/box-content.js" defer></script>
-
     <!-- Item Class -->
     <script src="../js/add-items/delete-item.js" defer></script>
     <script src="../js/add-items/printItems.js" defer></script>
     <script src="../js/add-items/update-item.js" defer></script>
     <script src="../js/add-items/add-item.js" defer></script>
     <script src="../js/add-items/item.js" defer></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-    
-
-    
-    
-  
-
-    
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="../styles/styles.css">
-    
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-</head>
-<body class="box-content">
-    <div id="background-container" class="background-container">
-    </div>
+  <body class="box-content">
+    <div id="background-container" class="background-container"></div>
     <div class="wrapper">
-        <header>
-            <div class="movingLogo">
-                <div class="smallLogo">
-                    <a href="movings.html"><img src="../img/moving-tracker-icon.svg" class="logo"></a>
-                </div>
-                <div class="bigLogo">
-                   <img src="../img/moving-tracker-logo.svg" class="logo">
-                    <p>&#169;2021 Moving tracker. All Rights Reserved. </p>
-                </div>
+      <header>
+        <div class="movingLogo">
+          <div class="smallLogo">
+            <a href="movings.html"
+              ><img src="../img/moving-tracker-icon.svg" class="logo"
+            /></a>
+          </div>
+          <div class="bigLogo">
+            <img src="../img/moving-tracker-logo.svg" class="logo" />
+            <p>&#169;2021 Moving tracker. All Rights Reserved.</p>
+          </div>
+        </div>
+        <div class="movingName">
+          <h1 id="movingTitle">Studio 1501</h1>
+          <nav class="nav-breadcrum" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item nav-breadcrum__inactiveWhite">
+                <a href="movings.html">Movings</a>
+              </li>
+              <li class="breadcrumb-item nav-breadcrum__inactiveWhite">
+                <a href="moving-details.html">Boxes</a>
+              </li>
+              <li class="breadcrumb-item active_desktop" aria-current="page">
+                Items
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="movingProfilePicture">
+          <a href="user-profile.html"
+            ><img
+              src="../img/profile/user-default.png"
+              class="profile-picture"
+              alt=""
+          /></a>
+        </div>
+      </header>
+      <main>
+        <h2 id="boxNameDisplay"></h2>
+        <!-- BREADCRUM -->
+        <nav class="nav-breadcrum" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item nav-breadcrum__inactive">
+              <a href="movings.html">Movings</a>
+            </li>
+            <li class="breadcrumb-item nav-breadcrum__inactive">
+              <a href="moving-details.html">Boxes</a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">Items</li>
+          </ol>
+        </nav>
+        <div class="searchHeader">
+          <div class="field">
+            <div id="idSearchContainer" class="field__container">
+              <input type="text" name="" id="idSearch" />
+              <span class="fas fa-search icon"></span>
             </div>
-            <div class="movingName">
-                <h1 id="movingTitle">Studio 1501</h1>
-                <nav class="nav-breadcrum"  aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                    <li class="breadcrumb-item nav-breadcrum__inactiveWhite"><a href="movings.html">Movings</a></li>
-                    <li class="breadcrumb-item nav-breadcrum__inactiveWhite"><a href="moving-details.html">Boxes</a></li>
-                    <li class="breadcrumb-item active_desktop" aria-current="page">Items</li>
-                    </ol>
-                </nav>
-            </div>
-            <div class="movingProfilePicture">
-                <a href="user-profile.html"><img src="../img/profile/user-default.png" class="profile-picture" alt=""></a>
-            </div>
-        </header>
-        <main>
-            
-            <h2 id="boxNameDisplay"></h2>
-
-                <!-- BREADCRUM -->
-            <nav class="nav-breadcrum"  aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                <li class="breadcrumb-item nav-breadcrum__inactive"><a href="movings.html">Movings</a></li>
-                <li class="breadcrumb-item nav-breadcrum__inactive"><a href="moving-details.html">Boxes</a></li>
-                <li class="breadcrumb-item " aria-current="page">Items</li>
-                </ol>
-            </nav>
-
-            
-            <div class="searchHeader">
-                <div class="field">
-                    <div id="idSearchContainer" class="field__container">
-                        <input type="text" name="" id="idSearch">
-                        <span class="fas fa-search icon"></span>
+          </div>
+          <button class="buttonOposite" id="btnFilter">
+            <i class="far fa-filter"></i>
+          </button>
+        </div>
+        <!-- this element is used to store ite id to be edited or deleted -->
+        <input type="hidden" id="iditemSelected" value="" />
+        <!-- **************************************  -->
+        <ul id="itemListDisplay">
+          <!-- Items are created here dinamically -->
+        </ul>
+        <button
+          class="btnAdd round"
+          data-bs-toggle="modal"
+          data-bs-target="#itemModal"
+          onclick="changeAddItemModalTitle('Add Item')"
+        >
+          <span class="fas fa-plus"></span>
+        </button>
+        <!-- New item Modal -->
+        <div
+          class="modal fade"
+          id="itemModal"
+          tabindex="-1"
+          aria-labelledby="itemModalLabel"
+          aria-hidden="true"
+        >
+          <div id="idItemModalDialog" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header border-0">
+                <h5 class="modal-title" id="boxLabelsModalLabel"></h5>
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="field__container form">
+                  <div class="left">
+                    <div class="input-wrapper" id="newItemNameField">
+                      <div class="input__label input-field">
+                        <label for="newItemNameInput" class="field__label"
+                          >Name<small>*</small></label
+                        >
+                        <p class="error-msg" id="newItemNameErrorMsg"></p>
+                      </div>
+                      <input
+                        type="text"
+                        id="newItemNameInput"
+                        name="newItemNameInput"
+                      />
                     </div>
-                </div>
-                <button class="buttonOposite" id="btnFilter"><i class="far fa-filter "></i></button> 
-            </div>
-            
-            <!-- this element is used to store ite id to be edited or deleted -->
-            <input type="hidden" id='iditemSelected' value="">
-            <!-- **************************************  -->
-            <ul id="itemListDisplay">
-                <!-- Items are created here dinamically -->
-            </ul>
-
-            <a class="btnAdd" href="" data-bs-toggle="modal" data-bs-target="#itemModal" onclick="changeAddItemModalTitle('Add Item')">+</a>
-
-            
-            <!-- New item Modal -->
-            <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
-            <div id="idItemModalDialog" class="modal-dialog " >
-                <div class="modal-content   ">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="boxLabelsModalLabel">
-                            
-                        </h5>
-                        <button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
+                    <div class="input-wrapper" id="newItemDescField">
+                      <div class="input__label">
+                        <label
+                          for="newItemDescriptionInput"
+                          class="field__label"
+                          >Description</label
+                        >
+                      </div>
+                      <input
+                        type="text"
+                        id="newItemDescriptionInput"
+                        name="newItemDescriptionInput"
+                      />
                     </div>
-                    <div class="modal-body">
-                        <div class="field__container form">
-                            <div class="div1">
-                                <label for="itemNameInput" class="field__label">Name*</label>
-                                <input type="text" id="itemNameInput" name="itemNameInput" ><br>
-                    
-                                <label for="itemDescriptionInput" class="field__label">Description</label>
-                                <input type="text" id="itemDescriptionInput" name="itemDescriptionInput"><br>
-                    
-                                <label for="itemCategoryInput" class="field__label">Category*</label>
-                                <input type="text" id="itemCategoryInput" name="itemCategoryInput"><br>
-                            </div>
-                            <div class="div2">
-                                <label for="itemQuantityInput" class="field__label">Quantity*</label>
-                                <input type="text" id="itemQuantityInput" name="itemQuantityInput"><br>
-                    
-                                <label for="itemValueInput" class="field__label">Value</label><br>
-                                <div id="idValue">
-                                    <input type="number" id="itemValueInput" name="itemValueInput" placeholder="0.00"><br>
-                                </div>
-                            </div>
-                            <div class="div3">
-                                <!-- <label for="itemImageInput" class="field__label">Photo</label>
-                                <button id="start">Picture</button>
-                                <video id="video" width="320" height="240" autoplay></video>
-                                <canvas id="canvas" class="canvas" width="320" height="240"></canvas> -->
-                                <label for="itemImageInput" class="field__label">Photo</label>
-                                <div class="photo"> 
-                                    
-                                    <!-- <img id="placeholder" src="../img/general/placeholder.png"> -->
-                                    <div id="preview"></div>
-                                    <input type="file" class="picInput" accept="image/x-png,image/jpeg,image/gif" onChange="picSelect(this)" capture="environment" id="itemImageInput" name="itemImageInput">
-                                    
-                                </div>    
-                            </div>            
-                        </div>
+                    <div class="input-wrapper" id="newItemCategoryField">
+                      <div class="input__label input-field">
+                        <label for="newItemCategoryInput" class="field__label"
+                          >Category<small>*</small></label
+                        >
+                        <p class="error-msg" id="newItemCategoryErrorMsg"></p>
+                      </div>
+                      <input
+                        type="text"
+                        id="newItemCategoryInput"
+                        name="newItemCategoryInput"
+                      />
                     </div>
-                    <div class="modal-footer ">
-                        <button type="button" class="actionBtn" id="addItemBtn" data-bs-dismiss="modal" >Save</button><br>
-                    </div>                
-                </div>
-            </div>
-            </div>
-
-            <!-- Delete Modal -->
-            <div class="modal fade" id="deleteItemModal" tabindex="-1" aria-labelledby="deleteItemModal" aria-hidden="true"
-            >
-                <div id="modal-dialog" class="modal-dialog ">
-                    <div class="modal-content">      
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="boxLabelsModalLabel">
-                                
-                            </h5>
-                            <button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
-                        </div>          
-                        <div class="modal-body">
-                            
-                            <div class="divModalButtons">
-                                <label class="field__label">Do you want to delete the selected item?</label>
-                                <div id="divDelete">
-                                    <button id="btnDelete" class="delete-modal-closebtn" data-bs-dismiss="modal" onclick="deleteItem()"
-                                    >Delete</button>
-                                </div>  
-                                <div id="divCancel">
-                                    <button id="btnCancel" class="actionBtn" data-bs-dismiss="modal" onclick="cleanHiddenidInput()">Cancel</button>
-                                </div>
-                            </div>
-                        </div>            
+                  </div>
+                  <div class="right">
+                    <div class="input-wrapper" id="newItemQuantityField">
+                      <div class="input__label input-field">
+                        <label for="newItemQuantityInput" class="field__label"
+                          >Quantity<small>*</small></label
+                        >
+                        <p class="error-msg" id="newItemQuantityErrorMsg"></p>
+                      </div>
+                      <input
+                        type="text"
+                        id="newItemQuantityInput"
+                        name="newItemQuantityInput"
+                      />
                     </div>
-                </div>
-            </div>
-            
-            <!-- Msg Modal -->
-            <div id="msgItemModal" class="modal fade" tabindex="-1" aria-labelledby="msgItemModal" aria-hidden="true"
-            >
-                <div id="" class="modal-dialog ">
-                    <div class="modal-content">      
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="boxLabelsModalLabel">
-                                
-                            </h5>
-                            <button type="button" data-bs-dismiss="modal" aria-label="Close"><span class="fas fa-times"></span></button>
-                        </div>          
-                        <div class="modal-body">
-                            <label class="field__label" id="idlblMsg"></label>
-                        </div>   
-                        <div class="modal-footer ">
-                            <button type="button" class="actionBtn" id="" data-bs-dismiss="modal" >Close</button><br>
-                        </div>          
+                    <div class="input-wrapper" id="newItemValueField">
+                      <div class="input__label">
+                        <label for="newItemValueInput" class="field__label"
+                          >Value</label
+                        >
+                      </div>
+                      <input
+                        type="number"
+                        id="newItemValueInput"
+                        name="newItemValueInput"
+                        placeholder="0.00"
+                      />
                     </div>
+                  </div>
                 </div>
+                <div class="div3">
+                  <label for="itemImageInput" class="field__label">Photo</label>
+                  <div class="photo">
+                    <div id="preview"></div>
+                    <input
+                      type="file"
+                      class="picInput"
+                      accept="image/x-png,image/jpeg,image/gif"
+                      onChange="picSelect(this)"
+                      capture="environment"
+                      id="newItemImageInput"
+                      name="newItemImageInput"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer border-0">
+                <button type="button" class="actionBtn" id="addItemBtn">
+                  Save</button
+                ><br />
+              </div>
             </div>
-    
-    
-
-        </main>
-</div>
-    <script src="https://kit.fontawesome.com/7ba77cc2f3.js" crossorigin="anonymous" ></script>
-
+          </div>
+        </div>
+        <!-- </div> -->
+        <!-- Delete Modal -->
+        <div
+          class="modal fade"
+          id="deleteItemModal"
+          tabindex="-1"
+          aria-labelledby="deleteItemModal"
+          aria-hidden="true"
+        >
+          <div id="modal-dialog" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="boxLabelsModalLabel"></h5>
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="divModalButtons">
+                  <label class="field__label"
+                    >Do you want to delete the selected item?</label
+                  >
+                  <div id="divDelete">
+                    <button
+                      id="btnDelete"
+                      class="delete-modal-closebtn"
+                      data-bs-dismiss="modal"
+                      onclick="deleteItem()"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                  <div id="divCancel">
+                    <button
+                      id="btnCancel"
+                      class="actionBtn"
+                      data-bs-dismiss="modal"
+                      onclick="cleanHiddenidInput()"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Msg Modal -->
+        <div
+          id="msgItemModal"
+          class="modal fade"
+          tabindex="-1"
+          aria-labelledby="msgItemModal"
+          aria-hidden="true"
+        >
+          <div id="" class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="boxLabelsModalLabel"></h5>
+                <button
+                  type="button"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span class="fas fa-times"></span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label class="field__label" id="idlblMsg"></label>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="actionBtn"
+                  id=""
+                  data-bs-dismiss="modal"
+                >
+                  Close</button
+                ><br />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-			crossorigin="anonymous"
-		></script>
-</body>
+      src="https://kit.fontawesome.com/7ba77cc2f3.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

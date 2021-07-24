@@ -1,49 +1,47 @@
-
-
 const idMoving = window.sessionStorage.getItem('movingId');
-const idBox =  window.sessionStorage.getItem('itemId') 
+const idBox = window.sessionStorage.getItem('boxId');
 
 //***Show moving title */
 const moving = new Moving();
 moving.getMovingSnapshotById(idMoving, () => {
-    const movingTitle = document.getElementById('movingTitle')
-    movingTitle.innerHTML=moving.movingTitle
-    });
+  const movingTitle = document.getElementById('movingTitle');
+  movingTitle.innerHTML = moving.movingTitle;
+});
 
 /********************************/
 /* Display Box Name */
 /********************************/
 
 let boxContent = new Box();
-boxContent.getBox(idMoving,idBox).then(box => {
-    const boxNameDisplay = document.getElementById("boxNameDisplay");
-    boxNameDisplay.innerHTML = box.name;
+boxContent.getBox(idMoving, idBox).then((box) => {
+  const boxNameDisplay = document.getElementById('boxNameDisplay');
+  boxNameDisplay.innerHTML = box.name;
 });
 
 /********************************/
 //this function change add item modal title
 const changeAddItemModalTitle = (title) => {
-	const boxLabelsModalLabel = document.getElementById("boxLabelsModalLabel")
-	boxLabelsModalLabel.innerHTML = title
-}
+  const boxLabelsModalLabel = document.getElementById('boxLabelsModalLabel');
+  boxLabelsModalLabel.innerHTML = title;
+};
 
 /********************************/
-//this function clean hidden input storing item id 
+//this function clean hidden input storing item id
 const cleanHiddenidInput = () => {
-	const iditemSelected = document.getElementById("iditemSelected")
-	iditemSelected.value = ""
-}
+  const iditemSelected = document.getElementById('iditemSelected');
+  iditemSelected.value = '';
+};
 
 // ***********************************************
 //Print items from firebase
 //************************************************
-boxContent.getItems(idMoving,idBox).then(items => {
-    printItems(items);
+boxContent.getItems(idMoving, idBox).then((items) => {
+  printItems(items);
 });
 
 /*detecting change in breakpoint to change edit box modal size*/
 /************************************************************** */
-let resizeModal = new ResizeModal(900,idItemModalDialog)
+let resizeModal = new ResizeModal(900, idItemModalDialog);
 
 resizeModal.onLoad();
 resizeModal.onScreenSizeChange();
@@ -51,18 +49,12 @@ resizeModal.onScreenSizeChange();
 /************************************************************** */
 
 /*show modal message */
-const showModalMsg = (msg) =>{
-	const idlblMsg = document.getElementById("idlblMsg")
-	idlblMsg.innerHTML=msg
-		let myModal = new bootstrap.Modal(document.getElementById("msgItemModal"));
-		myModal.show();
-}
-
-
-
-
-
-
+const showModalMsg = (msg) => {
+  const idlblMsg = document.getElementById('idlblMsg');
+  idlblMsg.innerHTML = msg;
+  let myModal = new bootstrap.Modal(document.getElementById('msgItemModal'));
+  myModal.show();
+};
 
 /*
 // Elements for taking the snapshot
