@@ -34,7 +34,7 @@
   // width: 80%;
   // height: 3rem;
 
-  @include squareButton("secondary", 100%);
+  @include squareButton('secondary', 100%);
   height: 3rem;
 }
 
@@ -79,7 +79,7 @@
 
 //class for delete modal
 .actionBtn {
-  @include squareButton("primary", 100%);
+  @include squareButton('primary', 100%);
   height: 3rem;
 }
 .divModalButtons {

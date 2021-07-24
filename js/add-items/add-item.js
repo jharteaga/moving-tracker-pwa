@@ -1,124 +1,144 @@
+const addItemBtn = document.getElementById('addItemBtn');
 
+addItemBtn.addEventListener('click', () => {
+  let requiredValidation = true;
 
-const addItemBtn = document.getElementById("addItemBtn");
+  const newItemNameInput = document.getElementById('newItemNameInput');
+  const newItemDescriptionInput = document.getElementById(
+    'newItemDescriptionInput'
+  );
+  const newItemCategoryInput = document.getElementById('newItemCategoryInput');
+  const newItemQuantityInput = document.getElementById('newItemQuantityInput');
+  const newItemValueInput = document.getElementById('newItemValueInput');
+  const newItemImageInput = document.getElementById('newItemImageInput');
 
-// window.addEventListener('change', ()=> { 
+  const newItemNameErrorMsg = document.getElementById('newItemNameErrorMsg');
+  const newItemCategoryErrorMsg = document.getElementById(
+    'newItemCategoryErrorMsg'
+  );
+  const newItemQuantityErrorMsg = document.getElementById(
+    'newItemQuantityErrorMsg'
+  );
 
-//     const itemNameInput = document.getElementById("itemNameInput").value;
-//     const itemCategoryInput = document.getElementById("itemCategoryInput").value;
-//     const itemQuantityInput = document.getElementById("itemQuantityInput").value;
+  const newItemNameField = document.getElementById('newItemNameField');
+  const newItemCategoryField = document.getElementById('newItemCategoryField');
+  const newItemQuantityField = document.getElementById('newItemQuantityField');
 
+  //Reset
+  newItemNameErrorMsg.innerText = '';
+  newItemNameField.classList.remove('error');
+  newItemCategoryErrorMsg.innerText = '';
+  newItemCategoryField.classList.remove('error');
+  newItemQuantityErrorMsg.innerText = '';
+  newItemQuantityField.classList.remove('error');
 
-//     if(itemNameInput !== "" && itemCategoryInput !== "" && itemQuantityInput !== "") {
-//         addItemBtn.disabled = false;
-//     }
+  //Required fields
+  if (newItemNameInput.value === '') {
+    newItemNameErrorMsg.innerHTML = 'Please enter item name';
+    newItemNameField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (newItemCategoryInput.value === '') {
+    newItemCategoryErrorMsg.innerHTML = 'Please enter a category';
+    newItemCategoryField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (newItemQuantityInput.value === '') {
+    newItemQuantityErrorMsg.innerHTML = 'Please enter quantity';
+    newItemQuantityField.classList.add('error');
+    requiredValidation = false;
+  }
 
-//     if(itemNameInput === ""){
-//         itemNameErrorMsg.innerHTML = "Please enter Item Name"; 
-//     } else {
-//         itemNameErrorMsg.innerHTML = "";
-//     }
-
-//     if(itemCategoryInput === ""){
-//         itemCategoryErrorMsg.innerHTML = "Please enter Category"; 
-//     } else {
-//         itemCategoryErrorMsg.innerHTML = ""; 
-//     }
-
-//     if(itemQuantityInput === ""){
-//         itemQuantityErrorMsg.innerHTML = "Please enter Quantity"; 
-//     } else {
-//         itemQuantityErrorMsg.innerHTML = ""; 
-//     }
-
-// });
-
-
-addItemBtn.addEventListener('click', ()=>{
-    // console.log("Add")
-    const itemNameInput = document.getElementById("itemNameInput");
-    const itemDescriptionInput = document.getElementById("itemDescriptionInput");
-    const itemCategoryInput = document.getElementById("itemCategoryInput");
-    const itemQuantityInput = document.getElementById("itemQuantityInput");
-    const itemValueInput = document.getElementById("itemValueInput");
-    const itemImageInput = document.getElementById("itemImageInput");
- 
+  if (requiredValidation) {
     //look for element where idItem is stored
-    const iditemSelected = document.getElementById("iditemSelected")
+    const iditemSelected = document.getElementById('iditemSelected');
     const idItem = iditemSelected.value;
 
-        //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
-        const idMoving = window.sessionStorage.getItem('movingId');
-        const idBox =  window.sessionStorage.getItem('itemId') 
+    //CHANGE THIS CONSTS WITH VALUES FROM SESSIONS
+    const idMoving = window.sessionStorage.getItem('movingId');
+    const idBox = window.sessionStorage.getItem('boxId');
 
-        // const idMoving="mPkQ3bczO9EHyBQ2LVSt";
-        // const idBox = "0L4BgcxzedWLa60wi5e7";  
-        
-        // if idItem is passed, it will update, otherwise, it will add a new item
-    addUpdateItem(idMoving,idBox,idItem,itemNameInput.value,itemDescriptionInput.value, itemCategoryInput.value, itemQuantityInput.value, itemValueInput.value);
-    // ******************************************
+    // if idItem is passed, it will update, otherwise, it will add a new item
+    addUpdateItem(
+      idMoving,
+      idBox,
+      idItem,
+      newItemNameInput.value,
+      newItemDescriptionInput.value,
+      newItemCategoryInput.value,
+      newItemQuantityInput.value,
+      newItemValueInput.value
+    );
 
-})
+    //Close modal
+    $('#itemModal').modal('hide');
+  }
+});
 
- //ADDED BY ALEJANDRA
- /* function to send item data to firebase */
+//ADDED BY ALEJANDRA
+/* function to send item data to firebase */
+const addUpdateItem = (
+  idMoving,
+  idBox,
+  idItem,
+  name,
+  description,
+  category,
+  qty,
+  value
+) => {
+  let item = new Item();
+  let msgRetrived = '';
+  if (idItem == '') {
+    item
+      .add(idMoving, idBox, name, description, category, qty, value)
+      .then((msg) => {
+        msgRetrived = msg;
+        print(idMoving, idBox);
+        //clean inputs
+        cleanHiddenidInput();
+        cleanInputs();
+      });
+  } else {
+    item
+      .update(idMoving, idBox, idItem, name, description, category, qty, value)
+      .then((msg) => {
+        print(idMoving, idBox);
+        //clean inputs
+        cleanHiddenidInput();
+        cleanInputs();
 
-const addUpdateItem = (idMoving,idBox,idItem,name,description,category,qty,value)=>{
-      
- 
-    let item = new Item();
-    let msgRetrived = ""
-    if (idItem=="")
-        {
-            item.add(idMoving,idBox,name,description, category, qty, value).then((msg)=>{ msgRetrived=msg;
-                print(idMoving, idBox)
-                //clean inputs
-                cleanHiddenidInput()
-                cleanInputs()
-            });
-        }
-    else
-        {            
-            item.update(idMoving,idBox,idItem,name,description, category, qty, value).then((msg)=>{
-                print(idMoving, idBox)
-                //clean inputs
-                cleanHiddenidInput()
-                cleanInputs();
+        showModalMsg(msg);
+      });
+  }
+};
 
-                showModalMsg(msg)});
-        }
-
-    let modal = new bootstrap.Modal(document.getElementById('itemModal'),{keyboard:false});
-        modal.hide();
-   
-}
-
-const print =(idMoving,idBox)=>{
-    /********************************/
-    //Items need to be reprinted
-    /********************************/
-    let boxContent = new Box();
-    boxContent.getItems(idMoving,idBox).then(items => {
-        printItems(items);
-    });
-}
+const print = (idMoving, idBox) => {
+  /********************************/
+  //Items need to be reprinted
+  /********************************/
+  let boxContent = new Box();
+  boxContent.getItems(idMoving, idBox).then((items) => {
+    printItems(items);
+  });
+};
 
 /* ADDED BY ALEJANDRA*/
 /* clean all inputs */
-const cleanInputs = () =>{
-    itemNameInput.value="";
-    itemDescriptionInput.value="";
-    itemCategoryInput.value="";
-    itemQuantityInput.value="";
-    itemValueInput.value="";
-    // preview.innerHTML = "";
-}
+const cleanInputs = () => {
+  newItemNameInput.value = '';
+  newItemDescriptionInput.value = '';
+  newItemCategoryInput.value = '';
+  newItemQuantityInput.value = '';
+  newItemValueInput.value = '';
+  // preview.innerHTML = "";
+};
 
 /* ADDED BY ALEJANDRA*/
-/* event to display a preview of the picture*/ 
-const itemImageInput = document.getElementById("itemImageInput");
-const preview = document.getElementById("preview");
+/* event to display a preview of the picture*/
+const newItemImageInput = document.getElementById('newItemImageInput');
+const preview = document.getElementById('preview');
 
-itemImageInput.addEventListener("change", function () {
-  getImgData(preview,itemImageInput);
+newItemImageInput.addEventListener('change', function () {
+  getImgData(preview, newItemImageInput);
 });
