@@ -6,9 +6,10 @@ class Box {
     this.description = '';
     this.label = '';
     this.boxSize = '';
-    this.weight = '';
+    this.weight = 0;
     this.fragile = false;
     this.status = false;
+    this.value = 0;
   }
 
   add(
@@ -18,9 +19,10 @@ class Box {
     description = '',
     label = '',
     boxSize = '',
-    weight = '0',
+    weight = 0,
     fragile = false,
-    status = false
+    status = false,
+    value = 0
   ) {
     return db
       .collection(`/movings/${idMoving}/boxes`)
@@ -34,6 +36,7 @@ class Box {
         fragile: fragile,
         status: status,
         dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+        value: value,
       })
       .then((doc_ref) => {
         return 'Box successfully saved!';
@@ -65,7 +68,8 @@ class Box {
     boxSize,
     weight,
     fragile,
-    status
+    status,
+    value
   ) {
     let box = db.collection(`/movings/${idMoving}/boxes`).doc(idBox);
 
@@ -78,6 +82,7 @@ class Box {
         weight: weight,
         fragile: fragile,
         status: status,
+        value: value,
       })
       .then(() => {
         return 'Box successfully updated!';
@@ -139,7 +144,6 @@ class Box {
     });
   }
 
-
   async getBoxSizebyMovingIdandBoxSizeName(movingId, boxSize) {
     try {
       db.collection('movings')
@@ -172,6 +176,25 @@ class Box {
     }
   }
 
+  setTotalValueBox(movingId, boxId) {
+    let boxItems = db.collection(`/movings/${movingId}/boxes/${boxId}/items`);
+    let total = 0;
+    return boxItems.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        total += +doc.data().value;
+      });
 
-
+      let box = db.collection(`/movings/${movingId}/boxes`).doc(boxId);
+      return box
+        .update({
+          value: total.toFixed(2),
+        })
+        .then(() => {
+          console.log('Box value successfully updated');
+        })
+        .catch((error) => {
+          return 'Error updating box value: ', error;
+        });
+    });
+  }
 }
