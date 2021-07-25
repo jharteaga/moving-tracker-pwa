@@ -8,6 +8,7 @@ class Item {
     this.category = '';
     this.quantity = '';
     this.value = 0;
+    this.itemPictureUrl = '';
   }
 
   add(
@@ -17,7 +18,8 @@ class Item {
     description = '',
     category = '',
     quantity = '',
-    value = 0
+    value = 0,
+    imageFile
   ) {
     return db
       .collection(`/movings/${idMoving}/boxes/${idBox}/items`)
@@ -29,8 +31,10 @@ class Item {
         quantity: quantity,
         value: value,
         dateAdded: firebase.firestore.FieldValue.serverTimestamp(),
+        itemPictureUrl: '',
       })
-      .then(() => {
+      .then(async () => {
+        await this.setItemPicture(imageFile.files[0], idMoving, idBox, name);
         const box = new Box();
         box.setTotalValueBox(idMoving, idBox);
         return 'Item successfully saved!';
@@ -61,7 +65,8 @@ class Item {
     description = '',
     category = '',
     quantity = '',
-    value = 0
+    value = 0,
+    imageFile
   ) {
     let item = db
       .collection(`/movings/${idMoving}/boxes/${idBox}/items`)
@@ -76,7 +81,8 @@ class Item {
         quantity: quantity,
         value: value,
       })
-      .then(() => {
+      .then(async () => {
+        await this.setItemPicture(imageFile.files[0], idMoving, idBox, name);
         const box = new Box();
         box.setTotalValueBox(idMoving, idBox);
         return 'Item successfully updated!';
@@ -104,6 +110,7 @@ class Item {
             category: doc.data().category,
             quantity: doc.data().quantity,
             value: doc.data().value,
+            itemPictureUrl: doc.data().itemPictureUrl,
           });
           return item;
         } else {
@@ -113,5 +120,55 @@ class Item {
       .catch((error) => {
         return `Error getting item: ${error}`;
       });
+  }
+
+  /**
+   * Method that takes a file (picture) as input, uploads it to firebase storage,
+   * and saves the url to current item.
+   *
+   * @param {File} file
+   */
+  async setItemPicture(file, idMoving, idBox, itemName) {
+    const storage = firebase.storage().ref();
+    try {
+      const req = await storage
+        .child(`${idBox}-${itemName}-${file.name}`)
+        .put(file);
+      await this._setItemPictureUrl(
+        await req.ref.getDownloadURL(),
+        idMoving,
+        idBox,
+        itemName
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  /**
+   * Private function to set item picture url in item document in firestore
+   *
+   * @param {String} itemPictureUrl
+   */
+  async _setItemPictureUrl(itemPictureUrl, idMoving, idBox, itemName) {
+    try {
+      const data = {
+        itemPictureUrl: itemPictureUrl,
+      };
+
+      const itemsList = await db
+        .collection(`/movings/${idMoving}/boxes/${idBox}/items`)
+        .where('name', '==', itemName)
+        .get();
+
+      itemsList.forEach(async (item) => {
+        await db
+          .collection(`/movings/${idMoving}/boxes/${idBox}/items`)
+          .doc(item.id)
+          .set(data, { merge: true });
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }

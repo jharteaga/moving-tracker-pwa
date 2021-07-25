@@ -117,6 +117,8 @@
             display: flex;
             flex-direction: column;
             padding-top: 2%;
+            padding-bottom: 1rem;
+            padding-right: 1rem;
 
             .divIcons {
               padding-top: 4%;
@@ -431,5 +433,30 @@
 
   input {
     border: 1px solid $field-alert-color;
+  }
+}
+
+#itemModal .photo {
+  #preview {
+    width: 250px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid rgb(228, 228, 228);
+    margin: 0.5rem auto 0;
+
+    img {
+      width: 250px;
+      height: 200px;
+      border-radius: 10px;
+    }
+  }
+
+  @include mediumDevice {
+    display: flex;
+    justify-content: flex-start;
+    #preview {
+      margin: 0;
+      margin-left: 1rem;
+    }
   }
 }

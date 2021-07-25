@@ -23,6 +23,7 @@ boxContent.getBox(idMoving, idBox).then((box) => {
 const changeAddItemModalTitle = (title) => {
   const boxLabelsModalLabel = document.getElementById('boxLabelsModalLabel');
   boxLabelsModalLabel.innerHTML = title;
+  cleanInputs();
 };
 
 /********************************/

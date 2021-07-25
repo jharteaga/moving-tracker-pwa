@@ -67,7 +67,8 @@ addItemBtn.addEventListener('click', () => {
       newItemDescriptionInput.value,
       newItemCategoryInput.value,
       newItemQuantityInput.value,
-      newItemValueInput.value
+      newItemValueInput.value,
+      newItemImageInput
     );
 
     //Close modal
@@ -85,13 +86,14 @@ const addUpdateItem = (
   description,
   category,
   qty,
-  value
+  value,
+  imageFile
 ) => {
   let item = new Item();
   let msgRetrived = '';
   if (idItem == '') {
     item
-      .add(idMoving, idBox, name, description, category, qty, value)
+      .add(idMoving, idBox, name, description, category, qty, value, imageFile)
       .then((msg) => {
         msgRetrived = msg;
         print(idMoving, idBox);
@@ -101,7 +103,17 @@ const addUpdateItem = (
       });
   } else {
     item
-      .update(idMoving, idBox, idItem, name, description, category, qty, value)
+      .update(
+        idMoving,
+        idBox,
+        idItem,
+        name,
+        description,
+        category,
+        qty,
+        value,
+        imageFile
+      )
       .then((msg) => {
         print(idMoving, idBox);
         //clean inputs
@@ -125,20 +137,34 @@ const print = (idMoving, idBox) => {
 
 /* ADDED BY ALEJANDRA*/
 /* clean all inputs */
-const cleanInputs = () => {
+function cleanInputs() {
   newItemNameInput.value = '';
   newItemDescriptionInput.value = '';
   newItemCategoryInput.value = '';
   newItemQuantityInput.value = '';
   newItemValueInput.value = '';
-  // preview.innerHTML = "";
-};
+  newItemImageInput.value = '';
+  preview.innerHTML = '';
+}
 
 /* ADDED BY ALEJANDRA*/
 /* event to display a preview of the picture*/
-const newItemImageInput = document.getElementById('newItemImageInput');
-const preview = document.getElementById('preview');
+const filePicker = document.getElementById('newItemImageInput');
+const imgPreview = document.getElementById('preview');
 
 newItemImageInput.addEventListener('change', function () {
-  getImgData(preview, newItemImageInput);
+  imgPreview.innerHTML = '';
+
+  if (!filePicker || !filePicker.files || filePicker.files.length <= 0) {
+  } else {
+    for (let i = 0; i < filePicker.files.length; i++) {
+      const fileReader = new FileReader();
+      const files = filePicker.files[i];
+      fileReader.readAsDataURL(files);
+      fileReader.addEventListener('load', function () {
+        imgPreview.style.display = 'flex';
+        imgPreview.innerHTML += '<img src="' + this.result + '" />';
+      });
+    }
+  }
 });

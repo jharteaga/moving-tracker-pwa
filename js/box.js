@@ -138,6 +138,7 @@ class Box {
           cathegory: doc.data().cathegory,
           quantity: doc.data().quantity,
           value: doc.data().value,
+          itemPictureUrl: doc.data().itemPictureUrl,
         });
       });
       return itemsDocs;
