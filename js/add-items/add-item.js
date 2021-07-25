@@ -103,7 +103,17 @@ const addUpdateItem = (
       });
   } else {
     item
-      .update(idMoving, idBox, idItem, name, description, category, qty, value)
+      .update(
+        idMoving,
+        idBox,
+        idItem,
+        name,
+        description,
+        category,
+        qty,
+        value,
+        imageFile
+      )
       .then((msg) => {
         print(idMoving, idBox);
         //clean inputs

@@ -25,7 +25,7 @@ const printItems = (items) => {
     //************************************* */
     //item image
     let itemImg = document.createElement('img');
-    itemImg.setAttribute('src', '../img/items/item-not-found.jpg');
+    itemImg.setAttribute('src', item.itemPictureUrl);
     //************************************* */
 
     //************************************* */

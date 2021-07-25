@@ -24,12 +24,19 @@ const updateItemOpenModal = (e) => {
     const itemCategoryInput = document.getElementById('newItemCategoryInput');
     const itemQuantityInput = document.getElementById('newItemQuantityInput');
     const itemValueInput = document.getElementById('newItemValueInput');
-    // const itemImageInput = document.getElementById("itemImageInput");
+    const preview = document.getElementById('preview');
 
     itemNameInput.value = data[0].name;
     itemDescriptionInput.value = data[0].description;
     itemCategoryInput.value = data[0].category;
     itemQuantityInput.value = data[0].quantity;
     itemValueInput.value = data[0].value;
+
+    if (data[0].itemPictureUrl) {
+      const itemImage = document.createElement('img');
+      itemImage.src = data[0].itemPictureUrl;
+
+      preview.appendChild(itemImage);
+    }
   });
 };

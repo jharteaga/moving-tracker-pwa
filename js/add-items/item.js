@@ -65,7 +65,8 @@ class Item {
     description = '',
     category = '',
     quantity = '',
-    value = 0
+    value = 0,
+    imageFile
   ) {
     let item = db
       .collection(`/movings/${idMoving}/boxes/${idBox}/items`)
@@ -80,7 +81,8 @@ class Item {
         quantity: quantity,
         value: value,
       })
-      .then(() => {
+      .then(async () => {
+        await this.setItemPicture(imageFile.files[0], idMoving, idBox, name);
         const box = new Box();
         box.setTotalValueBox(idMoving, idBox);
         return 'Item successfully updated!';
@@ -108,6 +110,7 @@ class Item {
             category: doc.data().category,
             quantity: doc.data().quantity,
             value: doc.data().value,
+            itemPictureUrl: doc.data().itemPictureUrl,
           });
           return item;
         } else {
