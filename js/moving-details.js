@@ -258,7 +258,33 @@ const buildBoxLabels = (labelsList) => {
         console.log(labelToDelete);
         await moving.deleteLabel(labelToDelete);
 
-        // fetchMovingDetails();
+        //delete deleted label from all boxes
+        const boxesList=[];
+         moving.getBoxesByMovingId(movingId, (snapshots) => {
+          boxesList.length = 0;
+          snapshots.forEach((box) => {
+            boxesList.push({
+              idBox: box.id,
+              label: box.data().label,
+            });
+          });
+
+          boxesList.forEach(e => {
+            if(e.label==labelToDelete){
+              //borrar el label del box
+              let box = db.collection(`/movings/${movingId}/boxes`).doc(e.idBox);
+              box.update({
+                label: "",
+              })
+              .catch((error) => {
+                return 'Error updating box value: ', error;
+              });
+            }
+          });
+
+          // fetchMovingDetails();
+          buildBoxesList(boxes);
+        });
       });
     });
   }
