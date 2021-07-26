@@ -11,7 +11,7 @@
     background-color: $card-moving-bg-color;
     box-shadow: $card-box-shadow;
     height: 50%;
-    margin: 0 4rem;
+    margin: 0 1.5rem;
     min-width: 300px;
     border-radius: 10px;
     color: $card-moving-text-color;
@@ -92,9 +92,9 @@
     .box {
       display: grid;
       grid-template-areas:
-        'image metadata metadata metadata'
-        'info	actions actions actions'
-        'progress progress progress progress';
+        "image metadata metadata metadata"
+        "info	actions actions actions"
+        "progress progress progress progress";
 
       color: $text-color;
       box-shadow: 0 10px 10px 0 rgba($color: #044468, $alpha: 0.15);
@@ -511,5 +511,50 @@
     // .modal-dialog .modal-content .modal-footer button.btn.btn-secondary {
     //   width: 50%;
     // }
+  }
+
+  #addMovingModal .modal-dialog,
+  #editMovingModal .modal-dialog {
+    max-width: 400px;
+    width: 100%;
+
+    .modal-content {
+      border-radius: 30px;
+      background: linear-gradient(
+        180deg,
+        rgba(138, 204, 243, 1) 0%,
+        rgba(255, 255, 255, 1) 40%,
+        rgba(255, 255, 255, 1) 100%
+      );
+      background-repeat: no-repeat;
+      background-size: cover;
+
+      .modal-header #boxLabelsModalLabel {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+      }
+
+      .modal-header button {
+        border: 0;
+        background-color: transparent;
+
+        span {
+          font-weight: bold;
+          color: $text-color;
+          font-size: 2rem;
+          margin-right: 0.5rem;
+        }
+      }
+
+      .modal-footer {
+        padding-bottom: 1rem;
+        button.btn.btn-secondary {
+          @include squareButton("primary", $width: 95%);
+          margin: 0 auto;
+        }
+      }
+    }
   }
 }

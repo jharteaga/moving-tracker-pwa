@@ -98,55 +98,143 @@ function renderMovings() {
 }
 
 // Save Moving Section
-const saveMovingBtn = document.querySelector('#createMovingForm');
+// const saveMovingBtn = document.querySelector('#createMovingForm');
 
-saveMovingBtn.addEventListener('submit', async (event) => {
-  event.preventDefault();
+const saveMovingBtn = document.querySelector('#saveMovingBtn');
+
+// saveMovingBtn.addEventListener('submit', async (event) => {
+saveMovingBtn.addEventListener('click', async (event) => {
+  //event.preventDefault();
   const movingTitle = document.querySelector('#movingTitle');
   const movingDescription = document.querySelector('#movingDescription');
   const movingFrom = document.querySelector('#movingFrom');
   const movingTo = document.querySelector('#movingTo');
   const movingDate = document.querySelector('#movingDate');
-  const moving = new Moving(
-    user.userId,
-    movingTitle.value,
-    movingDescription.value,
-    movingFrom.value,
-    movingTo.value,
-    movingDate.value
-  );
-  await moving.addMovingToDb(user);
-  movingTitle.value = '';
-  movingDescription.value = '';
-  movingFrom.value = '';
-  movingTo.value = '';
-  movingDate.value = '';
+
+  const newMovingNameErrorMsg = document.querySelector('#newMovingNameErrorMsg');
+  const newMovingFromErrorMsg = document.querySelector('#newMovingFromErrorMsg');
+  const newMovingToErrorMsg = document.querySelector('#newMovingToErrorMsg');
+  
+  const newMovingNameField = document.querySelector('#newMovingNameField');
+  const newMovingFromField = document.querySelector('#newMovingFromField');
+  const newMovingToField = document.querySelector('#newMovingToField');
+
+  let requiredValidation = true;
+
+  //Reset
+  newMovingNameErrorMsg.innerHTML='';
+  newMovingNameField.classList.remove('error');
+  newMovingFromErrorMsg.innerHTML='';
+  newMovingFromField.classList.remove('error');
+
+  newMovingToErrorMsg.innerHTML='';
+  newMovingToField.classList.remove('error');
+
+  //Required Fields
+  if (movingTitle.value === ''){
+    newMovingNameErrorMsg.innerHTML = "Please enter new moving's name";
+    newMovingNameField.classList.add('error');
+    requiredValidation=false;
+  }
+  if (movingFrom.value === ''){
+    newMovingFromErrorMsg.innerHTML = "Please enter from address";
+    newMovingFromField.classList.add('error');
+    requiredValidation=false;
+  }
+  if (movingTo.value === ''){
+    newMovingToErrorMsg.innerHTML = "Please enter destination address";
+    newMovingToField.classList.add('error');
+    requiredValidation=false;
+  }
+
+
+  if(requiredValidation){
+    const moving = new Moving(
+      user.userId,
+      movingTitle.value,
+      movingDescription.value,
+      movingFrom.value,
+      movingTo.value,
+      movingDate.value
+    );
+    await moving.addMovingToDb(user);
+    movingTitle.value = '';
+    movingDescription.value = '';
+    movingFrom.value = '';
+    movingTo.value = '';
+    movingDate.value = '';
+
+    $("#addMovingModal").modal('hide');
+  }  
+ 
 });
 
 // End Save Moving Section
 
-// Edit Moving Section
 
-const editMovingTitle = document.querySelector('#editMovingTitle');
-const editMovingDescription = document.querySelector('#editMovingDescription');
-const editMovingFrom = document.querySelector('#editMovingFrom');
-const editMovingTo = document.querySelector('#editMovingTo');
-const editMovingDate = document.querySelector('#editMovingDate');
 
 // const saveEditMovingBtn = document.querySelector('#saveEditMovingBtn');
-const saveEditMovingBtn = document.querySelector('#editMovingForm');
+const saveEditMovingBtn = document.querySelector('#saveEditMovingBtn');
 
-saveEditMovingBtn.addEventListener('submit', async (event) => {
+saveEditMovingBtn.addEventListener('click', async (event) => {
   event.preventDefault();
 
-  await moving.updateMoving(
-    user,
-    editMovingTitle.value,
-    editMovingDescription.value,
-    editMovingFrom.value,
-    editMovingTo.value,
-    editMovingDate.value
-  );
+  // Edit Moving Section
+
+  const editMovingTitle = document.querySelector('#editMovingTitle');
+  const editMovingDescription = document.querySelector('#editMovingDescription');
+  const editMovingFrom = document.querySelector('#editMovingFrom');
+  const editMovingTo = document.querySelector('#editMovingTo');
+  const editMovingDate = document.querySelector('#editMovingDate');
+
+  const editMovingNameErrorMsg = document.querySelector('#editMovingNameErrorMsg');
+  const editMovingFromErrorMsg = document.querySelector('#editMovingFromErrorMsg');
+  const editMovingToErrorMsg = document.querySelector('#editMovingToErrorMsg');
+  
+  const editMovingNameField = document.querySelector('#editMovingNameField');
+  const editMovingFromField = document.querySelector('#editMovingFromField');
+  const editMovingToField = document.querySelector('#editMovingToField');
+
+  let requiredValidation = true;
+
+  //Reset
+  editMovingNameErrorMsg.innerHTML='';
+  editMovingNameField.classList.remove('error');
+
+  editMovingFromErrorMsg.innerHTML='';
+  editMovingFromField.classList.remove('error');
+
+  editMovingToErrorMsg.innerHTML='';
+  editMovingToField.classList.remove('error');
+
+    //Required Fields
+    if (editMovingTitle.value === ''){
+      editMovingNameErrorMsg.innerHTML = "Please enter moving's name";
+      editMovingNameField.classList.add('error');
+      requiredValidation=false;
+    }
+    if (editMovingFrom.value === ''){
+      editMovingFromErrorMsg.innerHTML = "Please enter from address";
+      editMovingFromField.classList.add('error');
+      requiredValidation=false;
+    }
+    if (editMovingTo.value === ''){
+      editMovingToErrorMsg.innerHTML = "Please enter destination address";
+      editMovingToField.classList.add('error');
+      requiredValidation=false;
+    }
+
+    if(requiredValidation){
+      await moving.updateMoving(
+        user,
+        editMovingTitle.value,
+        editMovingDescription.value,
+        editMovingFrom.value,
+        editMovingTo.value,
+        editMovingDate.value
+      );
+      $("#editMovingModal").modal('hide');
+    }
 });
 
 function addEventListersEdit() {
