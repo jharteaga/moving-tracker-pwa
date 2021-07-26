@@ -90,7 +90,7 @@
             <i class="fas fa-times" id="closeBtn"></i>
           </div>
           <p id="fromPc">Choose from your computer</p>
-          <p>Open Camera</p>
+          <p id="openCamera">Open Camera</p>
         </div>
 
         <div class="file-selector" id="fileSelector">
@@ -98,6 +98,20 @@
           <input type="file" id="newUserPic" />
           <button id="picSaveBtn">Save</button>
         </div>
+
+
+        <div class="camera hidden" id="cameraFunction">
+          <p id="closeCamera">x</p>
+          <div class="monitor">
+            <video id="video"></video>
+            <canvas id="canvas"></canvas>
+          </div>
+          <div class="btnForCamera">
+            <button id="shutterBtn">Shutter</button>
+            <button id="savePicBtn" disabled>Save</button>
+          </div>
+        </div>
+
       </div>
     </main>
   </body>
