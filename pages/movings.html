@@ -98,26 +98,6 @@
         </ul>
       </aside>
       <div class="movings-wrapper">
-        <!-- <div class="moving-wrapper">
-                    <div class="moving__title">
-                        <h3>Moving to</h3>
-                        <h4>Studio 1501</h4>
-                    </div>
-                    <div class="moving__address">
-                        <p>1199 Marinaside Crescent, Vancouver, BC. V6H 2Y2</p>
-                    </div>
-                    <div class="box__date">
-                        <p>September 2nd, 2021</p>
-                    </div>
-                    <div class="box__actions">
-                        <button class="icon">
-                            <span class="fas fa-pencil-alt"></span>
-                        </button>
-                        <button class="icon">
-                            <span class="fas fa-trash"></span>
-                        </button>
-                    </div>
-                </div> -->
       </div>
 
       <button
@@ -137,7 +117,7 @@
       aria-labelledby="addMovingModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered mx-auto">
         <div class="modal-content">
           <div class="modal-header border-0">
             <h5 class="modal-title" id="addMovingModalLabel">New Moving</h5>
@@ -147,8 +127,12 @@
           </div>
           <div class="modal-body">
             <form action="submit" id="createMovingForm">
-              <div class="input-wrapper">
-                <label for="movingTitle">Title</label>
+              <!-- <div id="createMovingForm"> -->
+              <div class="input-wrapper" id="newMovingNameField">
+                <div class="input-field">
+                    <label for="movingTitle">Title<span>&#10038;</span></label>
+                    <p id="newMovingNameErrorMsg"></p>
+                </div>
                 <input type="text" name="movingTitle" id="movingTitle" />
               </div>
               <div class="input-wrapper">
@@ -159,12 +143,18 @@
                   id="movingDescription"
                 />
               </div>
-              <div class="input-wrapper">
-                <label for="movingFrom">From</label>
+              <div class="input-wrapper" id="newMovingFromField">
+                <div class="input-field">
+                    <label for="movingFrom">From<span>&#10038;</span></label>
+                    <p id="newMovingFromErrorMsg"></p>
+                </div>
                 <input type="text" name="movingFrom" id="movingFrom" />
               </div>
-              <div class="input-wrapper">
-                <label for="movingTo">To</label>
+              <div class="input-wrapper" id="newMovingToField">
+                <div class="input-field">
+                    <label for="movingTo">To<span>&#10038;</span></label>
+                    <p id="newMovingToErrorMsg"></p>
+                </div>
                 <input type="text" name="movingTo" id="movingTo" />
               </div>
               <div class="input-wrapper">
@@ -173,13 +163,13 @@
               </div>
               <div class="modal-footer border-0">
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-secondary"
-                  data-bs-dismiss="modal"
                   id="saveMovingBtn"
                 >
                   Save
                 </button>
+              </div>
               </div>
             </form>
           </div>
@@ -194,7 +184,7 @@
       aria-labelledby="editMovingModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-dialog-centered mx-auto">
         <div class="modal-content">
           <div class="modal-header border-0">
             <h5 class="modal-title" id="editMovingModalLabel">Edit Moving</h5>
@@ -204,13 +194,12 @@
           </div>
           <div class="modal-body">
             <form action="submit" id="editMovingForm">
-              <div class="input-wrapper">
-                <label for="editMovingTitle">Title</label>
-                <input
-                  type="text"
-                  name="editMovingTitle"
-                  id="editMovingTitle"
-                />
+              <div class="input-wrapper" id="editMovingNameField">
+                <div class="input-field">
+                    <label for="editMovingTitle">Title<span>&#10038;</span></label>
+                    <p id="editMovingNameErrorMsg"></p>
+                </div>
+                <input type="text" name="editMovingTitle" id="editMovingTitle"/>
               </div>
               <div class="input-wrapper">
                 <label for="editMovingDescription">Description</label>
@@ -220,12 +209,18 @@
                   id="editMovingDescription"
                 />
               </div>
-              <div class="input-wrapper">
-                <label for="editMovingFrom">From</label>
+              <div class="input-wrapper" id="editMovingFromField">
+                <div class="input-field">
+                    <label for="editMovingFrom">From<span>&#10038;</span></label>
+                    <p id="editMovingFromErrorMsg"></p>
+                </div>
                 <input type="text" name="editMovingFrom" id="editMovingFrom" />
               </div>
-              <div class="input-wrapper">
-                <label for="editMovingTo">To</label>
+              <div class="input-wrapper" id="editMovingToField">
+                <div class="input-field">
+                    <label for="editMovingTo">To<span>&#10038;</span></label>
+                    <p id="editMovingToErrorMsg"></p>
+                </div>
                 <input type="text" name="editMovingTo" id="editMovingTo" />
               </div>
               <div class="input-wrapper">
@@ -236,7 +231,6 @@
                 <button
                   type="submit"
                   class="btn btn-secondary"
-                  data-bs-dismiss="modal"
                   id="saveEditMovingBtn"
                 >
                   Save
@@ -293,6 +287,11 @@
     </div>
     <script
       src="https://kit.fontawesome.com/7ba77cc2f3.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
     <script

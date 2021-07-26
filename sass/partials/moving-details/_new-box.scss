@@ -1,157 +1,163 @@
-.modal-header #newBoxModalLabel {
-	font-size: 2rem;
-	font-weight: bold;
-	margin-top: 1rem;
-	margin-left: 0.5rem;
+.modal-header #newBoxModalLabel,
+.modal-header #addMovingModal,
+.modal-header #editMovingModal {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 .modal-header button {
-	border: 0;
-	background-color: transparent;
+  border: 0;
+  background-color: transparent;
 
-	span {
-		font-weight: bold;
-		color: $text-color;
-		font-size: 2rem;
-		margin-right: 0.5rem;
-	}
+  span {
+    font-weight: bold;
+    color: $text-color;
+    font-size: 2rem;
+    margin-right: 0.5rem;
+  }
 }
 
-#newBoxModal .input-wrapper {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 1.5rem;
+#newBoxModal .input-wrapper,
+#addMovingModal .input-wrapper,
+#editMovingModal .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
 
-	label {
-		color: $text-color;
-		margin-bottom: 5px;
-		padding-left: 3px;
+  label {
+    color: $text-color;
+    margin-bottom: 5px;
+    padding-left: 3px;
 
-		span {
-			color: $field-required-color;
-		}
-	}
+    span {
+      color: $field-required-color;
+    }
+  }
 
-	p {
-		margin: 0;
-	}
+  p {
+    margin: 0;
+  }
 
-	input {
-		padding: 10px;
-		border-radius: 16px;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
-			inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-		color: $text-color;
-		border: 0;
+  input {
+    padding: 10px;
+    border-radius: 16px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+      inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+    color: $text-color;
+    border: 0;
 
-		&::placeholder {
-			color: $text-color;
-		}
-	}
+    &::placeholder {
+      color: $text-color;
+    }
+  }
 }
 
 #newBoxModal .select-wrapper {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
 
-	label {
-		color: $text-color;
-		margin-bottom: 5px;
-		padding-left: 3px;
+  label {
+    color: $text-color;
+    margin-bottom: 5px;
+    padding-left: 3px;
 
-		span {
-			color: $field-required-color;
-		}
-	}
+    span {
+      color: $field-required-color;
+    }
+  }
 
-	p {
-		margin: 0;
-	}
+  p {
+    margin: 0;
+  }
 
-	select {
-		padding: 12px 5px;
-		border-radius: 16px;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
-			inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
-		color: $text-color;
-		border: 0;
+  select {
+    padding: 12px 5px;
+    border-radius: 16px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25),
+      inset 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+    color: $text-color;
+    border: 0;
 
-		&::placeholder {
-			color: $text-color;
-		}
-	}
+    &::placeholder {
+      color: $text-color;
+    }
+  }
 }
 
 #newBoxModal .size-wrapper {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-	label {
-		color: $text-color;
-		margin-bottom: 5px;
-		padding-left: 3px;
+  label {
+    color: $text-color;
+    margin-bottom: 5px;
+    padding-left: 3px;
 
-		span {
-			color: $field-required-color;
-		}
-	}
+    span {
+      color: $field-required-color;
+    }
+  }
 
-	p {
-		margin: 0;
-	}
+  p {
+    margin: 0;
+  }
 
-	.size-buttons {
-		display: flex;
-		justify-content: flex-start;
+  .size-buttons {
+    display: flex;
+    justify-content: flex-start;
 
-		button {
-			margin-right: 0.5rem;
-		}
-	}
+    button {
+      margin-right: 0.5rem;
+    }
+  }
 }
 
 .size-buttons {
-	display: flex;
-	flex-flow: row wrap;
-	button {
-		@include squareButton(
-			'secondary',
-			$width: 90px,
-			$borderRadius: 16px,
-			$fontSize: 1rem,
-			$bgColor: #044468
-		);
+  display: flex;
+  flex-flow: row wrap;
+  button {
+    @include squareButton(
+      "secondary",
+      $width: 90px,
+      $borderRadius: 16px,
+      $fontSize: 1rem,
+      $bgColor: #044468
+    );
 
-		&.active {
-			background-color: #044468;
-			color: white;
-		}
-	}
+    &.active {
+      background-color: #044468;
+      color: white;
+    }
+  }
 }
 
 #newBoxModal .input-wrapper.error,
+#addMovingModal .input-wrapper.error,
+#editMovingModal .input-wrapper.error,
 #newBoxModal .select-wrapper.error,
 #newBoxModal .size-wrapper.error {
-	.input-field {
-		display: flex;
+  .input-field {
+    display: flex;
 
-		label {
-			display: inline-block;
+    label {
+      display: inline-block;
 
-			span {
-				color: $field-alert-color;
-			}
-		}
+      span {
+        color: $field-alert-color;
+      }
+    }
 
-		p {
-			color: $field-alert-color;
-			font-style: italic;
-			margin-left: 5px;
-		}
-	}
+    p {
+      color: $field-alert-color;
+      font-style: italic;
+      margin-left: 5px;
+    }
+  }
 
-	input {
-		border: 1px solid $field-alert-color;
-	}
+  input {
+    border: 1px solid $field-alert-color;
+  }
 }
