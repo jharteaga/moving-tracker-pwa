@@ -4,7 +4,7 @@ const storage = firebase.storage().ref();
 
 //Define
 let windowSize = document.documentElement.clientWidth;
-console.log(windowSize);
+// console.log(windowSize);
 
 const user = new User();
 const userName = document.getElementById('userName');
@@ -29,6 +29,18 @@ const fileSelctCloseBtn = document.getElementById('fileSelctCloseBtn');
 
 const newUserPic = document.getElementById('newUserPic');
 const uploadedPic = document.querySelector('.profile-pic img');
+
+// ForCamera Function
+const openCamera = document.getElementById('openCamera');
+const cameraFunction = document.getElementById('cameraFunction');
+const closeCamera = document.getElementById('closeCamera');
+const shutterBtn = document.getElementById('shutterBtn');
+const savePicBtn = document.getElementById('savePicBtn');
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+const context = canvas.getContext('2d');
+
+
 
 //When loading the page
 user.isLoggedIn(() => {
@@ -55,7 +67,7 @@ user.isLoggedIn(() => {
 //When window size changed  => to show the uploading method differently
 window.addEventListener('resize', () => {
   windowSize = document.documentElement.clientWidth;
-  console.log(windowSize);
+  // console.log(windowSize);
 })
 
 
@@ -67,26 +79,26 @@ function isSmartPhone() {
     return false;
   }
 }
-console.log(isSmartPhone());
+// console.log(isSmartPhone());
 
 
 //Edit Picture
 editUserPicBtn.addEventListener('click', () => {
   //Judging by window size
-  if(windowSize < 900){
-    fileSelector.style.display = 'block';
-  } else {
-    picEditMethod.classList.remove('hidden');
-    logoutBtn.style.display = 'none';
-  }
-
-  //Judging by isSmartPhone
-  // if(isSmartPhone()){
+  // if(windowSize < 900){
   //   fileSelector.style.display = 'block';
   // } else {
   //   picEditMethod.classList.remove('hidden');
   //   logoutBtn.style.display = 'none';
   // }
+
+  // Judging by isSmartPhone
+  if(isSmartPhone()){
+    fileSelector.style.display = 'block';
+  } else {
+    picEditMethod.classList.remove('hidden');
+    logoutBtn.style.display = 'none';
+  }
 });
 
 closeBtn.addEventListener('click', () => {
@@ -147,9 +159,78 @@ picSaveBtn.addEventListener('click', async () => {
   picEditMethod.classList.add('hidden');
   logoutBtn.style.display = 'flex';
 
-  //Need to add the code to send the file to Firestore
+  //Need to add the code to send the file to Firestore => done
   await user.setProfilePicture(newUserPic.files[0]);
   console.log(newUserPic.files[0]);
   console.log(user.userProfilePictureUrl);
   uploadedPic.src = user.userProfilePictureUrl;
 });
+
+
+//Open Camera Slidein
+openCamera.addEventListener('click', async () => {
+  
+  // Close another slidein first
+  picEditMethod.classList.add('hidden');
+  logoutBtn.style.display = 'flex';
+
+
+  // Open this slidein 
+  cameraFunction.classList.remove('hidden');
+})
+
+// Close Camera Slidein
+closeCamera.addEventListener('click', async () => {
+  
+  cameraFunction.classList.add('hidden');
+
+  //canvas clear
+  context.clearRect(0, 0, 300, 150);
+})
+
+
+
+//Activate Camera
+openCamera.addEventListener('click', () => {
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+      video.srcObject = stream;
+      // camera.style.width = "200px";
+      // camera.style.height = "200px"
+      video.play();
+    });
+  } else {
+    console.log("camera is not available in this browser");
+  }
+})
+
+
+//Capture Photo
+shutterBtn.addEventListener('click', () => {
+  context.drawImage(video, 0, 0, 300, 150);
+
+  savePicBtn.disabled = false;
+  savePicBtn.style.opacity = "1";
+})
+
+
+//Save Photo
+savePicBtn.addEventListener('click', async () => {
+  console.log("listening");
+
+  //Save image URL of captured image
+  const imageURL = canvas.toDataURL('image/jpeg', 1.0);
+  // console.log(imageURL);
+  user._setProfilePictureUrl(imageURL);
+  uploadedPic.src = imageURL;
+
+  //Stop Camera and close camera slidein
+  const tracks = video.srcObject.getTracks();
+  tracks.forEach(track => track.stop());
+  cameraFunction.classList.add('hidden');
+
+})
+
+//reload src from firebase
+uploadedPic.src = user.userProfilePictureUrl;
