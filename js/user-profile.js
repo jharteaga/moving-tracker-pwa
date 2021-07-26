@@ -4,7 +4,7 @@ const storage = firebase.storage().ref();
 
 //Define
 let windowSize = document.documentElement.clientWidth;
-console.log(windowSize);
+// console.log(windowSize);
 
 const user = new User();
 const userName = document.getElementById('userName');
@@ -67,7 +67,7 @@ user.isLoggedIn(() => {
 //When window size changed  => to show the uploading method differently
 window.addEventListener('resize', () => {
   windowSize = document.documentElement.clientWidth;
-  console.log(windowSize);
+  // console.log(windowSize);
 })
 
 
@@ -79,7 +79,7 @@ function isSmartPhone() {
     return false;
   }
 }
-console.log(isSmartPhone());
+// console.log(isSmartPhone());
 
 
 //Edit Picture
