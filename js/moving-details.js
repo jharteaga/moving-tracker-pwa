@@ -878,6 +878,7 @@ pdfBoxModal.addEventListener('shown.bs.modal', async () => {
   } catch (err) {
     console.log(err);
   }
+
 });
 
 const boxVolume = (boxSize) => {
@@ -905,3 +906,18 @@ const boxVolume = (boxSize) => {
   volume = volume / 100;
   return volume;
 };
+
+/************************************** */
+//generate and download pdf
+/************************************** */
+const pdfEl = document.querySelector(".pdfBoxContent__container");
+const btn = document.querySelector("#idbtnDownload")
+
+btn.addEventListener("click", ()=>{
+  const opt = {
+    margin : 2,
+  };
+    html2pdf().set(opt).from(pdfEl).save();
+
+
+})
