@@ -109,6 +109,7 @@
             font-size: 1.2rem;
           }
 
+          &:nth-child(3),
           &:last-child {
             font-size: 0.9rem;
             text-transform: uppercase;
@@ -156,6 +157,18 @@
             border-bottom: 2px solid $accent-color;
           }
         }
+      }
+    }
+
+    .box.closed {
+      background-color: $mid-grey;
+
+      .box__metadata {
+        background-color: $mid-grey;
+      }
+
+      .box__actions {
+        background-color: $mid-grey;
       }
     }
   }

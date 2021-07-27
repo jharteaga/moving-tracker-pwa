@@ -161,3 +161,12 @@
     border: 1px solid $field-alert-color;
   }
 }
+
+// Message of "To edit, please open the box" in edit box modal  
+#editBoxModal .editBoxContent__editBoxSwitch {
+  #msgWhenClose{
+    color: $field-alert-color;
+    margin-top: 1rem 0.5rem;
+    opacity: 0;
+  }
+}
