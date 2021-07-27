@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Reset Password</title>
     <link
       rel="manifest"
       href="../app.webmanifest"
@@ -45,16 +45,16 @@
     <script src="../js/firebase.js" defer></script>
     <script src="../js/main.js" defer></script>
     <script src="../js/user.js" defer></script>
-    <script src="../js/sign-in.js" defer></script>
+    <script src="../js/forgot-pw.js" defer></script>
   </head>
-  <body class="sign-in">
-    <div class="sign-in-desktop-left">
+  <body class="forgot-pw-top">
+    <div class="forgot-pw-top-desktop-left">
       <h1>
         Discover our<br />
         moving system
       </h1>
 
-      <div class="sign-in-logo">
+      <div class="forgot-pw-top-logo">
         <img src="../img/moving-tracker-logo.svg" />
         <p>&copy; 2021 Moving tracker. All Rights Reserved.</p>
       </div>
@@ -62,47 +62,70 @@
 
     <main>
       <div class="background"></div>
-      <div class="sign-in-logo-mobile">
-        <div class="sign-in-logo-img">
-          <img src="../img/moving-tracker-logo.svg" />
-        </div>
-        
+
+      <div class="top">
+        <a href="sign-in.html"><i class="fas fa-chevron-left"></i></a>
+        <p>FORGOT PASSWORD?</p>
       </div>
+
       <div class="wrapper">
+
+        <p>Enter your email address below and we will send you a secure link to reset your password</p>
         
-        <h1>Login</h1>
 
         <form action="#">
-          <div class="field" id="signInEmailField">
+          <div class="field" id="forgotPwInputField">
             <label for="userEmailInput" class="field__label"
-              >E-mail<span>&#10038;</span></label
+              >Enter your e-mail address</label
             >
-            <p class="sign-in-errorMsg" id="userEmailErrorMsg"></p>
+            <p class="forgot-pw-top-errorMsg" id="userEmailErrorMsg"></p>
             <div class="field__container">
               <input type="text" id="userEmailInput" name="userEmailInput" />
-              <span class="fas fa-user icon"></span>
             </div>
           </div>
 
-          <div class="field" id="signInPwField">
-            <label for="pwInput" class="field__label"
-              >Password<span>&#10038;</span></label
-            >
-            <p class="sign-in-errorMsg" id="pwErrorMsg"></p>
-            <div class="sign-in-pw field__container">
-              <input type="password" id="pwInput" name="pwInput" />
-              <span class="fas fa-eye-slash"></span>
-              <span class="fas fa-eye"></span>
-            </div>
-          </div>
-
-          <a href="forgot-pw.html" class="pw-reset">forgot password?</a>
-
-          <button type="button" id="loginBtn">Login</button>
-
-          <a href="sign-up.html" id="signUpBtn">Sign up</a>
+          <button type="button" id="sendBtn">Send</button>
         </form>
       </div>
     </main>
+
+
+    <div class="forgot-pw-success">
+      <div class="forgot-pw-success-desktop-left">
+        <h1>
+          Discover our<br />
+          moving system
+        </h1>
+  
+        <div class="forgot-pw-success-logo">
+          <img src="../img/moving-tracker-logo.svg" />
+          <p>&copy; 2021 Moving tracker. All Rights Reserved.</p>
+        </div>
+      </div>
+  
+      <div class="forgot-pw-success-main">
+        <div class="background"></div>
+  
+        <div class="wrapper">
+  
+          <i class="fas fa-check"></i>
+  
+          <p>We just sent an email to<br>
+          <span id="emailSentTo">abcdef@email.com</span></p>
+          
+          <p>Click the secure link we sent you to reset your password. If you didn't receive an email, check your spam folder</p>
+  
+          <button type="button" id="loginBtn">Login</button>
+          
+        </div>
+  
+      </div>
+  
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/7ba77cc2f3.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

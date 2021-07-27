@@ -1,0 +1,320 @@
+//forgot-pw-top page
+.forgot-pw-top {
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $mainFont;
+    }
+
+    .fas {
+        font-family: "Font Awesome 5 Free";
+    }
+
+    .forgot-pw-top-desktop-left {
+        display: none;
+    }
+
+    main {
+        overflow-y: hidden;
+
+        .background {
+            @include backgroundContainer();
+            width: 100%;
+        }
+
+        .top {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 1.5rem 0.8rem;
+            display: grid;
+            grid-template-columns: 20% 60% 20%;
+            align-items: center;
+            
+            i {
+                justify-content: start;
+                color: $field-text-color;
+            }
+
+            p {
+                justify-self: center;
+                color: $field-text-color;
+            }
+
+            a:hover {
+                cursor: pointer;
+            }
+        }
+
+        .wrapper {
+            max-width: 400px;
+            margin: 8rem auto;
+            padding: 0 0.8rem;
+
+            p {
+                width: 70%;
+                text-align: center;
+                margin: 0 auto;
+                color: $mid-grey;
+            }
+
+            form {
+                .field {
+    
+                    margin-top: 4rem;
+                    text-align: center;
+
+                    .field__label {
+                        margin: 0 auto;
+
+                    }
+
+                    .forgot-pw-top-errorMsg {
+                        display: inline-block;
+                        font-size: 16px;
+                        color: $field-alert-color;
+                        margin: 0.7rem;
+                        font-style: italic;
+                    }
+
+                    .field__container {
+                        width: 100%;
+                        margin-top: 12px;
+                    
+                        input {
+                            width: 100%;
+                            font-size: 18px;
+                            padding: 0.8rem;
+                        }
+                    }  
+                }
+
+                //for error, add ".error" to .field class
+                .field.error {
+                    .field__label span {
+                        color: $field-alert-color;
+                    }
+
+                    .field__container {
+
+                        input {
+                            border: 1px solid $field-alert-color;
+                        }
+
+                        span {
+                            background-color: $field-alert-color;
+                        }
+                    }
+                }
+
+                button#sendBtn {
+                    @include squareButton(primary, 400px);
+                    margin: 24px 0;
+                    font-size: 21px;
+                    padding: 1.2rem;
+                }
+            }
+        }
+        
+    }
+}
+
+
+@media screen and (min-width: 900px) {
+
+    .forgot-pw-top {
+        max-width: initial;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 100vh;
+
+        .forgot-pw-top-desktop-left {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            align-items: end;
+            background-color: $desktop-left-bg-color;
+            color: $white;
+
+            h1 {
+                margin: 0 auto 0.7rem 11vw;
+                font-size: 3vw;
+            }
+
+            .forgot-pw-top-logo {
+                margin: 0 auto 3.5rem 11vw;
+
+                img {
+                    width: 20vw;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    font-size: 1.1vw;
+                    font-style: italic;
+                }
+            }
+        }
+
+        main {
+            //Need to check how to adjust
+            // width: 100%;
+            // height: 100%;
+            // height: 100vh;
+            // overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .top {
+                width: 100%;
+                margin-bottom: 5rem;
+            }
+    
+    
+            .wrapper {
+                //Need to check how to adjust
+                width: 48%;
+                min-width: 300px;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 0;
+
+
+                p {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+
+//forgot-pw-success page
+.forgot-pw-success{
+    //When successful, it will be 1000 and show this page
+    z-index: -1000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: $mainFont;
+    }
+
+    .fas {
+        font-family: "Font Awesome 5 Free";
+    }
+
+    .forgot-pw-success-desktop-left {
+        display: none;
+    }
+
+    .forgot-pw-success-main {
+        overflow-y: hidden;
+
+        .background {
+            @include backgroundContainer();
+            width: 100%;
+        }
+
+        .wrapper {
+            max-width: 400px;
+            margin: 10rem auto;
+            padding: 0 0.8rem;
+
+           i {
+                display: block;
+                font-size: 55px;
+                width: 80px;
+                height: 80px;
+                border: 3px solid $green;
+                border-radius: 50%;
+                margin: 2rem auto 2rem auto;
+            }
+
+            i::before {
+                position: relative;
+                left: 0.6rem;
+                top: 0.7rem;
+                color: $green;
+            }
+
+            p {
+                width: 90%;
+                text-align: center;
+                margin: 0 auto 3rem auto;
+                color: $mid-grey;
+            }
+
+            
+            button#loginBtn {
+                @include squareButton(primary, 400px);
+                margin: 24px 0;
+                font-size: 21px;
+                padding: 1.2rem;
+            }
+        
+        }
+        
+    }
+}
+
+
+@media screen and (min-width: 900px) {
+
+    .forgot-pw-success {
+        max-width: initial;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 100vh;
+
+        .forgot-pw-success-desktop-left {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            align-items: end;
+            background-color: $desktop-left-bg-color;
+            color: $white;
+
+            h1 {
+                margin: 0 auto 0.7rem 11vw;
+                font-size: 3vw;
+            }
+
+            .forgot-pw-success-logo {
+                margin: 0 auto 3.5rem 11vw;
+
+                img {
+                    width: 20vw;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    font-size: 1.1vw;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .forgot-pw-success-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+    
+            .wrapper {
+                width: 48%;
+                min-width: 300px;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 0;
+            }
+        }
+    }
+}
