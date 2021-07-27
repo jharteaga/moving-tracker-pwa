@@ -1,4 +1,4 @@
-const cacheName = 'v1.2';
+const cacheName = 'v1';
 const assetsToCache = [
   '/',
   '/index.html',
@@ -28,6 +28,17 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   // console.log('[Service Worker] Activating Service Worker ....', event);
+  event.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
 });
 
 self.addEventListener('fetch', (event) => {

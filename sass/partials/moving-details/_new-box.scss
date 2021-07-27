@@ -120,7 +120,7 @@
   flex-flow: row wrap;
   button {
     @include squareButton(
-      "secondary",
+      'secondary',
       $width: 90px,
       $borderRadius: 16px,
       $fontSize: 1rem,
@@ -138,7 +138,9 @@
 #addMovingModal .input-wrapper.error,
 #editMovingModal .input-wrapper.error,
 #newBoxModal .select-wrapper.error,
-#newBoxModal .size-wrapper.error {
+#newBoxModal .size-wrapper.error,
+#editBoxModal .input-wrapper.error,
+#editBoxModal .select-wrapper.error {
   .input-field {
     display: flex;
 
@@ -162,9 +164,9 @@
   }
 }
 
-// Message of "To edit, please open the box" in edit box modal  
+// Message of "To edit, please open the box" in edit box modal
 #editBoxModal .editBoxContent__editBoxSwitch {
-  #msgWhenClose{
+  #msgWhenClose {
     color: $field-alert-color;
     margin-top: 1rem 0.5rem;
     opacity: 0;
