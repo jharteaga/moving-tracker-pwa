@@ -558,64 +558,92 @@
           <div class="modal-body">
             <div class="editBoxContent">
               <div class="editBoxContent__left">
-                <label for="BoxNameInput" class="field__label"
-                  >Name<span>*</span></label
-                >
-                <input
-                  type="text"
-                  id="idEditBoxNameInput"
-                  name="BoxNameInput"
-                />
-                <label for="BoxDescriptionInput" class="field__label"
-                  >Description</label
-                >
-                <input
-                  type="text"
-                  id="idEditBoxDescriptionInput"
-                  name="idBoxDescriptionInput"
-                  class=""
-                />
-                <label for="BoxLabelList" class="field__label"
-                  >Box label<span>*</span></label
-                >
-                <select id="idEditBoxLabelList">
-                  <option value="0" selected>Select</option>
-                  <option value="1">Kitchen</option>
-                  <option value="2">Bedroom 1</option>
-                  <option value="3">Bedroom 2</option>
-                  <option value="4">Bathroom 1</option>
-                </select>
-                <label for="BoxDimensionsInput" class="field__label"
-                  >Dimensions<span>*</span></label
-                >
-                <div class="editBoxContent__boxDimensionsButtons">
-                  <div>
-                    <button id="idEditBoxbtnDimensione_Small">Small</button>
+                <div class="input-wrapper" id="editBoxNameField">
+                  <div class="input-field">
+                    <label for="editBoxNameInput" class="field__label"
+                      >Name<span>*</span></label
+                    >
+                    <p id="editBoxNameErrorMsg"></p>
                   </div>
-                  <div>
-                    <button id="idEditBoxbtnDimensione_Medium">Medium</button>
+                  <input
+                    type="text"
+                    id="idEditBoxNameInput"
+                    name="editBoxNameInput"
+                  />
+                </div>
+
+                <div class="input-wrapper" id="editBoxDescriptionField">
+                  <div class="input-field">
+                    <label for="editBoxDescriptionInput" class="field__label"
+                      >Description</label
+                    >
                   </div>
-                  <div>
-                    <button id="idEditBoxbtnDimensione_Large">Large</button>
+                  <input
+                    type="text"
+                    id="idEditBoxDescriptionInput"
+                    name="editBoxDescriptionInput"
+                  />
+                </div>
+
+                <div class="select-wrapper" id="editBoxLabelField">
+                  <div class="input-field">
+                    <label for="editBoxLabelList" class="field__label"
+                      >Box label<span>*</span></label
+                    >
+                    <p id="editBoxLabelErrorMsg"></p>
                   </div>
-                  <div>
-                    <button id="idEditBoxbtnDimensione_Custom">Custom</button>
+                  <select id="idEditBoxLabelList">
+                    <option value="0" selected>Select</option>
+                    <option value="1">Kitchen</option>
+                    <option value="2">Bedroom 1</option>
+                    <option value="3">Bedroom 2</option>
+                    <option value="4">Bathroom 1</option>
+                  </select>
+                </div>
+
+                <div class="input-wrapper" id="editBoxDimensionsField">
+                  <div class="input-field">
+                    <label for="BoxDimensionsInput" class="field__label"
+                      >Dimensions<span>*</span></label
+                    >
+                    <p id="editBoxDimensionsErrorMsg"></p>
+                  </div>
+                  <div class="editBoxContent__boxDimensionsButtons">
+                    <div>
+                      <button id="idEditBoxbtnDimensione_Small">Small</button>
+                    </div>
+                    <div>
+                      <button id="idEditBoxbtnDimensione_Medium">Medium</button>
+                    </div>
+                    <div>
+                      <button id="idEditBoxbtnDimensione_Large">Large</button>
+                    </div>
+                    <div>
+                      <button id="idEditBoxbtnDimensione_Custom">Custom</button>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="editBoxContent__right">
-                <label for="BoxWeightInput" class="field__label">Weight</label>
-                <div class="editBoxContent__editBoxWeight">
-                  <input
-                    type="text"
-                    id="BoxWeightInput"
-                    name="BoxWeightInput"
-                    class=""
-                  />
-                  <label for="BoxDimensionsInput" class="field__label"
-                    >Kg</label
-                  >
+                <div class="input-wrapper" id="editBoxWeightField">
+                  <div class="input-field">
+                    <label for="BoxWeightInput" class="field__label"
+                      >Weight</label
+                    >
+                  </div>
+                  <div class="editBoxContent__editBoxWeight">
+                    <input
+                      type="text"
+                      id="BoxWeightInput"
+                      name="BoxWeightInput"
+                      class=""
+                    />
+                    <label for="BoxDimensionsInput" class="field__label"
+                      >Kg</label
+                    >
+                  </div>
                 </div>
+
                 <div
                   class="form-check form-switch editBoxContent__editBoxSwitch"
                 >
@@ -644,7 +672,7 @@
                       To enable the PDF</label
                     >
                   </div>
-                  <p id="msgWhenClose">To edit, please open the box </p>
+                  <p id="msgWhenClose">To edit, please open the box</p>
                 </div>
               </div>
             </div>
@@ -655,7 +683,6 @@
                 id="idbtnEditBoxSave"
                 type="button"
                 class="btn btn-secondary"
-                data-bs-dismiss="modal"
               >
                 Save
               </button>
