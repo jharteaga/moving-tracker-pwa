@@ -269,4 +269,20 @@ class User {
       console.log(`Error message: ${error.message}`);
     }
   }
+
+
+
+  /***************************/
+  //Password Reset (keeping this for later)
+  /***************************/
+  // async sendPasswordReset(userEmail) {
+  //   try {
+  //     const actionCodeSettings = { url: 'https://moving-trackker.surge.sh' };
+  //     await auth.sendPasswordResetEmail(userEmail, actionCodeSettings);
+  //   } catch (error) {
+  //      this.userError = error.message;
+  //      console.log(`Error code: ${error.code}`);
+  //      console.log(`Error message: ${error.message}`);
+  //   }
+  // }
 }
