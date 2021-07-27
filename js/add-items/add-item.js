@@ -144,7 +144,7 @@ function cleanInputs() {
   newItemQuantityInput.value = '';
   newItemValueInput.value = '';
   newItemImageInput.value = '';
-  preview.innerHTML = '';
+  preview.children[0].src = '../../img/items/placeholder.png';
 }
 
 /* ADDED BY ALEJANDRA*/

@@ -68,8 +68,8 @@ class Box {
     boxSize,
     weight,
     fragile,
-    status,
-    value
+    status
+    // value
   ) {
     let box = db.collection(`/movings/${idMoving}/boxes`).doc(idBox);
 
@@ -82,7 +82,7 @@ class Box {
         weight: weight,
         fragile: fragile,
         status: status,
-        value: value,
+        // value: value,
       })
       .then(() => {
         return 'Box successfully updated!';

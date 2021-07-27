@@ -25,7 +25,8 @@ const printItems = (items) => {
     //************************************* */
     //item image
     let itemImg = document.createElement('img');
-    itemImg.setAttribute('src', item.itemPictureUrl);
+    if (item.itemPictureUrl) itemImg.setAttribute('src', item.itemPictureUrl);
+    else itemImg.setAttribute('src', '../../img/items/placeholder.png');
     //************************************* */
 
     //************************************* */

@@ -33,10 +33,9 @@ const updateItemOpenModal = (e) => {
     itemValueInput.value = data[0].value;
 
     if (data[0].itemPictureUrl) {
-      const itemImage = document.createElement('img');
-      itemImage.src = data[0].itemPictureUrl;
-
-      preview.appendChild(itemImage);
+      // const itemImage = document.createElement('img');
+      preview.children[0].src = data[0].itemPictureUrl;
+      // preview.appendChild(itemImage);
     }
   });
 };
