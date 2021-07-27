@@ -437,27 +437,6 @@
       display: flex;
       justify-content: flex-end;
     }
-    // .moving-details .modal-dialog .modal-content .modal-footer {
-    //   display: flex;
-    //   justify-content: flex-end;
-    // }
-    // .button.btn.btn-secondary {
-    //   width: 50%;
-    // }
-
-    // .moving-details{
-    // 	.modal-dialog{
-    // 		.modal-content{
-    // 			.modal-footer{
-    // 				button.btn.btn-secondary {
-    // 					width: 50%;
-    // 			}
-    // 		}
-    // 	}
-    // }
-    // .modal-dialog .modal-content .modal-footer button.btn.btn-secondary {
-    //   width: 50%;
-    // }
   }
 }
 
@@ -466,3 +445,4 @@
 @import 'collaborators';
 @import 'new-box';
 @import 'delete-box';
+@import 'edit-box';

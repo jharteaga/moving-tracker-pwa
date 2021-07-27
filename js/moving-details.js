@@ -259,8 +259,8 @@ const buildBoxLabels = (labelsList) => {
         await moving.deleteLabel(labelToDelete);
 
         //delete deleted label from all boxes
-        const boxesList=[];
-         moving.getBoxesByMovingId(movingId, (snapshots) => {
+        const boxesList = [];
+        moving.getBoxesByMovingId(movingId, (snapshots) => {
           boxesList.length = 0;
           snapshots.forEach((box) => {
             boxesList.push({
@@ -269,16 +269,19 @@ const buildBoxLabels = (labelsList) => {
             });
           });
 
-          boxesList.forEach(e => {
-            if(e.label==labelToDelete){
+          boxesList.forEach((e) => {
+            if (e.label == labelToDelete) {
               //borrar el label del box
-              let box = db.collection(`/movings/${movingId}/boxes`).doc(e.idBox);
-              box.update({
-                label: "",
-              })
-              .catch((error) => {
-                return 'Error updating box value: ', error;
-              });
+              let box = db
+                .collection(`/movings/${movingId}/boxes`)
+                .doc(e.idBox);
+              box
+                .update({
+                  label: '',
+                })
+                .catch((error) => {
+                  return 'Error updating box value: ', error;
+                });
             }
           });
 
@@ -660,15 +663,15 @@ const buildBoxesList = (boxes) => {
     const boxImage = document.createElement('div');
     boxImage.classList.add('box__image');
     const boxStatusIcon = document.createElement('span');
-    
+
     if (box.status) {
       boxStatusIcon.className = `fak fa-close-box`;
       //Adding color change
-      boxContainer.classList.add("closed");
+      boxContainer.classList.add('closed');
     } else {
       boxStatusIcon.className = `fak fa-open-box`;
       //Adding color change
-      boxContainer.classList.remove("closed");
+      boxContainer.classList.remove('closed');
     }
 
     const sizeWrapper = document.createElement('p');
@@ -832,12 +835,12 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
     });
 
     // Disable input area in edit box mode and change clore of box page, when the box is closed and when it's rendered
-    if(idBoxCloseCheck.checked) {
-      idEditBoxNameInput.disabled = true; 
+    if (idBoxCloseCheck.checked) {
+      idEditBoxNameInput.disabled = true;
       idEditBoxDescriptionInput.disabled = true;
       idEditBoxLabelList.disabled = true;
 
-      for(i=0; i<boxSizesBtns.length; i++){
+      for (i = 0; i < boxSizesBtns.length; i++) {
         boxSizesBtns[i].disabled = true;
       }
 
@@ -845,13 +848,12 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
       idBoxFragileCheck.disabled = true;
 
       msgWhenClose.style.opacity = 1;
-      
     } else {
-      idEditBoxNameInput.disabled = false; 
+      idEditBoxNameInput.disabled = false;
       idEditBoxDescriptionInput.disabled = false;
       idEditBoxLabelList.disabled = false;
 
-      for(i=0; i<boxSizesBtns.length; i++){
+      for (i = 0; i < boxSizesBtns.length; i++) {
         boxSizesBtns[i].disabled = false;
       }
 
@@ -860,18 +862,15 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
 
       msgWhenClose.style.opacity = 0;
     }
-
   } catch (err) {
     console.log('Error getting the box: ', err);
   }
 });
 
-
 // When Switched box close/Open
 const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
 
 idBoxCloseCheck.addEventListener('change', () => {
-
   // Disable input area when the box is closed in edit modal
   const idEditBoxNameInput = document.getElementById('idEditBoxNameInput');
   const idEditBoxDescriptionInput = document.getElementById(
@@ -884,13 +883,13 @@ idBoxCloseCheck.addEventListener('change', () => {
     '.editBoxContent__boxDimensionsButtons button'
   );
   const msgWhenClose = document.getElementById('msgWhenClose');
- 
-  if(idBoxCloseCheck.checked) {
-    idEditBoxNameInput.disabled = true; 
+
+  if (idBoxCloseCheck.checked) {
+    idEditBoxNameInput.disabled = true;
     idEditBoxDescriptionInput.disabled = true;
     idEditBoxLabelList.disabled = true;
 
-    for(i=0; i<boxSizesBtns.length; i++){
+    for (i = 0; i < boxSizesBtns.length; i++) {
       boxSizesBtns[i].disabled = true;
     }
 
@@ -898,13 +897,12 @@ idBoxCloseCheck.addEventListener('change', () => {
     idBoxFragileCheck.disabled = true;
 
     msgWhenClose.style.opacity = 1;
-    
   } else {
-    idEditBoxNameInput.disabled = false; 
+    idEditBoxNameInput.disabled = false;
     idEditBoxDescriptionInput.disabled = false;
     idEditBoxLabelList.disabled = false;
 
-    for(i=0; i<boxSizesBtns.length; i++){
+    for (i = 0; i < boxSizesBtns.length; i++) {
       boxSizesBtns[i].disabled = false;
     }
 
@@ -913,12 +911,14 @@ idBoxCloseCheck.addEventListener('change', () => {
 
     msgWhenClose.style.opacity = 0;
   }
-})
+});
 /**
  * Edit a box according to a moving id
  */
 const idbtnEditBoxSave = document.getElementById('idbtnEditBoxSave');
 idbtnEditBoxSave.addEventListener('click', () => {
+  let requiredValidation = true;
+
   const idEditBoxNameInput =
     document.getElementById('idEditBoxNameInput').value;
   const idEditBoxDescriptionInput = document.getElementById(
@@ -933,25 +933,64 @@ idbtnEditBoxSave.addEventListener('click', () => {
     '.editBoxContent__left_button_selected'
   ).innerText;
 
-  try {
-    const movingId = window.sessionStorage.getItem('movingId');
-    const boxSelectedId = document.getElementById('boxSelectedId').value;
+  const editBoxNameErrorMsg = document.getElementById('editBoxNameErrorMsg');
+  const editBoxLabelErrorMsg = document.getElementById('editBoxLabelErrorMsg');
+  const editBoxDimensionsErrorMsg = document.getElementById(
+    'editBoxDimensionsErrorMsg'
+  );
 
-    box.update(
-      movingId,
-      boxSelectedId,
-      idEditBoxNameInput,
-      idEditBoxDescriptionInput,
-      idEditBoxLabelList.options[idEditBoxLabelList.value].text,
-      boxSizeSelected,
-      BoxWeightInput,
-      idBoxFragileCheck.checked,
-      idBoxCloseCheck.checked
-    );
+  const editBoxNameField = document.getElementById('editBoxNameField');
+  const editBoxLabelField = document.getElementById('editBoxLabelField');
+  const editBoxDimensionsField = document.getElementById(
+    'editBoxDimensionsField'
+  );
 
-    $('#editBoxModal').modal('hide');
-  } catch (err) {
-    console.log('Error updating the box: ', err);
+  //Reset
+  editBoxNameErrorMsg.innerText = '';
+  editBoxNameField.classList.remove('error');
+  editBoxLabelErrorMsg.innerText = '';
+  editBoxLabelField.classList.remove('error');
+  editBoxDimensionsErrorMsg.innerText = '';
+  editBoxDimensionsField.classList.remove('error');
+
+  //Required fields
+  if (idEditBoxNameInput === '') {
+    editBoxNameErrorMsg.innerHTML = 'Please enter box name';
+    editBoxNameField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (idEditBoxLabelList.value == 0) {
+    editBoxLabelErrorMsg.innerHTML = 'Please select a box label';
+    editBoxLabelField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (!boxSizeSelected) {
+    editBoxDimensionsErrorMsg.innerHTML = 'Please select a box size';
+    editBoxDimensionsField.classList.add('error');
+    requiredValidation = false;
+  }
+
+  if (requiredValidation) {
+    try {
+      const movingId = window.sessionStorage.getItem('movingId');
+      const boxSelectedId = document.getElementById('boxSelectedId').value;
+
+      box.update(
+        movingId,
+        boxSelectedId,
+        idEditBoxNameInput,
+        idEditBoxDescriptionInput,
+        idEditBoxLabelList.options[idEditBoxLabelList.value].text,
+        boxSizeSelected,
+        BoxWeightInput,
+        idBoxFragileCheck.checked,
+        idBoxCloseCheck.checked
+      );
+
+      $('#editBoxModal').modal('hide');
+    } catch (err) {
+      console.log('Error updating the box: ', err);
+    }
   }
 });
 
