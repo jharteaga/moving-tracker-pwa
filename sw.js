@@ -1,8 +1,8 @@
-const cacheName = 'v1';
+const cacheName = 'v1.1';
 const assetsToCache = [
   '/',
   '/index.html',
-  '/styles/styles.css',
+  // '/styles/styles.css',
   '/js/main.js',
   '/js/index.js',
   '/js/is-online.js',
@@ -11,17 +11,10 @@ const assetsToCache = [
   '/img/moving-tracker-logo.svg',
   '/img/moving-tracker-icon.svg',
   '/img/drop-glow.svg',
-  '/img/onboarding/onboarding1.jpg',
-  '/img/onboarding/onboarding2.jpg',
-  '/img/onboarding/onboarding3.jpg',
-  '/img/onboarding/onboarding4.jpeg',
-  '/img/profile/user-default.png',
-  '/img/profile/user-default.svg',
-  '/img/profile/user-default.webp',
 ];
 
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing Service Worker ...', event);
+  // console.log('[Service Worker] Installing Service Worker ...', event);
   event.waitUntil(
     // waitUntil tells the browser to wait for this to finish
     caches
@@ -34,11 +27,22 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating Service Worker ....', event);
+  // console.log('[Service Worker] Activating Service Worker ....', event);
+  event.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log(`Fetching ${event.request.url}`);
+  // console.log(`Fetching ${event.request.url}`);
   event.respondWith(
     (async () => {
       const response = await caches.match(event.request);
