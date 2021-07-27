@@ -660,11 +660,17 @@ const buildBoxesList = (boxes) => {
     const boxImage = document.createElement('div');
     boxImage.classList.add('box__image');
     const boxStatusIcon = document.createElement('span');
+    
     if (box.status) {
       boxStatusIcon.className = `fak fa-close-box`;
+      //Adding color change
+      boxContainer.classList.add("closed");
     } else {
       boxStatusIcon.className = `fak fa-open-box`;
+      //Adding color change
+      boxContainer.classList.remove("closed");
     }
+
     const sizeWrapper = document.createElement('p');
     const sizeLabel = document.createElement('span');
     const sizeText = document.createTextNode(`${box.boxSize}`);
@@ -683,10 +689,10 @@ const buildBoxesList = (boxes) => {
     boxMetadata.classList.add('box__metadata');
     boxMetadata.innerHTML = `<a onclick="sendItemId(this)" href="box-content.html"><p>${
       box.name
-    }</p></a>
-
+    }</p></a>  
                              <p>${box.label}</p>
-                             <p>${box.fragile ? 'Fragile' : ''}</p>`;
+                             <p>${box.fragile ? 'Fragile' : ''}</p>
+                             <p>${box.status ? 'Close' : ''}</p>`;
 
     const boxActions = document.createElement('div');
     boxActions.classList.add('box__actions');
@@ -788,6 +794,8 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
   const boxSizesBtns = document.querySelectorAll(
     '.editBoxContent__boxDimensionsButtons button'
   );
+  const msgWhenClose = document.getElementById('msgWhenClose');
+
   try {
     const movingId = window.sessionStorage.getItem('movingId');
     const boxSelectedId = document.getElementById('boxSelectedId').value;
@@ -822,11 +830,90 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
         boxSize.classList.remove('editBoxContent__left_button_selected');
       }
     });
+
+    // Disable input area in edit box mode and change clore of box page, when the box is closed and when it's rendered
+    if(idBoxCloseCheck.checked) {
+      idEditBoxNameInput.disabled = true; 
+      idEditBoxDescriptionInput.disabled = true;
+      idEditBoxLabelList.disabled = true;
+
+      for(i=0; i<boxSizesBtns.length; i++){
+        boxSizesBtns[i].disabled = true;
+      }
+
+      BoxWeightInput.disabled = true;
+      idBoxFragileCheck.disabled = true;
+
+      msgWhenClose.style.opacity = 1;
+      
+    } else {
+      idEditBoxNameInput.disabled = false; 
+      idEditBoxDescriptionInput.disabled = false;
+      idEditBoxLabelList.disabled = false;
+
+      for(i=0; i<boxSizesBtns.length; i++){
+        boxSizesBtns[i].disabled = false;
+      }
+
+      BoxWeightInput.disabled = false;
+      idBoxFragileCheck.disabled = false;
+
+      msgWhenClose.style.opacity = 0;
+    }
+
   } catch (err) {
     console.log('Error getting the box: ', err);
   }
 });
 
+
+// When Switched box close/Open
+const idBoxCloseCheck = document.getElementById('idBoxCloseCheck');
+
+idBoxCloseCheck.addEventListener('change', () => {
+
+  // Disable input area when the box is closed in edit modal
+  const idEditBoxNameInput = document.getElementById('idEditBoxNameInput');
+  const idEditBoxDescriptionInput = document.getElementById(
+    'idEditBoxDescriptionInput'
+  );
+  const idEditBoxLabelList = document.getElementById('idEditBoxLabelList');
+  const BoxWeightInput = document.getElementById('BoxWeightInput');
+  const idBoxFragileCheck = document.getElementById('idBoxFragileCheck');
+  const boxSizesBtns = document.querySelectorAll(
+    '.editBoxContent__boxDimensionsButtons button'
+  );
+  const msgWhenClose = document.getElementById('msgWhenClose');
+ 
+  if(idBoxCloseCheck.checked) {
+    idEditBoxNameInput.disabled = true; 
+    idEditBoxDescriptionInput.disabled = true;
+    idEditBoxLabelList.disabled = true;
+
+    for(i=0; i<boxSizesBtns.length; i++){
+      boxSizesBtns[i].disabled = true;
+    }
+
+    BoxWeightInput.disabled = true;
+    idBoxFragileCheck.disabled = true;
+
+    msgWhenClose.style.opacity = 1;
+    
+  } else {
+    idEditBoxNameInput.disabled = false; 
+    idEditBoxDescriptionInput.disabled = false;
+    idEditBoxLabelList.disabled = false;
+
+    for(i=0; i<boxSizesBtns.length; i++){
+      boxSizesBtns[i].disabled = false;
+    }
+
+    BoxWeightInput.disabled = false;
+    idBoxFragileCheck.disabled = false;
+
+    msgWhenClose.style.opacity = 0;
+  }
+})
 /**
  * Edit a box according to a moving id
  */
