@@ -6,9 +6,29 @@
     font-family: $mainFont;
   }
 
+  .sign-in-logo-mobile {
+    margin: 0 auto;
+    background-color: $heading-color;
+    // max-width: 400px;
+    width: 100%;
+    // display: flex;
+    // justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    .sign-in-logo-img {
+      display: flex;
+      justify-content: center;
+      img {
+        width: 40vw;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
   .fas,
   .fak {
-    font-family: 'Font Awesome 5 Free';
+    font-family: "Font Awesome 5 Free";
   }
 
   .sign-in-desktop-left {
@@ -29,7 +49,7 @@
       padding: 0 0.8rem;
 
       h1 {
-        margin: 28vh 0 1rem 0;
+        margin: 4vh 0 1rem 0;
         font-size: 44px;
         color: $field-text-color;
       }
@@ -123,6 +143,9 @@
 }
 
 @media screen and (min-width: 900px) {
+  .sign-in-logo-mobile {
+    display: none;
+  }
   .sign-in {
     max-width: initial;
     display: grid;
