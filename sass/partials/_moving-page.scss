@@ -1,8 +1,9 @@
 .movings-wrapper {
-  height: 90vh;
+  height: 65vh;
   display: flex;
-  align-items: center;
+  // align-items: center;
   overflow-x: scroll;
+  padding-top: 10vh;
   .moving-wrapper {
     display: flex;
     flex-direction: column;
@@ -10,7 +11,7 @@
     justify-content: space-around;
     background-color: $card-moving-bg-color;
     box-shadow: $card-box-shadow;
-    height: 50%;
+    height: 70%;
     margin: 0 1.5rem;
     min-width: 300px;
     border-radius: 10px;
@@ -410,6 +411,10 @@
             }
           }
         }
+      }
+      .movings-wrapper {
+        height: 85vh;
+        padding-top: 25vh;
       }
     }
 
