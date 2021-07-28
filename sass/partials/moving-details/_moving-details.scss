@@ -161,14 +161,14 @@
     }
 
     .box.closed {
-      background-color: $mid-grey;
+      background-color: $box-closed-color;
 
       .box__metadata {
-        background-color: $mid-grey;
+        background-color: $box-closed-color;
       }
 
       .box__actions {
-        background-color: $mid-grey;
+        background-color: $box-closed-color;
       }
     }
   }
