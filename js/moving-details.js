@@ -695,7 +695,7 @@ const buildBoxesList = (boxes) => {
     }</p></a>  
                              <p>${box.label}</p>
                              <p>${box.fragile ? 'Fragile' : ''}</p>
-                             <p>${box.status ? 'Close' : ''}</p>`;
+                             <p>${box.status ? 'Closed' : ''}</p>`;
 
     const boxActions = document.createElement('div');
     boxActions.classList.add('box__actions');
