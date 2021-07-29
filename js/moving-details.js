@@ -1057,3 +1057,20 @@ const boxVolume = (boxSize) => {
   volume = volume / 100;
   return volume;
 };
+
+/************************************** */
+/* Generate and download PDF
+/************************************** */
+const pdfEl = document.querySelector('.pdfBoxContent__container');
+const btn = document.querySelector('#idbtnDownload');
+
+btn.addEventListener('click', () => {
+  const boxName = document.querySelector('#pdfBoxModal .modal-title').innerText;
+
+  console.log(boxName);
+  const opt = {
+    margin: [10, 5, 10, 5],
+    filename: `${boxName}.pdf`,
+  };
+  html2pdf().set(opt).from(pdfEl).save();
+});
