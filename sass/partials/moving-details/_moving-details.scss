@@ -39,6 +39,8 @@
       background-color: white;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
 
       &__image {
         grid-area: image;
@@ -46,7 +48,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        width: 80%;
+        width: 100%;
         border-top-left-radius: 10px;
 
         .fa-open-box,
@@ -137,12 +139,25 @@
             $height: 30px
           );
         }
+
+        button:first-child {
+          background-color: transparent;
+          color: $gray; 
+          font-size: 1.6rem;
+          margin-top: -0.5rem;
+        }
+
+        button:last-child {
+          background-color: $white;
+          border: 1px solid $text-color;
+          color: $text-color; 
+        }
       }
 
       &__progress {
         grid-area: progress;
-        display: flex;
-        justify-content: space-around;
+        display: grid;
+        grid-template-columns: 22% 22% 22% 34%;
         align-items: center;
         background-color: $text-color;
         color: white;
@@ -150,25 +165,57 @@
         border-bottom-right-radius: 10px;
 
         p {
-          margin: 5px;
+          widtH: 100%;
+          text-align: center;
+          margin: 5px 0;
           font-size: 0.9rem;
+          border-right: 1px solid $white;
 
           &:first-child {
             border-bottom: 2px solid $accent-color;
           }
+
+          &:nth-child(2) {
+            border-bottom: 2px solid $accent-opacity-1;
+          }
+
+          &:nth-child(3) {
+            border-bottom: 2px solid $accent-opacity-2;
+          }
+        }
+
+        p:last-child{
+          border-right: none;
         }
       }
     }
 
-    .box.closed {
-      background-color: $mid-grey;
 
-      .box__metadata {
-        background-color: $mid-grey;
-      }
+    // When the boxis closed
+    .box.closed {
+      background-color: $label-form-color;
+      color: $white;
 
       .box__actions {
-        background-color: $mid-grey;
+
+        button:first-child {
+          color: $label-form-color; 
+        }
+      }
+
+
+      .box__progress {
+        border-top: 1px solid $white;
+
+        p {
+          &:nth-child(2) {
+            border-bottom: 2px solid $accent-color;
+          }
+  
+          &:nth-child(3) {
+            border-bottom: 2px solid $accent-color;
+          }
+        }
       }
     }
   }

@@ -37,3 +37,22 @@
     }
   }
 }
+
+
+#editBoxModal.closed {
+  .input-wrapper,
+  .select-wrapper {
+
+    input {
+      color: $mid-grey;
+
+      &::placeholder {
+        color: $mid-grey;
+      }
+    }
+  }
+
+  .editBoxContent__left button {
+    opacity: 0.5;
+  }
+}
