@@ -24,6 +24,7 @@ const changeAddItemModalTitle = (title) => {
   const boxLabelsModalLabel = document.getElementById('boxLabelsModalLabel');
   boxLabelsModalLabel.innerHTML = title;
   cleanInputs();
+  if (title !== 'Update item') cleanHiddenidInput();
 };
 
 /********************************/
