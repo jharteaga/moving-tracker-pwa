@@ -674,13 +674,20 @@ const buildBoxesList = (boxes) => {
       boxContainer.classList.remove('closed');
     }
 
+    const statusWrapper = document.createElement('p');
+    const statusLabel = document.createElement('span');
+    const statusText = document.createTextNode(`${box.status ? 'Closed' : 'Open'}`);
     const sizeWrapper = document.createElement('p');
     const sizeLabel = document.createElement('span');
     const sizeText = document.createTextNode(`${box.boxSize}`);
+    statusLabel.innerHTML = 'Status: ';
     sizeLabel.innerText = 'Size: ';
+    statusWrapper.appendChild(statusLabel);
+    statusWrapper.appendChild(statusText);
     sizeWrapper.appendChild(sizeLabel);
     sizeWrapper.appendChild(sizeText);
     boxImage.appendChild(boxStatusIcon);
+    boxImage.appendChild(statusWrapper);
     boxImage.appendChild(sizeWrapper);
 
     const boxInfo = document.createElement('div');
@@ -694,8 +701,7 @@ const buildBoxesList = (boxes) => {
       box.name
     }</p></a>  
                              <p>${box.label}</p>
-                             <p>${box.fragile ? 'Fragile' : ''}</p>
-                             <p>${box.status ? 'Closed' : ''}</p>`;
+                             <p>${box.fragile ? 'Fragile' : ''}</p>`;
 
     const boxActions = document.createElement('div');
     boxActions.classList.add('box__actions');
@@ -718,7 +724,7 @@ const buildBoxesList = (boxes) => {
     editBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
     editBoxModalBtn.setAttribute('data-bs-target', '#editBoxModal');
     const pencilIcon = document.createElement('span');
-    pencilIcon.className = 'fas fa-pencil-alt';
+    pencilIcon.className = 'fak fa-feather-edit-2';
     editBoxModalBtn.appendChild(pencilIcon);
 
     editBoxModalBtn.addEventListener('click', () => {
@@ -731,7 +737,7 @@ const buildBoxesList = (boxes) => {
     removeBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
     removeBoxModalBtn.setAttribute('data-bs-target', '#deleteBoxModal');
     const trashIcon = document.createElement('span');
-    trashIcon.className = 'fas fa-trash';
+    trashIcon.className = 'fak fa-delete';
     removeBoxModalBtn.appendChild(trashIcon);
 
     removeBoxModalBtn.addEventListener('click', () => {
@@ -848,6 +854,8 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
       idBoxFragileCheck.disabled = true;
 
       msgWhenClose.style.opacity = 1;
+      editBoxModal.classList.add('closed');
+
     } else {
       idEditBoxNameInput.disabled = false;
       idEditBoxDescriptionInput.disabled = false;
@@ -861,6 +869,7 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
       idBoxFragileCheck.disabled = false;
 
       msgWhenClose.style.opacity = 0;
+      editBoxModal.classList.remove('closed');
     }
   } catch (err) {
     console.log('Error getting the box: ', err);
@@ -897,6 +906,8 @@ idBoxCloseCheck.addEventListener('change', () => {
     idBoxFragileCheck.disabled = true;
 
     msgWhenClose.style.opacity = 1;
+    editBoxModal.classList.add('closed');
+
   } else {
     idEditBoxNameInput.disabled = false;
     idEditBoxDescriptionInput.disabled = false;
@@ -910,6 +921,7 @@ idBoxCloseCheck.addEventListener('change', () => {
     idBoxFragileCheck.disabled = false;
 
     msgWhenClose.style.opacity = 0;
+    editBoxModal.classList.remove('closed');
   }
 });
 /**

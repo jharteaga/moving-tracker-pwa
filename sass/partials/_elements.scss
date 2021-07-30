@@ -345,11 +345,15 @@
   }
   &__editBoxSwitch {
     input {
-      background-color: white;
-      border: 1px solid $accent-color;
+      border: 1px solid $grey;
       height: 25px !important;
       width: 40px !important;
     }
+
+    input:checked {
+      border: 2px solid $accent-color;
+    }
+
     label {
       padding-left: 0.5rem !important;
     }
@@ -363,6 +367,21 @@
       }
     }
   }
+
+  //To make the button orange
+  .form-check-input:hover {
+    cursor: pointer;
+  }
+
+  .form-switch .form-check-input {
+    background: left no-repeat url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e")#bbb9b9;
+  }
+
+  .form-switch .form-check-input:checked {
+    background: right no-repeat url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='orange'/%3e%3c/svg%3e") #bbb9b9;
+  }
+
+
   @include mediumDevice() {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
