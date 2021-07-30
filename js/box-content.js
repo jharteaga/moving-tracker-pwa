@@ -68,19 +68,22 @@ user.isLoggedIn(() => {
   const profilePhoto = document.querySelector('.profile-picture');
 
   profilePhoto.src = user.userProfilePictureUrl;
-
-  fetch(user.userProfilePictureUrl)
-    .then((response) => {
-      console.log(response);
-      if (response.ok) {
-        profilePhoto.src = user.userProfilePictureUrl;
-      } else {
-        profilePhoto.src = '../img/profile/user-default.svg';
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (user.userProfilePictureUrl.length === 0) {
+    profilePhoto.src = '../img/profile/user-default.svg';
+  } else {
+    fetch(user.userProfilePictureUrl)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          profilePhoto.src = user.userProfilePictureUrl;
+        } else {
+          profilePhoto.src = '../img/profile/user-default.svg';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 });
 
 /*

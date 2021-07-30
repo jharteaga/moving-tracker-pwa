@@ -29,22 +29,26 @@ user.isLoggedIn(() => {
 
   profilePhotoDesktop.src = user.userProfilePictureUrl;
   profilePhotoMobile.src = user.userProfilePictureUrl;
-  
-  fetch(user.userProfilePictureUrl)
-  .then((response) => {
-    console.log(response);
-      if(response.ok){
-        profilePhotoDesktop.src = user.userProfilePictureUrl;
-        profilePhotoMobile.src = user.userProfilePictureUrl;
-      } else {
-        profilePhotoDesktop.src = "../img/profile/user-default.svg";
-        profilePhotoMobile.src = "../img/profile/user-default.svg";
-      }
-  }).catch((error) => {
-    console.log(error);
-  })
-  
 
+  if (user.userProfilePictureUrl.length === 0) {
+    profilePhotoDesktop.src = '../img/profile/user-default.svg';
+    profilePhotoMobile.src = '../img/profile/user-default.svg';
+  } else {
+    fetch(user.userProfilePictureUrl)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          profilePhotoDesktop.src = user.userProfilePictureUrl;
+          profilePhotoMobile.src = user.userProfilePictureUrl;
+        } else {
+          profilePhotoDesktop.src = '../img/profile/user-default.svg';
+          profilePhotoMobile.src = '../img/profile/user-default.svg';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 });
 /**
  * Movings Options Menu (Toggle plus menu button)
@@ -70,21 +74,19 @@ function renderMovings() {
     movingAddressDiv.innerHTML = `<p>${moving.data().to}</p>`;
     const movingDateDiv = document.createElement('div');
     movingDateDiv.classList.add('moving__date');
-    let formattedDate="";
-    if (moving.data().date!=""){
+    let formattedDate = '';
+    if (moving.data().date != '') {
       let movingDate = new Date(moving.data().date);
       let longMonth = movingDate.toLocaleString('en-us', { month: 'long' });
-      formattedDate = `${longMonth} ${movingDate.getDate()}, ${movingDate.getFullYear()}`
+      formattedDate = `${longMonth} ${movingDate.getDate()}, ${movingDate.getFullYear()}`;
+    } else {
+      formattedDate = '';
     }
-    else{
-      formattedDate="";
-    }
-   
+
     movingDateDiv.innerHTML = `${formattedDate}`;
-   
+
     const movingActions = document.createElement('div');
     movingActions.classList.add('moving__actions');
-
 
     console.log(user.userId, moving.data().creatorId);
     if (user.userId === moving.data().creatorId) {
@@ -124,10 +126,14 @@ saveMovingBtn.addEventListener('click', async (event) => {
   const movingTo = document.querySelector('#movingTo');
   const movingDate = document.querySelector('#movingDate');
 
-  const newMovingNameErrorMsg = document.querySelector('#newMovingNameErrorMsg');
-  const newMovingFromErrorMsg = document.querySelector('#newMovingFromErrorMsg');
+  const newMovingNameErrorMsg = document.querySelector(
+    '#newMovingNameErrorMsg'
+  );
+  const newMovingFromErrorMsg = document.querySelector(
+    '#newMovingFromErrorMsg'
+  );
   const newMovingToErrorMsg = document.querySelector('#newMovingToErrorMsg');
-  
+
   const newMovingNameField = document.querySelector('#newMovingNameField');
   const newMovingFromField = document.querySelector('#newMovingFromField');
   const newMovingToField = document.querySelector('#newMovingToField');
@@ -135,33 +141,32 @@ saveMovingBtn.addEventListener('click', async (event) => {
   let requiredValidation = true;
 
   //Reset
-  newMovingNameErrorMsg.innerHTML='';
+  newMovingNameErrorMsg.innerHTML = '';
   newMovingNameField.classList.remove('error');
-  newMovingFromErrorMsg.innerHTML='';
+  newMovingFromErrorMsg.innerHTML = '';
   newMovingFromField.classList.remove('error');
 
-  newMovingToErrorMsg.innerHTML='';
+  newMovingToErrorMsg.innerHTML = '';
   newMovingToField.classList.remove('error');
 
   //Required Fields
-  if (movingTitle.value === ''){
+  if (movingTitle.value === '') {
     newMovingNameErrorMsg.innerHTML = "Please enter new moving's name";
     newMovingNameField.classList.add('error');
-    requiredValidation=false;
+    requiredValidation = false;
   }
-  if (movingFrom.value === ''){
-    newMovingFromErrorMsg.innerHTML = "Please enter from address";
+  if (movingFrom.value === '') {
+    newMovingFromErrorMsg.innerHTML = 'Please enter from address';
     newMovingFromField.classList.add('error');
-    requiredValidation=false;
+    requiredValidation = false;
   }
-  if (movingTo.value === ''){
-    newMovingToErrorMsg.innerHTML = "Please enter destination address";
+  if (movingTo.value === '') {
+    newMovingToErrorMsg.innerHTML = 'Please enter destination address';
     newMovingToField.classList.add('error');
-    requiredValidation=false;
+    requiredValidation = false;
   }
 
-
-  if(requiredValidation){
+  if (requiredValidation) {
     const moving = new Moving(
       user.userId,
       movingTitle.value,
@@ -177,14 +182,11 @@ saveMovingBtn.addEventListener('click', async (event) => {
     movingTo.value = '';
     movingDate.value = '';
 
-    $("#addMovingModal").modal('hide');
-  }  
- 
+    $('#addMovingModal').modal('hide');
+  }
 });
 
 // End Save Moving Section
-
-
 
 // const saveEditMovingBtn = document.querySelector('#saveEditMovingBtn');
 const saveEditMovingBtn = document.querySelector('#saveEditMovingBtn');
@@ -195,15 +197,21 @@ saveEditMovingBtn.addEventListener('click', async (event) => {
   // Edit Moving Section
 
   const editMovingTitle = document.querySelector('#editMovingTitle');
-  const editMovingDescription = document.querySelector('#editMovingDescription');
+  const editMovingDescription = document.querySelector(
+    '#editMovingDescription'
+  );
   const editMovingFrom = document.querySelector('#editMovingFrom');
   const editMovingTo = document.querySelector('#editMovingTo');
   const editMovingDate = document.querySelector('#editMovingDate');
 
-  const editMovingNameErrorMsg = document.querySelector('#editMovingNameErrorMsg');
-  const editMovingFromErrorMsg = document.querySelector('#editMovingFromErrorMsg');
+  const editMovingNameErrorMsg = document.querySelector(
+    '#editMovingNameErrorMsg'
+  );
+  const editMovingFromErrorMsg = document.querySelector(
+    '#editMovingFromErrorMsg'
+  );
   const editMovingToErrorMsg = document.querySelector('#editMovingToErrorMsg');
-  
+
   const editMovingNameField = document.querySelector('#editMovingNameField');
   const editMovingFromField = document.querySelector('#editMovingFromField');
   const editMovingToField = document.querySelector('#editMovingToField');
@@ -211,43 +219,43 @@ saveEditMovingBtn.addEventListener('click', async (event) => {
   let requiredValidation = true;
 
   //Reset
-  editMovingNameErrorMsg.innerHTML='';
+  editMovingNameErrorMsg.innerHTML = '';
   editMovingNameField.classList.remove('error');
 
-  editMovingFromErrorMsg.innerHTML='';
+  editMovingFromErrorMsg.innerHTML = '';
   editMovingFromField.classList.remove('error');
 
-  editMovingToErrorMsg.innerHTML='';
+  editMovingToErrorMsg.innerHTML = '';
   editMovingToField.classList.remove('error');
 
-    //Required Fields
-    if (editMovingTitle.value === ''){
-      editMovingNameErrorMsg.innerHTML = "Please enter moving's name";
-      editMovingNameField.classList.add('error');
-      requiredValidation=false;
-    }
-    if (editMovingFrom.value === ''){
-      editMovingFromErrorMsg.innerHTML = "Please enter from address";
-      editMovingFromField.classList.add('error');
-      requiredValidation=false;
-    }
-    if (editMovingTo.value === ''){
-      editMovingToErrorMsg.innerHTML = "Please enter destination address";
-      editMovingToField.classList.add('error');
-      requiredValidation=false;
-    }
+  //Required Fields
+  if (editMovingTitle.value === '') {
+    editMovingNameErrorMsg.innerHTML = "Please enter moving's name";
+    editMovingNameField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (editMovingFrom.value === '') {
+    editMovingFromErrorMsg.innerHTML = 'Please enter from address';
+    editMovingFromField.classList.add('error');
+    requiredValidation = false;
+  }
+  if (editMovingTo.value === '') {
+    editMovingToErrorMsg.innerHTML = 'Please enter destination address';
+    editMovingToField.classList.add('error');
+    requiredValidation = false;
+  }
 
-    if(requiredValidation){
-      await moving.updateMoving(
-        user,
-        editMovingTitle.value,
-        editMovingDescription.value,
-        editMovingFrom.value,
-        editMovingTo.value,
-        editMovingDate.value
-      );
-      $("#editMovingModal").modal('hide');
-    }
+  if (requiredValidation) {
+    await moving.updateMoving(
+      user,
+      editMovingTitle.value,
+      editMovingDescription.value,
+      editMovingFrom.value,
+      editMovingTo.value,
+      editMovingDate.value
+    );
+    $('#editMovingModal').modal('hide');
+  }
 });
 
 function addEventListersEdit() {

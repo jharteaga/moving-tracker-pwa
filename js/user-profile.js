@@ -50,19 +50,23 @@ user.isLoggedIn(() => {
   userEmail.innerHTML = user.email;
   newUserName.value = user.userName;
   uploadedPic.src = user.userProfilePictureUrl;
-
-  fetch(user.userProfilePictureUrl)
-    .then((response) => {
-      console.log(response);
-      if (response.ok) {
-        uploadedPic.src = user.userProfilePictureUrl;
-      } else {
-        uploadedPic.src = '../img/profile/user-default.svg';
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  console.log(user.userProfilePictureUrl);
+  if (user.userProfilePictureUrl.length === 0) {
+    uploadedPic.src = '../img/profile/user-default.svg';
+  } else {
+    fetch(user.userProfilePictureUrl)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          uploadedPic.src = user.userProfilePictureUrl;
+        } else {
+          uploadedPic.src = '../img/profile/user-default.svg';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 });
 
 //When window size changed  => to show the uploading method differently
