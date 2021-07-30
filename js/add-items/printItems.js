@@ -2,7 +2,13 @@
 //function to print items list
 //************************************* */
 
-const printItems = (items) => {
+const printItems = async (items) => {
+  const box = new Box();
+  const boxSelected = await box.isBoxClosed(
+    window.sessionStorage.getItem('movingId'),
+    window.sessionStorage.getItem('boxId')
+  );
+
   const itemListDisplay = document.getElementById('itemListDisplay');
   //clean ul
   itemListDisplay.innerHTML = '';
@@ -104,9 +110,12 @@ const printItems = (items) => {
 
     //************************************* */
     //add edit and delete buttons to div container ----- and id label
-    newDivIcons.appendChild(btnEdit);
-    newDivIcons.appendChild(btnTrash);
-    newDivIcons.appendChild(lblidItem);
+    if (!boxSelected.status) {
+      newDivIcons.appendChild(btnEdit);
+      newDivIcons.appendChild(btnTrash);
+      newDivIcons.appendChild(lblidItem);
+    }
+
     //************************************* */
 
     //************************************* */
@@ -126,5 +135,13 @@ const printItems = (items) => {
     //add li to ul
     itemListDisplay.appendChild(newItem_li);
     //************************************* */
+
+    //disabled add button if box is closed
+    if (boxSelected.status) {
+      const openAddItemModalBtn = document.getElementById(
+        'openAddItemModalBtn'
+      );
+      openAddItemModalBtn.classList.add('disabled');
+    }
   });
 };

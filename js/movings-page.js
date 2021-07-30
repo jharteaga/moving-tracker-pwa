@@ -70,9 +70,22 @@ function renderMovings() {
     movingAddressDiv.innerHTML = `<p>${moving.data().to}</p>`;
     const movingDateDiv = document.createElement('div');
     movingDateDiv.classList.add('moving__date');
-    movingDateDiv.innerHTML = `${moving.data().date}`;
+    let formattedDate="";
+    if (moving.data().date!=""){
+      let movingDate = new Date(moving.data().date);
+      let longMonth = movingDate.toLocaleString('en-us', { month: 'long' });
+      formattedDate = `${longMonth} ${movingDate.getDate()}, ${movingDate.getFullYear()}`
+    }
+    else{
+      formattedDate="";
+    }
+   
+    movingDateDiv.innerHTML = `${formattedDate}`;
+   
     const movingActions = document.createElement('div');
     movingActions.classList.add('moving__actions');
+
+
     console.log(user.userId, moving.data().creatorId);
     if (user.userId === moving.data().creatorId) {
       movingActions.innerHTML = `<button class="icon button-edit" data-bs-toggle="modal" data-bs-target="#editMovingModal" id="edit-${moving.id}">

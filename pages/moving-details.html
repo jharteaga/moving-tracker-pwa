@@ -45,6 +45,12 @@
     <script src="../js/box.js" defer></script>
     <script src="../js/resizeModal.js" defer></script>
     <script src="../js/moving-details.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
+      integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
 
   <body class="moving-details">
@@ -473,7 +479,7 @@
             </div>
             <div class="select-wrapper" id="newBoxLabelField">
               <div class="input-field">
-                <label for="boxLabel">Box Label<span>&#10038;</span></label>
+                <label for="boxLabel">Box label<span>&#10038;</span></label>
                 <p id="newBoxLabelErrorMsg"></p>
               </div>
               <select id="newBoxLabelSelect">
@@ -633,7 +639,7 @@
                   </div>
                   <div class="editBoxContent__editBoxWeight">
                     <input
-                      type="text"
+                      type="number"
                       id="BoxWeightInput"
                       name="BoxWeightInput"
                       class=""

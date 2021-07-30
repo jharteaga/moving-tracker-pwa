@@ -121,6 +121,27 @@ class Box {
     return box;
   }
 
+  isBoxClosed(idMoving, idBox) {
+    let boxDocument = db.collection(`/movings/${idMoving}/boxes`).doc(idBox);
+
+    let box = boxDocument
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          return {
+            status: doc.data().status,
+          };
+        } else {
+          return 'Box not found!';
+        }
+      })
+      .catch((error) => {
+        return `Error getting box: ${error}`;
+      });
+
+    return box;
+  }
+
   getItems(idMoving, idBox) {
     let items = db
       .collection(`/movings/${idMoving}/boxes/${idBox}/items`)

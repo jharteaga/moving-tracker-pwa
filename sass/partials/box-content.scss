@@ -154,6 +154,10 @@
         bottom: 3rem;
         right: 1.1rem;
         @include iconButton();
+
+        &.disabled {
+          display: none;
+        }
       }
     }
   }
