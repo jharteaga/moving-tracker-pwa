@@ -148,12 +148,9 @@ class User {
   isLoggedIn(callBack) {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        if (
-          window.location.pathname === '/' ||
-          window.location.pathname === '/index.html'
-        ) {
+        if (window.location.pathname === '/pages/sign-in.html') {
           console.log('User Logged in');
-          window.location.href = 'pages/movings.html';
+          window.location.href = 'movings.html';
         } else {
           await this._getUserDb(user.uid);
           if (callBack) {
@@ -162,10 +159,7 @@ class User {
           console.log(this);
         }
       } else {
-        if (
-          window.location.pathname === '/' ||
-          window.location.pathname === '/index.html'
-        ) {
+        if (window.location.pathname === '/pages/sign-in.html') {
           return;
         } else if (window.location.pathname !== '/pages/sign-in.html') {
           window.location.href = 'sign-in.html';
@@ -269,8 +263,6 @@ class User {
       console.log(`Error message: ${error.message}`);
     }
   }
-
-
 
   /***************************/
   //Password Reset (keeping this for later)
