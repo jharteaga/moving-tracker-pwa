@@ -708,10 +708,21 @@ const buildBoxesList = (boxes) => {
 
     const pdfBoxModalBtn = document.createElement('button');
     pdfBoxModalBtn.classList.add('icon');
-    pdfBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
-    pdfBoxModalBtn.setAttribute('data-bs-target', '#pdfBoxModal');
+   
     const pdfIcon = document.createElement('span');
     pdfIcon.className = 'fas fa-file-pdf';
+
+    if (!box.status) {
+      pdfIcon.classList.add('iconDisabled')
+      pdfBoxModalBtn.disabled=true
+    }
+    else{
+      pdfIcon.classList.remove('iconDisabled')
+      pdfBoxModalBtn.disabled=false
+      pdfBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
+      pdfBoxModalBtn.setAttribute('data-bs-target', '#pdfBoxModal');
+    }
+
     pdfBoxModalBtn.appendChild(pdfIcon);
     pdfBoxModalBtn.addEventListener('click', () => {
       const boxSelectedId = document.getElementById('boxSelectedId');
