@@ -237,7 +237,7 @@ closeDelete.addEventListener('click', () => {
 picDeleteBtn.addEventListener('click', async () => {
   await user.deleteProfilePicture();
   picDeleteConfirmation.classList.toggle('active-delete');
-  uploadedPic.src = user.userProfilePictureUrl;
+  uploadedPic.src = '../img/profile/user-default.svg';
 });
 
 //reload src from firebase
