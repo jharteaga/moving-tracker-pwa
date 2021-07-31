@@ -137,6 +137,19 @@ class User {
     }
   }
 
+  async deleteProfilePicture() {
+    try {
+      const data = {
+        userProfilePictureUrl: '',
+      };
+      await db.collection('users').doc(this.userId).set(data, { merge: true });
+      await this._getUserDb(this.userId);
+    } catch (error) {
+      this.userError = error.message;
+      console.log(error.message);
+    }
+  }
+
   /**
    * Verifies Login Status
    *

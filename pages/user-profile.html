@@ -70,6 +70,7 @@
         <div class="profile-pic">
           <img src="../img/profile/user-default.svg" />
           <i id="editUserPicBtn" class="fas fa-pen"></i>
+          <i id="deleteUserPicBtn" class="fas fa-trash"></i>
         </div>
 
         <div class="profile-name field__container" id="profile-name">
@@ -93,12 +94,17 @@
           <p id="openCamera">Open Camera</p>
         </div>
 
+        <div class="picDeleteConfirmation">
+          <i class="fas fa-times" id="closeDelete"></i>
+          <p>Do you want to delete your profile picture?</p>
+          <button id="picDeleteBtn">Delete</button>
+        </div>
+
         <div class="file-selector" id="fileSelector">
           <i class="fas fa-times" id="fileSelctCloseBtn"></i>
           <input type="file" id="newUserPic" />
           <button id="picSaveBtn">Save</button>
         </div>
-
 
         <div class="camera hidden" id="cameraFunction">
           <p id="closeCamera">x</p>
@@ -111,7 +117,6 @@
             <button id="savePicBtn" disabled>Save</button>
           </div>
         </div>
-
       </div>
     </main>
   </body>

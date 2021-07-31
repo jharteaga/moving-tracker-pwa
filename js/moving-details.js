@@ -141,20 +141,25 @@ user.isLoggedIn(() => {
   profilePhotoDesktop.src = user.userProfilePictureUrl;
   profilePhotoMobile.src = user.userProfilePictureUrl;
 
-  fetch(user.userProfilePictureUrl)
-    .then((response) => {
-      console.log(response);
-      if (response.ok) {
-        profilePhotoDesktop.src = user.userProfilePictureUrl;
-        profilePhotoMobile.src = user.userProfilePictureUrl;
-      } else {
-        profilePhotoDesktop.src = '../img/profile/user-default.svg';
-        profilePhotoMobile.src = '../img/profile/user-default.svg';
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  if (user.userProfilePictureUrl.length === 0) {
+    profilePhotoDesktop.src = '../img/profile/user-default.svg';
+    profilePhotoMobile.src = '../img/profile/user-default.svg';
+  } else {
+    fetch(user.userProfilePictureUrl)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          profilePhotoDesktop.src = user.userProfilePictureUrl;
+          profilePhotoMobile.src = user.userProfilePictureUrl;
+        } else {
+          profilePhotoDesktop.src = '../img/profile/user-default.svg';
+          profilePhotoMobile.src = '../img/profile/user-default.svg';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 });
 
 /**
@@ -676,7 +681,9 @@ const buildBoxesList = (boxes) => {
 
     const statusWrapper = document.createElement('p');
     const statusLabel = document.createElement('span');
-    const statusText = document.createTextNode(`${box.status ? 'Closed' : 'Open'}`);
+    const statusText = document.createTextNode(
+      `${box.status ? 'Closed' : 'Open'}`
+    );
     const sizeWrapper = document.createElement('p');
     const sizeLabel = document.createElement('span');
     const sizeText = document.createTextNode(`${box.boxSize}`);
@@ -708,17 +715,16 @@ const buildBoxesList = (boxes) => {
 
     const pdfBoxModalBtn = document.createElement('button');
     pdfBoxModalBtn.classList.add('icon');
-   
+
     const pdfIcon = document.createElement('span');
     pdfIcon.className = 'fas fa-file-pdf';
 
     if (!box.status) {
-      pdfIcon.classList.add('iconDisabled')
-      pdfBoxModalBtn.disabled=true
-    }
-    else{
-      pdfIcon.classList.remove('iconDisabled')
-      pdfBoxModalBtn.disabled=false
+      pdfIcon.classList.add('iconDisabled');
+      pdfBoxModalBtn.disabled = true;
+    } else {
+      pdfIcon.classList.remove('iconDisabled');
+      pdfBoxModalBtn.disabled = false;
       pdfBoxModalBtn.setAttribute('data-bs-toggle', 'modal');
       pdfBoxModalBtn.setAttribute('data-bs-target', '#pdfBoxModal');
     }
@@ -866,7 +872,6 @@ editBoxModal.addEventListener('shown.bs.modal', async () => {
 
       msgWhenClose.style.opacity = 1;
       editBoxModal.classList.add('closed');
-
     } else {
       idEditBoxNameInput.disabled = false;
       idEditBoxDescriptionInput.disabled = false;
@@ -918,7 +923,6 @@ idBoxCloseCheck.addEventListener('change', () => {
 
     msgWhenClose.style.opacity = 1;
     editBoxModal.classList.add('closed');
-
   } else {
     idEditBoxNameInput.disabled = false;
     idEditBoxDescriptionInput.disabled = false;
