@@ -1,3 +1,31 @@
+/********************************/
+/* Load profile picture */
+/********************************/
+const user = new User();
+
+user.isLoggedIn(() => {
+  console.log(user.userProfilePictureUrl);
+  const profilePhoto = document.querySelector('.profile-picture');
+
+  profilePhoto.src = user.userProfilePictureUrl;
+  if (user.userProfilePictureUrl.length === 0) {
+    profilePhoto.src = '../img/profile/user-default.svg';
+  } else {
+    fetch(user.userProfilePictureUrl)
+      .then((response) => {
+        console.log(response);
+        if (response.ok) {
+          profilePhoto.src = user.userProfilePictureUrl;
+        } else {
+          profilePhoto.src = '../img/profile/user-default.svg';
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+});
+
 const idMoving = window.sessionStorage.getItem('movingId');
 const idBox = window.sessionStorage.getItem('boxId');
 
@@ -57,34 +85,6 @@ const showModalMsg = (msg) => {
   let myModal = new bootstrap.Modal(document.getElementById('msgItemModal'));
   myModal.show();
 };
-
-/********************************/
-/* Load profile picture */
-/********************************/
-const user = new User();
-
-user.isLoggedIn(() => {
-  console.log(user.userProfilePictureUrl);
-  const profilePhoto = document.querySelector('.profile-picture');
-
-  profilePhoto.src = user.userProfilePictureUrl;
-  if (user.userProfilePictureUrl.length === 0) {
-    profilePhoto.src = '../img/profile/user-default.svg';
-  } else {
-    fetch(user.userProfilePictureUrl)
-      .then((response) => {
-        console.log(response);
-        if (response.ok) {
-          profilePhoto.src = user.userProfilePictureUrl;
-        } else {
-          profilePhoto.src = '../img/profile/user-default.svg';
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-});
 
 /*
 // Elements for taking the snapshot

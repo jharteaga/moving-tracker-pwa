@@ -73,6 +73,8 @@ loginBtn.addEventListener('click', () => {
 //Creat instance (code in user.js)
 const userToLogin = new User();
 
+userToLogin.isLoggedIn();
+
 //Password show/hide
 const pwHidden = document.querySelector('.sign-in-pw .fa-eye-slash');
 const pwShown = document.querySelector('.sign-in-pw .fa-eye');
