@@ -122,17 +122,22 @@ closeEditUserNameBtn.addEventListener('click', () => {
 
 //Save New User Name
 nameSaveBtn.addEventListener('click', () => {
-  //Update User Name
-  user.updateUserDb(newUserName.value);
 
-  //Close Edit Mode
-  profileName.classList.remove('edit-mode');
+  if(newUserName.value === ""){
+      newUserName.setAttribute('placeholder', 'Name cannot be blank'); 
+  } else {
+    //Update User Name
+    user.updateUserDb(newUserName.value);
 
-  //Reflect New User Name
-  user.isLoggedIn(() => {
-    userName.innerHTML = user.userName;
-    newUserName.value = user.userName;
-  });
+    //Close Edit Mode
+    profileName.classList.remove('edit-mode');
+
+    //Reflect New User Name
+    user.isLoggedIn(() => {
+      userName.innerHTML = user.userName;
+      newUserName.value = user.userName;
+    });
+  }
 });
 
 //Logout
