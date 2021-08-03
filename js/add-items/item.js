@@ -50,6 +50,8 @@ class Item {
       .doc(IdItem)
       .delete()
       .then(() => {
+        const box = new Box();
+        box.setTotalValueBox(idMoving, idBox);
         return 'Item successfully deleted!';
       })
       .catch((error) => {
