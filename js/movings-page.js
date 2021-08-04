@@ -30,7 +30,7 @@ user.isLoggedIn(() => {
   profilePhotoDesktop.src = user.userProfilePictureUrl;
   profilePhotoMobile.src = user.userProfilePictureUrl;
 
-  if (user.userProfilePictureUrl.length === 0) {
+  if (user.userProfilePictureUrl === null || user.userProfilePictureUrl === undefined) {
     profilePhotoDesktop.src = '../img/profile/user-default.svg';
     profilePhotoMobile.src = '../img/profile/user-default.svg';
   } else {

@@ -9,6 +9,9 @@ sendBtn.addEventListener('click', () => {
     // Define Error Message Area
     const userEmailErrorMsg = document.getElementById("userEmailErrorMsg");
 
+    // Define top page
+    const topPage = document.querySelector(".forgot-pw-top");
+
     // Define Success page
     const successPage = document.querySelector(".forgot-pw-success");
 
@@ -33,7 +36,9 @@ sendBtn.addEventListener('click', () => {
     } else {
         firebase.auth().sendPasswordResetEmail(userEmailInput, actionCodeSettings)
         .then(function() {
-            successPage.style.zIndex = "1000";
+            // successPage.style.zIndex = "1000";
+            topPage.style.display = "none";
+            successPage.style.display = "grid";
             emailSentTo.innerHTML = userEmailInput;
 
         }).catch(function(error) {

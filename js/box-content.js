@@ -8,7 +8,7 @@ user.isLoggedIn(() => {
   const profilePhoto = document.querySelector('.profile-picture');
 
   profilePhoto.src = user.userProfilePictureUrl;
-  if (user.userProfilePictureUrl.length === 0) {
+  if (user.userProfilePictureUrl === null || user.userProfilePictureUrl === undefined) {
     profilePhoto.src = '../img/profile/user-default.svg';
   } else {
     fetch(user.userProfilePictureUrl)
