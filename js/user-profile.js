@@ -51,7 +51,11 @@ user.isLoggedIn(() => {
   newUserName.value = user.userName;
   uploadedPic.src = user.userProfilePictureUrl;
   console.log(user.userProfilePictureUrl);
-  if (user.userProfilePictureUrl === null || user.userProfilePictureUrl === undefined) {
+  if (
+    user.userProfilePictureUrl === null ||
+    user.userProfilePictureUrl === undefined ||
+    user.userProfilePictureUrl.length === 0
+  ) {
     uploadedPic.src = '../img/profile/user-default.svg';
   } else {
     fetch(user.userProfilePictureUrl)
@@ -122,9 +126,8 @@ closeEditUserNameBtn.addEventListener('click', () => {
 
 //Save New User Name
 nameSaveBtn.addEventListener('click', () => {
-
-  if(newUserName.value === ""){
-      newUserName.setAttribute('placeholder', 'Name cannot be blank'); 
+  if (newUserName.value === '') {
+    newUserName.setAttribute('placeholder', 'Name cannot be blank');
   } else {
     //Update User Name
     user.updateUserDb(newUserName.value);

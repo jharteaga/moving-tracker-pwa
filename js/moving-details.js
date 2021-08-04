@@ -141,7 +141,11 @@ user.isLoggedIn(() => {
   profilePhotoDesktop.src = user.userProfilePictureUrl;
   profilePhotoMobile.src = user.userProfilePictureUrl;
 
-  if (user.userProfilePictureUrl === null || user.userProfilePictureUrl === undefined) {
+  if (
+    user.userProfilePictureUrl === null ||
+    user.userProfilePictureUrl === undefined ||
+    user.userProfilePictureUrl.length === 0
+  ) {
     profilePhotoDesktop.src = '../img/profile/user-default.svg';
     profilePhotoMobile.src = '../img/profile/user-default.svg';
   } else {
