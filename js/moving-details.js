@@ -590,7 +590,7 @@ saveNewBoxBtn.addEventListener('click', () => {
     newBoxNameField.classList.add('error');
     requiredValidation = false;
   }
-  if (newBoxLabelSelect.value === '') {
+  if (newBoxLabelSelect.value == 0) {
     newBoxLabelErrorMsg.innerHTML = 'Please select a box label';
     newBoxLabelField.classList.add('error');
     requiredValidation = false;
