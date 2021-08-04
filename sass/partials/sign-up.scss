@@ -38,6 +38,7 @@
             a, i {
                 width: 24px;
                 text-align: end;
+                color: $field-text-color;
             }
 
             a:hover {
@@ -210,6 +211,9 @@
             align-items: end;
             background-color: $desktop-left-bg-color;
             color: $white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
 
             h1 {
                 margin: 0 auto 0.7rem 11vw;

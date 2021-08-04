@@ -51,7 +51,7 @@ user.isLoggedIn(() => {
   newUserName.value = user.userName;
   uploadedPic.src = user.userProfilePictureUrl;
   console.log(user.userProfilePictureUrl);
-  if (user.userProfilePictureUrl.length === 0) {
+  if (user.userProfilePictureUrl === null || user.userProfilePictureUrl === undefined) {
     uploadedPic.src = '../img/profile/user-default.svg';
   } else {
     fetch(user.userProfilePictureUrl)

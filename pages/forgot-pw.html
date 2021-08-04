@@ -47,48 +47,49 @@
     <script src="../js/user.js" defer></script>
     <script src="../js/forgot-pw.js" defer></script>
   </head>
-  <body class="forgot-pw-top">
-    <div class="forgot-pw-top-desktop-left">
-      <h1>
-        Discover our<br />
-        moving system
-      </h1>
+  <body>
+    <div class="forgot-pw-top">
+      <div class="forgot-pw-top-desktop-left">
+        <h1>
+          Discover our<br />
+          moving system
+        </h1>
 
-      <div class="forgot-pw-top-logo">
-        <img src="../img/moving-tracker-logo.svg" />
-        <p>&copy; 2021 Moving tracker. All Rights Reserved.</p>
-      </div>
-    </div>
-
-    <main>
-      <div class="background"></div>
-
-      <div class="top">
-        <a href="sign-in.html"><i class="fas fa-chevron-left"></i></a>
-        <p>FORGOT PASSWORD?</p>
+        <div class="forgot-pw-top-logo">
+          <img src="../img/moving-tracker-logo.svg" />
+          <p>&copy; 2021 Moving tracker. All Rights Reserved.</p>
+        </div>
       </div>
 
-      <div class="wrapper">
+      <main>
+        <div class="background"></div>
 
-        <p>Enter your email address below and we will send you a secure link to reset your password</p>
-        
+        <div class="top">
+          <a href="sign-in.html"><img src="../img/moving-tracker-icon.svg" alt="logo"><i class="fas fa-chevron-left"></i></a>
+          <p>FORGOT PASSWORD?</p>
+        </div>
 
-        <form action="#">
-          <div class="field" id="forgotPwInputField">
-            <label for="userEmailInput" class="field__label"
-              >Enter your e-mail address</label
-            >
-            <p class="forgot-pw-top-errorMsg" id="userEmailErrorMsg"></p>
-            <div class="field__container">
-              <input type="text" id="userEmailInput" name="userEmailInput" />
+        <div class="wrapper">
+
+          <p>Enter your email address below and we will send you a secure link to reset your password</p>
+          
+
+          <form action="#">
+            <div class="field" id="forgotPwInputField">
+              <label for="userEmailInput" class="field__label"
+                >Enter your e-mail address</label
+              >
+              <p class="forgot-pw-top-errorMsg" id="userEmailErrorMsg"></p>
+              <div class="field__container">
+                <input type="text" id="userEmailInput" name="userEmailInput" />
+              </div>
             </div>
-          </div>
 
-          <button type="button" id="sendBtn">Send</button>
-        </form>
-      </div>
-    </main>
-
+            <button type="button" id="sendBtn">Send</button>
+          </form>
+        </div>
+      </main>
+    </div>
 
     <div class="forgot-pw-success">
       <div class="forgot-pw-success-desktop-left">
@@ -111,7 +112,7 @@
           <i class="fas fa-check"></i>
   
           <p>We just sent an email to<br>
-          <span id="emailSentTo">abcdef@email.com</span></p>
+          <span id="emailSentTo"></span></p>
           
           <p>Click the secure link we sent you to reset your password. If you didn't receive an email, check your spam folder</p>
   

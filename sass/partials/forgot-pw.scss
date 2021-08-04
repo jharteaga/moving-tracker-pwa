@@ -1,5 +1,6 @@
 //forgot-pw-top page
 .forgot-pw-top {
+    display: grid;
 
     * {
         margin: 0;
@@ -17,7 +18,6 @@
     }
 
     main {
-        overflow-y: hidden;
 
         .background {
             @include backgroundContainer();
@@ -32,9 +32,16 @@
             grid-template-columns: 20% 60% 20%;
             align-items: center;
             
-            i {
-                justify-content: start;
-                color: $field-text-color;
+            a {
+                img {
+                    justify-content: start;
+                    width: 56px;
+                    height: 56px;
+                }
+
+                i {
+                    display: none;
+                }
             }
 
             p {
@@ -125,7 +132,7 @@
 
     .forgot-pw-top {
         max-width: initial;
-        display: grid;
+        // display: grid;
         grid-template-columns: repeat(2, 1fr);
         min-height: 100vh;
 
@@ -135,6 +142,9 @@
             align-items: end;
             background-color: $desktop-left-bg-color;
             color: $white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
 
             h1 {
                 margin: 0 auto 0.7rem 11vw;
@@ -157,19 +167,31 @@
         }
 
         main {
-            //Need to check how to adjust
-            // width: 100%;
-            // height: 100%;
-            // height: 100vh;
-            // overflow-y: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
 
+            .background {
+                @include backgroundContainer();
+            }
+
             .top {
                 width: 100%;
                 margin-bottom: 5rem;
+
+                a img {
+                    display: none;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: $field-text-color;
+
+                    i {
+                        display: block;
+                    }
+                }
             }
     
     
@@ -180,7 +202,6 @@
                 max-width: 400px;
                 margin: 0 auto;
                 padding: 0;
-
 
                 p {
                     width: 100%;
@@ -194,13 +215,7 @@
 
 //forgot-pw-success page
 .forgot-pw-success{
-    //When successful, it will be 1000 and show this page
-    z-index: -1000;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    display: none;
 
     * {
         margin: 0;
@@ -218,7 +233,6 @@
     }
 
     .forgot-pw-success-main {
-        overflow-y: hidden;
 
         .background {
             @include backgroundContainer();
@@ -272,9 +286,7 @@
 
     .forgot-pw-success {
         max-width: initial;
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        min-height: 100vh;
 
         .forgot-pw-success-desktop-left {
             display: grid;
@@ -282,6 +294,9 @@
             align-items: end;
             background-color: $desktop-left-bg-color;
             color: $white;
+            height: 100vh;
+            position: sticky;
+            top: 0;
 
             h1 {
                 margin: 0 auto 0.7rem 11vw;
