@@ -197,19 +197,22 @@
           display: flex;
           flex-direction: column;
           justify-content: center;
+          align-items: center;
         }
         .movingProfilePicture {
           display: flex;
           justify-content: flex-end;
+          img {
+            width: 66px;
+            height: 66px;
+          }
         }
         .movingName {
           grid-row: 2/3;
           nav {
             margin: 0;
-            margin-left: 10%;
           }
           h1 {
-            margin-left: 10%;
             color: $MovingTitle-desktop-color;
           }
 
