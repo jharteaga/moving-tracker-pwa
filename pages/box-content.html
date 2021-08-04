@@ -120,13 +120,18 @@
         <div class="searchHeader">
           <div class="field">
             <div id="idSearchContainer" class="field__container">
-              <input type="text" name="" id="idSearch" />
+              <input
+                type="text"
+                name=""
+                id="idSearch"
+                placeholder="Find your items"
+              />
               <span class="fas fa-search icon"></span>
             </div>
+            <button class="buttonOposite" id="btnFilter">
+              <i class="far fa-filter"></i>
+            </button>
           </div>
-          <button class="buttonOposite" id="btnFilter">
-            <i class="far fa-filter"></i>
-          </button>
         </div>
         <!-- this element is used to store ite id to be edited or deleted -->
         <input type="hidden" id="iditemSelected" value="" />

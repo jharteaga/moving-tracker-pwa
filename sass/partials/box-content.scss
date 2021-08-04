@@ -52,6 +52,9 @@
         border: none;
         font-size: 1.5rem;
         margin-top: 1rem;
+        position: relative;
+        top: -10px;
+
         i {
           color: $primary-color;
         }
@@ -79,9 +82,13 @@
         max-width: 93vw;
         margin: 0 auto;
         align-items: center;
+
         .field {
           width: 100%;
           margin: 0;
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
         }
       }
 
@@ -267,7 +274,10 @@
         flex-direction: column;
 
         .buttonOposite {
-          margin-right: 13px;
+          // margin-right: 13px;
+          position: relative;
+          top: -10px;
+          margin-left: 0.5rem;
         }
 
         ul,
@@ -278,10 +288,13 @@
           padding-right: 1.5rem;
           justify-items: end;
           display: grid;
+
           .field {
             padding-top: 1rem;
             width: 50%;
             margin: 0;
+            display: flex;
+            align-items: center;
           }
         }
 
