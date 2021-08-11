@@ -469,3 +469,9 @@
   background-color: #aaa4;
   margin: 1em;
 }
+
+//To fix box-shadow issue in IOS
+input:not([type="date"]){
+  -webkit-appearance: none; 
+  appearance: none;
+}
