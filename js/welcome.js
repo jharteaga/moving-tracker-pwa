@@ -1,11 +1,6 @@
-//console.log("connected");
-
 const user = new User();
-const userName = document.getElementById("userName");
+const userName = document.getElementById('userName');
 
-user.isLoggedIn(()=>{
-    userName.innerHTML = user.userName;
+user.isLoggedIn(() => {
+  userName.innerHTML = user.userName;
 });
-
-
-

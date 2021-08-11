@@ -2,81 +2,80 @@
 
 /*
 Table of Contents
-0. Variables
-0.5. Mixins
-0.8 Elements
-1. Header
-2. Sign-in
-3. Sign-up
-4. Welcome
-5. Onboarding
-6. Existing Movings
-6.5 Movings
-7. Moving Details
-8. PDF
-9. Box Content
-10. Add Item
-11. Usser Profile
-12. Splash Screen
-13. Not Network
-14. Forgot Password
+1. Variables
+2. Mixins
+3. Elements
+4. Header
+5. Sign-in
+6. Sign-up
+7. Welcome
+8. Onboarding
+9. Existing Movings
+10. Movings
+11. Moving Details
+12. PDF
+13. Box Content
+14. Add Item
+15. User Profile
+16. Splash Screen
+17. Not Network
+18. Forgot Password
 */
 
 //fonts
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
-/* 0. Variables ============================== */
+/* 1. Variables ============================== */
 @import 'partials/variables/variables';
 
-/* 0.5. Mixins ============================== */
+/* 2. Mixins ============================== */
 @import 'partials/mixins';
 
-/* 0.8. Elements ============================== */
+/* 3. Elements ============================== */
 @import 'partials/elements';
 
-/* 1. Header ================================== */
+/* 4. Header ================================== */
 @import 'partials/header';
 
-/* 2. Sign-in ============================= */
+/* 5. Sign-in ============================= */
 @import 'partials/sign-in';
 
-/* 3. Sign-up ============================= */
+/* 6. Sign-up ============================= */
 @import 'partials/sign-up';
 
-/* 4. Welcome ======================== */
+/* 7. Welcome ======================== */
 @import 'partials/welcome';
 
-/* 5. Onboarding ================================== */
+/* 8. Onboarding ================================== */
 @import 'partials/onboarding';
 
-/* 6. Existing Movings ================================== */
+/* 9. Existing Movings ================================== */
 @import 'partials/existingMvs';
+
+/* 10. Moving Page ================================== */
 @import 'partials/moving-page';
 
-/* 6.5 Movings ================================== */
+/* 11. Movings ================================== */
 @import 'partials/movings';
 
-/* 7. Moving Details =============================== */
+/* 12. Moving Details =============================== */
 @import 'partials/moving-details/moving-details';
 
-/* 8. PDF =========================== */
+/* 13. PDF =========================== */
 @import 'partials/pdf';
 
-/* 9. Box Content =============================== */
+/* 14. Box Content =============================== */
 @import 'partials/box-content';
 
-/* 10. Add Item ================================= */
-// @import 'partials/add-item';
-
-/* 11. User Profile =============================== */
+/* 15. User Profile =============================== */
 @import 'partials/userProfile';
 @import 'partials/user-profile';
 
-/* 12. Splash Screen =============================== */
+/* 16. Splash Screen =============================== */
 @import 'partials/splash-screen';
 
-/* 13. Not Network =============================== */
+/* 17. Not Network =============================== */
 @import 'partials/not-network';
 
-/* 14. FOrgot Password =============================== */
+/* 18. Forgot Password =============================== */
 @import 'partials/forgot-pw.scss';
