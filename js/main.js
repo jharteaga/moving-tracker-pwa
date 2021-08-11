@@ -1,6 +1,3 @@
-// import auth from './auth';
-// import index from './index';
-
 /**
  * Register Service Worker
  */
